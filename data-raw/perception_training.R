@@ -1,6 +1,3 @@
-# perception_training: second language acquisition, a tiny paired design
-# 18 learners identify a non-native consonant contrast (40 trials) before and
-# after a week of perceptual training. Wide format: one row per learner.
 library(dplyr)
 library(tibble)
 

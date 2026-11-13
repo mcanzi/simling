@@ -195,8 +195,8 @@
 #' @details True model: `log(rt) = 6.47 + u0 + w0 + (-0.045 + u1) * freq_c +
 #'   e`. By-participant intercepts `u0` have SD 0.11 and slopes `u1` SD
 #'   0.025, correlated at -0.6; by-word intercepts `w0` have SD 0.045;
-#'   residual SD 0.075. Not to be confused with `languageR::lexdec`, which is
-#'   real data.
+#'   residual SD 0.075. `languageR::lexdec` is a different data set, with real
+#'   data.
 #' @source `data-raw/lexical_decision.R`
 #' @examples
 #' head(lexical_decision)
@@ -431,6 +431,8 @@
 #'   -1.5, -0.5, 0.5, 1.5 and 2.5 on a latent scale `1.5 - 0.6 * long - 0.4 *
 #'   island - 0.9 * long * island`. By-participant intercepts (SD 0.8) and
 #'   interaction slopes (SD 0.3); by-item intercepts (SD 0.4).
+#' @references
+#' Sprouse, J., Wagers, M. & Phillips, C. (2012). A test of the relation between working-memory capacity and syntactic island effects. *Language*, 88(1), 82-123.
 #' @source `data-raw/acceptability.R`
 #' @examples
 #' table(acceptability$length, acceptability$structure, acceptability$rating)
@@ -466,6 +468,8 @@
 #'   (SD 0.08) intercepts and residual SD 0.3. First-pass regressions, in
 #'   log-odds: `-1.9 + 0.9 * ungrammatical - 0.5 * ungrammatical * plural`,
 #'   by-participant SD 0.5. Skipping rate about 14%, unrelated to condition.
+#' @references
+#' Bock, K. & Miller, C. A. (1991). Broken agreement. *Cognitive Psychology*, 23(1), 45-93.
 #' @source `data-raw/agreement_attraction.R`
 #' @examples
 #' head(agreement_attraction)
@@ -508,8 +512,8 @@
 #' verb (*eat*) they look at the target before the noun is heard; while the
 #' noun unfolds, the competitor briefly attracts looks too. Eye-tracker
 #' samples on each object in 50 ms bins from verb onset; the noun starts at
-#' 600 ms. 32 participants, 24
-#' items, 12 per condition (two counterbalanced lists).
+#' 600 ms. 32 participants, 24 items, 12 per condition (two counterbalanced
+#' lists).
 #'
 #' @format A tibble with 23040 rows and 10 columns:
 #' \describe{
@@ -531,6 +535,8 @@
 #'   the competitor gets a third plus a bump of up to 25 percentage points
 #'   centred at 850 ms (SD about 100 ms); the two distractors split the rest
 #'   evenly.
+#' @references
+#' Altmann, G. T. M. & Kamide, Y. (1999). Incremental interpretation at verbs: Restricting the domain of subsequent reference. *Cognition*, 73(3), 247-264.
 #' @source `data-raw/visual_world.R`
 #' @examples
 #' head(visual_world)
@@ -603,6 +609,10 @@
 #'   1200)` plus a by-child deviation (SD 2.6 months), and session-level noise
 #'   on the logit scale (SD 0.15). Doubling the input moves the spurt 2 months
 #'   earlier. Children average about 300 words at 24 months.
+#' @references
+#' Fenson, L., Marchman, V. A., Thal, D. J., Dale, P. S., Reznick, J. S. & Bates, E. (2007). *MacArthur-Bates Communicative Development Inventories: User's guide and technical manual* (2nd ed.). Baltimore: Brookes.
+#'
+#' Frank, M. C., Braginsky, M., Yurovsky, D. & Marchman, V. A. (2017). Wordbank: An open repository for developmental vocabulary data. *Journal of Child Language*, 44(3), 677-694.
 #' @source `data-raw/vocabulary_growth.R`
 #' @examples
 #' head(vocabulary_growth)
@@ -612,8 +622,9 @@
 #'
 #' Overregularization errors (*goed*, *holded*) out of all irregular past-tense
 #' contexts, for 24 children recorded every six months from 30 to 60 months.
-#' Errors are rare and peak around 42 months. For binomial models of errors
-#' out of attempts.
+#' Errors are rare, and their rate stays about the same across ages while
+#' children differ in how often they make them. For binomial models of errors
+#' out of attempts and for testing an effect that is absent.
 #'
 #' @format A tibble with 144 rows and 4 columns:
 #' \describe{
@@ -622,8 +633,11 @@
 #'   \item{attempts}{Irregular past-tense contexts in the recording.}
 #'   \item{errors}{Overregularizations among them.}
 #' }
-#' @details True model, in log-odds: `-3 - 0.006 * (age - 42)^2`, with
-#'   by-child intercepts of SD 0.5. The error rate peaks at about 5%.
+#' @details True model, in log-odds: `-3.2`, with by-child intercepts of SD
+#'   0.5, so about 4% of attempts are errors. Age has no effect. Children
+#'   attempt more irregular past tenses as they get older.
+#' @references
+#' Marcus, G. F., Pinker, S., Ullman, M., Hollander, M., Rosen, T. J. & Xu, F. (1992). Overregularization in language acquisition. *Monographs of the Society for Research in Child Development*, 57(4).
 #' @source `data-raw/overregularization.R`
 #' @examples
 #' head(overregularization)
@@ -634,8 +648,8 @@
 #' Use of *do* (*Did he go?*, *He did not go*) in 300 texts dated 1400 to
 #' 1700, in four sentence types: the number of clauses with *do* out of all
 #' eligible clauses. In three contexts the change follows S-curves with the
-#' same slope but different starting points (the Constant Rate Effect);
-#' affirmative declaratives barely take part.
+#' same slope and different starting points (the Constant Rate Effect).
+#' Affirmative declaratives barely take part.
 #'
 #' @format A tibble with 1200 rows and 5 columns:
 #' \describe{
@@ -649,8 +663,13 @@
 #' @details True model, in log-odds: `baseline + 0.035 * (year - 1550)`
 #'   (3.5 per century in every context), with baselines 1.0 (affirmative
 #'   questions), 1.6 (negative questions), -0.6 (negative declaratives) and
-#'   -7.5 (affirmative declaratives), and by-text intercepts (SD 0.4). The
-#'   later decline of *do* in affirmative declaratives is not simulated.
+#'   -7.5 (affirmative declaratives), and by-text intercepts (SD 0.4). In the
+#'   historical data, *do* in affirmative declaratives later declined again;
+#'   the simulation leaves this out.
+#' @references
+#' Ellegård, A. (1953). *The auxiliary do: The establishment and regulation of its use in English*. Stockholm: Almqvist & Wiksell.
+#'
+#' Kroch, A. S. (1989). Reflexes of grammar in patterns of language change. *Language Variation and Change*, 1(3), 199-244.
 #' @source `data-raw/do_support.R`
 #' @examples
 #' head(do_support)
@@ -659,8 +678,8 @@
 #' Word order in a typological sample
 #'
 #' 400 invented languages from 100 invented families in six invented areas.
-#' Languages mostly inherit their family's word order, so observations are
-#' not independent. Adposition order and case marking correlate with word
+#' Languages mostly inherit their family's word order, so languages from the
+#' same family are similar. Adposition order and case marking correlate with word
 #' order, in the spirit of Greenberg's universals. Family sizes are skewed:
 #' a few large families and many small ones.
 #'
@@ -684,8 +703,12 @@
 #'   negative binomial count (mean 16, by-family variation); vowel
 #'   inventories are 3 plus a Poisson count (mean 2.5). Overall, about 44% of
 #'   the languages are SOV, 36% SVO, 6% VSO and 14% have no dominant order,
-#'   close to the world-wide proportions in WALS (feature 81A). All names and
-#'   figures are invented, not real typological data.
+#'   close to the world-wide proportions in WALS (feature 81A). All language,
+#'   family and area names and all figures are invented.
+#' @references
+#' Dryer, M. S. (2013). Order of subject, object and verb. In M. S. Dryer & M. Haspelmath (eds.), *WALS Online*. Leipzig: Max Planck Institute for Evolutionary Anthropology. <https://wals.info/chapter/81>
+#'
+#' Greenberg, J. H. (1963). Some universals of grammar with particular reference to the order of meaningful elements. In J. H. Greenberg (ed.), *Universals of Language* (pp. 58-90). Cambridge, MA: MIT Press.
 #' @source `data-raw/word_order.R`
 #' @examples
 #' table(word_order$order, word_order$adpositions)
@@ -788,6 +811,8 @@
 #'   0.3); level 1 is about 160 Hz for female and 90 Hz for male speakers.
 #'   Token offsets have SD 0.5 semitones and residuals are AR(1) with rho
 #'   0.7. Mean durations are 250, 270, 300 and 220 ms for T1 to T4.
+#' @references
+#' Chao, Y. R. (1930). A system of tone letters. *Le Maître Phonétique*, 45, 24-27.
 #' @source `data-raw/mandarin_tones.R`
 #' @examples
 #' head(mandarin_tones)
@@ -798,7 +823,7 @@
 #' Word-initial lenis, tense and aspirated stops from 20 older and 20 younger
 #' speakers of Seoul Korean: VOT and the f0 of the following vowel. Older
 #' speakers keep the three stops apart by VOT; younger speakers have merged
-#' lenis and aspirated VOT and keep them apart by f0 instead. For cluster
+#' lenis and aspirated VOT and keep them apart by f0. For cluster
 #' analysis and classification, and for a sound change in progress.
 #'
 #' @format A tibble with 1440 rows and 8 columns:
@@ -818,9 +843,11 @@
 #'   log-normal (SD 0.3 for tense, 0.18 otherwise) and by-speaker SD 0.1. f0
 #'   relative to the speaker's mean (about 200 Hz female, 115 Hz male) is
 #'   +1.2, -1.5 and +1.5 semitones for older and +1.2, -3.5 and +2.0
-#'   semitones for younger speakers, token SD 0.8 semitones. Inspired by
-#'   reports of the VOT merger in younger Seoul speakers (e.g. Silva 2006);
-#'   not real data.
+#'   semitones for younger speakers, token SD 0.8 semitones. The design
+#'   follows reports of the VOT merger in younger Seoul speakers (Silva
+#'   2006); the data are simulated.
+#' @references
+#' Silva, D. J. (2006). Acoustic evidence for the emergence of tonal contrast in contemporary Korean. *Phonology*, 23(2), 287-308.
 #' @source `data-raw/korean_stops.R`
 #' @examples
 #' head(korean_stops)
@@ -887,6 +914,10 @@
 #'   and N400 slopes `p1` (SD 1); by-item intercepts `i0` (SD 0.5); trial
 #'   noise shared across electrodes (SD 4) and electrode noise (SD 3). Cloze
 #'   is 0.5 to 0.95 for expected and 0 to 0.05 for unexpected words.
+#' @references
+#' Kutas, M. & Hillyard, S. A. (1980). Reading senseless sentences: Brain potentials reflect semantic incongruity. *Science*, 207(4427), 203-205.
+#'
+#' Kutas, M. & Hillyard, S. A. (1984). Brain potentials during reading reflect word expectancy and semantic association. *Nature*, 307, 161-163.
 #' @source `data-raw/n400.R`
 #' @examples
 #' head(n400)
@@ -898,7 +929,8 @@
 #' rising, 23), which some younger speakers merge. 90 speakers aged 18 to 75
 #' each produce 10 T2 and 10 T5 words; the size of the f0 rise is measured in
 #' semitones. For a sound change in apparent time and for individual
-#' differences: mergers form a separate group rather than a gradual trend.
+#' differences: mergers form a separate group of speakers, most of them
+#' young.
 #'
 #' @format A tibble with 1800 rows and 7 columns:
 #' \describe{
@@ -913,8 +945,10 @@
 #' @details True model: each speaker is a merger with probability `0.65 *
 #'   plogis((40 - age) / 6)`. Non-mergers rise by 7 semitones in T2 and 3.5
 #'   in T5; mergers by 5.6 and 4.8. By-speaker intercepts have SD 0.6 and
-#'   token SD is 0.9. Inspired by reports of T2/T5 merging (e.g. Mok, Zuo &
-#'   Wong 2013); not their data.
+#'   token SD is 0.9. The design follows reports of T2/T5 merging (Mok, Zuo &
+#'   Wong 2013); the data are simulated.
+#' @references
+#' Mok, P. P. K., Zuo, D. & Wong, P. W. Y. (2013). Production and perception of a sound change in progress: Tone merging in Hong Kong Cantonese. *Language Variation and Change*, 25(3), 341-370.
 #' @source `data-raw/cantonese_tone_merger.R`
 #' @examples
 #' head(cantonese_tone_merger)
@@ -946,6 +980,8 @@
 #'   for the five endings (see `data-raw/german_plurals.R`), perturbed on the
 #'   log scale by a by-participant preference for *-s* (SD 0.6) and by
 #'   response-level noise (SD 0.3).
+#' @references
+#' Berko, J. (1958). The child's learning of English morphology. *Word*, 14(2-3), 150-177.
 #' @source `data-raw/german_plurals.R`
 #' @examples
 #' table(german_plurals$final, german_plurals$plural)
@@ -976,9 +1012,10 @@
 #'   + 250 * non-answer - 70 * gaze + e`, where `c0` is a by-conversation
 #'   offset (SD 60 ms) and `e` is ex-Gaussian (a normal with SD 200 ms plus
 #'   an exponential with mean 150 ms, centred). Language means range from 10
-#'   ms (Japanese) to 460 ms (Danish). Loosely based on the design and
-#'   findings of Stivers et al. (2009); the language means are invented, not
-#'   their values.
+#'   ms (Japanese) to 460 ms (Danish). The design and the general pattern
+#'   follow Stivers et al. (2009); the language means are invented.
+#' @references
+#' Stivers, T., Enfield, N. J., Brown, P., Englert, C., Hayashi, M., Heinemann, T., Hoymann, G., Rossano, F., de Ruiter, J. P., Yoon, K.-E. & Levinson, S. C. (2009). Universals and cultural variation in turn-taking in conversation. *Proceedings of the National Academy of Sciences*, 106(26), 10587-10592.
 #' @source `data-raw/turn_taking.R`
 #' @examples
 #' head(turn_taking)
@@ -1040,8 +1077,8 @@
 #' @details True model, in log-odds: `-1.5 + 6 * (lat - 44.1) + t0 + 0.03 *
 #'   (age - 50)`, with by-town intercepts `t0` (SD 0.6). Town names and
 #'   coordinates are the Italian towns of over 50,000 inhabitants in
-#'   `maps::world.cities` (without Sardinia); the dialect data are simulated,
-#'   not real survey results.
+#'   `maps::world.cities` (without Sardinia); the dialect data are
+#'   simulated.
 #' @source `data-raw/dialect_survey.R`
 #' @examples
 #' head(dialect_survey)

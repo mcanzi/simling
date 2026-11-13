@@ -1,5 +1,3 @@
-# accent: second language speech, acoustic cues to an Italian accent in English
-# Advanced Statistics, session 7 (Random forests in practice)
 library(dplyr)
 library(tidyr)
 library(tibble)

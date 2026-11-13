@@ -1,6 +1,3 @@
-# address_forms: pragmatics/sociolinguistics, a small contingency table
-# Whether German speakers address a stranger with informal "du" or formal
-# "Sie", by the speaker's age group and the setting. 180 observations.
 library(dplyr)
 library(tidyr)
 library(tibble)

@@ -1,5 +1,3 @@
-# price_f2: Advanced Statistics, sessions 3 (GAMs) and 4 (GAMMs)
-# Session 4 adds the ordered factor l1_o itself.
 library(dplyr)
 library(tidyr)
 library(tibble)

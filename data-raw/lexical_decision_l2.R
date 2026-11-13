@@ -1,5 +1,3 @@
-# lexical_decision_l2: psycholinguistics, German lexical decision by L1 and L2 speakers
-# Advanced Statistics, sessions 1 (Refresher) and 2 (Figures)
 library(dplyr)
 library(tidyr)
 library(tibble)

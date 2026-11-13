@@ -1,10 +1,3 @@
-# language_attitudes: sociolinguistics, a questionnaire for factor analysis
-# 320 respondents rate speakers of a regional dialect on 12 statements (1 =
-# strongly disagree, 5 = strongly agree). The items measure three correlated
-# attitudes: status (intelligent, educated...), solidarity (friendly,
-# warm...) and vitality (the dialect is used by young people, should be
-# taught...). Two items are worded negatively. Dialect speakers rate
-# solidarity and vitality higher. About 2% of answers are missing.
 library(dplyr)
 library(tibble)
 
@@ -15,18 +8,17 @@ items <- tribble(
   "intelligent",   "status",       0.75,
   "educated",      "status",       0.80,
   "competent",     "status",       0.70,
-  "lazy",          "status",      -0.55,   # negatively worded
+  "lazy",          "status",      -0.55,
   "friendly",      "solidarity",   0.80,
   "warm",          "solidarity",   0.75,
   "trustworthy",   "solidarity",   0.65,
-  "cold",          "solidarity",  -0.60,   # negatively worded
+  "cold",          "solidarity",  -0.60,
   "used_by_young", "vitality",     0.60,
   "will_survive",  "vitality",     0.70,
   "teach_school",  "vitality",     0.65,
   "identity",      "vitality",     0.70
 )
 
-# correlated latent attitudes
 r <- matrix(c(1, 0.2, 0.3,
               0.2, 1, 0.5,
               0.3, 0.5, 1), 3, 3)

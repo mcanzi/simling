@@ -1,5 +1,3 @@
-# formants: phonetics, F1 and F2 of /i a u/ from two speakers
-# Statistics, lecture 5 (Transformations)
 library(dplyr)
 library(tidyr)
 library(tibble)
@@ -12,7 +10,7 @@ vowel_means <- tribble(
   "u",    320,  800
 )
 formants <- crossing(speaker = c("A", "B"), vowel_means, token = 1:20) |>
-  mutate(k  = if_else(speaker == "A", 1, 1.2),   # speaker B: shorter vocal tract
+  mutate(k = if_else(speaker == "A", 1, 1.2),
          F1 = round(F1 * k + rnorm(n(), 0, 40)),
          F2 = round(F2 * k + rnorm(n(), 0, 120))) |>
   select(speaker, vowel, token, F1, F2)

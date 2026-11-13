@@ -64,12 +64,12 @@ vowel_duration
 | Dialectology | `dialect_survey` | Italian | 580 | counts out of 10 | Maps, spatial patterns |
 | Second language | `perception_training` | – | 18 | correct out of 40 | Paired designs, wide data |
 | | `accent` | English (L1 and L2) | 1,200 | categorical | Random forests, cross-validation |
-| Language acquisition | `overregularization` | English | 144 | errors out of attempts | Binomial regression, non-linear age |
+| Language acquisition | `overregularization` | English | 144 | errors out of attempts | Binomial regression, null effects |
 | | `vocabulary_growth` | English | 572 | counts out of 680 | Growth curves, longitudinal data |
 | Historical linguistics | `do_support` | English | 1,200 | counts out of trials | Logistic change, Constant Rate Effect |
 | Typology | `word_order` | 400 invented languages | 400 | categorical, counts | Non-independence of languages |
 
-"–" means the data set is not tied to a particular language.
+"–" marks data sets without a particular language.
 
 ## Rebuilding the data
 

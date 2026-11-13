@@ -1,4 +1,3 @@
-# style_voicing: Statistics, lecture 8 (Interactions)
 library(dplyr)
 library(tidyr)
 library(tibble)
@@ -13,9 +12,9 @@ cells <- tribble(
   "clear",  "voiced",    180
 )
 style_voicing <- cells |>
-  uncount(40) |>                                    # 40 tokens per cell
+  uncount(40) |>
   mutate(duration = round(rnorm(n(), mu, 18)),
-         voicing  = fct_relevel(voicing, "voiceless")) |>
+         voicing = fct_relevel(voicing, "voiceless")) |>
   select(-mu)
 
 usethis::use_data(style_voicing, overwrite = TRUE)

@@ -1,8 +1,4 @@
-# korean_stops: phonetics, the three-way laryngeal contrast in Seoul Korean
-# Lenis, tense and aspirated stops differ in VOT and in the f0 of the
-# following vowel. In older speakers lenis stops have intermediate VOT; in
-# younger speakers lenis and aspirated VOT have merged, and the two are kept
-# apart by f0 instead. 40 speakers, 36 tokens each.
+# Silva (2006), Phonology 23(2), 287-308.
 library(dplyr)
 library(tidyr)
 library(tibble)
@@ -17,7 +13,7 @@ vot_mean <- tribble(
   "younger",   "lenis",      78,
   "younger",   "aspirated",  82
 )
-f0_shift <- tribble(                                # semitones from speaker mean
+f0_shift <- tribble(
   ~generation, ~stop,       ~shift,
   "older",     "tense",      1.2,
   "older",     "lenis",     -1.5,

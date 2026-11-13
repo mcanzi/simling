@@ -30,8 +30,8 @@ competitor (a cage) and two unrelated distractors. After a restrictive
 verb (\emph{eat}) they look at the target before the noun is heard; while the
 noun unfolds, the competitor briefly attracts looks too. Eye-tracker
 samples on each object in 50 ms bins from verb onset; the noun starts at
-600 ms. 32 participants, 24
-items, 12 per condition (two counterbalanced lists).
+600 ms. 32 participants, 24 items, 12 per condition (two counterbalanced
+lists).
 }
 \details{
 True model: on the logit scale, looks to the target rise from
@@ -46,5 +46,8 @@ evenly.
 }
 \examples{
 head(visual_world)
+}
+\references{
+Altmann, G. T. M. & Kamide, Y. (1999). Incremental interpretation at verbs: Restricting the domain of subsequent reference. \emph{Cognition}, 73(3), 247-264.
 }
 \keyword{datasets}

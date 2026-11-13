@@ -1,10 +1,4 @@
-# cantonese_tone_merger: sociolinguistics, a sound change in apparent time
-# Hong Kong Cantonese has two rising tones, T2 (high rising, 25) and T5 (low
-# rising, 23), which some younger speakers merge. 90 speakers aged 18 to 75
-# each produce 10 T2 and 10 T5 words; the size of the f0 rise is measured in
-# semitones. Younger speakers are more likely to merge, and mergers produce
-# both tones with a similar, intermediate rise. Inspired by reports of
-# T2/T5 merging (e.g. Mok, Zuo & Wong 2013); not their data.
+# Mok, Zuo & Wong (2013), Language Variation and Change 25(3), 341-370.
 library(dplyr)
 library(tidyr)
 library(tibble)

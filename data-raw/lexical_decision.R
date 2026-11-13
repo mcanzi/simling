@@ -1,5 +1,3 @@
-# lexical_decision: psycholinguistics, lexical decision with participants and words
-# Statistics, lecture 10 (Mixed models 1)
 library(dplyr)
 library(tidyr)
 library(tibble)
@@ -11,11 +9,11 @@ n_item <- 40
 z0 <- rnorm(n_subj)
 z1 <- rnorm(n_subj)
 participants <- tibble(participant = sprintf("P%02d", 1:n_subj),
-                       u0 = 0.11 * z0,                                  # own speed
-                       u1 = 0.025 * (-0.6 * z0 + sqrt(1 - 0.36) * z1))  # own frequency effect
-words <- tibble(word     = sprintf("w%02d", 1:n_item),
+                       u0 = 0.11 * z0,
+                       u1 = 0.025 * (-0.6 * z0 + sqrt(1 - 0.36) * z1))
+words <- tibble(word = sprintf("w%02d", 1:n_item),
                 log_freq = round(runif(n_item, 1, 6), 2),
-                w0       = rnorm(n_item, 0, 0.045))                       # own difficulty
+                w0 = rnorm(n_item, 0, 0.045))
 
 lexical_decision <- crossing(participants, words) |>
   mutate(freq_c = log_freq - mean(words$log_freq),

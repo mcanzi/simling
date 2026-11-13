@@ -1,8 +1,4 @@
-# do_support: historical linguistics, a change over time
-# The rise of periphrastic "do" (Did he go? He did not go.) in 300 texts
-# dated 1400 to 1700, in four sentence types. The change follows the same
-# S-curve slope in every context but starts from different baselines (the
-# Constant Rate Effect). Counts of "do" out of all eligible clauses per text.
+# Ellegård (1953), The auxiliary do; Constant Rate Effect: Kroch (1989), Language Variation and Change 1(3), 199-244.
 library(dplyr)
 library(tidyr)
 library(tibble)

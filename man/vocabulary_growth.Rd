@@ -34,4 +34,9 @@ earlier. Children average about 300 words at 24 months.
 \examples{
 head(vocabulary_growth)
 }
+\references{
+Fenson, L., Marchman, V. A., Thal, D. J., Dale, P. S., Reznick, J. S. & Bates, E. (2007). \emph{MacArthur-Bates Communicative Development Inventories: User's guide and technical manual} (2nd ed.). Baltimore: Brookes.
+
+Frank, M. C., Braginsky, M., Yurovsky, D. & Marchman, V. A. (2017). Wordbank: An open repository for developmental vocabulary data. \emph{Journal of Child Language}, 44(3), 677-694.
+}
 \keyword{datasets}

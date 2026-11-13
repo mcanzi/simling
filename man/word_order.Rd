@@ -25,8 +25,8 @@ word_order
 }
 \description{
 400 invented languages from 100 invented families in six invented areas.
-Languages mostly inherit their family's word order, so observations are
-not independent. Adposition order and case marking correlate with word
+Languages mostly inherit their family's word order, so languages from the
+same family are similar. Adposition order and case marking correlate with word
 order, in the spirit of Greenberg's universals. Family sizes are skewed:
 a few large families and many small ones.
 }
@@ -39,10 +39,15 @@ no-dominant-order and 0.12 in VO languages. Case marking has probability
 negative binomial count (mean 16, by-family variation); vowel
 inventories are 3 plus a Poisson count (mean 2.5). Overall, about 44\% of
 the languages are SOV, 36\% SVO, 6\% VSO and 14\% have no dominant order,
-close to the world-wide proportions in WALS (feature 81A). All names and
-figures are invented, not real typological data.
+close to the world-wide proportions in WALS (feature 81A). All language,
+family and area names and all figures are invented.
 }
 \examples{
 table(word_order$order, word_order$adpositions)
+}
+\references{
+Dryer, M. S. (2013). Order of subject, object and verb. In M. S. Dryer & M. Haspelmath (eds.), \emph{WALS Online}. Leipzig: Max Planck Institute for Evolutionary Anthropology. \url{https://wals.info/chapter/81}
+
+Greenberg, J. H. (1963). Some universals of grammar with particular reference to the order of meaningful elements. In J. H. Greenberg (ed.), \emph{Universals of Language} (pp. 58-90). Cambridge, MA: MIT Press.
 }
 \keyword{datasets}

@@ -1,11 +1,4 @@
-# turn_taking: conversation analysis, response timing in 10 languages
-# The gap between the end of a yes/no question and the start of the answer,
-# in conversations in 10 languages. Negative values are overlaps. Across
-# languages, gaps peak just above zero and are skewed to the right; languages
-# differ in their average gap by a few hundred milliseconds. Disconfirmations
-# and non-answers come later; answers to a speaker who is looking at the
-# responder come sooner. Loosely based on the design and findings of Stivers
-# et al. (2009); the language means are invented, not their values.
+# Stivers et al. (2009), PNAS 106(26), 10587-10592. Language means are invented.
 library(dplyr)
 library(tidyr)
 library(tibble)
@@ -32,7 +25,6 @@ turn_taking <- conversations |>
   mutate(across(c(language, conversation), factor)) |>
   select(language, conversation, response, answer, gaze, offset)
 
-# mark non-ASCII strings as UTF-8 so they display correctly in every locale
 turn_taking <- turn_taking |>
   mutate(across(where(is.character), enc2utf8),
          across(where(is.factor), \(f) { levels(f) <- enc2utf8(levels(f)); f }))

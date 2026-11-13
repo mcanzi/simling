@@ -36,4 +36,7 @@ interaction slopes (SD 0.3); by-item intercepts (SD 0.4).
 \examples{
 table(acceptability$length, acceptability$structure, acceptability$rating)
 }
+\references{
+Sprouse, J., Wagers, M. & Phillips, C. (2012). A test of the relation between working-memory capacity and syntactic island effects. \emph{Language}, 88(1), 82-123.
+}
 \keyword{datasets}

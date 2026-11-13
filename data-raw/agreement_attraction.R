@@ -1,6 +1,4 @@
-# agreement_attraction: syntax, eye-tracking while reading
-# "The key to the cabinet(s) was/were rusty": grammaticality x attractor number.
-# Reading measures on the critical verb. 40 participants, 32 items, 4 lists.
+# Design: Bock & Miller (1991), Cognitive Psychology 23(1), 45-93.
 library(dplyr)
 library(tidyr)
 library(tibble)
@@ -13,9 +11,9 @@ conds <- expand_grid(grammaticality = c("grammatical", "ungrammatical"),
 
 participants <- tibble(participant = sprintf("P%02d", 1:n_part),
                        list = rep(1:4, length.out = n_part),
-                       p0 = rnorm(n_part, 0, 0.15),       # own reading speed (log scale)
-                       p_reg = rnorm(n_part, 0, 0.5),     # own tendency to regress
-                       p_skip = rnorm(n_part, 0, 0.5))    # own tendency to skip
+                       p0 = rnorm(n_part, 0, 0.15),
+                       p_reg = rnorm(n_part, 0, 0.5),
+                       p_skip = rnorm(n_part, 0, 0.5))
 items <- tibble(item = sprintf("i%02d", 1:n_item),
                 i0 = rnorm(n_item, 0, 0.08))
 
@@ -33,7 +31,6 @@ agreement_attraction <- crossing(participants, items) |>
          regression = rbinom(n(), 1, plogis(-1.9 + p_reg + 0.9 * ungram - 0.5 * ungram * plural)),
          reread = rbinom(n(), 1, plogis(-1 + 0.6 * ungram + 1.5 * regression)),
          rereading = if_else(reread == 1, exp(5.4 + rnorm(n(), 0, 0.4)), 0),
-         # skipped words have no first-pass measures, but can be fixated later
          first_fixation = if_else(skipped == 1, NA, round(first_fixation)),
          gaze_duration = if_else(skipped == 1, NA, round(gaze)),
          regression = if_else(skipped == 1, NA, regression),

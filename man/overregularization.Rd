@@ -22,14 +22,19 @@ overregularization
 \description{
 Overregularization errors (\emph{goed}, \emph{holded}) out of all irregular past-tense
 contexts, for 24 children recorded every six months from 30 to 60 months.
-Errors are rare and peak around 42 months. For binomial models of errors
-out of attempts.
+Errors are rare, and their rate stays about the same across ages while
+children differ in how often they make them. For binomial models of errors
+out of attempts and for testing an effect that is absent.
 }
 \details{
-True model, in log-odds: \code{-3 - 0.006 * (age - 42)^2}, with
-by-child intercepts of SD 0.5. The error rate peaks at about 5\%.
+True model, in log-odds: \code{-3.2}, with by-child intercepts of SD
+0.5, so about 4\% of attempts are errors. Age has no effect. Children
+attempt more irregular past tenses as they get older.
 }
 \examples{
 head(overregularization)
+}
+\references{
+Marcus, G. F., Pinker, S., Ullman, M., Hollander, M., Rosen, T. J. & Xu, F. (1992). Overregularization in language acquisition. \emph{Monographs of the Society for Research in Child Development}, 57(4).
 }
 \keyword{datasets}

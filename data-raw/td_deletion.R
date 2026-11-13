@@ -1,4 +1,3 @@
-# td_deletion: Advanced Statistics, session 6 (Random forests)
 library(dplyr)
 library(tidyr)
 library(tibble)

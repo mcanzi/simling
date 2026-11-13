@@ -27,7 +27,7 @@ korean_stops
 Word-initial lenis, tense and aspirated stops from 20 older and 20 younger
 speakers of Seoul Korean: VOT and the f0 of the following vowel. Older
 speakers keep the three stops apart by VOT; younger speakers have merged
-lenis and aspirated VOT and keep them apart by f0 instead. For cluster
+lenis and aspirated VOT and keep them apart by f0. For cluster
 analysis and classification, and for a sound change in progress.
 }
 \details{
@@ -37,11 +37,14 @@ shorter for labials and 10 ms longer for velars; token variation is
 log-normal (SD 0.3 for tense, 0.18 otherwise) and by-speaker SD 0.1. f0
 relative to the speaker's mean (about 200 Hz female, 115 Hz male) is
 +1.2, -1.5 and +1.5 semitones for older and +1.2, -3.5 and +2.0
-semitones for younger speakers, token SD 0.8 semitones. Inspired by
-reports of the VOT merger in younger Seoul speakers (e.g. Silva 2006);
-not real data.
+semitones for younger speakers, token SD 0.8 semitones. The design
+follows reports of the VOT merger in younger Seoul speakers (Silva
+2006); the data are simulated.
 }
 \examples{
 head(korean_stops)
+}
+\references{
+Silva, D. J. (2006). Acoustic evidence for the emergence of tonal contrast in contemporary Korean. \emph{Phonology}, 23(2), 287-308.
 }
 \keyword{datasets}

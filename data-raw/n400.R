@@ -1,9 +1,4 @@
-# n400: psycholinguistics, single-trial ERP amplitudes in the N400 window
-# German sentences ending in an expected or unexpected word ("Er trinkt
-# seinen Kaffee / Schrank"). Mean amplitude 300-500 ms after the final word
-# at nine electrodes. The N400 is more negative the less predictable the word
-# (lower cloze probability), largest over centro-parietal sites.
-# 30 participants, 80 items (40 per condition, two lists).
+# Kutas & Hillyard (1980), Science 207, 203-205; Kutas & Hillyard (1984), Nature 307, 161-163.
 library(dplyr)
 library(tidyr)
 library(tibble)

@@ -42,4 +42,7 @@ response-level noise (SD 0.3).
 \examples{
 table(german_plurals$final, german_plurals$plural)
 }
+\references{
+Berko, J. (1958). The child's learning of English morphology. \emph{Word}, 14(2-3), 150-177.
+}
 \keyword{datasets}

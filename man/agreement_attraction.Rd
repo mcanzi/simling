@@ -45,4 +45,7 @@ by-participant SD 0.5. Skipping rate about 14\%, unrelated to condition.
 \examples{
 head(agreement_attraction)
 }
+\references{
+Bock, K. & Miller, C. A. (1991). Broken agreement. \emph{Cognitive Psychology}, 23(1), 45-93.
+}
 \keyword{datasets}

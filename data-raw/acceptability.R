@@ -1,6 +1,4 @@
-# acceptability: syntax, 7-point acceptability judgments (ordinal)
-# Factorial design for whether-islands: dependency length x structure.
-# 48 participants, 32 items in 4 counterbalanced lists (Latin square).
+# Design: Sprouse, Wagers & Phillips (2012), Language 88(1), 82-123.
 library(dplyr)
 library(tidyr)
 library(tibble)
@@ -12,8 +10,8 @@ conds <- expand_grid(length = c("short", "long"), structure = c("non-island", "i
 
 participants <- tibble(participant = sprintf("P%02d", 1:n_part),
                        list = rep(1:4, length.out = n_part),
-                       p0 = rnorm(n_part, 0, 0.8),        # own use of the scale
-                       p_int = rnorm(n_part, 0, 0.3))     # own island effect
+                       p0 = rnorm(n_part, 0, 0.8),
+                       p_int = rnorm(n_part, 0, 0.3))
 items <- tibble(item = sprintf("i%02d", 1:n_item),
                 i0 = rnorm(n_item, 0, 0.4))
 

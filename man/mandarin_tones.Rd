@@ -42,4 +42,7 @@ Token offsets have SD 0.5 semitones and residuals are AR(1) with rho
 \examples{
 head(mandarin_tones)
 }
+\references{
+Chao, Y. R. (1930). A system of tone letters. \emph{Le Maître Phonétique}, 45, 24-27.
+}
 \keyword{datasets}

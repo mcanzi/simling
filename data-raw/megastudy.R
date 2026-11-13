@@ -1,7 +1,3 @@
-# megastudy: psycholinguistics, item-level norms for 6000 words
-# Mean lexical decision RT and accuracy per word, with correlated lexical
-# predictors, as in large megastudy databases. The frequency effect levels off
-# for very frequent words.
 library(dplyr)
 library(tibble)
 

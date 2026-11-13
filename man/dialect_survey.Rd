@@ -32,8 +32,8 @@ words with a geminate.
 \details{
 True model, in log-odds: \code{-1.5 + 6 * (lat - 44.1) + t0 + 0.03 * (age - 50)}, with by-town intercepts \code{t0} (SD 0.6). Town names and
 coordinates are the Italian towns of over 50,000 inhabitants in
-\code{maps::world.cities} (without Sardinia); the dialect data are simulated,
-not real survey results.
+\code{maps::world.cities} (without Sardinia); the dialect data are
+simulated.
 }
 \examples{
 head(dialect_survey)

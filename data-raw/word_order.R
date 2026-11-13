@@ -1,18 +1,12 @@
-# word_order: typology, a sample of languages
-# 400 invented languages from 100 invented families in six invented areas.
-# Languages inherit their family's word order most of the time, so they are
-# not independent. Adposition order and case marking correlate with verb-
-# object order (in the spirit of Greenberg's universals). Also includes
-# consonant and vowel inventory sizes.
+# Dryer (2013), WALS Online, feature 81A; Greenberg (1963), Universals of Language, 58-90.
 library(dplyr)
 library(tidyr)
 library(tibble)
 
-set.seed(3016)   # first seed from 3010 whose proportions fall within 3 points of WALS
+# set.seed(3016): first seed from 3010 whose word-order proportions are within 3 points of Dryer (2013).
+set.seed(3016)
 orders <- c("SOV", "SVO", "VSO", "no dominant order")
 areas <- paste("Area", LETTERS[1:6])
-# Averaged over areas: about 42% SOV, 36% SVO, 7% VSO, 14% no dominant order,
-# close to the world-wide proportions in WALS (Dryer 2013, feature 81A).
 area_pref <- list(c(0.60, 0.22, 0.05, 0.13), c(0.30, 0.55, 0.05, 0.10),
                   c(0.45, 0.33, 0.07, 0.15), c(0.30, 0.48, 0.10, 0.12),
                   c(0.50, 0.25, 0.10, 0.15), c(0.40, 0.35, 0.05, 0.20))

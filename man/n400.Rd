@@ -43,4 +43,9 @@ is 0.5 to 0.95 for expected and 0 to 0.05 for unexpected words.
 \examples{
 head(n400)
 }
+\references{
+Kutas, M. & Hillyard, S. A. (1980). Reading senseless sentences: Brain potentials reflect semantic incongruity. \emph{Science}, 207(4427), 203-205.
+
+Kutas, M. & Hillyard, S. A. (1984). Brain potentials during reading reflect word expectancy and semantic association. \emph{Nature}, 307, 161-163.
+}
 \keyword{datasets}

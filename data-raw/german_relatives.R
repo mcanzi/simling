@@ -1,9 +1,3 @@
-# german_relatives: syntax, self-paced reading of German relative clauses
-# Der Lehrer, der den Schüler gesehen hat, lachte laut über den Witz.
-# Der Lehrer, den der Schüler gesehen hat, lachte laut über den Witz.
-# Subject vs object relative clauses, read word by word. Object relatives
-# slow readers down at the end of the relative clause and on the next word.
-# 48 participants, 24 items, two counterbalanced lists, 12 words per sentence.
 library(dplyr)
 library(tidyr)
 library(tibble)

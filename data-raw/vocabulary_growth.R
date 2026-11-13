@@ -1,14 +1,11 @@
-# vocabulary_growth: language acquisition, longitudinal counts
-# Productive vocabulary on a 680-word checklist, every two months from 16 to
-# 30 months, for 80 children. Children with more input learn earlier.
-# About 10% of sessions are missing.
+# MacArthur-Bates CDI Words & Sentences (Fenson et al. 2007); about 300 words at 24 months: Frank et al. (2017), Journal of Child Language 44(3), 677-694.
 library(dplyr)
 library(tidyr)
 library(tibble)
 
 set.seed(3007)
 children <- tibble(child = sprintf("C%02d", 1:80),
-                   input = round(exp(rnorm(80, log(1200), 0.4))),   # adult words per hour
+                   input = round(exp(rnorm(80, log(1200), 0.4))),
                    c_mid = rnorm(80, 0, 2.6))
 
 vocabulary_growth <- crossing(children, age = seq(16, 30, by = 2)) |>

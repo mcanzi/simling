@@ -1,4 +1,3 @@
-# pupil_noise: Advanced Statistics, session 5 (GAMMs in practice)
 library(dplyr)
 library(tidyr)
 library(tibble)

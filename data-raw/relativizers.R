@@ -1,6 +1,3 @@
-# relativizers: corpus linguistics, a three-way choice
-# Choice between that, which and zero in restrictive relative clauses, 10
-# tokens from each of 240 texts. Zero is impossible in subject relatives.
 library(dplyr)
 library(tidyr)
 library(tibble)
@@ -13,9 +10,8 @@ texts <- tibble(text = sprintf("T%03d", 1:240),
 
 relativizers <- crossing(texts, token = 1:10) |>
   mutate(role = if_else(runif(n()) < 0.55, "subject", "object"),
-         antecedent_length = 1 + rpois(n(), 1.5),           # words
+         antecedent_length = 1 + rpois(n(), 1.5),
          written = mode == "written",
-         # log-odds against "that"
          eta_which = -1.6 + t_which + 1.4 * written + 0.25 * (antecedent_length - 2),
          eta_zero = if_else(role == "object",
                             0.6 + t_zero - 1.2 * written - 0.4 * (antecedent_length - 2),

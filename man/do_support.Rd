@@ -25,17 +25,23 @@ do_support
 Use of \emph{do} (\emph{Did he go?}, \emph{He did not go}) in 300 texts dated 1400 to
 1700, in four sentence types: the number of clauses with \emph{do} out of all
 eligible clauses. In three contexts the change follows S-curves with the
-same slope but different starting points (the Constant Rate Effect);
-affirmative declaratives barely take part.
+same slope and different starting points (the Constant Rate Effect).
+Affirmative declaratives barely take part.
 }
 \details{
 True model, in log-odds: \code{baseline + 0.035 * (year - 1550)}
 (3.5 per century in every context), with baselines 1.0 (affirmative
 questions), 1.6 (negative questions), -0.6 (negative declaratives) and
--7.5 (affirmative declaratives), and by-text intercepts (SD 0.4). The
-later decline of \emph{do} in affirmative declaratives is not simulated.
+-7.5 (affirmative declaratives), and by-text intercepts (SD 0.4). In the
+historical data, \emph{do} in affirmative declaratives later declined again;
+the simulation leaves this out.
 }
 \examples{
 head(do_support)
+}
+\references{
+Ellegård, A. (1953). \emph{The auxiliary do: The establishment and regulation of its use in English}. Stockholm: Almqvist & Wiksell.
+
+Kroch, A. S. (1989). Reflexes of grammar in patterns of language change. \emph{Language Variation and Change}, 1(3), 199-244.
 }
 \keyword{datasets}

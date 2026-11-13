@@ -1,9 +1,4 @@
-# german_plurals: morphology, a wug test of German noun plurals
-# 60 adult native speakers give the plural of 48 nonce nouns, each presented
-# with its article (der, die, das). The plural ending depends on gender and
-# on how the noun ends: schwa-final feminines take -n, nouns in -el/-er tend
-# to take no ending, nouns ending in a full vowel take -s, and so on.
-# Speakers differ in how readily they use -s.
+# Wug test: Berko (1958), Word 14(2-3), 150-177.
 library(dplyr)
 library(tidyr)
 library(tibble)
@@ -26,8 +21,6 @@ probs <- tribble(
   "neuter",    "full vowel",  c(0.02, 0.05, 0.03, 0.85, 0.05)
 )
 
-# Hand-picked nonce nouns, 12 per word ending; within each ending the first 4
-# are masculine, the next 4 feminine and the last 4 neuter.
 nonce_words <- list(
   "schwa"      = c("Pünde", "Kraffe", "Glöbe", "Strunte", "Mafte", "Wöse",
                    "Plinde", "Tröfe", "Schlübe", "Dranke", "Nüfe", "Bralte"),
@@ -50,7 +43,7 @@ items <- probs |>
   select(-final_rank)
 
 participants <- tibble(participant = sprintf("P%02d", 1:60),
-                       p_s = rnorm(60, 0, 0.6))              # own preference for -s
+                       p_s = rnorm(60, 0, 0.6))
 
 german_plurals <- crossing(participants, items) |>
   rowwise() |>
@@ -61,7 +54,6 @@ german_plurals <- crossing(participants, items) |>
          across(c(gender, final), factor)) |>
   select(participant, item, nonce, article, gender, final, plural)
 
-# mark non-ASCII strings as UTF-8 so they display correctly in every locale
 german_plurals <- german_plurals |>
   mutate(across(where(is.character), enc2utf8),
          across(where(is.factor), \(f) { levels(f) <- enc2utf8(levels(f)); f }))

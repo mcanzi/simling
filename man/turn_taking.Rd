@@ -37,12 +37,14 @@ True model: `offset = language_mean + c0 + 120 * disconfirmation
 \itemize{
 \item 250 * non-answer - 70 * gaze + e\verb{, where }c0\verb{is a by-conversation   offset (SD 60 ms) and}e` is ex-Gaussian (a normal with SD 200 ms plus
 an exponential with mean 150 ms, centred). Language means range from 10
-ms (Japanese) to 460 ms (Danish). Loosely based on the design and
-findings of Stivers et al. (2009); the language means are invented, not
-their values.
+ms (Japanese) to 460 ms (Danish). The design and the general pattern
+follow Stivers et al. (2009); the language means are invented.
 }
 }
 \examples{
 head(turn_taking)
+}
+\references{
+Stivers, T., Enfield, N. J., Brown, P., Englert, C., Hayashi, M., Heinemann, T., Hoymann, G., Rossano, F., de Ruiter, J. P., Yoon, K.-E. & Levinson, S. C. (2009). Universals and cultural variation in turn-taking in conversation. \emph{Proceedings of the National Academy of Sciences}, 106(26), 10587-10592.
 }
 \keyword{datasets}

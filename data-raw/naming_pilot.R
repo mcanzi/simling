@@ -1,7 +1,3 @@
-# naming_pilot: psycholinguistics, a pilot German picture-naming study
-# Younger and older adults name 40 pictures; naming latencies depend on the
-# frequency of the picture name, more so for older adults. Meant as pilot
-# data for a power analysis. Advanced Statistics, session 8 (Power analysis).
 library(dplyr)
 library(tidyr)
 library(tibble)
