@@ -90,23 +90,27 @@ answer in ms.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>True model: `offset = language_mean + c0 + 120 * disconfirmation</p><ul><li><p>250 * non-answer - 70 * gaze + e<code>, where </code>c0<code>is a by-conversation   offset (SD 60 ms) and</code>e` is ex-Gaussian (a normal with SD 200 ms plus
-an exponential with mean 150 ms, centred). Language means range from 10
-ms (Japanese) to 460 ms (Danish). The design and the general pattern
-follow Stivers et al. (2009); the language means are invented.</p></li>
-</ul></div>
+    <p>True model: <code>offset = language_baseline + c0 + 207 * disconfirmation + 132 * non-answer - 69 * gaze + e</code>, where <code>c0</code> is a
+by-conversation offset (SD 60 ms) and <code>e</code> is ex-Gaussian (a normal with
+SD 200 ms plus an exponential with mean 150 ms, centred). The three
+effects are the estimates in Stivers et al. (2009, Table 1). Baselines
+are set so that each language's expected mean equals the mean reported
+for it, from 7 ms (Japanese) to 469 ms (Danish). The conversations and
+answers are simulated.</p>
+    </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Stivers, T., Enfield, N. J., Brown, P., Englert, C., Hayashi, M., Heinemann, T., Hoymann, G., Rossano, F., de Ruiter, J. P., Yoon, K.-E. &amp; Levinson, S. C. (2009). Universals and cultural variation in turn-taking in conversation. <em>Proceedings of the National Academy of Sciences</em>, 106(26), 10587-10592. <a href="https://doi.org/10.1073/pnas.0903616106" class="external-link">doi:10.1073/pnas.0903616106</a></p>
+<p>Levinson, S. C. &amp; Torreira, F. (2015). Timing in turn-taking and its implications for processing models of language. <em>Frontiers in Psychology</em>, 6, 731. <a href="https://doi.org/10.3389/fpsyg.2015.00731" class="external-link">doi:10.3389/fpsyg.2015.00731</a></p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tapply.html" class="external-link">tapply</a></span><span class="op">(</span><span class="va">turn_taking</span><span class="op">$</span><span class="va">offset</span>, <span class="va">turn_taking</span><span class="op">$</span><span class="va">language</span>, <span class="va">median</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      Japanese       Tzeltal     Yélî Dnye       English        Korean </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          47.5         119.5         126.0         153.5         182.0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         Dutch       Italian           Lao ‡Ākhoe Hai‖om        Danish </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         186.5         216.0         290.0         300.0         527.0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Japanese       Tzeltal     Yélî Dnye         Dutch       English </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           8.0          62.0         109.0         145.5         173.0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        Korean       Italian           Lao        Danish ǂĀkhoe Haiǁom </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         205.0         303.5         413.5         435.5         449.0 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">turn_taking</span><span class="op">$</span><span class="va">offset</span>, breaks <span class="op">=</span> <span class="fl">60</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="turn_taking-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"lme4"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
@@ -115,7 +119,7 @@ follow Stivers et al. (2009); the language means are invented.</p></li>
 <span class="r-in"><span>  <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/nlme/man/fixed.effects.html" class="external-link">fixef</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"responsedisconfirmation"</span>, <span class="st">"answernon-answer"</span>, <span class="st">"gazeyes"</span><span class="op">)</span><span class="op">]</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> responsedisconfirmation        answernon-answer                 gazeyes </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               129.16949               229.97804               -84.39074 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               216.18719               111.99350               -83.38316 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

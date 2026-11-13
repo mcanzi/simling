@@ -56,7 +56,7 @@ A tibble with 40 rows and 8 columns:
 
 ## Details
 
-True model: each study's true log-odds is `0.85 + 0.1 * Roman` plus a
+True model: each study's true log-odds is `0.85 + 0.2 * Roman` plus a
 study effect with SD (tau) 0.35, about 70% congruent matches. Of 90
 simulated studies, those with a significant positive result were
 published with probability 0.95 and the rest with probability 0.3; the
@@ -87,18 +87,18 @@ if (requireNamespace("metafor", quietly = TRUE)) {
 #> 
 #> Random-Effects Model (k = 40; tau^2 estimator: REML)
 #> 
-#> tau^2 (estimated amount of total heterogeneity): 0.1371 (SE = 0.0417)
-#> tau (square root of estimated tau^2 value):      0.3703
-#> I^2 (total heterogeneity / total variability):   80.86%
-#> H^2 (total variability / sampling variability):  5.22
+#> tau^2 (estimated amount of total heterogeneity): 0.1230 (SE = 0.0386)
+#> tau (square root of estimated tau^2 value):      0.3507
+#> I^2 (total heterogeneity / total variability):   78.73%
+#> H^2 (total variability / sampling variability):  4.70
 #> 
 #> Test for Heterogeneity:
-#> Q(df = 39) = 208.7467, p-val < .0001
+#> Q(df = 39) = 182.1438, p-val < .0001
 #> 
 #> Model Results:
 #> 
 #> estimate      se     zval    pval   ci.lb   ci.ub      
-#>   0.9158  0.0688  13.3111  <.0001  0.7809  1.0506  *** 
+#>   0.9776  0.0663  14.7553  <.0001  0.8478  1.1075  *** 
 #> 
 #> ---
 #> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
@@ -106,23 +106,23 @@ if (requireNamespace("metafor", quietly = TRUE)) {
 #> 
 #> Mixed-Effects Model (k = 40; tau^2 estimator: REML)
 #> 
-#> tau^2 (estimated amount of residual heterogeneity):     0.1404 (SE = 0.0432)
-#> tau (square root of estimated tau^2 value):             0.3748
-#> I^2 (residual heterogeneity / unaccounted variability): 81.02%
-#> H^2 (unaccounted variability / sampling variability):   5.27
+#> tau^2 (estimated amount of residual heterogeneity):     0.1271 (SE = 0.0401)
+#> tau (square root of estimated tau^2 value):             0.3564
+#> I^2 (residual heterogeneity / unaccounted variability): 79.05%
+#> H^2 (unaccounted variability / sampling variability):   4.77
 #> R^2 (amount of heterogeneity accounted for):            0.00%
 #> 
 #> Test for Residual Heterogeneity:
-#> QE(df = 38) = 204.2884, p-val < .0001
+#> QE(df = 38) = 182.0415, p-val < .0001
 #> 
 #> Test of Moderators (coefficient 2):
-#> QM(df = 1) = 0.1321, p-val = 0.7163
+#> QM(df = 1) = 0.2716, p-val = 0.6023
 #> 
 #> Model Results:
 #> 
-#>              estimate      se     zval    pval    ci.lb   ci.ub      
-#> intrcpt        0.9433  0.1014   9.3015  <.0001   0.7445  1.1421  *** 
-#> scriptRoman   -0.0506  0.1391  -0.3634  0.7163  -0.3233  0.2222      
+#>              estimate      se    zval    pval    ci.lb   ci.ub      
+#> intrcpt        0.9417  0.0975  9.6587  <.0001   0.7506  1.1328  *** 
+#> scriptRoman    0.0700  0.1343  0.5211  0.6023  -0.1933  0.3333      
 #> 
 #> ---
 #> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
@@ -133,7 +133,7 @@ if (requireNamespace("metafor", quietly = TRUE)) {
 #> Model:     mixed-effects meta-regression model
 #> Predictor: standard error
 #> 
-#> Test for Funnel Plot Asymmetry: z = 2.7674, p = 0.0056
-#> Limit Estimate (as sei -> 0):   b = 0.5333 (CI: 0.2395, 0.8272)
+#> Test for Funnel Plot Asymmetry: z = 2.8968, p = 0.0038
+#> Limit Estimate (as sei -> 0):   b = 0.5931 (CI: 0.3121, 0.8741)
 #> 
 ```

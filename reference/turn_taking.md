@@ -49,14 +49,14 @@ A tibble with 3000 rows and 6 columns:
 
 ## Details
 
-True model: \`offset = language_mean + c0 + 120 \* disconfirmation
-
-- 250 \* non-answer - 70 \* gaze +
-  e`, where `c0`is a by-conversation offset (SD 60 ms) and`e\` is
-  ex-Gaussian (a normal with SD 200 ms plus an exponential with mean 150
-  ms, centred). Language means range from 10 ms (Japanese) to 460 ms
-  (Danish). The design and the general pattern follow Stivers et al.
-  (2009); the language means are invented.
+True model:
+`offset = language_baseline + c0 + 207 * disconfirmation + 132 * non-answer - 69 * gaze + e`,
+where `c0` is a by-conversation offset (SD 60 ms) and `e` is ex-Gaussian
+(a normal with SD 200 ms plus an exponential with mean 150 ms, centred).
+The three effects are the estimates in Stivers et al. (2009, Table 1).
+Baselines are set so that each language's expected mean equals the mean
+reported for it, from 7 ms (Japanese) to 469 ms (Danish). The
+conversations and answers are simulated.
 
 ## References
 
@@ -67,14 +67,19 @@ in conversation. *Proceedings of the National Academy of Sciences*,
 106(26), 10587-10592.
 [doi:10.1073/pnas.0903616106](https://doi.org/10.1073/pnas.0903616106)
 
+Levinson, S. C. & Torreira, F. (2015). Timing in turn-taking and its
+implications for processing models of language. *Frontiers in
+Psychology*, 6, 731.
+[doi:10.3389/fpsyg.2015.00731](https://doi.org/10.3389/fpsyg.2015.00731)
+
 ## Examples
 
 ``` r
 sort(tapply(turn_taking$offset, turn_taking$language, median))
-#>      Japanese       Tzeltal     Yélî Dnye       English        Korean 
-#>          47.5         119.5         126.0         153.5         182.0 
-#>         Dutch       Italian           Lao ‡Ākhoe Hai‖om        Danish 
-#>         186.5         216.0         290.0         300.0         527.0 
+#>      Japanese       Tzeltal     Yélî Dnye         Dutch       English 
+#>           8.0          62.0         109.0         145.5         173.0 
+#>        Korean       Italian           Lao        Danish ǂĀkhoe Haiǁom 
+#>         205.0         303.5         413.5         435.5         449.0 
 hist(turn_taking$offset, breaks = 60)
 
 if (requireNamespace("lme4", quietly = TRUE)) {
@@ -83,5 +88,5 @@ if (requireNamespace("lme4", quietly = TRUE)) {
   lme4::fixef(m)[c("responsedisconfirmation", "answernon-answer", "gazeyes")]
 }
 #> responsedisconfirmation        answernon-answer                 gazeyes 
-#>               129.16949               229.97804               -84.39074 
+#>               216.18719               111.99350               -83.38316 
 ```

@@ -3,9 +3,10 @@
 Two trained coders label the same 456 words from 40 German utterances
 with GToBI pitch accents and phrase boundaries: 20 utterances of read
 and 20 of spontaneous speech. Coders agree on whether a word is accented
-about 85-90% of the time and on the type of accent about 60-70% of the
-time, close to published benchmarks for ToBI. Accent agreement is lower
-in spontaneous speech. For percentage agreement and Cohen's kappa.
+for about 86% of words and on the exact accent label for about 71%,
+close to the agreement Grice et al. (1996) report for GToBI. In this
+simulation, accent agreement is lower in spontaneous speech. For
+percentage agreement and Cohen's kappa.
 
 ## Usage
 
@@ -59,6 +60,12 @@ word's difficulty has mean 0 in read and 0.5 in spontaneous speech (SD
 `"H*"`).
 
 ## References
+
+Grice, M., Reyelt, M., Benzmüller, R., Mayer, J. & Batliner, A. (1996).
+Consistency in transcription and labelling of German intonation with
+GToBI. In *Proceedings of the 4th International Conference on Spoken
+Language Processing (ICSLP 96)* (pp. 1716-1719). Philadelphia.
+[doi:10.1109/ICSLP.1996.607958](https://doi.org/10.1109/ICSLP.1996.607958)
 
 Grice, M., Baumann, S. & Benzmüller, R. (2005). German intonation in
 autosegmental-metrical phonology. In S.-A. Jun (ed.), *Prosodic

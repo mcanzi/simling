@@ -2,10 +2,11 @@
 
 30 deaf signers of German Sign Language (DGS) and 30 hearing non-signers
 rate 300 DGS signs for iconicity (1 = not iconic, 7 = very iconic).
-Ratings by the two groups are highly correlated. Signers rate signs as
-more iconic overall, and non-signers rate verbs as more iconic than
-nouns. More iconic signs are acquired earlier. For mixed models of
-ratings with crossed raters and items.
+Ratings by the two groups are correlated (r about 0.78 for sign means,
+as in Trettenbrein et al. 2021). Signers rate signs as more iconic
+overall, and non-signers rate verbs as more iconic than nouns. More
+iconic signs are acquired earlier. For mixed models of ratings with
+crossed raters and items.
 
 ## Usage
 
@@ -52,12 +53,13 @@ A tibble with 18000 rows and 7 columns:
 ## Details
 
 True model: `rating` is
-`3.6 + iconicity + r0 + 0.4 * signer + 0.5 * verb * non-signer + e`,
-rounded and limited to 1-7. Each sign's iconicity has SD 1.2, raters
-differ by SD 0.5 and `e` has SD 0.9. Age of acquisition is
-`5.5 - 0.6 * iconicity` years plus noise (SD 1.3). The group differences
-follow findings for DGS (signers higher) and for ASL and Israeli Sign
-Language (verbs higher for non-signers).
+`3.3 + iconicity + g0 + r0 + signer + 0.5 * verb * non-signer + e`,
+rounded and limited to 1-7. Each sign's iconicity has SD 1.2, `g0` is a
+deviation of each sign within each group (SD 0.6), raters differ by SD
+0.5 and `e` has SD 0.9. Age of acquisition is `5.5 - 0.6 * iconicity`
+years plus noise (SD 1.3). The group differences follow findings for DGS
+(signers higher) and for ASL (Sehyr and Emmorey 2019) and Israeli Sign
+Language (Fuks 2023) (verbs higher for non-signers).
 
 ## References
 
@@ -66,6 +68,10 @@ Zaccarella, E. (2021). Psycholinguistic norms for more than 300 lexical
 signs in German Sign Language (DGS). *Behavior Research Methods*, 53(5),
 1817-1832.
 [doi:10.3758/s13428-020-01524-y](https://doi.org/10.3758/s13428-020-01524-y)
+
+Fuks, O. (2023). Iconicity perception under the lens of iconicity rating
+and transparency tasks in Israeli Sign Language (ISL). *Sign Language
+Studies*, 24(1), 46-92.
 
 Sehyr, Z. S. & Emmorey, K. (2019). The perceived mapping between form
 and meaning in American Sign Language depends on linguistic knowledge
@@ -84,18 +90,18 @@ Language. *Psychological Science*, 23(12), 1443-1448.
 round(tapply(dgs_iconicity$rating, dgs_iconicity[c("group", "category")], mean), 2)
 #>                     category
 #> group                noun verb
-#>   hearing non-signer 3.65 4.15
-#>   deaf signer        4.01 4.06
+#>   hearing non-signer 3.51 3.95
+#>   deaf signer        4.37 4.47
 signs <- aggregate(rating ~ sign + group, data = dgs_iconicity, FUN = mean)
 signs <- reshape(signs, idvar = "sign", timevar = "group", direction = "wide")
 cor(signs[, 2], signs[, 3])
-#> [1] 0.9620867
+#> [1] 0.7814731
 if (requireNamespace("lme4", quietly = TRUE)) {
   m <- lme4::lmer(rating ~ group * category + (1 | rater) + (1 | sign), data = dgs_iconicity)
   lme4::fixef(m)
 }
 #>                   (Intercept)              groupdeaf signer 
-#>                     3.6522682                     0.3571992 
+#>                     3.5124260                     0.8609467 
 #>                  categoryverb groupdeaf signer:categoryverb 
-#>                     0.4981134                    -0.4482934 
+#>                     0.4425358                    -0.3428806 
 ```
