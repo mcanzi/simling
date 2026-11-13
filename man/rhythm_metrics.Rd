@@ -28,17 +28,14 @@ rhythm_metrics
 }
 \description{
 \%V, ΔC and VarcoV from 8 speakers of each of six languages: English,
-German, Greek, Italian, Korean and Spanish. Each speaker produced five
-samples of five kinds of material. Three are sets of read sentences:
-uncontrolled sentences, sentences built from complex syllables (the
-"stress-timed" set) and sentences built from simple syllables (the
-"syllable-timed" set). The other two are a read story and spontaneous
-speech. The design follows Arvaniti (2012). As in her data, the language
-means differ little and do not split into a stress-timed and a
-syllable-timed group. Speakers, elicitation method and syllable complexity
-move the metrics about as much as language does. ΔC falls with speech
-rate. For partitioning variance with mixed models and for testing whether
-the metrics support rhythm classes.
+German, Greek, Italian, Korean and Spanish. Ramus et al. (1999) proposed
+\%V and ΔC to sort languages into rhythm classes. Each speaker produced
+five samples of five kinds of material: uncontrolled sentences, sentences
+built from complex syllables, sentences built from simple syllables, a read
+story and spontaneous speech. The design follows Arvaniti (2012). Language
+means differ little, and speakers, elicitation method and syllable
+complexity move the metrics about as much as language does. ΔC also falls
+as speech rate rises. For partitioning variance with mixed models.
 }
 \details{
 True model: each metric is the sum of a language mean, a
@@ -57,18 +54,11 @@ not her measurements.
 \examples{
 round(tapply(rhythm_metrics$percent_v, rhythm_metrics[c("material", "language")], mean), 1)
 boxplot(percent_v ~ material, data = rhythm_metrics)
-lang <- aggregate(cbind(percent_v, delta_c, varco_v) ~ language, data = rhythm_metrics,
-                  FUN = mean)
-set.seed(1)
-data.frame(language = lang$language,
-           cluster = kmeans(scale(lang[, -1]), centers = 2, nstart = 20)$cluster)
-speakers <- aggregate(percent_v ~ speaker + language, data = rhythm_metrics, FUN = mean)
-t.test(percent_v ~ language,
-       data = droplevels(subset(speakers, is.element(language, c("English", "Spanish")))))
 coef(lm(delta_c ~ rate + language + material, data = rhythm_metrics))["rate"]
 if (requireNamespace("lme4", quietly = TRUE)) {
   m <- lme4::lmer(percent_v ~ language + material + (1 | speaker), data = rhythm_metrics)
   round(lme4::fixef(m), 2)
+  lme4::VarCorr(m)
 }
 }
 \references{

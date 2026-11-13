@@ -54,7 +54,7 @@ simling_meta <- function() {
     "tobi_agreement", "Prosody", "German", 456L, 8L,
     "labels from two coders", "Inter-rater agreement, kappa",
     "rhythm_metrics", "Prosody", "6 languages", 1200L, 8L,
-    "continuous", "Variance partitioning, testing rhythm classes",
+    "continuous", "Variance partitioning, speech rate",
     "rt_frequency", "Psycholinguistics", NA, 200L, 5L,
     "RT, binary", "Data wrangling",
     "word_rt", "Psycholinguistics", NA, 400L, 4L,
