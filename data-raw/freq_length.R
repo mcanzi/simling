@@ -12,4 +12,7 @@ freq_length <- tibble(log_freq = round(runif(400, 1, 6), 2),
 freq_length <- freq_length |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
 
+freq_length <- freq_length |>
+  mutate(across(c(length), as.integer))
+
 usethis::use_data(freq_length, overwrite = TRUE)

@@ -1,4 +1,5 @@
-# Filled pauses are rare in Italian task-oriented dialogue: Di Napoli (2020), Laughter and Other Non-Verbal Vocalisations Workshop.
+# Filled pauses are rare in Italian task-oriented dialogue: Di Napoli (2020), Laughter and Other
+#   Non-Verbal Vocalisations Workshop.
 library(dplyr)
 library(tidyr)
 library(tibble)
@@ -20,5 +21,8 @@ disfluencies <- speakers |>
 disfluencies <- disfluencies |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
          role = factor(role, levels = c("follower", "giver")))
+
+disfluencies <- disfluencies |>
+  mutate(across(c(syllables, filled_pauses), as.integer))
 
 usethis::use_data(disfluencies, overwrite = TRUE)

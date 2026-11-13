@@ -1,4 +1,5 @@
-# Hayes & Londe (2006), Phonology 23, 59-104; Hayes, Zuraw, Siptár & Londe (2009), Language 85, 822-863.
+# Hayes & Londe (2006), Phonology 23, 59-104;
+# Hayes, Zuraw, Siptár & Londe (2009), Language 85, 822-863.
 library(dplyr)
 library(tidyr)
 library(tibble)
@@ -35,6 +36,9 @@ hungarian_harmony <- hungarian_harmony |>
          suffix = factor(suffix, levels = c("back", "front")))
 
 hungarian_harmony <- hungarian_harmony |>
-  mutate(across(where(is.factor), \(f) { levels(f) <- enc2utf8(levels(f)); f }))
+  mutate(across(where(is.factor), \(f) factor(f, levels = levels(f), labels = enc2utf8(levels(f)))))
+
+hungarian_harmony <- hungarian_harmony |>
+  mutate(across(c(n_neutral), as.integer))
 
 usethis::use_data(hungarian_harmony, overwrite = TRUE)

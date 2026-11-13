@@ -3,7 +3,8 @@ library(dplyr)
 library(tidyr)
 library(tibble)
 
-# set.seed(3016): first seed from 3010 whose word-order proportions are within 3 points of Dryer (2013).
+# set.seed(3016): first seed from 3010 whose word-order proportions are within 3 points of Dryer
+#   (2013).
 set.seed(3016)
 orders <- c("SOV", "SVO", "VSO", "no dominant order")
 areas <- paste("Area", LETTERS[1:6])
@@ -45,5 +46,8 @@ word_order <- word_order |>
          order = factor(order, levels = c("SOV", "SVO", "VSO", "no dominant order")),
          adpositions = factor(adpositions, levels = c("postpositions", "prepositions")),
          case_marking = factor(case_marking, levels = c("no", "yes")))
+
+word_order <- word_order |>
+  mutate(across(c(consonants, vowels), as.integer))
 
 usethis::use_data(word_order, overwrite = TRUE)

@@ -1,4 +1,5 @@
-# Ramus, Nespor & Mehler (1999), Cognition 73(3), 265-292; White & Mattys (2007), Journal of Phonetics 35(4), 501-522;
+# Ramus, Nespor & Mehler (1999), Cognition 73(3), 265-292;
+# White & Mattys (2007), Journal of Phonetics 35(4), 501-522;
 # European vs Brazilian Portuguese: Frota & Vigário (2001), Probus 13(2), 247-275.
 library(dplyr)
 library(tidyr)
@@ -19,7 +20,8 @@ languages <- tribble(
 
 speakers <- languages |>
   crossing(speaker_no = 1:10) |>
-  mutate(speaker = paste(substr(gsub(" ", "", language), 1, 3), sprintf("%02d", speaker_no), sep = "_"),
+  mutate(speaker = paste(substr(gsub(" ", "", language), 1, 3), sprintf("%02d", speaker_no),
+                         sep = "_"),
          s_v = rnorm(n(), 0, 1.2),
          s_c = rnorm(n(), 0, 3),
          s_rate = rnorm(n(), 0, 0.4))

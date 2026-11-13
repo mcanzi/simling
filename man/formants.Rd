@@ -10,7 +10,7 @@ A tibble with 120 rows and 5 columns:
 \item{speaker}{\code{"A"} or \code{"B"}.}
 \item{vowel}{\code{"i"}, \code{"a"} or \code{"u"}.}
 \item{token}{Token number, 1 to 20.}
-\item{F1, F2}{First and second formant in Hz.}
+\item{f1, f2}{First and second formant in Hz.}
 }
 }
 \source{

@@ -11,8 +11,8 @@ words <- tibble(word = sprintf("w%02d", 1:20),
 
 rt_frequency <- crossing(participants, words) |>
   mutate(rt = round(exp(6.38 + p0 + w0 + 0.1 * (frequency == "low") + rnorm(n(), 0, 0.15))),
-         accuracy = rbinom(n(), 1, if_else(frequency == "low", 0.85, 0.95))) |>
-  select(participant, word, frequency, rt, accuracy)
+         correct = rbinom(n(), 1, if_else(frequency == "low", 0.85, 0.95))) |>
+  select(participant, word, frequency, rt, correct)
 
 rt_frequency <- rt_frequency |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),

@@ -21,6 +21,7 @@ outcomes coded 0/1 and rating scales are numeric. The exception is
 Useful links:
 \itemize{
   \item \url{https://github.com/mcanzi/simling}
+  \item \url{https://mcanzi.github.io/simling/}
   \item Report bugs at \url{https://github.com/mcanzi/simling/issues}
 }
 

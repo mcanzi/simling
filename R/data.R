@@ -9,7 +9,7 @@
 #'   \item{word}{Word ID, `w01` to `w20`.}
 #'   \item{frequency}{Word frequency, `"high"` or `"low"`.}
 #'   \item{rt}{Reaction time in ms.}
-#'   \item{accuracy}{1 for a correct response, 0 for an error.}
+#'   \item{correct}{1 for a correct response, 0 for an error.}
 #' }
 #' @details True model: `log(rt) = 6.38 + 0.1 * low + p0 + w0 + e`, with
 #'   by-participant intercepts `p0` (SD 0.12), by-word intercepts `w0` (SD
@@ -30,7 +30,7 @@
 #'   \item{speaker}{`"A"` or `"B"`.}
 #'   \item{vowel}{`"i"`, `"a"` or `"u"`.}
 #'   \item{token}{Token number, 1 to 20.}
-#'   \item{F1, F2}{First and second formant in Hz.}
+#'   \item{f1, f2}{First and second formant in Hz.}
 #' }
 #' @details True model: speaker A's mean F1 and F2 are 300 and 2300 Hz for
 #'   /i/, 750 and 1300 Hz for /a/, and 320 and 800 Hz for /u/; speaker B's are
@@ -570,7 +570,7 @@
 #'   \item{text}{Text ID, `T001` to `T240`.}
 #'   \item{mode}{`"spoken"` or `"written"`.}
 #'   \item{token}{Token number within the text, 1 to 10.}
-#'   \item{role}{Role of the relativized noun in the clause, `"subject"`
+#'   \item{role}{Role of the relativised noun in the clause, `"subject"`
 #'     or `"object"`.}
 #'   \item{antecedent_length}{Length of the antecedent noun phrase in
 #'     words.}

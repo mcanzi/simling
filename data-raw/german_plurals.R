@@ -34,13 +34,14 @@ nonce_words <- list(
 
 items <- probs |>
   uncount(4) |>
-  mutate(final_rank = rep(1:12, 4)[order(order(final, factor(gender, c("masculine", "feminine", "neuter"))))]) |>
+  mutate(gender_order = factor(gender, c("masculine", "feminine", "neuter")),
+         final_rank = rep(1:12, 4)[order(order(final, gender_order))]) |>
   rowwise() |>
   mutate(nonce = nonce_words[[final]][final_rank]) |>
   ungroup() |>
   mutate(item = sprintf("i%02d", row_number()),
          article = c(masculine = "der", feminine = "die", neuter = "das")[gender]) |>
-  select(-final_rank)
+  select(-final_rank, -gender_order)
 
 participants <- tibble(participant = sprintf("P%02d", 1:60),
                        p_s = rnorm(60, 0, 0.6))
@@ -56,7 +57,7 @@ german_plurals <- crossing(participants, items) |>
 
 german_plurals <- german_plurals |>
   mutate(across(where(is.character), enc2utf8),
-         across(where(is.factor), \(f) { levels(f) <- enc2utf8(levels(f)); f }))
+         across(where(is.factor), \(f) factor(f, levels = levels(f), labels = enc2utf8(levels(f)))))
 
 german_plurals <- german_plurals |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),

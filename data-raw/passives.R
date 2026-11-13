@@ -13,4 +13,7 @@ passives <- passives |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
          register = factor(register, levels = c("conversation", "fiction", "news", "academic")))
 
+passives <- passives |>
+  mutate(across(c(words, passives), as.integer))
+
 usethis::use_data(passives, overwrite = TRUE)

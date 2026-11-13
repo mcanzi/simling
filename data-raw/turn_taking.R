@@ -27,7 +27,7 @@ turn_taking <- conversations |>
 
 turn_taking <- turn_taking |>
   mutate(across(where(is.character), enc2utf8),
-         across(where(is.factor), \(f) { levels(f) <- enc2utf8(levels(f)); f }))
+         across(where(is.factor), \(f) factor(f, levels = levels(f), labels = enc2utf8(levels(f)))))
 
 turn_taking <- turn_taking |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),

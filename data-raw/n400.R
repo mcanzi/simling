@@ -33,7 +33,7 @@ n400 <- crossing(participants, items) |>
 
 n400 <- n400 |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
-         electrode = factor(electrode, levels = c("F3", "Fz", "F4", "C3", "Cz", "C4", "P3", "Pz", "P4")),
+         electrode = factor(electrode, levels = electrodes$electrode),
          anteriority = factor(anteriority, levels = c("frontal", "central", "parietal")),
          laterality = factor(laterality, levels = c("left", "midline", "right")))
 

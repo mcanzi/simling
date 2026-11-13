@@ -29,4 +29,7 @@ first_words <- first_words |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
          category = factor(category, levels = c("noun", "verb", "other")))
 
+first_words <- first_words |>
+  mutate(across(c(age), as.integer))
+
 usethis::use_data(first_words, overwrite = TRUE)

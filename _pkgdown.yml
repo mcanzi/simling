@@ -1,0 +1,84 @@
+url: https://mcanzi.github.io/simling/
+template:
+  bootstrap: 5
+
+reference:
+- title: Phonetics
+  contents:
+  - formants
+  - vowel_voicing
+  - speech_styles
+  - style_voicing
+  - vowel_duration
+  - korean_stops
+  - price_f2
+  - mandarin_tones
+- title: Phonology and prosody
+  contents:
+  - hungarian_harmony
+  - tobi_agreement
+  - rhythm_metrics
+- title: Psycholinguistics
+  contents:
+  - rt_frequency
+  - word_rt
+  - freq_length
+  - l2_frequency
+  - lexical_decision
+  - lexical_decision_l2
+  - naming_pilot
+  - lexical_accuracy
+  - zipf_rt
+  - megastudy
+  - pupil_noise
+  - n400
+  - visual_world
+  - disfluencies
+- title: Syntax and morphology
+  contents:
+  - agreement_attraction
+  - acceptability
+  - german_relatives
+  - german_plurals
+- title: Semantics, pragmatics and conversation
+  contents:
+  - scalar_implicature
+  - turn_taking
+- title: Corpus linguistics
+  contents:
+  - passives
+  - relativizers
+- title: Sociolinguistics and dialectology
+  contents:
+  - address_forms
+  - language_attitudes
+  - cantonese_tone_merger
+  - td_deletion
+  - dialect_survey
+  - code_switching
+- title: Second language and acquisition
+  contents:
+  - perception_training
+  - accent
+  - overregularization
+  - vocabulary_growth
+  - first_words
+- title: Sign language
+  contents:
+  - dgs_iconicity
+- title: Forensic speech science
+  contents:
+  - forensic_comparison
+- title: Historical linguistics and typology
+  contents:
+  - do_support
+  - word_order
+- title: Meta-analysis
+  contents:
+  - bouba_kiki_meta
+- title: Data cleaning
+  contents:
+  - messy_export
+- title: Package
+  contents:
+  - simling-package

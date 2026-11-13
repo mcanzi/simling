@@ -10,7 +10,7 @@ A tibble with 2400 rows and 6 columns:
 \item{text}{Text ID, \code{T001} to \code{T240}.}
 \item{mode}{\code{"spoken"} or \code{"written"}.}
 \item{token}{Token number within the text, 1 to 10.}
-\item{role}{Role of the relativized noun in the clause, \code{"subject"}
+\item{role}{Role of the relativised noun in the clause, \code{"subject"}
 or \code{"object"}.}
 \item{antecedent_length}{Length of the antecedent noun phrase in
 words.}

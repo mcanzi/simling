@@ -1,4 +1,5 @@
-# MacArthur-Bates CDI Words & Sentences (Fenson et al. 2007); about 300 words at 24 months: Frank et al. (2017), Journal of Child Language 44(3), 677-694.
+# MacArthur-Bates CDI Words & Sentences (Fenson et al. 2007);
+# about 300 words at 24 months: Frank et al. (2017), Journal of Child Language 44(3), 677-694.
 library(dplyr)
 library(tidyr)
 library(tibble)
@@ -17,5 +18,8 @@ vocabulary_growth <- crossing(children, age = seq(16, 30, by = 2)) |>
 
 vocabulary_growth <- vocabulary_growth |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
+
+vocabulary_growth <- vocabulary_growth |>
+  mutate(across(c(input, age, vocabulary), as.integer))
 
 usethis::use_data(vocabulary_growth, overwrite = TRUE)

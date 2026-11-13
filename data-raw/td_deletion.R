@@ -17,11 +17,15 @@ td_deletion <- crossing(speakers, token = 1:50) |>
          deleted = factor(if_else(rbinom(n(), 1, plogis(eta)) == 1, "deleted", "retained"),
                           levels = c("retained", "deleted"))) |>
   mutate(across(c(speaker, gender, education, following, morph, noise_bin), factor)) |>
-  select(speaker, deleted, following, morph, rate, log_freq, age, gender, education, noise_cont, noise_bin)
+  select(speaker, deleted, following, morph, rate, log_freq, age, gender, education,
+         noise_cont, noise_bin)
 
 td_deletion <- td_deletion |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
          following = factor(following, levels = c("vowel", "pause", "consonant")),
          morph = factor(morph, levels = c("monomorpheme", "past")))
+
+td_deletion <- td_deletion |>
+  mutate(across(c(age), as.integer))
 
 usethis::use_data(td_deletion, overwrite = TRUE)

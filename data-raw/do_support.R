@@ -1,4 +1,5 @@
-# Ellegård (1953), The auxiliary do; Constant Rate Effect: Kroch (1989), Language Variation and Change 1(3), 199-244.
+# Ellegård (1953), The auxiliary do;
+# Constant Rate Effect: Kroch (1989), Language Variation and Change 1(3), 199-244.
 library(dplyr)
 library(tidyr)
 library(tibble)
@@ -20,6 +21,10 @@ do_support <- crossing(texts, context = names(baseline)) |>
 
 do_support <- do_support |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
-         context = factor(context, levels = c("affirmative declarative", "negative declarative", "affirmative question", "negative question")))
+         context = factor(context, levels = c("affirmative declarative", "negative declarative",
+                                              "affirmative question", "negative question")))
+
+do_support <- do_support |>
+  mutate(across(c(year, do, eligible), as.integer))
 
 usethis::use_data(do_support, overwrite = TRUE)

@@ -24,4 +24,7 @@ cantonese_tone_merger <- crossing(speakers, words) |>
 cantonese_tone_merger <- cantonese_tone_merger |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
 
+cantonese_tone_merger <- cantonese_tone_merger |>
+  mutate(across(c(age), as.integer))
+
 usethis::use_data(cantonese_tone_merger, overwrite = TRUE)

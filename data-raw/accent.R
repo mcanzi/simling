@@ -5,7 +5,8 @@ library(tibble)
 set.seed(2033)
 speakers <- tibble(speaker = sprintf("S%02d", 1:30), l1 = rep(c("English", "Italian"), each = 15),
                    gender = rep(c("female", "male"), 15)) |>
-  mutate(f0_s = if_else(gender == "female", 210, 120) + rnorm(30, 0, 15), h1h2_s = rnorm(30, 4, 2.5),
+  mutate(f0_s = if_else(gender == "female", 210, 120) + rnorm(30, 0, 15),
+         h1h2_s = rnorm(30, 4, 2.5),
          vot_s = if_else(l1 == "English", 70, 45) + rnorm(30, 0, 10),
          ratio_s = if_else(l1 == "English", 1.6, 1.2) + rnorm(30, 0, 0.15),
          rate_s = if_else(l1 == "English", 5.2, 4.7) + rnorm(30, 0, 0.5))

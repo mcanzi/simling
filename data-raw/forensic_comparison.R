@@ -14,8 +14,10 @@ pairs <- expand_grid(speaker_a = speakers$speaker, speaker_b = speakers$speaker)
   mutate(same_speaker = if_else(speaker_a == speaker_b, "yes", "no"))
 
 forensic_comparison <- pairs |>
-  left_join(select(speakers, speaker_a = speaker, a_auto = s_auto, a_formant = s_formant), by = "speaker_a") |>
-  left_join(select(speakers, speaker_b = speaker, b_auto = s_auto, b_formant = s_formant), by = "speaker_b") |>
+  left_join(select(speakers, speaker_a = speaker, a_auto = s_auto, a_formant = s_formant),
+            by = "speaker_a") |>
+  left_join(select(speakers, speaker_b = speaker, b_auto = s_auto, b_formant = s_formant),
+            by = "speaker_b") |>
   mutate(comparison = sprintf("C%04d", row_number()),
          score_auto = round(if_else(same_speaker == "yes",
                                     rnorm(n(), 2.5, 1) + a_auto,

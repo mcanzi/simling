@@ -1,5 +1,7 @@
 # simling
 
+[![R-CMD-check](https://github.com/mcanzi/simling/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mcanzi/simling/actions/workflows/R-CMD-check.yaml)
+
 Simulated linguistic data for teaching statistics in R.
 
 Every data set in simling is simulated, and the code that generated it is in [`data-raw/`](data-raw). The true effects are therefore known: you can fit a model and check whether it recovers them. Each help page (`?vowel_duration`) lists the variables and the true model.
@@ -85,7 +87,11 @@ Every categorical column is a factor. Its first level is the reference level: th
 
 ## Rebuilding the data
 
-Run `source("data-raw/make_all.R")` from the package root. Each script sets its own seed, so the data are identical every time.
+Run `source("data-raw/make_all.R")` from the package root, in a UTF-8 locale (the default on macOS and most Linux systems). Each script sets its own seed, so the data are identical every time.
+
+## Citation
+
+Run `citation("simling")` for how to cite the package. Each help page also lists the studies its data set is based on.
 
 ## License
 

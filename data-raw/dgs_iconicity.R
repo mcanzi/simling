@@ -1,4 +1,5 @@
-# Trettenbrein et al. (2021), Behavior Research Methods 53(5), 1817-1832; Sehyr & Emmorey (2019), Language and Cognition 11(2), 208-234;
+# Trettenbrein et al. (2021), Behavior Research Methods 53(5), 1817-1832;
+# Sehyr & Emmorey (2019), Language and Cognition 11(2), 208-234;
 # Thompson, Vinson, Woll & Vigliocco (2012), Psychological Science 23(12), 1443-1448.
 library(dplyr)
 library(tidyr)

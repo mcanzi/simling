@@ -11,7 +11,7 @@ A tibble with 200 rows and 5 columns:
 \item{word}{Word ID, \code{w01} to \code{w20}.}
 \item{frequency}{Word frequency, \code{"high"} or \code{"low"}.}
 \item{rt}{Reaction time in ms.}
-\item{accuracy}{1 for a correct response, 0 for an error.}
+\item{correct}{1 for a correct response, 0 for an error.}
 }
 }
 \source{

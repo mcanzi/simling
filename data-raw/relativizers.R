@@ -30,4 +30,7 @@ relativizers <- relativizers |>
          role = factor(role, levels = c("subject", "object")),
          relativizer = factor(relativizer, levels = c("that", "which", "zero")))
 
+relativizers <- relativizers |>
+  mutate(across(c(antecedent_length), as.integer))
+
 usethis::use_data(relativizers, overwrite = TRUE)

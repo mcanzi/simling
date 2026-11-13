@@ -18,11 +18,16 @@ Description: Simulated data sets for teaching statistics to linguists, from
     over 20,000 rows, plus one messy export for data cleaning. Each data set comes with the code that generated it, so
     the true effects are known.
 License: MIT + file LICENSE
-URL: https://github.com/mcanzi/simling
+URL: https://github.com/mcanzi/simling, https://mcanzi.github.io/simling/
 BugReports: https://github.com/mcanzi/simling/issues
-Depends: R (>= 4.1)
+Depends: R (>= 3.5)
 Imports: tibble
+Suggests: 
+    spelling,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
 Encoding: UTF-8
+Language: en-GB
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1

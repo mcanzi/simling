@@ -16,4 +16,7 @@ overregularization <- crossing(children, age = seq(30, 60, by = 6)) |>
 overregularization <- overregularization |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
 
+overregularization <- overregularization |>
+  mutate(across(c(age, attempts, errors), as.integer))
+
 usethis::use_data(overregularization, overwrite = TRUE)
