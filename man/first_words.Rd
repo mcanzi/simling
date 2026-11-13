@@ -38,6 +38,12 @@ and by-word effects \code{w0} (SD 0.4). About 37\% of observations are
 censored.
 }
 \examples{
-head(first_words)
+if (requireNamespace("survival", quietly = TRUE)) {
+  km <- survival::survfit(survival::Surv(age, produced) ~ category, data = first_words)
+  plot(km, col = 1:3, xlim = c(10, 24))
+  m <- survival::coxph(survival::Surv(age, produced) ~ category + log_freq +
+                         survival::frailty(child), data = first_words)
+  coef(m)
+}
 }
 \keyword{datasets}

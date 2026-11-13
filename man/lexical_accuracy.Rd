@@ -31,6 +31,10 @@ By-participant intercepts \code{u0} have SD 0.8 and slopes \code{u1} SD 0.3
 (uncorrelated); by-word intercepts \code{w0} have SD 0.5.
 }
 \examples{
-head(lexical_accuracy)
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::glmer(correct ~ freq_c + (1 + freq_c || participant) + (1 | word),
+                   data = lexical_accuracy, family = binomial)
+  summary(m)
+}
 }
 \keyword{datasets}

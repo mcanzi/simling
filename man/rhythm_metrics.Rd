@@ -44,7 +44,11 @@ second. By-speaker variation: SD 1.2 for \%V, 3 ms for ΔC, 0.4 syll/s
 for rate.
 }
 \examples{
-head(rhythm_metrics)
+means <- aggregate(cbind(percent_v, delta_c, varco_v) ~ language,
+                   data = rhythm_metrics, FUN = mean)
+means[order(means$percent_v), ]
+plot(delta_c ~ percent_v, data = rhythm_metrics, col = language)
+coef(lm(delta_c ~ rate + language, data = rhythm_metrics))["rate"]
 }
 \references{
 Ramus, F., Nespor, M. & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. \emph{Cognition}, 73(3), 265-292. \doi{10.1016/S0010-0277(99)00058-X}

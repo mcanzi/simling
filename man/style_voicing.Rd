@@ -28,6 +28,8 @@ True model: cell means are 110 (casual, voiceless), 145 (casual,
 voiced), 125 (clear, voiceless) and 180 ms (clear, voiced); SD 18 ms.
 }
 \examples{
-head(style_voicing)
+m <- lm(duration ~ style * voicing, data = style_voicing)
+coef(m)
+with(style_voicing, interaction.plot(voicing, style, duration))
 }
 \keyword{datasets}

@@ -44,6 +44,12 @@ year of age. Loadings are 0.55 to 0.8 (negative for \emph{lazy} and \emph{cold})
 responses are the latent item scores cut at -1.3, -0.4, 0.4 and 1.3.
 }
 \examples{
-head(language_attitudes)
+la <- language_attitudes
+la$lazy <- 6 - la$lazy
+la$cold <- 6 - la$cold
+items <- na.omit(la[, 4:15])
+fa <- factanal(items, factors = 3, rotation = "promax")
+print(fa$loadings, cutoff = 0.3)
+aggregate(cbind(intelligent, friendly, will_survive) ~ dialect_speaker, data = la, FUN = mean)
 }
 \keyword{datasets}

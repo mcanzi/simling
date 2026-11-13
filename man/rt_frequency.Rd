@@ -31,6 +31,10 @@ by-participant intercepts \code{p0} (SD 0.12), by-word intercepts \code{w0} (SD
 longer. Accuracy is 95\% for high- and 85\% for low-frequency words.
 }
 \examples{
-head(rt_frequency)
+aggregate(cbind(rt, correct) ~ frequency, data = rt_frequency, FUN = mean)
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::lmer(log(rt) ~ frequency + (1 | participant) + (1 | word), data = rt_frequency)
+  exp(lme4::fixef(m))
+}
 }
 \keyword{datasets}

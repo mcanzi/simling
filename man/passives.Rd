@@ -31,6 +31,10 @@ and size 4, where \code{rate} per 1000 words is 2 (conversation), 5 (fiction),
 10 (news) and 18 (academic).
 }
 \examples{
-head(passives)
+if (requireNamespace("MASS", quietly = TRUE)) {
+  m <- MASS::glm.nb(passives ~ 0 + register + offset(log(words / 1000)), data = passives)
+  exp(coef(m))
+  m$theta
+}
 }
 \keyword{datasets}

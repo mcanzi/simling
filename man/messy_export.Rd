@@ -48,6 +48,13 @@ True model of the clean data: \code{log(rt) = 6.38 + 0.1 * low + p0 + w0 + e}, w
 SD 0.15; accuracy is 96\% for high- and 88\% for low-frequency words.
 }
 \examples{
-head(messy_export)
+x <- messy_export
+table(x$Cond.)
+condition <- ifelse(substr(tolower(trimws(x$Cond.)), 1, 1) == "h", "high", "low")
+rt <- as.numeric(sub(",", ".", x[["Response Time (ms)"]]))
+rt[rt == -999] <- NA
+id <- as.integer(gsub("[^0-9]", "", x[["Subject ID"]]))
+test <- x$Block == "test" & !duplicated(data.frame(id, x$Item, x$Block))
+tapply(rt[test], condition[test], mean, na.rm = TRUE)
 }
 \keyword{datasets}

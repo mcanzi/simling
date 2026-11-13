@@ -36,5 +36,11 @@ By-text intercepts with SD 0.5 for each.
 }
 \examples{
 table(relativizers$role, relativizers$relativizer)
+if (requireNamespace("nnet", quietly = TRUE)) {
+  obj <- subset(relativizers, role == "object")
+  obj$length_c <- obj$antecedent_length - 2
+  m <- nnet::multinom(relativizer ~ mode + length_c, data = obj, trace = FALSE)
+  round(coef(m), 2)
+}
 }
 \keyword{datasets}

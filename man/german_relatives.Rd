@@ -41,6 +41,11 @@ by-participant variation (SD 0.03). By-participant intercepts \code{p0} have
 SD 0.2 and by-item intercepts \code{i0} SD 0.04; residual SD 0.2.
 }
 \examples{
-head(german_relatives)
+round(tapply(german_relatives$rt, german_relatives[c("region", "condition")], mean))
+if (requireNamespace("lme4", quietly = TRUE)) {
+  mv <- subset(german_relatives, region == "main_verb")
+  m <- lme4::lmer(log(rt) ~ condition + (1 | participant) + (1 | item), data = mv)
+  lme4::fixef(m)
+}
 }
 \keyword{datasets}

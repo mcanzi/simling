@@ -43,7 +43,16 @@ close to the world-wide proportions in WALS (feature 81A). All language,
 family and area names and all figures are invented.
 }
 \examples{
-table(word_order$order, word_order$adpositions)
+round(prop.table(table(word_order$order)), 2)
+round(prop.table(table(word_order$order, word_order$adpositions), 1), 2)
+head(sort(table(word_order$family), decreasing = TRUE))
+if (requireNamespace("lme4", quietly = TRUE)) {
+  word_order$sov <- word_order$order == "SOV"
+  m1 <- glm(adpositions ~ sov, data = word_order, family = binomial)
+  m2 <- lme4::glmer(adpositions ~ sov + (1 | family), data = word_order, family = binomial)
+  rbind(glm = summary(m1)$coefficients["sovTRUE", 1:2],
+        glmer = summary(m2)$coefficients["sovTRUE", 1:2])
+}
 }
 \references{
 Dryer, M. S. (2013). Order of subject, object and verb. In M. S. Dryer & M. Haspelmath (eds.), \emph{WALS Online}. Leipzig: Max Planck Institute for Evolutionary Anthropology. \url{https://wals.info/chapter/81}

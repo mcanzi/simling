@@ -45,7 +45,11 @@ centred at 850 ms (SD about 100 ms); the two distractors split the rest
 evenly.
 }
 \examples{
-head(visual_world)
+visual_world$p_target <- visual_world$target / visual_world$samples
+looks <- aggregate(p_target ~ condition + time, data = visual_world, FUN = mean)
+plot(p_target ~ time, data = looks, col = condition)
+abline(v = 600, lty = 2)
+looks[looks$time == 600, ]
 }
 \references{
 Altmann, G. T. M. & Kamide, Y. (1999). Incremental interpretation at verbs: Restricting the domain of subsequent reference. \emph{Cognition}, 73(3), 247-264. \doi{10.1016/S0010-0277(99)00059-1}

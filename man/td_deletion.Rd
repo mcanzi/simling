@@ -40,6 +40,17 @@ intercepts \code{s0} of SD 0.5. Rate matters only before consonants; deletion
 drops sharply around age 45.
 }
 \examples{
-head(td_deletion)
+if (requireNamespace("rpart", quietly = TRUE)) {
+  tree <- rpart::rpart(deleted ~ following + morph + rate + log_freq + age + gender +
+                         education + noise_cont + noise_bin, data = td_deletion)
+  round(tree$variable.importance)
+}
+if (requireNamespace("randomForest", quietly = TRUE)) {
+  set.seed(1)
+  rf <- randomForest::randomForest(deleted ~ following + morph + rate + log_freq + age +
+                                     gender + education + noise_cont + noise_bin,
+                                   data = td_deletion, importance = TRUE)
+  round(randomForest::importance(rf, type = 1), 1)
+}
 }
 \keyword{datasets}

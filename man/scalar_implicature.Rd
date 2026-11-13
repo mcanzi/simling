@@ -37,6 +37,11 @@ all-context only), with by-participant (SD 0.15) and by-item (SD 0.05)
 intercepts and residual SD 0.25.
 }
 \examples{
-table(scalar_implicature$context, scalar_implicature$response)
+all_ctx <- subset(scalar_implicature, context == "all")
+p_false <- tapply(all_ctx$response == "false", all_ctx$participant, mean)
+hist(p_false, breaks = 10)
+controls <- droplevels(subset(scalar_implicature, context != "all"))
+tapply(controls$response == "true", controls$context, mean)
+aggregate(rt ~ response, data = all_ctx, FUN = median)
 }
 \keyword{datasets}

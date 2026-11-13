@@ -31,6 +31,12 @@ True model: \code{log(rt) = 6.55 + 0.16 * L2 + p0 + w0 + slope * (log_freq - 3.5
 \code{p1} SD 0.015; by-word intercepts \code{w0} have SD 0.04; residual SD 0.09.
 }
 \examples{
-head(lexical_decision_l2)
+lexical_decision_l2$freq_c <- lexical_decision_l2$log_freq - 3.5
+lexical_decision_l2$length_c <- lexical_decision_l2$length - 7
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::lmer(log(rt) ~ group * freq_c + length_c + (1 + freq_c | participant) +
+                    (1 | word), data = lexical_decision_l2)
+  lme4::fixef(m)
+}
 }
 \keyword{datasets}

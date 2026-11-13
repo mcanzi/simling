@@ -37,7 +37,13 @@ token SD is 0.9. The design follows reports of T2/T5 merging (Mok, Zuo &
 Wong 2013); the data are simulated.
 }
 \examples{
-head(cantonese_tone_merger)
+rise <- tapply(cantonese_tone_merger$rise,
+               cantonese_tone_merger[c("speaker", "tone")], mean)
+age <- tapply(cantonese_tone_merger$age, cantonese_tone_merger$speaker, unique)
+difference <- rise[, "T2"] - rise[, "T5"]
+hist(difference, breaks = 20)
+plot(age, difference)
+table(merger = difference < 2, under_40 = age < 40)
 }
 \references{
 Mok, P. P. K., Zuo, D. & Wong, P. W. Y. (2013). Production and perception of a sound change in progress: Tone merging in Hong Kong Cantonese. \emph{Language Variation and Change}, 25(3), 341-370. \doi{10.1017/S0954394513000161}

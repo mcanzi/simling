@@ -40,7 +40,13 @@ first 40 published studies are included. Studies, years and samples are
 invented.
 }
 \examples{
-head(bouba_kiki_meta)
+if (requireNamespace("metafor", quietly = TRUE)) {
+  m <- metafor::rma(yi = log_odds, sei = se, data = bouba_kiki_meta)
+  print(m)
+  print(metafor::rma(yi = log_odds, sei = se, mods = ~ script, data = bouba_kiki_meta))
+  print(metafor::regtest(m))
+  metafor::funnel(m)
+}
 }
 \references{
 Ćwiek, A., Fuchs, S., Draxler, C., Asu, E. L., Dediu, D., Hiovain, K., Kawahara, S., Koutalidis, S., Krifka, M., Lippus, P., Lupyan, G., Oh, G. E., Paul, J., Petrone, C., Ridouane, R., Reiter, S., Schümchen, N., Szalontai, Á., Ünal-Logacev, Ö., Zeller, J., Perlman, M. & Winter, B. (2022). The bouba/kiki effect is robust across cultures and writing systems. \emph{Philosophical Transactions of the Royal Society B}, 377(1841), 20200390. \doi{10.1098/rstb.2020.0390}

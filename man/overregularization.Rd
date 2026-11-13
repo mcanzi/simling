@@ -32,7 +32,13 @@ True model, in log-odds: \code{-3.2}, with by-child intercepts of SD
 attempt more irregular past tenses as they get older.
 }
 \examples{
-head(overregularization)
+sum(overregularization$errors) / sum(overregularization$attempts)
+aggregate(cbind(errors, attempts) ~ age, data = overregularization, FUN = sum)
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::glmer(cbind(errors, attempts - errors) ~ I((age - 45) / 12) + (1 | child),
+                   data = overregularization, family = binomial)
+  summary(m)$coefficients
+}
 }
 \references{
 Marcus, G. F., Pinker, S., Ullman, M., Hollander, M., Rosen, T. J. & Xu, F. (1992). Overregularization in language acquisition. \emph{Monographs of the Society for Research in Child Development}, 57(4). \doi{10.2307/1166115}

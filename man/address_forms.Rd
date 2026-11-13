@@ -30,6 +30,9 @@ True model: the probability of \emph{du} is 0.85 (university), 0.35
 for speakers over 50.
 }
 \examples{
-table(address_forms$age_group, address_forms$form)
+tab <- xtabs(~ setting + form + age_group, data = address_forms)
+round(prop.table(tab, c(1, 3))[, "du", ], 2)
+chisq.test(tab[, , "under 30"])
+chisq.test(tab[, , "over 50"])
 }
 \keyword{datasets}

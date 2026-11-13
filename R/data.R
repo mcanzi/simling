@@ -17,7 +17,11 @@
 #'   longer. Accuracy is 95% for high- and 85% for low-frequency words.
 #' @source `data-raw/rt_frequency.R`
 #' @examples
-#' head(rt_frequency)
+#' aggregate(cbind(rt, correct) ~ frequency, data = rt_frequency, FUN = mean)
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   m <- lme4::lmer(log(rt) ~ frequency + (1 | participant) + (1 | word), data = rt_frequency)
+#'   exp(lme4::fixef(m))
+#' }
 "rt_frequency"
 
 #' Formants of three vowels from two speakers
@@ -37,7 +41,10 @@
 #'   1.2 times higher. Token SD is 40 Hz for F1 and 120 Hz for F2.
 #' @source `data-raw/formants.R`
 #' @examples
-#' head(formants)
+#' aggregate(cbind(f1, f2) ~ speaker + vowel, data = formants, FUN = mean)
+#' formants$f1_z <- ave(formants$f1, formants$speaker, FUN = function(x) c(scale(x)))
+#' formants$f2_z <- ave(formants$f2, formants$speaker, FUN = function(x) c(scale(x)))
+#' aggregate(cbind(f1_z, f2_z) ~ speaker + vowel, data = formants, FUN = mean)
 "formants"
 
 #' Reaction times and Zipfian word frequency
@@ -58,7 +65,9 @@
 #'   `e` normal, SD 0.15.
 #' @source `data-raw/zipf_rt.R`
 #' @examples
-#' head(zipf_rt)
+#' hist(zipf_rt$freq, breaks = 50)
+#' hist(log10(zipf_rt$freq), breaks = 50)
+#' coef(lm(log(rt) ~ log10(freq), data = zipf_rt))
 "zipf_rt"
 
 #' Reaction times, word frequency and word length
@@ -79,7 +88,10 @@
 #'   their own.
 #' @source `data-raw/word_rt.R`
 #' @examples
-#' head(word_rt)
+#' cor(word_rt[c("log_freq", "length", "syllables")])
+#' m <- lm(log(rt) ~ log_freq + length + syllables, data = word_rt)
+#' summary(m)
+#' summary(lm(log(rt) ~ syllables, data = word_rt))$coefficients
 "word_rt"
 
 #' Vowel duration before voiced and voiceless consonants
@@ -96,7 +108,8 @@
 #'   (SD 22) before voiced consonants.
 #' @source `data-raw/vowel_voicing.R`
 #' @examples
-#' head(vowel_voicing)
+#' t.test(duration ~ voicing, data = vowel_voicing)
+#' boxplot(duration ~ voicing, data = vowel_voicing)
 "vowel_voicing"
 
 #' Vowel duration in three speaking styles
@@ -112,7 +125,10 @@
 #'   clear and 132 ms (SD 19) in loud speech.
 #' @source `data-raw/speech_styles.R`
 #' @examples
-#' head(speech_styles)
+#' m <- lm(duration ~ style, data = speech_styles)
+#' anova(m)
+#' coef(m)
+#' pairwise.t.test(speech_styles$duration, speech_styles$style)
 "speech_styles"
 
 #' Frequency effects in L1 and L2 speakers
@@ -131,7 +147,9 @@
 #'   `6.85 - 0.07 * log_freq` for L2 speakers, plus normal noise with SD 0.06.
 #' @source `data-raw/l2_frequency.R`
 #' @examples
-#' head(l2_frequency)
+#' m <- lm(log(rt) ~ log_freq * group, data = l2_frequency)
+#' coef(m)
+#' plot(log(rt) ~ log_freq, data = l2_frequency, col = group)
 "l2_frequency"
 
 #' Vowel duration by speaking style and voicing
@@ -150,7 +168,9 @@
 #'   voiced), 125 (clear, voiceless) and 180 ms (clear, voiced); SD 18 ms.
 #' @source `data-raw/style_voicing.R`
 #' @examples
-#' head(style_voicing)
+#' m <- lm(duration ~ style * voicing, data = style_voicing)
+#' coef(m)
+#' with(style_voicing, interaction.plot(voicing, style, duration))
 "style_voicing"
 
 #' Reaction times with a frequency-by-length interaction
@@ -171,7 +191,8 @@
 #'   0.0065 * lf_c * len_c + e`, with `e` normal, SD 0.05.
 #' @source `data-raw/freq_length.R`
 #' @examples
-#' head(freq_length)
+#' m <- lm(log(rt) ~ lf_c * len_c, data = freq_length)
+#' coef(m)
 "freq_length"
 
 #' Lexical decision with participants and words
@@ -195,7 +216,11 @@
 #'   data.
 #' @source `data-raw/lexical_decision.R`
 #' @examples
-#' head(lexical_decision)
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   m <- lme4::lmer(log(rt) ~ freq_c + (1 + freq_c | participant) + (1 | word),
+#'                   data = lexical_decision)
+#'   summary(m)
+#' }
 "lexical_decision"
 
 #' Vowel duration with speakers and words
@@ -216,7 +241,11 @@
 #'   (uncorrelated); by-word intercepts `w0` have SD 15 ms; residual SD 20 ms.
 #' @source `data-raw/vowel_duration.R`
 #' @examples
-#' head(vowel_duration)
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   m <- lme4::lmer(duration ~ voicing + (1 + voicing | speaker) + (1 | word),
+#'                   data = vowel_duration)
+#'   summary(m)
+#' }
 "vowel_duration"
 
 #' Accuracy in an Italian lexical decision task
@@ -238,7 +267,11 @@
 #'   (uncorrelated); by-word intercepts `w0` have SD 0.5.
 #' @source `data-raw/lexical_accuracy.R`
 #' @examples
-#' head(lexical_accuracy)
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   m <- lme4::glmer(correct ~ freq_c + (1 + freq_c || participant) + (1 | word),
+#'                    data = lexical_accuracy, family = binomial)
+#'   summary(m)
+#' }
 "lexical_accuracy"
 
 #' German lexical decision by L1 and L2 speakers
@@ -262,7 +295,13 @@
 #'   `p1` SD 0.015; by-word intercepts `w0` have SD 0.04; residual SD 0.09.
 #' @source `data-raw/lexical_decision_l2.R`
 #' @examples
-#' head(lexical_decision_l2)
+#' lexical_decision_l2$freq_c <- lexical_decision_l2$log_freq - 3.5
+#' lexical_decision_l2$length_c <- lexical_decision_l2$length - 7
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   m <- lme4::lmer(log(rt) ~ group * freq_c + length_c + (1 + freq_c | participant) +
+#'                     (1 | word), data = lexical_decision_l2)
+#'   lme4::fixef(m)
+#' }
 "lexical_decision_l2"
 
 #' F2 trajectories of the PRICE diphthong
@@ -289,7 +328,13 @@
 #'   Hz.
 #' @source `data-raw/price_f2.R`
 #' @examples
-#' head(price_f2)
+#' if (requireNamespace("mgcv", quietly = TRUE)) {
+#'   m <- mgcv::bam(f2 ~ l1 + s(time, by = l1) + s(time, speaker, bs = "fs", m = 1),
+#'                  data = price_f2)
+#'   summary(m)
+#'   new <- expand.grid(time = c(0, 50, 100), l1 = c("English", "Italian"), speaker = "S01")
+#'   cbind(new, f2 = predict(m, new, exclude = "s(time,speaker)"))
+#' }
 "price_f2"
 
 #' Pupil dilation when listening in quiet and in noise
@@ -316,7 +361,11 @@
 #'   rho 0.8 and SD 12.
 #' @source `data-raw/pupil_noise.R`
 #' @examples
-#' head(pupil_noise)
+#' curve <- aggregate(pupil ~ condition + time, data = pupil_noise, FUN = mean)
+#' plot(pupil ~ time, data = curve, col = condition)
+#' peaks <- do.call(rbind, lapply(split(curve, curve$condition),
+#'                               function(d) d[which.max(d$pupil), ]))
+#' peaks
 "pupil_noise"
 
 #' /t, d/ deletion
@@ -349,7 +398,18 @@
 #'   drops sharply around age 45.
 #' @source `data-raw/td_deletion.R`
 #' @examples
-#' head(td_deletion)
+#' if (requireNamespace("rpart", quietly = TRUE)) {
+#'   tree <- rpart::rpart(deleted ~ following + morph + rate + log_freq + age + gender +
+#'                          education + noise_cont + noise_bin, data = td_deletion)
+#'   round(tree$variable.importance)
+#' }
+#' if (requireNamespace("randomForest", quietly = TRUE)) {
+#'   set.seed(1)
+#'   rf <- randomForest::randomForest(deleted ~ following + morph + rate + log_freq + age +
+#'                                      gender + education + noise_cont + noise_bin,
+#'                                    data = td_deletion, importance = TRUE)
+#'   round(randomForest::importance(rf, type = 1), 1)
+#' }
 "td_deletion"
 
 #' Acoustic cues to a foreign accent
@@ -378,7 +438,18 @@
 #'   intensity by token only.
 #' @source `data-raw/accent.R`
 #' @examples
-#' head(accent)
+#' aggregate(cbind(vot, vowel_ratio, rate, f0) ~ l1 + gender, data = accent, FUN = mean)
+#' speakers <- levels(accent$speaker)
+#' test <- is.element(accent$speaker, speakers[seq(1, length(speakers), by = 5)])
+#' m <- glm(l1 ~ vot + vowel_ratio + rate, data = accent[!test, ], family = binomial)
+#' mean((predict(m, accent[test, ], type = "response") > 0.5) == (accent$l1[test] == "Italian"))
+#' if (requireNamespace("randomForest", quietly = TRUE)) {
+#'   set.seed(1)
+#'   rf <- randomForest::randomForest(l1 ~ vot + vowel_ratio + rate + f0 + h1h2 + intensity,
+#'                                    data = accent[!test, ], importance = TRUE)
+#'   print(round(randomForest::importance(rf, type = 1), 1))
+#'   mean(predict(rf, accent[test, ]) == accent$l1[test])
+#' }
 "accent"
 
 #' A pilot German picture-naming study for power analysis
@@ -403,7 +474,11 @@
 #'   SD 0.04; residual SD 0.1.
 #' @source `data-raw/naming_pilot.R`
 #' @examples
-#' head(naming_pilot)
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   m <- lme4::lmer(log(latency) ~ age_group * freq_c + (1 + freq_c | participant) +
+#'                     (1 | picture), data = naming_pilot)
+#'   lme4::fixef(m)
+#' }
 "naming_pilot"
 
 #' Acceptability judgments for whether-islands
@@ -431,7 +506,15 @@
 #' Sprouse, J., Wagers, M. & Phillips, C. (2012). A test of the relation between working-memory capacity and syntactic island effects. *Language*, 88(1), 82-123. \doi{10.1353/lan.2012.0004}
 #' @source `data-raw/acceptability.R`
 #' @examples
-#' table(acceptability$length, acceptability$structure, acceptability$rating)
+#' round(tapply(acceptability$rating, acceptability[c("length", "structure")], mean), 2)
+#' \donttest{
+#' if (requireNamespace("ordinal", quietly = TRUE)) {
+#'   acceptability$rating <- factor(acceptability$rating, ordered = TRUE)
+#'   m <- ordinal::clmm(rating ~ length * structure + (1 | participant) + (1 | item),
+#'                      data = acceptability)
+#'   coef(summary(m))
+#' }
+#' }
 "acceptability"
 
 #' Eye-tracking while reading: agreement attraction
@@ -468,7 +551,14 @@
 #' Bock, K. & Miller, C. A. (1991). Broken agreement. *Cognitive Psychology*, 23(1), 45-93. \doi{10.1016/0010-0285(91)90003-7}
 #' @source `data-raw/agreement_attraction.R`
 #' @examples
-#' head(agreement_attraction)
+#' aggregate(gaze_duration ~ grammaticality + attractor, data = agreement_attraction,
+#'           FUN = mean)
+#' mean(agreement_attraction$skipped)
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   m <- lme4::lmer(log(gaze_duration) ~ grammaticality * attractor + (1 | participant) +
+#'                     (1 | item), data = agreement_attraction)
+#'   lme4::fixef(m)
+#' }
 "agreement_attraction"
 
 #' Scalar implicature: truth-value judgments
@@ -497,7 +587,12 @@
 #'   intercepts and residual SD 0.25.
 #' @source `data-raw/scalar_implicature.R`
 #' @examples
-#' table(scalar_implicature$context, scalar_implicature$response)
+#' all_ctx <- subset(scalar_implicature, context == "all")
+#' p_false <- tapply(all_ctx$response == "false", all_ctx$participant, mean)
+#' hist(p_false, breaks = 10)
+#' controls <- droplevels(subset(scalar_implicature, context != "all"))
+#' tapply(controls$response == "true", controls$context, mean)
+#' aggregate(rt ~ response, data = all_ctx, FUN = median)
 "scalar_implicature"
 
 #' Visual-world eye tracking: anticipatory looks
@@ -535,7 +630,11 @@
 #' Altmann, G. T. M. & Kamide, Y. (1999). Incremental interpretation at verbs: Restricting the domain of subsequent reference. *Cognition*, 73(3), 247-264. \doi{10.1016/S0010-0277(99)00059-1}
 #' @source `data-raw/visual_world.R`
 #' @examples
-#' head(visual_world)
+#' visual_world$p_target <- visual_world$target / visual_world$samples
+#' looks <- aggregate(p_target ~ condition + time, data = visual_world, FUN = mean)
+#' plot(p_target ~ time, data = looks, col = condition)
+#' abline(v = 600, lty = 2)
+#' looks[looks$time == 600, ]
 "visual_world"
 
 #' Passives in four registers
@@ -557,7 +656,11 @@
 #'   10 (news) and 18 (academic).
 #' @source `data-raw/passives.R`
 #' @examples
-#' head(passives)
+#' if (requireNamespace("MASS", quietly = TRUE)) {
+#'   m <- MASS::glm.nb(passives ~ 0 + register + offset(log(words / 1000)), data = passives)
+#'   exp(coef(m))
+#'   m$theta
+#' }
 "passives"
 
 #' Relativizer choice: that, which or zero
@@ -584,6 +687,12 @@
 #' @source `data-raw/relativizers.R`
 #' @examples
 #' table(relativizers$role, relativizers$relativizer)
+#' if (requireNamespace("nnet", quietly = TRUE)) {
+#'   obj <- subset(relativizers, role == "object")
+#'   obj$length_c <- obj$antecedent_length - 2
+#'   m <- nnet::multinom(relativizer ~ mode + length_c, data = obj, trace = FALSE)
+#'   round(coef(m), 2)
+#' }
 "relativizers"
 
 #' Vocabulary growth in toddlers
@@ -611,7 +720,15 @@
 #' Frank, M. C., Braginsky, M., Yurovsky, D. & Marchman, V. A. (2017). Wordbank: An open repository for developmental vocabulary data. *Journal of Child Language*, 44(3), 677-694. \doi{10.1017/S0305000916000209}
 #' @source `data-raw/vocabulary_growth.R`
 #' @examples
-#' head(vocabulary_growth)
+#' plot(vocabulary ~ age, data = vocabulary_growth, col = grey(0.4))
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   vocabulary_growth$session <- seq_len(nrow(vocabulary_growth))
+#'   m <- lme4::glmer(cbind(vocabulary, 680 - vocabulary) ~ I(age - 24) +
+#'                      I(log2(input / 1200)) + (1 | child) + (1 | session),
+#'                    data = vocabulary_growth, family = binomial)
+#'   b <- lme4::fixef(m)
+#'   c(spurt_at_1200_words = 24 - b[[1]] / b[[2]], months_per_doubling = b[[3]] / b[[2]])
+#' }
 "vocabulary_growth"
 
 #' Past-tense overregularization
@@ -636,7 +753,13 @@
 #' Marcus, G. F., Pinker, S., Ullman, M., Hollander, M., Rosen, T. J. & Xu, F. (1992). Overregularization in language acquisition. *Monographs of the Society for Research in Child Development*, 57(4). \doi{10.2307/1166115}
 #' @source `data-raw/overregularization.R`
 #' @examples
-#' head(overregularization)
+#' sum(overregularization$errors) / sum(overregularization$attempts)
+#' aggregate(cbind(errors, attempts) ~ age, data = overregularization, FUN = sum)
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   m <- lme4::glmer(cbind(errors, attempts - errors) ~ I((age - 45) / 12) + (1 | child),
+#'                    data = overregularization, family = binomial)
+#'   summary(m)$coefficients
+#' }
 "overregularization"
 
 #' The rise of periphrastic do
@@ -668,7 +791,14 @@
 #' Kroch, A. S. (1989). Reflexes of grammar in patterns of language change. *Language Variation and Change*, 1(3), 199-244. \doi{10.1017/S0954394500000168}
 #' @source `data-raw/do_support.R`
 #' @examples
-#' head(do_support)
+#' do_support$century <- (do_support$year - 1550) / 100
+#' m <- glm(cbind(do, eligible - do) ~ 0 + context + context:century, data = do_support,
+#'          family = binomial)
+#' round(coef(m), 2)
+#' rising <- subset(do_support, context != "affirmative declarative")
+#' anova(glm(cbind(do, eligible - do) ~ context + century, data = rising, family = binomial),
+#'       glm(cbind(do, eligible - do) ~ context * century, data = rising, family = binomial),
+#'       test = "Chisq")
 "do_support"
 
 #' Word order in a typological sample
@@ -707,7 +837,16 @@
 #' Greenberg, J. H. (1963). Some universals of grammar with particular reference to the order of meaningful elements. In J. H. Greenberg (ed.), *Universals of Language* (pp. 58-90). Cambridge, MA: MIT Press.
 #' @source `data-raw/word_order.R`
 #' @examples
-#' table(word_order$order, word_order$adpositions)
+#' round(prop.table(table(word_order$order)), 2)
+#' round(prop.table(table(word_order$order, word_order$adpositions), 1), 2)
+#' head(sort(table(word_order$family), decreasing = TRUE))
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   word_order$sov <- word_order$order == "SOV"
+#'   m1 <- glm(adpositions ~ sov, data = word_order, family = binomial)
+#'   m2 <- lme4::glmer(adpositions ~ sov + (1 | family), data = word_order, family = binomial)
+#'   rbind(glm = summary(m1)$coefficients["sovTRUE", 1:2],
+#'         glmer = summary(m2)$coefficients["sovTRUE", 1:2])
+#' }
 "word_order"
 
 #' Forms of address: du or Sie
@@ -728,7 +867,10 @@
 #'   for speakers over 50.
 #' @source `data-raw/address_forms.R`
 #' @examples
-#' table(address_forms$age_group, address_forms$form)
+#' tab <- xtabs(~ setting + form + age_group, data = address_forms)
+#' round(prop.table(tab, c(1, 3))[, "du", ], 2)
+#' chisq.test(tab[, , "under 30"])
+#' chisq.test(tab[, , "over 50"])
 "address_forms"
 
 #' Perceptual training of a non-native contrast
@@ -748,7 +890,8 @@
 #'   `gain` has mean 0.6 and SD 0.35.
 #' @source `data-raw/perception_training.R`
 #' @examples
-#' perception_training
+#' t.test(perception_training$post, perception_training$pre, paired = TRUE)
+#' t.test(perception_training$post, perception_training$pre)
 "perception_training"
 
 #' Megastudy of 6000 words
@@ -778,7 +921,12 @@
 #'   earlier.
 #' @source `data-raw/megastudy.R`
 #' @examples
-#' head(megastudy)
+#' m1 <- lm(rt ~ log_freq + length + neighbours + aoa + concreteness, data = megastudy)
+#' m2 <- lm(rt ~ splines::ns(log_freq, 4) + length + neighbours + aoa + concreteness,
+#'          data = megastudy)
+#' anova(m1, m2)
+#' coef(m2)[c("length", "neighbours", "aoa", "concreteness")]
+#' round(cor(megastudy[c("log_freq", "length", "neighbours", "aoa")]), 2)
 "megastudy"
 
 #' f0 contours of the four Mandarin tones
@@ -811,7 +959,9 @@
 #' Chao, Y. R. (1930). A system of tone letters. *Le Maître Phonétique*, 45, 24-27.
 #' @source `data-raw/mandarin_tones.R`
 #' @examples
-#' head(mandarin_tones)
+#' mandarin_tones$st <- 12 * log2(mandarin_tones$f0 /
+#'   ave(mandarin_tones$f0, mandarin_tones$speaker))
+#' round(tapply(mandarin_tones$st, mandarin_tones[c("tone", "time")], mean), 1)
 "mandarin_tones"
 
 #' The three-way stop contrast in Seoul Korean
@@ -846,7 +996,14 @@
 #' Silva, D. J. (2006). Acoustic evidence for the emergence of tonal contrast in contemporary Korean. *Phonology*, 23(2), 287-308. \doi{10.1017/S0952675706000911}
 #' @source `data-raw/korean_stops.R`
 #' @examples
-#' head(korean_stops)
+#' aggregate(cbind(vot, f0) ~ generation + stop, data = korean_stops, FUN = mean)
+#' korean_stops$f0_st <- 12 * log2(korean_stops$f0 / ave(korean_stops$f0, korean_stops$speaker))
+#' for (g in c("older", "younger")) {
+#'   d <- subset(korean_stops, generation == g)
+#'   set.seed(1)
+#'   cl <- kmeans(scale(d[c("vot", "f0_st")]), centers = 3, nstart = 10)
+#'   print(table(d$stop, cl$cluster))
+#' }
 "korean_stops"
 
 #' Self-paced reading of German relative clauses
@@ -879,7 +1036,12 @@
 #'   SD 0.2 and by-item intercepts `i0` SD 0.04; residual SD 0.2.
 #' @source `data-raw/german_relatives.R`
 #' @examples
-#' head(german_relatives)
+#' round(tapply(german_relatives$rt, german_relatives[c("region", "condition")], mean))
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   mv <- subset(german_relatives, region == "main_verb")
+#'   m <- lme4::lmer(log(rt) ~ condition + (1 | participant) + (1 | item), data = mv)
+#'   lme4::fixef(m)
+#' }
 "german_relatives"
 
 #' Single-trial N400 amplitudes
@@ -916,7 +1078,13 @@
 #' Kutas, M. & Hillyard, S. A. (1984). Brain potentials during reading reflect word expectancy and semantic association. *Nature*, 307, 161-163. \doi{10.1038/307161a0}
 #' @source `data-raw/n400.R`
 #' @examples
-#' head(n400)
+#' pz <- subset(n400, electrode == "Pz")
+#' aggregate(amplitude ~ condition, data = pz, FUN = mean)
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   m <- lme4::lmer(amplitude ~ cloze + (1 + cloze | participant), data = pz)
+#'   lme4::fixef(m)
+#' }
+#' round(tapply(n400$amplitude, n400[c("anteriority", "condition")], mean), 2)
 "n400"
 
 #' Merging of the Cantonese rising tones
@@ -947,7 +1115,13 @@
 #' Mok, P. P. K., Zuo, D. & Wong, P. W. Y. (2013). Production and perception of a sound change in progress: Tone merging in Hong Kong Cantonese. *Language Variation and Change*, 25(3), 341-370. \doi{10.1017/S0954394513000161}
 #' @source `data-raw/cantonese_tone_merger.R`
 #' @examples
-#' head(cantonese_tone_merger)
+#' rise <- tapply(cantonese_tone_merger$rise,
+#'                cantonese_tone_merger[c("speaker", "tone")], mean)
+#' age <- tapply(cantonese_tone_merger$age, cantonese_tone_merger$speaker, unique)
+#' difference <- rise[, "T2"] - rise[, "T5"]
+#' hist(difference, breaks = 20)
+#' plot(age, difference)
+#' table(merger = difference < 2, under_40 = age < 40)
 "cantonese_tone_merger"
 
 #' A wug test of German noun plurals
@@ -980,7 +1154,12 @@
 #' Berko, J. (1958). The child's learning of English morphology. *Word*, 14(2-3), 150-177. \doi{10.1080/00437956.1958.11659661}
 #' @source `data-raw/german_plurals.R`
 #' @examples
-#' table(german_plurals$final, german_plurals$plural)
+#' round(prop.table(table(german_plurals$final, german_plurals$plural), 1), 2)
+#' round(prop.table(table(german_plurals$gender, german_plurals$plural), 1), 2)
+#' if (requireNamespace("nnet", quietly = TRUE)) {
+#'   m <- nnet::multinom(plural ~ gender + final, data = german_plurals, trace = FALSE)
+#'   round(coef(m), 2)
+#' }
 "german_plurals"
 
 #' Turn-taking in 10 languages
@@ -1014,7 +1193,13 @@
 #' Stivers, T., Enfield, N. J., Brown, P., Englert, C., Hayashi, M., Heinemann, T., Hoymann, G., Rossano, F., de Ruiter, J. P., Yoon, K.-E. & Levinson, S. C. (2009). Universals and cultural variation in turn-taking in conversation. *Proceedings of the National Academy of Sciences*, 106(26), 10587-10592. \doi{10.1073/pnas.0903616106}
 #' @source `data-raw/turn_taking.R`
 #' @examples
-#' head(turn_taking)
+#' sort(tapply(turn_taking$offset, turn_taking$language, median))
+#' hist(turn_taking$offset, breaks = 60)
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   m <- lme4::lmer(offset ~ response + answer + gaze + language + (1 | conversation),
+#'                   data = turn_taking)
+#'   lme4::fixef(m)[c("responsedisconfirmation", "answernon-answer", "gazeyes")]
+#' }
 "turn_taking"
 
 #' Attitudes towards a regional dialect
@@ -1049,7 +1234,13 @@
 #'   responses are the latent item scores cut at -1.3, -0.4, 0.4 and 1.3.
 #' @source `data-raw/language_attitudes.R`
 #' @examples
-#' head(language_attitudes)
+#' la <- language_attitudes
+#' la$lazy <- 6 - la$lazy
+#' la$cold <- 6 - la$cold
+#' items <- na.omit(la[, 4:15])
+#' fa <- factanal(items, factors = 3, rotation = "promax")
+#' print(fa$loadings, cutoff = 0.3)
+#' aggregate(cbind(intelligent, friendly, will_survive) ~ dialect_speaker, data = la, FUN = mean)
 "language_attitudes"
 
 #' A dialect survey of degemination in Italy
@@ -1077,7 +1268,14 @@
 #'   simulated.
 #' @source `data-raw/dialect_survey.R`
 #' @examples
-#' head(dialect_survey)
+#' dialect_survey$p <- dialect_survey$degeminated / dialect_survey$words
+#' plot(lat ~ long, data = dialect_survey, col = grey(1 - p), pch = 16, asp = 1.3)
+#' abline(h = 44.1, lty = 2)
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   m <- lme4::glmer(cbind(degeminated, words - degeminated) ~ I(lat - 44.1) + I(age - 50) +
+#'                      (1 | town), data = dialect_survey, family = binomial)
+#'   lme4::fixef(m)
+#' }
 "dialect_survey"
 
 #' Forensic voice comparison scores
@@ -1109,7 +1307,15 @@
 #' Brümmer, N. & du Preez, J. (2006). Application-independent evaluation of speaker detection. *Computer Speech and Language*, 20(2-3), 230-275. \doi{10.1016/j.csl.2005.08.001}
 #' @source `data-raw/forensic_comparison.R`
 #' @examples
-#' head(forensic_comparison)
+#' cllr <- function(score, same) {
+#'   m <- glm(same ~ score, family = binomial)
+#'   log_lr <- predict(m) - log(mean(same) / (1 - mean(same)))
+#'   0.5 * (mean(log2(1 + exp(-log_lr[same]))) + mean(log2(1 + exp(log_lr[!same]))))
+#' }
+#' same <- forensic_comparison$same_speaker == "yes"
+#' c(automatic = cllr(forensic_comparison$score_auto, same),
+#'   formant = cllr(forensic_comparison$score_formant, same))
+#' boxplot(score_auto ~ same_speaker, data = forensic_comparison)
 "forensic_comparison"
 
 #' Two coders' GToBI labels
@@ -1146,7 +1352,16 @@
 #' Pitrelli, J. F., Beckman, M. E. & Hirschberg, J. (1994). Evaluation of prosodic transcription labeling reliability in the ToBI framework. *Proceedings of ICSLP 1994*. <https://www.isca-archive.org/icslp_1994/pitrelli94_icslp.html>
 #' @source `data-raw/tobi_agreement.R`
 #' @examples
-#' table(tobi_agreement$accent_1, tobi_agreement$accent_2)
+#' kappa <- function(a, b) {
+#'   tab <- table(a, b)
+#'   po <- sum(diag(tab)) / sum(tab)
+#'   pe <- sum(rowSums(tab) * colSums(tab)) / sum(tab)^2
+#'   c(agreement = po, kappa = (po - pe) / (1 - pe))
+#' }
+#' with(tobi_agreement, kappa(accent_1 != "none", accent_2 != "none"))
+#' with(subset(tobi_agreement, accent_1 != "none" & accent_2 != "none"), kappa(accent_1, accent_2))
+#' sapply(split(tobi_agreement, tobi_agreement$style),
+#'        function(d) kappa(d$accent_1 != "none", d$accent_2 != "none"))
 "tobi_agreement"
 
 #' Rhythm metrics in eight languages
@@ -1188,7 +1403,11 @@
 #' Frota, S. & Vigário, M. (2001). On the correlates of rhythmic distinctions: The European/Brazilian Portuguese case. *Probus*, 13(2), 247-275. \doi{10.1515/prbs.2001.005}
 #' @source `data-raw/rhythm_metrics.R`
 #' @examples
-#' head(rhythm_metrics)
+#' means <- aggregate(cbind(percent_v, delta_c, varco_v) ~ language,
+#'                    data = rhythm_metrics, FUN = mean)
+#' means[order(means$percent_v), ]
+#' plot(delta_c ~ percent_v, data = rhythm_metrics, col = language)
+#' coef(lm(delta_c ~ rate + language, data = rhythm_metrics))["rate"]
 "rhythm_metrics"
 
 #' Hungarian vowel harmony in a wug test
@@ -1224,7 +1443,13 @@
 #' Hayes, B., Zuraw, K., Siptár, P. & Londe, Z. (2009). Natural and unnatural constraints in Hungarian vowel harmony. *Language*, 85, 822-863. \doi{10.1353/lan.0.0169}
 #' @source `data-raw/hungarian_harmony.R`
 #' @examples
-#' table(hungarian_harmony$stem_type, hungarian_harmony$suffix)
+#' round(prop.table(table(hungarian_harmony$stem_type, hungarian_harmony$suffix), 1), 2)
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   mixed <- subset(hungarian_harmony, is.element(stem_type, c("Bi", "Bé", "Be", "BNN")))
+#'   m <- lme4::glmer(suffix ~ stem_type + (1 | participant) + (1 | item),
+#'                    data = droplevels(mixed), family = binomial)
+#'   lme4::fixef(m)
+#' }
 "hungarian_harmony"
 
 #' Age of first production of words
@@ -1254,7 +1479,13 @@
 #'   censored.
 #' @source `data-raw/first_words.R`
 #' @examples
-#' head(first_words)
+#' if (requireNamespace("survival", quietly = TRUE)) {
+#'   km <- survival::survfit(survival::Surv(age, produced) ~ category, data = first_words)
+#'   plot(km, col = 1:3, xlim = c(10, 24))
+#'   m <- survival::coxph(survival::Surv(age, produced) ~ category + log_freq +
+#'                          survival::frailty(child), data = first_words)
+#'   coef(m)
+#' }
 "first_words"
 
 #' A meta-analysis of the bouba/kiki effect
@@ -1288,7 +1519,13 @@
 #' Ćwiek, A., Fuchs, S., Draxler, C., Asu, E. L., Dediu, D., Hiovain, K., Kawahara, S., Koutalidis, S., Krifka, M., Lippus, P., Lupyan, G., Oh, G. E., Paul, J., Petrone, C., Ridouane, R., Reiter, S., Schümchen, N., Szalontai, Á., Ünal-Logacev, Ö., Zeller, J., Perlman, M. & Winter, B. (2022). The bouba/kiki effect is robust across cultures and writing systems. *Philosophical Transactions of the Royal Society B*, 377(1841), 20200390. \doi{10.1098/rstb.2020.0390}
 #' @source `data-raw/bouba_kiki_meta.R`
 #' @examples
-#' head(bouba_kiki_meta)
+#' if (requireNamespace("metafor", quietly = TRUE)) {
+#'   m <- metafor::rma(yi = log_odds, sei = se, data = bouba_kiki_meta)
+#'   print(m)
+#'   print(metafor::rma(yi = log_odds, sei = se, mods = ~ script, data = bouba_kiki_meta))
+#'   print(metafor::regtest(m))
+#'   metafor::funnel(m)
+#' }
 "bouba_kiki_meta"
 
 #' Code-switching by Portuguese-German bilinguals
@@ -1323,7 +1560,14 @@
 #' Poplack, S. (1980). Sometimes I'll start a sentence in Spanish y termino en español: Toward a typology of code-switching. *Linguistics*, 18(7-8), 581-618. \doi{10.1515/ling.1980.18.7-8.581}
 #' @source `data-raw/code_switching.R`
 #' @examples
-#' head(code_switching)
+#' if (requireNamespace("MASS", quietly = TRUE)) {
+#'   m <- MASS::glm.nb(switches ~ generation + topic + interlocutor + offset(log(utterances)),
+#'                     data = code_switching)
+#'   round(exp(coef(m)), 2)
+#' }
+#' totals <- aggregate(cbind(intrasentential, switches) ~ generation, data = code_switching,
+#'                     FUN = sum)
+#' totals$intrasentential / totals$switches
 "code_switching"
 
 #' Iconicity ratings for signs of German Sign Language
@@ -1360,7 +1604,14 @@
 #' Thompson, R. L., Vinson, D. P., Woll, B. & Vigliocco, G. (2012). The road to language learning is iconic: Evidence from British Sign Language. *Psychological Science*, 23(12), 1443-1448. \doi{10.1177/0956797612459763}
 #' @source `data-raw/dgs_iconicity.R`
 #' @examples
-#' head(dgs_iconicity)
+#' round(tapply(dgs_iconicity$rating, dgs_iconicity[c("group", "category")], mean), 2)
+#' signs <- aggregate(rating ~ sign + group, data = dgs_iconicity, FUN = mean)
+#' signs <- reshape(signs, idvar = "sign", timevar = "group", direction = "wide")
+#' cor(signs[, 2], signs[, 3])
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   m <- lme4::lmer(rating ~ group * category + (1 | rater) + (1 | sign), data = dgs_iconicity)
+#'   lme4::fixef(m)
+#' }
 "dgs_iconicity"
 
 #' Filled pauses in Italian dialogue
@@ -1391,7 +1642,16 @@
 #' Di Napoli, J. (2020). Filled pauses and prolongations in Roman Italian task-oriented dialogue. *Laughter and Other Non-Verbal Vocalisations Workshop 2020*. \doi{10.4119/lw2020-915}
 #' @source `data-raw/disfluencies.R`
 #' @examples
-#' table(disfluencies$filled_pauses)
+#' m0 <- glm(filled_pauses ~ role + offset(log(syllables / 100)), data = disfluencies,
+#'           family = poisson)
+#' c(observed_zeros = mean(disfluencies$filled_pauses == 0),
+#'   poisson_zeros = mean(dpois(0, fitted(m0))))
+#' if (requireNamespace("pscl", quietly = TRUE)) {
+#'   m <- pscl::zeroinfl(filled_pauses ~ role + offset(log(syllables / 100)) | 1,
+#'                       data = disfluencies)
+#'   exp(coef(m, "count"))
+#'   plogis(coef(m, "zero"))
+#' }
 "disfluencies"
 
 #' A messy experiment export
@@ -1431,5 +1691,12 @@
 #'   SD 0.15; accuracy is 96% for high- and 88% for low-frequency words.
 #' @source `data-raw/messy_export.R`
 #' @examples
-#' head(messy_export)
+#' x <- messy_export
+#' table(x$Cond.)
+#' condition <- ifelse(substr(tolower(trimws(x$Cond.)), 1, 1) == "h", "high", "low")
+#' rt <- as.numeric(sub(",", ".", x[["Response Time (ms)"]]))
+#' rt[rt == -999] <- NA
+#' id <- as.integer(gsub("[^0-9]", "", x[["Subject ID"]]))
+#' test <- x$Block == "test" & !duplicated(data.frame(id, x$Item, x$Block))
+#' tapply(rt[test], condition[test], mean, na.rm = TRUE)
 "messy_export"

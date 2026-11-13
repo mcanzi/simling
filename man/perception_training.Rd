@@ -29,6 +29,7 @@ before and \code{0.4 + ability + gain} after training. \code{ability} has SD 0.6
 \code{gain} has mean 0.6 and SD 0.35.
 }
 \examples{
-perception_training
+t.test(perception_training$post, perception_training$pre, paired = TRUE)
+t.test(perception_training$post, perception_training$pre)
 }
 \keyword{datasets}

@@ -33,6 +33,10 @@ have SD 0.08 and slopes \code{p1} SD 0.015; by-picture intercepts \code{w0} have
 SD 0.04; residual SD 0.1.
 }
 \examples{
-head(naming_pilot)
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::lmer(log(latency) ~ age_group * freq_c + (1 + freq_c | participant) +
+                    (1 | picture), data = naming_pilot)
+  lme4::fixef(m)
+}
 }
 \keyword{datasets}

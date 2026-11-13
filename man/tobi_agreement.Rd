@@ -42,7 +42,16 @@ word's difficulty has mean 0 in read and 0.5 in spontaneous speech (SD
 \code{"H*"}).
 }
 \examples{
-table(tobi_agreement$accent_1, tobi_agreement$accent_2)
+kappa <- function(a, b) {
+  tab <- table(a, b)
+  po <- sum(diag(tab)) / sum(tab)
+  pe <- sum(rowSums(tab) * colSums(tab)) / sum(tab)^2
+  c(agreement = po, kappa = (po - pe) / (1 - pe))
+}
+with(tobi_agreement, kappa(accent_1 != "none", accent_2 != "none"))
+with(subset(tobi_agreement, accent_1 != "none" & accent_2 != "none"), kappa(accent_1, accent_2))
+sapply(split(tobi_agreement, tobi_agreement$style),
+       function(d) kappa(d$accent_1 != "none", d$accent_2 != "none"))
 }
 \references{
 Grice, M., Baumann, S. & Benzmüller, R. (2005). German intonation in autosegmental-metrical phonology. In S.-A. Jun (ed.), \emph{Prosodic Typology: The Phonology of Intonation and Phrasing} (pp. 55-83). Oxford: Oxford University Press. \doi{10.1093/acprof:oso/9780199249633.003.0003}

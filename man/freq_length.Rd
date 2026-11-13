@@ -29,6 +29,7 @@ frequent words.
 True model: \code{log(rt) = 6.63 - 0.04 * lf_c + 0.018 * len_c - 0.0065 * lf_c * len_c + e}, with \code{e} normal, SD 0.05.
 }
 \examples{
-head(freq_length)
+m <- lm(log(rt) ~ lf_c * len_c, data = freq_length)
+coef(m)
 }
 \keyword{datasets}

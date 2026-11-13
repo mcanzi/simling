@@ -41,7 +41,13 @@ noise shared across electrodes (SD 4) and electrode noise (SD 3). Cloze
 is 0.5 to 0.95 for expected and 0 to 0.05 for unexpected words.
 }
 \examples{
-head(n400)
+pz <- subset(n400, electrode == "Pz")
+aggregate(amplitude ~ condition, data = pz, FUN = mean)
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::lmer(amplitude ~ cloze + (1 + cloze | participant), data = pz)
+  lme4::fixef(m)
+}
+round(tapply(n400$amplitude, n400[c("anteriority", "condition")], mean), 2)
 }
 \references{
 Kutas, M. & Hillyard, S. A. (1980). Reading senseless sentences: Brain potentials reflect semantic incongruity. \emph{Science}, 207(4427), 203-205. \doi{10.1126/science.7350657}

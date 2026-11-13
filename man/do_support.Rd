@@ -37,7 +37,14 @@ historical data, \emph{do} in affirmative declaratives later declined again;
 the simulation leaves this out.
 }
 \examples{
-head(do_support)
+do_support$century <- (do_support$year - 1550) / 100
+m <- glm(cbind(do, eligible - do) ~ 0 + context + context:century, data = do_support,
+         family = binomial)
+round(coef(m), 2)
+rising <- subset(do_support, context != "affirmative declarative")
+anova(glm(cbind(do, eligible - do) ~ context + century, data = rising, family = binomial),
+      glm(cbind(do, eligible - do) ~ context * century, data = rising, family = binomial),
+      test = "Chisq")
 }
 \references{
 Ellegård, A. (1953). \emph{The auxiliary do: The establishment and regulation of its use in English}. Stockholm: Almqvist & Wiksell.

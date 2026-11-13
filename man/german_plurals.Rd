@@ -40,7 +40,12 @@ log scale by a by-participant preference for \emph{-s} (SD 0.6) and by
 response-level noise (SD 0.3).
 }
 \examples{
-table(german_plurals$final, german_plurals$plural)
+round(prop.table(table(german_plurals$final, german_plurals$plural), 1), 2)
+round(prop.table(table(german_plurals$gender, german_plurals$plural), 1), 2)
+if (requireNamespace("nnet", quietly = TRUE)) {
+  m <- nnet::multinom(plural ~ gender + final, data = german_plurals, trace = FALSE)
+  round(coef(m), 2)
+}
 }
 \references{
 Berko, J. (1958). The child's learning of English morphology. \emph{Word}, 14(2-3), 150-177. \doi{10.1080/00437956.1958.11659661}

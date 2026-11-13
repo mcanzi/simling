@@ -36,6 +36,12 @@ by-token offsets (SD 40 Hz); residuals are AR(1) with rho 0.6 and SD 30
 Hz.
 }
 \examples{
-head(price_f2)
+if (requireNamespace("mgcv", quietly = TRUE)) {
+  m <- mgcv::bam(f2 ~ l1 + s(time, by = l1) + s(time, speaker, bs = "fs", m = 1),
+                 data = price_f2)
+  summary(m)
+  new <- expand.grid(time = c(0, 50, 100), l1 = c("English", "Italian"), speaker = "S01")
+  cbind(new, f2 = predict(m, new, exclude = "s(time,speaker)"))
+}
 }
 \keyword{datasets}

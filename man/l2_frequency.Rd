@@ -28,6 +28,8 @@ True model: \code{log(rt) = 6.56 - 0.04 * log_freq} for L1 and
 \code{6.85 - 0.07 * log_freq} for L2 speakers, plus normal noise with SD 0.06.
 }
 \examples{
-head(l2_frequency)
+m <- lm(log(rt) ~ log_freq * group, data = l2_frequency)
+coef(m)
+plot(log(rt) ~ log_freq, data = l2_frequency, col = group)
 }
 \keyword{datasets}

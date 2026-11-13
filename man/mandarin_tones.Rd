@@ -40,7 +40,9 @@ Token offsets have SD 0.5 semitones and residuals are AR(1) with rho
 0.7. Mean durations are 250, 270, 300 and 220 ms for T1 to T4.
 }
 \examples{
-head(mandarin_tones)
+mandarin_tones$st <- 12 * log2(mandarin_tones$f0 /
+  ave(mandarin_tones$f0, mandarin_tones$speaker))
+round(tapply(mandarin_tones$st, mandarin_tones[c("tone", "time")], mean), 1)
 }
 \references{
 Chao, Y. R. (1930). A system of tone letters. \emph{Le Maître Phonétique}, 45, 24-27.

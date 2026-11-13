@@ -30,6 +30,10 @@ By-speaker intercepts \code{s0} have SD 25 ms and slopes \code{s1} SD 12 ms
 (uncorrelated); by-word intercepts \code{w0} have SD 15 ms; residual SD 20 ms.
 }
 \examples{
-head(vowel_duration)
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::lmer(duration ~ voicing + (1 + voicing | speaker) + (1 | word),
+                  data = vowel_duration)
+  summary(m)
+}
 }
 \keyword{datasets}

@@ -38,6 +38,17 @@ female and 120 Hz for male speakers. H1-H2 varies by speaker only and
 intensity by token only.
 }
 \examples{
-head(accent)
+aggregate(cbind(vot, vowel_ratio, rate, f0) ~ l1 + gender, data = accent, FUN = mean)
+speakers <- levels(accent$speaker)
+test <- is.element(accent$speaker, speakers[seq(1, length(speakers), by = 5)])
+m <- glm(l1 ~ vot + vowel_ratio + rate, data = accent[!test, ], family = binomial)
+mean((predict(m, accent[test, ], type = "response") > 0.5) == (accent$l1[test] == "Italian"))
+if (requireNamespace("randomForest", quietly = TRUE)) {
+  set.seed(1)
+  rf <- randomForest::randomForest(l1 ~ vot + vowel_ratio + rate + f0 + h1h2 + intensity,
+                                   data = accent[!test, ], importance = TRUE)
+  print(round(randomForest::importance(rf, type = 1), 1))
+  mean(predict(rf, accent[test, ]) == accent$l1[test])
+}
 }
 \keyword{datasets}

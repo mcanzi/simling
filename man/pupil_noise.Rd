@@ -36,6 +36,10 @@ variation in peak (SD 40) and baseline (SD 15); residuals are AR(1) with
 rho 0.8 and SD 12.
 }
 \examples{
-head(pupil_noise)
+curve <- aggregate(pupil ~ condition + time, data = pupil_noise, FUN = mean)
+plot(pupil ~ time, data = curve, col = condition)
+peaks <- do.call(rbind, lapply(split(curve, curve$condition),
+                              function(d) d[which.max(d$pupil), ]))
+peaks
 }
 \keyword{datasets}

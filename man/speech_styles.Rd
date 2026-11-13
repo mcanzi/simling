@@ -25,6 +25,9 @@ True model: mean 110 ms (SD 18) in casual, 150 ms (SD 20) in
 clear and 132 ms (SD 19) in loud speech.
 }
 \examples{
-head(speech_styles)
+m <- lm(duration ~ style, data = speech_styles)
+anova(m)
+coef(m)
+pairwise.t.test(speech_styles$duration, speech_styles$style)
 }
 \keyword{datasets}

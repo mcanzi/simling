@@ -32,7 +32,15 @@ on the logit scale (SD 0.15). Doubling the input moves the spurt 2 months
 earlier. Children average about 300 words at 24 months.
 }
 \examples{
-head(vocabulary_growth)
+plot(vocabulary ~ age, data = vocabulary_growth, col = grey(0.4))
+if (requireNamespace("lme4", quietly = TRUE)) {
+  vocabulary_growth$session <- seq_len(nrow(vocabulary_growth))
+  m <- lme4::glmer(cbind(vocabulary, 680 - vocabulary) ~ I(age - 24) +
+                     I(log2(input / 1200)) + (1 | child) + (1 | session),
+                   data = vocabulary_growth, family = binomial)
+  b <- lme4::fixef(m)
+  c(spurt_at_1200_words = 24 - b[[1]] / b[[2]], months_per_doubling = b[[3]] / b[[2]])
+}
 }
 \references{
 Fenson, L., Marchman, V. A., Thal, D. J., Dale, P. S., Reznick, J. S. & Bates, E. (2007). \emph{MacArthur-Bates Communicative Development Inventories: User's guide and technical manual} (2nd ed.). Baltimore: Brookes.

@@ -26,6 +26,7 @@ True model: mean 120 ms (SD 20) before voiceless and 160 ms
 (SD 22) before voiced consonants.
 }
 \examples{
-head(vowel_voicing)
+t.test(duration ~ voicing, data = vowel_voicing)
+boxplot(duration ~ voicing, data = vowel_voicing)
 }
 \keyword{datasets}

@@ -41,7 +41,13 @@ Items are identified by their stem type; the nonce word forms are left
 out.
 }
 \examples{
-table(hungarian_harmony$stem_type, hungarian_harmony$suffix)
+round(prop.table(table(hungarian_harmony$stem_type, hungarian_harmony$suffix), 1), 2)
+if (requireNamespace("lme4", quietly = TRUE)) {
+  mixed <- subset(hungarian_harmony, is.element(stem_type, c("Bi", "Bé", "Be", "BNN")))
+  m <- lme4::glmer(suffix ~ stem_type + (1 | participant) + (1 | item),
+                   data = droplevels(mixed), family = binomial)
+  lme4::fixef(m)
+}
 }
 \references{
 Hayes, B. & Londe, Z. C. (2006). Stochastic phonological knowledge: The case of Hungarian vowel harmony. \emph{Phonology}, 23, 59-104. \doi{10.1017/S0952675706000765}

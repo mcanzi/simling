@@ -37,7 +37,16 @@ multiplied by a speaker effect (SD 0.5 on the log scale). Turn lengths
 are log-normal with a median of 9 syllables.
 }
 \examples{
-table(disfluencies$filled_pauses)
+m0 <- glm(filled_pauses ~ role + offset(log(syllables / 100)), data = disfluencies,
+          family = poisson)
+c(observed_zeros = mean(disfluencies$filled_pauses == 0),
+  poisson_zeros = mean(dpois(0, fitted(m0))))
+if (requireNamespace("pscl", quietly = TRUE)) {
+  m <- pscl::zeroinfl(filled_pauses ~ role + offset(log(syllables / 100)) | 1,
+                      data = disfluencies)
+  exp(coef(m, "count"))
+  plogis(coef(m, "zero"))
+}
 }
 \references{
 Di Napoli, J. (2020). Filled pauses and prolongations in Roman Italian task-oriented dialogue. \emph{Laughter and Other Non-Verbal Vocalisations Workshop 2020}. \doi{10.4119/lw2020-915}

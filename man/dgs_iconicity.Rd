@@ -39,7 +39,14 @@ The group differences follow findings for DGS (signers higher) and for
 ASL and Israeli Sign Language (verbs higher for non-signers).
 }
 \examples{
-head(dgs_iconicity)
+round(tapply(dgs_iconicity$rating, dgs_iconicity[c("group", "category")], mean), 2)
+signs <- aggregate(rating ~ sign + group, data = dgs_iconicity, FUN = mean)
+signs <- reshape(signs, idvar = "sign", timevar = "group", direction = "wide")
+cor(signs[, 2], signs[, 3])
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::lmer(rating ~ group * category + (1 | rater) + (1 | sign), data = dgs_iconicity)
+  lme4::fixef(m)
+}
 }
 \references{
 Trettenbrein, P. C., Pendzich, N.-K., Cramer, J.-M., Steinbach, M. & Zaccarella, E. (2021). Psycholinguistic norms for more than 300 lexical signs in German Sign Language (DGS). \emph{Behavior Research Methods}, 53(5), 1817-1832. \doi{10.3758/s13428-020-01524-y}

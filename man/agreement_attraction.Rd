@@ -43,7 +43,14 @@ log-odds: \code{-1.9 + 0.9 * ungrammatical - 0.5 * ungrammatical * plural},
 by-participant SD 0.5. Skipping rate about 14\%, unrelated to condition.
 }
 \examples{
-head(agreement_attraction)
+aggregate(gaze_duration ~ grammaticality + attractor, data = agreement_attraction,
+          FUN = mean)
+mean(agreement_attraction$skipped)
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::lmer(log(gaze_duration) ~ grammaticality * attractor + (1 | participant) +
+                    (1 | item), data = agreement_attraction)
+  lme4::fixef(m)
+}
 }
 \references{
 Bock, K. & Miller, C. A. (1991). Broken agreement. \emph{Cognitive Psychology}, 23(1), 45-93. \doi{10.1016/0010-0285(91)90003-7}

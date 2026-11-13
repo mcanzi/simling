@@ -42,7 +42,14 @@ switches are binomial with probability 0.25, 0.6 and 0.4 for the three
 generations.
 }
 \examples{
-head(code_switching)
+if (requireNamespace("MASS", quietly = TRUE)) {
+  m <- MASS::glm.nb(switches ~ generation + topic + interlocutor + offset(log(utterances)),
+                    data = code_switching)
+  round(exp(coef(m)), 2)
+}
+totals <- aggregate(cbind(intrasentential, switches) ~ generation, data = code_switching,
+                    FUN = sum)
+totals$intrasentential / totals$switches
 }
 \references{
 Poplack, S. (1980). Sometimes I'll start a sentence in Spanish y termino en español: Toward a typology of code-switching. \emph{Linguistics}, 18(7-8), 581-618. \doi{10.1515/ling.1980.18.7-8.581}

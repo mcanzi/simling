@@ -39,6 +39,11 @@ earlier.
 }
 }
 \examples{
-head(megastudy)
+m1 <- lm(rt ~ log_freq + length + neighbours + aoa + concreteness, data = megastudy)
+m2 <- lm(rt ~ splines::ns(log_freq, 4) + length + neighbours + aoa + concreteness,
+         data = megastudy)
+anova(m1, m2)
+coef(m2)[c("length", "neighbours", "aoa", "concreteness")]
+round(cor(megastudy[c("log_freq", "length", "neighbours", "aoa")]), 2)
 }
 \keyword{datasets}

@@ -39,7 +39,15 @@ system discriminates much better: after logistic-regression calibration
 its Cllr is about 0.25, against about 0.7 for the formant system.
 }
 \examples{
-head(forensic_comparison)
+cllr <- function(score, same) {
+  m <- glm(same ~ score, family = binomial)
+  log_lr <- predict(m) - log(mean(same) / (1 - mean(same)))
+  0.5 * (mean(log2(1 + exp(-log_lr[same]))) + mean(log2(1 + exp(log_lr[!same]))))
+}
+same <- forensic_comparison$same_speaker == "yes"
+c(automatic = cllr(forensic_comparison$score_auto, same),
+  formant = cllr(forensic_comparison$score_formant, same))
+boxplot(score_auto ~ same_speaker, data = forensic_comparison)
 }
 \references{
 Brümmer, N. & du Preez, J. (2006). Application-independent evaluation of speaker detection. \emph{Computer Speech and Language}, 20(2-3), 230-275. \doi{10.1016/j.csl.2005.08.001}

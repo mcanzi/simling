@@ -36,6 +36,13 @@ coordinates are the Italian towns of over 50,000 inhabitants in
 simulated.
 }
 \examples{
-head(dialect_survey)
+dialect_survey$p <- dialect_survey$degeminated / dialect_survey$words
+plot(lat ~ long, data = dialect_survey, col = grey(1 - p), pch = 16, asp = 1.3)
+abline(h = 44.1, lty = 2)
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::glmer(cbind(degeminated, words - degeminated) ~ I(lat - 44.1) + I(age - 50) +
+                     (1 | town), data = dialect_survey, family = binomial)
+  lme4::fixef(m)
+}
 }
 \keyword{datasets}

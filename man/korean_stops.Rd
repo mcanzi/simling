@@ -42,7 +42,14 @@ follows reports of the VOT merger in younger Seoul speakers (Silva
 2006); the data are simulated.
 }
 \examples{
-head(korean_stops)
+aggregate(cbind(vot, f0) ~ generation + stop, data = korean_stops, FUN = mean)
+korean_stops$f0_st <- 12 * log2(korean_stops$f0 / ave(korean_stops$f0, korean_stops$speaker))
+for (g in c("older", "younger")) {
+  d <- subset(korean_stops, generation == g)
+  set.seed(1)
+  cl <- kmeans(scale(d[c("vot", "f0_st")]), centers = 3, nstart = 10)
+  print(table(d$stop, cl$cluster))
+}
 }
 \references{
 Silva, D. J. (2006). Acoustic evidence for the emergence of tonal contrast in contemporary Korean. \emph{Phonology}, 23(2), 287-308. \doi{10.1017/S0952675706000911}

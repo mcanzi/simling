@@ -29,6 +29,9 @@ True model: speaker A's mean F1 and F2 are 300 and 2300 Hz for
 1.2 times higher. Token SD is 40 Hz for F1 and 120 Hz for F2.
 }
 \examples{
-head(formants)
+aggregate(cbind(f1, f2) ~ speaker + vowel, data = formants, FUN = mean)
+formants$f1_z <- ave(formants$f1, formants$speaker, FUN = function(x) c(scale(x)))
+formants$f2_z <- ave(formants$f2, formants$speaker, FUN = function(x) c(scale(x)))
+aggregate(cbind(f1_z, f2_z) ~ speaker + vowel, data = formants, FUN = mean)
 }
 \keyword{datasets}

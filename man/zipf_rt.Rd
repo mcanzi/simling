@@ -30,6 +30,8 @@ True model: \code{log(rt) = 6.62 - 0.08 * log10(freq) + e}, with
 \code{e} normal, SD 0.15.
 }
 \examples{
-head(zipf_rt)
+hist(zipf_rt$freq, breaks = 50)
+hist(log10(zipf_rt$freq), breaks = 50)
+coef(lm(log(rt) ~ log10(freq), data = zipf_rt))
 }
 \keyword{datasets}

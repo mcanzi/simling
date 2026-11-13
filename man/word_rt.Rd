@@ -29,6 +29,9 @@ True model: \code{log(rt) = 6.62 - 0.04 * (log_freq - 3.5) + 0.0186 * (length - 
 their own.
 }
 \examples{
-head(word_rt)
+cor(word_rt[c("log_freq", "length", "syllables")])
+m <- lm(log(rt) ~ log_freq + length + syllables, data = word_rt)
+summary(m)
+summary(lm(log(rt) ~ syllables, data = word_rt))$coefficients
 }
 \keyword{datasets}

@@ -32,6 +32,10 @@ residual SD 0.075. \code{languageR::lexdec} is a different data set, with real
 data.
 }
 \examples{
-head(lexical_decision)
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::lmer(log(rt) ~ freq_c + (1 + freq_c | participant) + (1 | word),
+                  data = lexical_decision)
+  summary(m)
+}
 }
 \keyword{datasets}
