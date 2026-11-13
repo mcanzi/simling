@@ -23,7 +23,7 @@ zipf_rt
 2000 words sampled at random from the 50,000 most frequent word types of a
 corpus whose frequencies follow Zipf's law (frequency proportional to
 1 / rank). As in real corpora, most words are rare and a few are very
-frequent, so frequency is extremely skewed. Useful for log transformations.
+frequent, so frequency is extremely skewed. For log transformations.
 }
 \details{
 True model: \code{log(rt) = 6.62 - 0.08 * log10(freq) + e}, with

@@ -43,6 +43,7 @@ reference:
   - korean_stops
   - price_f2
   - mandarin_tones
+  - vot_identification
 - title: Phonology
   contents:
   - hungarian_harmony
@@ -50,6 +51,7 @@ reference:
   contents:
   - tobi_agreement
   - rhythm_metrics
+  - speech_to_song
 - title: Psycholinguistics
   contents:
   - rt_frequency
@@ -66,6 +68,7 @@ reference:
   - pupil_noise
   - n400
   - visual_world
+  - reading_skipping
 - title: Syntax
   contents:
   - agreement_attraction
@@ -105,6 +108,9 @@ reference:
   - overregularization
   - vocabulary_growth
   - first_words
+- title: Clinical linguistics
+  contents:
+  - aphasia_naming
 - title: Sign language
   contents:
   - dgs_iconicity
@@ -114,6 +120,9 @@ reference:
 - title: Historical linguistics
   contents:
   - do_support
+- title: Language evolution
+  contents:
+  - iterated_learning
 - title: Typology
   contents:
   - word_order

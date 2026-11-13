@@ -58,7 +58,7 @@
 #' 2000 words sampled at random from the 50,000 most frequent word types of a
 #' corpus whose frequencies follow Zipf's law (frequency proportional to
 #' 1 / rank). As in real corpora, most words are rare and a few are very
-#' frequent, so frequency is extremely skewed. Useful for log transformations.
+#' frequent, so frequency is extremely skewed. For log transformations.
 #'
 #' @format A tibble with 2000 rows and 4 columns:
 #' \describe{
@@ -438,9 +438,9 @@
 #'   \item{intensity}{Mean intensity in dB.}
 #' }
 #' @details True model: speaker means for English vs Italian are 70 vs 45 ms
-#'   VOT, 1.6 vs 1.2 vowel ratio and 5.2 vs 4.7 syllables/s; VOT and vowel
-#'   ratio vary log-normally around the speaker mean, so they stay positive; f0 is 210 Hz for
-#'   female and 120 Hz for male speakers. H1-H2 varies by speaker only and
+#'   VOT, 1.6 vs 1.2 vowel ratio and 5.2 vs 4.7 syllables/s. VOT and vowel
+#'   ratio vary log-normally around the speaker mean, so they stay positive.
+#'   f0 is 210 Hz for female and 120 Hz for male speakers. H1-H2 varies by speaker only and
 #'   intensity by token only.
 #' @source `data-raw/accent.R`
 #' @examples
@@ -1617,8 +1617,9 @@
 #' rate 300 DGS signs for iconicity (1 = not iconic, 7 = very iconic).
 #' Ratings by the two groups are correlated (r about 0.78 for sign means,
 #' as in Trettenbrein et al. 2021). Signers rate signs as more iconic
-#' overall, and non-signers rate verbs as more iconic than nouns. More iconic signs are acquired earlier. For mixed models of
-#' ratings with crossed raters and items.
+#' overall, and non-signers rate verbs as more iconic than nouns. More
+#' iconic signs are acquired earlier. For mixed models of ratings with
+#' crossed raters and items.
 #'
 #' @format A tibble with 18000 rows and 7 columns:
 #' \describe{
@@ -1634,8 +1635,8 @@
 #' @details True model: `rating` is `3.3 + iconicity + g0 + r0 + signer +
 #'   0.5 * verb * non-signer + e`, rounded and limited to 1-7. Each sign's
 #'   iconicity has SD 1.2, `g0` is a deviation of each sign within each group
-#'   (SD 0.6), raters differ by SD 0.5 and `e` has SD 0.9. Age
-#'   of acquisition is `5.5 - 0.6 * iconicity` years plus noise (SD 1.3).
+#'   (SD 0.6), raters differ by SD 0.5 and `e` has SD 0.9. Age of
+#'   acquisition is `5.5 - 0.6 * iconicity` years plus noise (SD 1.3).
 #'   The group differences follow findings for DGS (signers higher) and for
 #'   ASL (Sehyr and Emmorey 2019) and Israeli Sign Language (Fuks 2023)
 #'   (verbs higher for non-signers).
@@ -1745,3 +1746,282 @@
 #' test <- x$Block == "test" & !duplicated(data.frame(id, x$Item, x$Block))
 #' tapply(rt[test], condition[test], mean, na.rm = TRUE)
 "messy_export"
+
+#' Identification of stops along a VOT continuum
+#'
+#' 12 English and 12 Spanish listeners label synthetic stop-vowel syllables
+#' as voiced or voiceless. Voice onset time (VOT) runs from -20 to +60 ms in
+#' 5 ms steps for labial, apical and velar stops, and each step is heard 10
+#' times. The proportion of voiceless responses follows an S-shaped curve
+#' along the continuum. The category boundary lies at a longer VOT for
+#' apicals than for labials, and longer again for velars. Spanish listeners
+#' place it at a shorter VOT than English listeners. For logistic regression
+#' on binomial counts and for estimating category boundaries.
+#'
+#' @format A tibble with 1224 rows and 6 columns:
+#' \describe{
+#'   \item{listener}{Listener ID, `En01` to `En12` and `Sp01` to `Sp12`.}
+#'   \item{language}{Native language, `"English"` or `"Spanish"`.}
+#'   \item{place}{Place of articulation: `"labial"`, `"apical"` or
+#'     `"velar"`.}
+#'   \item{vot}{Voice onset time of the stimulus in ms.}
+#'   \item{trials}{Number of presentations, always 10.}
+#'   \item{voiceless}{Number of voiceless responses.}
+#' }
+#' @details True model: the probability of a voiceless response is
+#'   `plogis(slope * (vot - boundary - b0))`. The boundaries are the 50%
+#'   crossover points reported by Abramson and Lisker (1973), who give the
+#'   English values from Lisker and Abramson (1970): 25, 35 and 42 ms for
+#'   English and 14, 22 and 24 ms for Spanish labials, apicals and velars.
+#'   Each listener's boundary is shifted by `b0` (SD 4 ms), and slopes are
+#'   log-normal around 0.3 per ms (SD 0.25 on the log scale). Listeners and
+#'   responses are simulated.
+#' @references
+#' Abramson, A. S. & Lisker, L. (1973). Voice-timing perception in Spanish word-initial stops. *Journal of Phonetics*, 1(1), 1-8. \doi{10.1016/S0095-4470(19)31372-5}
+#'
+#' Lisker, L. & Abramson, A. S. (1970). The voicing dimension: Some experiments in comparative phonetics. In *Proceedings of the 6th International Congress of Phonetic Sciences, Prague 1967* (pp. 563-567).
+#' @source `data-raw/vot_identification.R`
+#' @examples
+#' labial <- subset(vot_identification, place == "labial")
+#' p <- aggregate(cbind(voiceless, trials) ~ language + vot, data = labial, FUN = sum)
+#' plot(voiceless / trials ~ vot, data = p, col = as.integer(language), pch = 16,
+#'      ylab = "Proportion voiceless")
+#' cells <- split(vot_identification, vot_identification[c("language", "place")])
+#' sapply(cells, function(x) {
+#'   b <- coef(glm(cbind(voiceless, trials - voiceless) ~ vot, data = x, family = binomial))
+#'   round(-b[[1]] / b[[2]], 1)
+#' })
+#' m <- glm(cbind(voiceless, trials - voiceless) ~ vot + language * place,
+#'          data = vot_identification, family = binomial)
+#' round(coef(m), 2)
+"vot_identification"
+
+#' The speech-to-song illusion
+#'
+#' 86 English listeners each hear six spoken sentences, each repeated eight
+#' times. Before the repetitions they rate how song-like the sentence sounds
+#' (1 = clearly speech, 8 = clearly song). During the repetitions they press
+#' a button as soon as the speech turns into song, and afterwards they rate
+#' the sentence again. Each sentence comes in a baseline version, a version
+#' with flattened pitch within syllables and a version with lengthened
+#' sonorous parts. Both manipulations make the illusion more likely, while
+#' musical aptitude does not. Listeners with weaker beat perception hear the
+#' song earlier, and listeners with better melody perception rate it as
+#' more song-like. For mixed logistic and ordinal models, and for a response
+#' that is missing by design.
+#'
+#' @format A tibble with 516 rows and 9 columns:
+#' \describe{
+#'   \item{listener}{Listener ID, `L01` to `L86`.}
+#'   \item{bat}{Beat perception score (z-score), as from the Computerised
+#'     Adaptive Beat Alignment Test.}
+#'   \item{mpt}{Melody perception score (z-score), as from the Mistuning
+#'     Perception Test.}
+#'   \item{sentence}{Sentence, `S1` to `S9`.}
+#'   \item{manipulation}{`"baseline"`; `"pitch"`, with pitch movements within
+#'     syllables flattened; or `"duration"`, with sonorous parts lengthened
+#'     by 20% and obstruents shortened by the same amount.}
+#'   \item{rating_before}{Rating before the repetitions, 1 (clearly speech) to
+#'     8 (clearly song).}
+#'   \item{transformed}{1 if the listener reported the illusion, 0 if not.}
+#'   \item{cycle}{Repetition, 1 to 8, during which the listener reported the
+#'     illusion. `NA` when there was no illusion.}
+#'   \item{rating_after}{Rating after the repetitions, on the same scale.}
+#' }
+#' @details True model: each listener hears two sentences in each
+#'   condition, assigned in a Latin square. `transformed` is Bernoulli with
+#'   logit `-0.2 + 1.04 * pitch + 0.78 * duration` plus listener (SD 1) and
+#'   sentence (SD 0.5) effects. `cycle` and both ratings come from ordered
+#'   probit models. For `cycle` the latent value is `0.61 * bat` plus a
+#'   listener effect (SD 0.6). For `rating_after` it is `0.2 + 1.2 * pitch +
+#'   0.91 * duration + 0.44 * mpt + 0.8 * transformed` plus listener (SD 0.7)
+#'   and sentence effects. The two aptitude scores correlate at about 0.5.
+#'   The design and the effects of the manipulations and of aptitude follow
+#'   Rathcke and Smit (2025). The intercepts, the effect of `transformed` on
+#'   the final rating and all data are simulated.
+#' @references
+#' Rathcke, T. & Smit, E. A. (2025). Musical aptitude moderates ease and vividness but not frequency of the speech-to-song illusion. *Scientific Reports*, 15, 33315. \doi{10.1038/s41598-025-18612-8}
+#'
+#' Falk, S., Rathcke, T. & Dalla Bella, S. (2014). When speech sounds like music. *Journal of Experimental Psychology: Human Perception and Performance*, 40(4), 1491-1506. \doi{10.1037/a0036858}
+#'
+#' Rathcke, T., Falk, S. & Dalla Bella, S. (2024). Why does speech sometimes sound like song? Exploring the role of music-related priors in the "speech-to-song illusion". *Music & Science*, 7. \doi{10.1177/20592043241266060}
+#' @source `data-raw/speech_to_song.R`
+#' @examples
+#' round(tapply(speech_to_song$transformed, speech_to_song$manipulation, mean), 2)
+#' table(speech_to_song$cycle)
+#' wilcox.test(speech_to_song$rating_after, speech_to_song$rating_before, paired = TRUE)
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   m <- lme4::glmer(transformed ~ manipulation + bat + mpt + (1 | listener) + (1 | sentence),
+#'                    data = speech_to_song, family = binomial)
+#'   round(lme4::fixef(m), 2)
+#' }
+#' if (requireNamespace("ordinal", quietly = TRUE)) {
+#'   m <- ordinal::clm(factor(rating_after) ~ manipulation + bat + mpt, data = speech_to_song,
+#'                     link = "probit")
+#'   print(round(coef(m)[c("manipulationpitch", "manipulationduration", "bat", "mpt")], 2))
+#'   m <- ordinal::clm(factor(cycle) ~ bat + mpt, data = speech_to_song, link = "probit")
+#'   print(round(coef(m)[c("bat", "mpt")], 2))
+#' }
+"speech_to_song"
+
+#' Word skipping and fixation times in reading
+#'
+#' 28 readers read 54 sentences while their eye movements are recorded.
+#' Each sentence has a target word that is short (4-6 letters), medium (7-9)
+#' or long (10-12), and the context makes it either predictable or
+#' unpredictable. Each reader sees each sentence once, in one of the two
+#' conditions. Short and predictable words are skipped more often. When a
+#' word is fixated, long and unpredictable words are looked at for longer.
+#' Length and predictability do not interact. Fixation times are missing
+#' for skipped words. For mixed logistic regression of skipping, mixed
+#' models of log durations and data missing by design.
+#'
+#' @format A tibble with 1512 rows and 9 columns:
+#' \describe{
+#'   \item{reader}{Reader ID, `R01` to `R28`.}
+#'   \item{item}{Sentence, `I01` to `I54`.}
+#'   \item{length}{Length group of the target word: `"short"`, `"medium"`
+#'     or `"long"`.}
+#'   \item{letters}{Length of the target word in letters.}
+#'   \item{predictability}{`"unpredictable"` or `"predictable"`.}
+#'   \item{cloze}{Cloze probability of the target word in this context.}
+#'   \item{skipped}{1 if the target was skipped on the first pass, 0 if
+#'     not.}
+#'   \item{first_fixation}{Duration of the first fixation on the target in
+#'     ms. `NA` if skipped.}
+#'   \item{gaze_duration}{Sum of all first-pass fixations on the target in
+#'     ms. `NA` if skipped.}
+#' }
+#' @details True model: cell means are those in Rayner et al. (2011, Table
+#'   3). Skipping rates are 36, 22 and 18% for predictable and 28, 18 and
+#'   10% for unpredictable short, medium and long words. First fixations
+#'   last 193 to 211 ms and gaze durations 211 to 246 ms. Skipping is
+#'   logistic, with by-reader (SD 0.6) and by-item (SD 0.4) effects. First
+#'   fixations are log-normal, with by-reader (SD 0.12), by-item (SD 0.06)
+#'   and residual (SD 0.25) variation. A word is refixated with probability
+#'   `(gaze - first fixation) / 180` for its cell, and a refixation adds
+#'   about 180 ms. Cloze values are drawn around 0.74 for predictable and
+#'   0.15 for unpredictable words, close to the norms in the same paper.
+#'   Readers, items and eye movements are simulated.
+#' @references
+#' Rayner, K., Slattery, T. J., Drieghe, D. & Liversedge, S. P. (2011). Eye movements and word skipping during reading: Effects of word length and predictability. *Journal of Experimental Psychology: Human Perception and Performance*, 37(2), 514-528. \doi{10.1037/a0020990}
+#' @source `data-raw/reading_skipping.R`
+#' @examples
+#' aggregate(skipped ~ length + predictability, data = reading_skipping, FUN = mean)
+#' aggregate(gaze_duration ~ length + predictability, data = reading_skipping, FUN = mean)
+#' colSums(is.na(reading_skipping))
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   m1 <- lme4::glmer(skipped ~ length * predictability + (1 | reader) + (1 | item),
+#'                     data = reading_skipping, family = binomial)
+#'   m0 <- update(m1, . ~ . - length:predictability)
+#'   print(anova(m0, m1))
+#'   m <- lme4::lmer(log(gaze_duration) ~ length + predictability + (1 | reader) + (1 | item),
+#'                   data = reading_skipping)
+#'   round(lme4::fixef(m), 3)
+#' }
+"reading_skipping"
+
+#' Picture naming before and after therapy for word-finding difficulties
+#'
+#' 16 people with chronic aphasia name 120 pictures each, twice before and
+#' once after eight weeks of cueing therapy. Half of each person's items
+#' were practised in therapy and half were not. Naming of treated items
+#' improves for almost every participant, and the two baselines do not
+#' differ. Naming of untreated items improves only for the five participants
+#' with a phonological profile: relatively good semantic processing and
+#' impaired phonological output. For mixed logistic regression of repeated
+#' measures, three-way interactions and generalisation in therapy studies.
+#'
+#' @format A tibble with 5760 rows and 6 columns:
+#' \describe{
+#'   \item{participant}{Participant ID, `P01` to `P16`.}
+#'   \item{profile}{`"other"` or `"phonological"`.}
+#'   \item{item}{Picture, numbered within participant (`P01_001`).}
+#'   \item{set}{`"untreated"` or `"treated"`.}
+#'   \item{session}{`"baseline 1"`, `"baseline 2"` or `"post-therapy"`.}
+#'   \item{correct}{1 if the picture was named correctly, 0 if not.}
+#' }
+#' @details True model: the logit of a correct response is `p0 + i0 + post
+#'   * gain`. Participant intercepts `p0` have mean -0.45 (SD 0.9) and item
+#'   effects `i0` SD 1.2. For treated items, `gain` is the participant's
+#'   own gain (mean 1, SD 0.35). For untreated items it is 0.7 in the
+#'   phonological profile and 0.05 otherwise, plus noise (SD 0.1). The design
+#'   follows Best et al. (2013). In their 16 participants, naming of treated
+#'   items rose from 43.5 to 62% correct, and only participants with
+#'   relatively good semantic and impaired phonological processing
+#'   generalised to untreated items. The number of items, the size of the
+#'   subgroup and all data are simulated.
+#' @references
+#' Best, W., Greenwood, A., Grassly, J., Herbert, R., Hickin, J. & Howard, D. (2013). Aphasia rehabilitation: Does generalisation from anomia therapy occur and is it predictable? A case series study. *Cortex*, 49(9), 2345-2357. \doi{10.1016/j.cortex.2013.01.005}
+#' @source `data-raw/aphasia_naming.R`
+#' @examples
+#' round(tapply(aphasia_naming$correct, aphasia_naming[c("set", "session")], mean), 2)
+#' round(tapply(aphasia_naming$correct,
+#'              aphasia_naming[c("profile", "set", "session")], mean), 2)
+#' p01 <- subset(aphasia_naming, participant == "P01" & set == "treated" &
+#'                 session != "baseline 1")
+#' mcnemar.test(table(before = p01$correct[p01$session == "baseline 2"],
+#'                    after = p01$correct[p01$session == "post-therapy"]))
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   d <- subset(aphasia_naming, session != "baseline 1")
+#'   m <- lme4::glmer(correct ~ session * set * profile + (1 | participant) + (1 | item),
+#'                    data = d, family = binomial,
+#'                    control = lme4::glmerControl(optimizer = "bobyqa"))
+#'   round(lme4::fixef(m), 2)
+#' }
+"aphasia_naming"
+
+#' Iterated learning of an artificial language
+#'
+#' Eight transmission chains of ten learners pass on an artificial language
+#' that names 27 moving coloured shapes. Each learner is trained on 14 of
+#' the 27 word-picture pairs produced by the previous learner and then names
+#' all 27 pictures; the first learner is trained on a random language. In
+#' four chains the training pairs are passed on as they are. In the other
+#' four, words that name more than one picture are filtered out before
+#' training. Transmission error falls and structure rises across
+#' generations in both conditions. Without the filter, the number of
+#' distinct words collapses. For growth across generations, mixed models
+#' with few clusters and counts.
+#'
+#' @format A tibble with 80 rows and 6 columns:
+#' \describe{
+#'   \item{condition}{`"no filter"` or `"filter"`.}
+#'   \item{chain}{Chain ID: `A1` to `A4` without and `B1` to `B4` with the
+#'     filter.}
+#'   \item{generation}{Learner's position in the chain, 1 to 10.}
+#'   \item{error}{Transmission error: normalised edit distance between this
+#'     learner's words and the previous learner's, averaged over the 27
+#'     pictures.}
+#'   \item{words}{Number of distinct words the learner produced.}
+#'   \item{structure}{Structure: z-score of the correlation between the
+#'     distances among words and the distances among meanings, against random
+#'     pairings of words and meanings.}
+#' }
+#' @details True model: on the logit scale, transmission error starts at
+#'   0.80 (no filter) or 0.72 (filter) and falls by 0.55 or 0.20 per
+#'   generation, with chain (SD 0.3) and residual (SD 0.3) variation.
+#'   Structure rises by 0.6 (no filter) or 0.75 (filter) per generation,
+#'   scaled by a chain effect (SD 0.15), with noise SD 1.2. The number of
+#'   distinct words is 1 plus a Poisson count, capped at 27, whose mean
+#'   starts near 20 and falls by 18% per generation without the filter and
+#'   by 4% with it. The design follows Kirby, Cornish and Smith (2008), in
+#'   whose two experiments transmission error fell by 0.75 and 0.43 and
+#'   structure rose by 5.6 and 6.8 over ten generations. The chains are
+#'   simulated.
+#' @references
+#' Kirby, S., Cornish, H. & Smith, K. (2008). Cumulative cultural evolution in the laboratory: An experimental approach to the origins of structure in human language. *Proceedings of the National Academy of Sciences*, 105(31), 10681-10686. \doi{10.1073/pnas.0707835105}
+#' @source `data-raw/iterated_learning.R`
+#' @examples
+#' aggregate(cbind(error, words, structure) ~ condition + generation,
+#'           data = subset(iterated_learning, generation %in% c(1, 10)), FUN = mean)
+#' interaction.plot(iterated_learning$generation, iterated_learning$chain,
+#'                  iterated_learning$words, legend = FALSE, xlab = "Generation",
+#'                  ylab = "Distinct words")
+#' m <- glm(words ~ generation * condition, data = iterated_learning, family = poisson)
+#' round(exp(coef(m)), 3)
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   m <- lme4::lmer(structure ~ generation * condition + (1 | chain), data = iterated_learning)
+#'   round(lme4::fixef(m), 2)
+#' }
+"iterated_learning"

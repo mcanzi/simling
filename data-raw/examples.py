@@ -366,3 +366,72 @@ rt[rt == -999] <- NA
 id <- as.integer(gsub("[^0-9]", "", x[["Subject ID"]]))
 test <- x$Block == "test" & !duplicated(data.frame(id, x$Item, x$Block))
 tapply(rt[test], condition[test], mean, na.rm = TRUE)"""
+
+EX["vot_identification"] = """labial <- subset(vot_identification, place == "labial")
+p <- aggregate(cbind(voiceless, trials) ~ language + vot, data = labial, FUN = sum)
+plot(voiceless / trials ~ vot, data = p, col = as.integer(language), pch = 16,
+     ylab = "Proportion voiceless")
+cells <- split(vot_identification, vot_identification[c("language", "place")])
+sapply(cells, function(x) {
+  b <- coef(glm(cbind(voiceless, trials - voiceless) ~ vot, data = x, family = binomial))
+  round(-b[[1]] / b[[2]], 1)
+})
+m <- glm(cbind(voiceless, trials - voiceless) ~ vot + language * place,
+         data = vot_identification, family = binomial)
+round(coef(m), 2)"""
+
+EX["speech_to_song"] = """round(tapply(speech_to_song$transformed, speech_to_song$manipulation, mean), 2)
+table(speech_to_song$cycle)
+wilcox.test(speech_to_song$rating_after, speech_to_song$rating_before, paired = TRUE)
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::glmer(transformed ~ manipulation + bat + mpt + (1 | listener) + (1 | sentence),
+                   data = speech_to_song, family = binomial)
+  round(lme4::fixef(m), 2)
+}
+if (requireNamespace("ordinal", quietly = TRUE)) {
+  m <- ordinal::clm(factor(rating_after) ~ manipulation + bat + mpt, data = speech_to_song,
+                    link = "probit")
+  print(round(coef(m)[c("manipulationpitch", "manipulationduration", "bat", "mpt")], 2))
+  m <- ordinal::clm(factor(cycle) ~ bat + mpt, data = speech_to_song, link = "probit")
+  print(round(coef(m)[c("bat", "mpt")], 2))
+}"""
+
+EX["reading_skipping"] = """aggregate(skipped ~ length + predictability, data = reading_skipping, FUN = mean)
+aggregate(gaze_duration ~ length + predictability, data = reading_skipping, FUN = mean)
+colSums(is.na(reading_skipping))
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m1 <- lme4::glmer(skipped ~ length * predictability + (1 | reader) + (1 | item),
+                    data = reading_skipping, family = binomial)
+  m0 <- update(m1, . ~ . - length:predictability)
+  print(anova(m0, m1))
+  m <- lme4::lmer(log(gaze_duration) ~ length + predictability + (1 | reader) + (1 | item),
+                  data = reading_skipping)
+  round(lme4::fixef(m), 3)
+}"""
+
+EX["aphasia_naming"] = """round(tapply(aphasia_naming$correct, aphasia_naming[c("set", "session")], mean), 2)
+round(tapply(aphasia_naming$correct,
+             aphasia_naming[c("profile", "set", "session")], mean), 2)
+p01 <- subset(aphasia_naming, participant == "P01" & set == "treated" &
+                session != "baseline 1")
+mcnemar.test(table(before = p01$correct[p01$session == "baseline 2"],
+                   after = p01$correct[p01$session == "post-therapy"]))
+if (requireNamespace("lme4", quietly = TRUE)) {
+  d <- subset(aphasia_naming, session != "baseline 1")
+  m <- lme4::glmer(correct ~ session * set * profile + (1 | participant) + (1 | item),
+                   data = d, family = binomial,
+                   control = lme4::glmerControl(optimizer = "bobyqa"))
+  round(lme4::fixef(m), 2)
+}"""
+
+EX["iterated_learning"] = """aggregate(cbind(error, words, structure) ~ condition + generation,
+          data = subset(iterated_learning, generation %in% c(1, 10)), FUN = mean)
+interaction.plot(iterated_learning$generation, iterated_learning$chain,
+                 iterated_learning$words, legend = FALSE, xlab = "Generation",
+                 ylab = "Distinct words")
+m <- glm(words ~ generation * condition, data = iterated_learning, family = poisson)
+round(exp(coef(m)), 3)
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::lmer(structure ~ generation * condition + (1 | chain), data = iterated_learning)
+  round(lme4::fixef(m), 2)
+}"""

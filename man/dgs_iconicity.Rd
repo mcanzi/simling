@@ -28,14 +28,15 @@ dgs_iconicity
 rate 300 DGS signs for iconicity (1 = not iconic, 7 = very iconic).
 Ratings by the two groups are correlated (r about 0.78 for sign means,
 as in Trettenbrein et al. 2021). Signers rate signs as more iconic
-overall, and non-signers rate verbs as more iconic than nouns. More iconic signs are acquired earlier. For mixed models of
-ratings with crossed raters and items.
+overall, and non-signers rate verbs as more iconic than nouns. More
+iconic signs are acquired earlier. For mixed models of ratings with
+crossed raters and items.
 }
 \details{
 True model: \code{rating} is \code{3.3 + iconicity + g0 + r0 + signer + 0.5 * verb * non-signer + e}, rounded and limited to 1-7. Each sign's
 iconicity has SD 1.2, \code{g0} is a deviation of each sign within each group
-(SD 0.6), raters differ by SD 0.5 and \code{e} has SD 0.9. Age
-of acquisition is \code{5.5 - 0.6 * iconicity} years plus noise (SD 1.3).
+(SD 0.6), raters differ by SD 0.5 and \code{e} has SD 0.9. Age of
+acquisition is \code{5.5 - 0.6 * iconicity} years plus noise (SD 1.3).
 The group differences follow findings for DGS (signers higher) and for
 ASL (Sehyr and Emmorey 2019) and Israeli Sign Language (Fuks 2023)
 (verbs higher for non-signers).
