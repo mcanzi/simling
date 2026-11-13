@@ -45,8 +45,8 @@ word's difficulty has mean 0 in read and 0.5 in spontaneous speech (SD
 table(tobi_agreement$accent_1, tobi_agreement$accent_2)
 }
 \references{
-Grice, M., Baumann, S. & Benzmüller, R. (2005). German intonation in autosegmental-metrical phonology. In S.-A. Jun (ed.), \emph{Prosodic Typology: The Phonology of Intonation and Phrasing} (pp. 55-83). Oxford: Oxford University Press.
+Grice, M., Baumann, S. & Benzmüller, R. (2005). German intonation in autosegmental-metrical phonology. In S.-A. Jun (ed.), \emph{Prosodic Typology: The Phonology of Intonation and Phrasing} (pp. 55-83). Oxford: Oxford University Press. \doi{10.1093/acprof:oso/9780199249633.003.0003}
 
-Pitrelli, J. F., Beckman, M. E. & Hirschberg, J. (1994). Evaluation of prosodic transcription labeling reliability in the ToBI framework. \emph{Proceedings of ICSLP 1994}.
+Pitrelli, J. F., Beckman, M. E. & Hirschberg, J. (1994). Evaluation of prosodic transcription labeling reliability in the ToBI framework. \emph{Proceedings of ICSLP 1994}. \url{https://www.isca-archive.org/icslp_1994/pitrelli94_icslp.html}
 }
 \keyword{datasets}

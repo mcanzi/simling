@@ -42,6 +42,6 @@ head(do_support)
 \references{
 Ellegård, A. (1953). \emph{The auxiliary do: The establishment and regulation of its use in English}. Stockholm: Almqvist & Wiksell.
 
-Kroch, A. S. (1989). Reflexes of grammar in patterns of language change. \emph{Language Variation and Change}, 1(3), 199-244.
+Kroch, A. S. (1989). Reflexes of grammar in patterns of language change. \emph{Language Variation and Change}, 1(3), 199-244. \doi{10.1017/S0954394500000168}
 }
 \keyword{datasets}

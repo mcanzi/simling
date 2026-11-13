@@ -45,6 +45,6 @@ generations.
 head(code_switching)
 }
 \references{
-Poplack, S. (1980). Sometimes I'll start a sentence in Spanish y termino en español: Toward a typology of code-switching. \emph{Linguistics}, 18(7-8), 581-618.
+Poplack, S. (1980). Sometimes I'll start a sentence in Spanish y termino en español: Toward a typology of code-switching. \emph{Linguistics}, 18(7-8), 581-618. \doi{10.1515/ling.1980.18.7-8.581}
 }
 \keyword{datasets}

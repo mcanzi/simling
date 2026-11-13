@@ -48,6 +48,6 @@ evenly.
 head(visual_world)
 }
 \references{
-Altmann, G. T. M. & Kamide, Y. (1999). Incremental interpretation at verbs: Restricting the domain of subsequent reference. \emph{Cognition}, 73(3), 247-264.
+Altmann, G. T. M. & Kamide, Y. (1999). Incremental interpretation at verbs: Restricting the domain of subsequent reference. \emph{Cognition}, 73(3), 247-264. \doi{10.1016/S0010-0277(99)00059-1}
 }
 \keyword{datasets}

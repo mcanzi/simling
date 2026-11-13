@@ -47,10 +47,10 @@ for rate.
 head(rhythm_metrics)
 }
 \references{
-Ramus, F., Nespor, M. & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. \emph{Cognition}, 73(3), 265-292.
+Ramus, F., Nespor, M. & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. \emph{Cognition}, 73(3), 265-292. \doi{10.1016/S0010-0277(99)00058-X}
 
-White, L. & Mattys, S. L. (2007). Calibrating rhythm: First language and second language studies. \emph{Journal of Phonetics}, 35(4), 501-522.
+White, L. & Mattys, S. L. (2007). Calibrating rhythm: First language and second language studies. \emph{Journal of Phonetics}, 35(4), 501-522. \doi{10.1016/j.wocn.2007.02.003}
 
-Frota, S. & Vigário, M. (2001). On the correlates of rhythmic distinctions: The European/Brazilian Portuguese case. \emph{Probus}, 13(2), 247-275.
+Frota, S. & Vigário, M. (2001). On the correlates of rhythmic distinctions: The European/Brazilian Portuguese case. \emph{Probus}, 13(2), 247-275. \doi{10.1515/prbs.2001.005}
 }
 \keyword{datasets}

@@ -2,7 +2,8 @@
 #'
 #' Simulated data sets from many branches of linguistics. Each help page
 #' lists the variables and the true model the data were simulated from; the
-#' code is in `data-raw/` on GitHub.
+#' code is in `data-raw/` on GitHub. [simling_datasets()] lists them all, with
+#' their branch, language, size, response and topic.
 #'
 #' Every categorical column is a factor. Its first level is the reference
 #' level: the baseline condition, the first group or the expected response.

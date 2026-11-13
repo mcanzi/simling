@@ -40,6 +40,6 @@ Wong 2013); the data are simulated.
 head(cantonese_tone_merger)
 }
 \references{
-Mok, P. P. K., Zuo, D. & Wong, P. W. Y. (2013). Production and perception of a sound change in progress: Tone merging in Hong Kong Cantonese. \emph{Language Variation and Change}, 25(3), 341-370.
+Mok, P. P. K., Zuo, D. & Wong, P. W. Y. (2013). Production and perception of a sound change in progress: Tone merging in Hong Kong Cantonese. \emph{Language Variation and Change}, 25(3), 341-370. \doi{10.1017/S0954394513000161}
 }
 \keyword{datasets}

@@ -37,6 +37,6 @@ head(vocabulary_growth)
 \references{
 Fenson, L., Marchman, V. A., Thal, D. J., Dale, P. S., Reznick, J. S. & Bates, E. (2007). \emph{MacArthur-Bates Communicative Development Inventories: User's guide and technical manual} (2nd ed.). Baltimore: Brookes.
 
-Frank, M. C., Braginsky, M., Yurovsky, D. & Marchman, V. A. (2017). Wordbank: An open repository for developmental vocabulary data. \emph{Journal of Child Language}, 44(3), 677-694.
+Frank, M. C., Braginsky, M., Yurovsky, D. & Marchman, V. A. (2017). Wordbank: An open repository for developmental vocabulary data. \emph{Journal of Child Language}, 44(3), 677-694. \doi{10.1017/S0305000916000209}
 }
 \keyword{datasets}

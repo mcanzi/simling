@@ -427,7 +427,7 @@
 #'   island - 0.9 * long * island`. By-participant intercepts (SD 0.8) and
 #'   interaction slopes (SD 0.3); by-item intercepts (SD 0.4).
 #' @references
-#' Sprouse, J., Wagers, M. & Phillips, C. (2012). A test of the relation between working-memory capacity and syntactic island effects. *Language*, 88(1), 82-123.
+#' Sprouse, J., Wagers, M. & Phillips, C. (2012). A test of the relation between working-memory capacity and syntactic island effects. *Language*, 88(1), 82-123. \doi{10.1353/lan.2012.0004}
 #' @source `data-raw/acceptability.R`
 #' @examples
 #' table(acceptability$length, acceptability$structure, acceptability$rating)
@@ -464,7 +464,7 @@
 #'   log-odds: `-1.9 + 0.9 * ungrammatical - 0.5 * ungrammatical * plural`,
 #'   by-participant SD 0.5. Skipping rate about 14%, unrelated to condition.
 #' @references
-#' Bock, K. & Miller, C. A. (1991). Broken agreement. *Cognitive Psychology*, 23(1), 45-93.
+#' Bock, K. & Miller, C. A. (1991). Broken agreement. *Cognitive Psychology*, 23(1), 45-93. \doi{10.1016/0010-0285(91)90003-7}
 #' @source `data-raw/agreement_attraction.R`
 #' @examples
 #' head(agreement_attraction)
@@ -531,7 +531,7 @@
 #'   centred at 850 ms (SD about 100 ms); the two distractors split the rest
 #'   evenly.
 #' @references
-#' Altmann, G. T. M. & Kamide, Y. (1999). Incremental interpretation at verbs: Restricting the domain of subsequent reference. *Cognition*, 73(3), 247-264.
+#' Altmann, G. T. M. & Kamide, Y. (1999). Incremental interpretation at verbs: Restricting the domain of subsequent reference. *Cognition*, 73(3), 247-264. \doi{10.1016/S0010-0277(99)00059-1}
 #' @source `data-raw/visual_world.R`
 #' @examples
 #' head(visual_world)
@@ -607,7 +607,7 @@
 #' @references
 #' Fenson, L., Marchman, V. A., Thal, D. J., Dale, P. S., Reznick, J. S. & Bates, E. (2007). *MacArthur-Bates Communicative Development Inventories: User's guide and technical manual* (2nd ed.). Baltimore: Brookes.
 #'
-#' Frank, M. C., Braginsky, M., Yurovsky, D. & Marchman, V. A. (2017). Wordbank: An open repository for developmental vocabulary data. *Journal of Child Language*, 44(3), 677-694.
+#' Frank, M. C., Braginsky, M., Yurovsky, D. & Marchman, V. A. (2017). Wordbank: An open repository for developmental vocabulary data. *Journal of Child Language*, 44(3), 677-694. \doi{10.1017/S0305000916000209}
 #' @source `data-raw/vocabulary_growth.R`
 #' @examples
 #' head(vocabulary_growth)
@@ -632,7 +632,7 @@
 #'   0.5, so about 4% of attempts are errors. Age has no effect. Children
 #'   attempt more irregular past tenses as they get older.
 #' @references
-#' Marcus, G. F., Pinker, S., Ullman, M., Hollander, M., Rosen, T. J. & Xu, F. (1992). Overregularization in language acquisition. *Monographs of the Society for Research in Child Development*, 57(4).
+#' Marcus, G. F., Pinker, S., Ullman, M., Hollander, M., Rosen, T. J. & Xu, F. (1992). Overregularization in language acquisition. *Monographs of the Society for Research in Child Development*, 57(4). \doi{10.2307/1166115}
 #' @source `data-raw/overregularization.R`
 #' @examples
 #' head(overregularization)
@@ -664,7 +664,7 @@
 #' @references
 #' Ellegård, A. (1953). *The auxiliary do: The establishment and regulation of its use in English*. Stockholm: Almqvist & Wiksell.
 #'
-#' Kroch, A. S. (1989). Reflexes of grammar in patterns of language change. *Language Variation and Change*, 1(3), 199-244.
+#' Kroch, A. S. (1989). Reflexes of grammar in patterns of language change. *Language Variation and Change*, 1(3), 199-244. \doi{10.1017/S0954394500000168}
 #' @source `data-raw/do_support.R`
 #' @examples
 #' head(do_support)
@@ -842,7 +842,7 @@
 #'   follows reports of the VOT merger in younger Seoul speakers (Silva
 #'   2006); the data are simulated.
 #' @references
-#' Silva, D. J. (2006). Acoustic evidence for the emergence of tonal contrast in contemporary Korean. *Phonology*, 23(2), 287-308.
+#' Silva, D. J. (2006). Acoustic evidence for the emergence of tonal contrast in contemporary Korean. *Phonology*, 23(2), 287-308. \doi{10.1017/S0952675706000911}
 #' @source `data-raw/korean_stops.R`
 #' @examples
 #' head(korean_stops)
@@ -910,9 +910,9 @@
 #'   noise shared across electrodes (SD 4) and electrode noise (SD 3). Cloze
 #'   is 0.5 to 0.95 for expected and 0 to 0.05 for unexpected words.
 #' @references
-#' Kutas, M. & Hillyard, S. A. (1980). Reading senseless sentences: Brain potentials reflect semantic incongruity. *Science*, 207(4427), 203-205.
+#' Kutas, M. & Hillyard, S. A. (1980). Reading senseless sentences: Brain potentials reflect semantic incongruity. *Science*, 207(4427), 203-205. \doi{10.1126/science.7350657}
 #'
-#' Kutas, M. & Hillyard, S. A. (1984). Brain potentials during reading reflect word expectancy and semantic association. *Nature*, 307, 161-163.
+#' Kutas, M. & Hillyard, S. A. (1984). Brain potentials during reading reflect word expectancy and semantic association. *Nature*, 307, 161-163. \doi{10.1038/307161a0}
 #' @source `data-raw/n400.R`
 #' @examples
 #' head(n400)
@@ -943,7 +943,7 @@
 #'   token SD is 0.9. The design follows reports of T2/T5 merging (Mok, Zuo &
 #'   Wong 2013); the data are simulated.
 #' @references
-#' Mok, P. P. K., Zuo, D. & Wong, P. W. Y. (2013). Production and perception of a sound change in progress: Tone merging in Hong Kong Cantonese. *Language Variation and Change*, 25(3), 341-370.
+#' Mok, P. P. K., Zuo, D. & Wong, P. W. Y. (2013). Production and perception of a sound change in progress: Tone merging in Hong Kong Cantonese. *Language Variation and Change*, 25(3), 341-370. \doi{10.1017/S0954394513000161}
 #' @source `data-raw/cantonese_tone_merger.R`
 #' @examples
 #' head(cantonese_tone_merger)
@@ -976,7 +976,7 @@
 #'   log scale by a by-participant preference for *-s* (SD 0.6) and by
 #'   response-level noise (SD 0.3).
 #' @references
-#' Berko, J. (1958). The child's learning of English morphology. *Word*, 14(2-3), 150-177.
+#' Berko, J. (1958). The child's learning of English morphology. *Word*, 14(2-3), 150-177. \doi{10.1080/00437956.1958.11659661}
 #' @source `data-raw/german_plurals.R`
 #' @examples
 #' table(german_plurals$final, german_plurals$plural)
@@ -1010,7 +1010,7 @@
 #'   ms (Japanese) to 460 ms (Danish). The design and the general pattern
 #'   follow Stivers et al. (2009); the language means are invented.
 #' @references
-#' Stivers, T., Enfield, N. J., Brown, P., Englert, C., Hayashi, M., Heinemann, T., Hoymann, G., Rossano, F., de Ruiter, J. P., Yoon, K.-E. & Levinson, S. C. (2009). Universals and cultural variation in turn-taking in conversation. *Proceedings of the National Academy of Sciences*, 106(26), 10587-10592.
+#' Stivers, T., Enfield, N. J., Brown, P., Englert, C., Hayashi, M., Heinemann, T., Hoymann, G., Rossano, F., de Ruiter, J. P., Yoon, K.-E. & Levinson, S. C. (2009). Universals and cultural variation in turn-taking in conversation. *Proceedings of the National Academy of Sciences*, 106(26), 10587-10592. \doi{10.1073/pnas.0903616106}
 #' @source `data-raw/turn_taking.R`
 #' @examples
 #' head(turn_taking)
@@ -1105,7 +1105,7 @@
 #'   system discriminates much better: after logistic-regression calibration
 #'   its Cllr is about 0.25, against about 0.7 for the formant system.
 #' @references
-#' Brümmer, N. & du Preez, J. (2006). Application-independent evaluation of speaker detection. *Computer Speech and Language*, 20(2-3), 230-275.
+#' Brümmer, N. & du Preez, J. (2006). Application-independent evaluation of speaker detection. *Computer Speech and Language*, 20(2-3), 230-275. \doi{10.1016/j.csl.2005.08.001}
 #' @source `data-raw/forensic_comparison.R`
 #' @examples
 #' head(forensic_comparison)
@@ -1140,9 +1140,9 @@
 #'   0.5). Otherwise the coder picks a similar label (e.g. `"L+H*"` for
 #'   `"H*"`).
 #' @references
-#' Grice, M., Baumann, S. & Benzmüller, R. (2005). German intonation in autosegmental-metrical phonology. In S.-A. Jun (ed.), *Prosodic Typology: The Phonology of Intonation and Phrasing* (pp. 55-83). Oxford: Oxford University Press.
+#' Grice, M., Baumann, S. & Benzmüller, R. (2005). German intonation in autosegmental-metrical phonology. In S.-A. Jun (ed.), *Prosodic Typology: The Phonology of Intonation and Phrasing* (pp. 55-83). Oxford: Oxford University Press. \doi{10.1093/acprof:oso/9780199249633.003.0003}
 #'
-#' Pitrelli, J. F., Beckman, M. E. & Hirschberg, J. (1994). Evaluation of prosodic transcription labeling reliability in the ToBI framework. *Proceedings of ICSLP 1994*.
+#' Pitrelli, J. F., Beckman, M. E. & Hirschberg, J. (1994). Evaluation of prosodic transcription labeling reliability in the ToBI framework. *Proceedings of ICSLP 1994*. <https://www.isca-archive.org/icslp_1994/pitrelli94_icslp.html>
 #' @source `data-raw/tobi_agreement.R`
 #' @examples
 #' table(tobi_agreement$accent_1, tobi_agreement$accent_2)
@@ -1180,11 +1180,11 @@
 #'   second. By-speaker variation: SD 1.2 for %V, 3 ms for ΔC, 0.4 syll/s
 #'   for rate.
 #' @references
-#' Ramus, F., Nespor, M. & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. *Cognition*, 73(3), 265-292.
+#' Ramus, F., Nespor, M. & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. *Cognition*, 73(3), 265-292. \doi{10.1016/S0010-0277(99)00058-X}
 #'
-#' White, L. & Mattys, S. L. (2007). Calibrating rhythm: First language and second language studies. *Journal of Phonetics*, 35(4), 501-522.
+#' White, L. & Mattys, S. L. (2007). Calibrating rhythm: First language and second language studies. *Journal of Phonetics*, 35(4), 501-522. \doi{10.1016/j.wocn.2007.02.003}
 #'
-#' Frota, S. & Vigário, M. (2001). On the correlates of rhythmic distinctions: The European/Brazilian Portuguese case. *Probus*, 13(2), 247-275.
+#' Frota, S. & Vigário, M. (2001). On the correlates of rhythmic distinctions: The European/Brazilian Portuguese case. *Probus*, 13(2), 247-275. \doi{10.1515/prbs.2001.005}
 #' @source `data-raw/rhythm_metrics.R`
 #' @examples
 #' head(rhythm_metrics)
@@ -1218,9 +1218,9 @@
 #'   Items are identified by their stem type; the nonce word forms are left
 #'   out.
 #' @references
-#' Hayes, B. & Londe, Z. C. (2006). Stochastic phonological knowledge: The case of Hungarian vowel harmony. *Phonology*, 23, 59-104.
+#' Hayes, B. & Londe, Z. C. (2006). Stochastic phonological knowledge: The case of Hungarian vowel harmony. *Phonology*, 23, 59-104. \doi{10.1017/S0952675706000765}
 #'
-#' Hayes, B., Zuraw, K., Siptár, P. & Londe, Z. (2009). Natural and unnatural constraints in Hungarian vowel harmony. *Language*, 85, 822-863.
+#' Hayes, B., Zuraw, K., Siptár, P. & Londe, Z. (2009). Natural and unnatural constraints in Hungarian vowel harmony. *Language*, 85, 822-863. \doi{10.1353/lan.0.0169}
 #' @source `data-raw/hungarian_harmony.R`
 #' @examples
 #' table(hungarian_harmony$stem_type, hungarian_harmony$suffix)
@@ -1284,7 +1284,7 @@
 #'   first 40 published studies are included. Studies, years and samples are
 #'   invented.
 #' @references
-#' Ćwiek, A., Fuchs, S., Draxler, C., Asu, E. L., Dediu, D., Hiovain, K., Kawahara, S., Koutalidis, S., Krifka, M., Lippus, P., Lupyan, G., Oh, G. E., Paul, J., Petrone, C., Ridouane, R., Reiter, S., Schümchen, N., Szalontai, Á., Ünal-Logacev, Ö., Zeller, J., Perlman, M. & Winter, B. (2022). The bouba/kiki effect is robust across cultures and writing systems. *Philosophical Transactions of the Royal Society B*, 377(1841), 20200390.
+#' Ćwiek, A., Fuchs, S., Draxler, C., Asu, E. L., Dediu, D., Hiovain, K., Kawahara, S., Koutalidis, S., Krifka, M., Lippus, P., Lupyan, G., Oh, G. E., Paul, J., Petrone, C., Ridouane, R., Reiter, S., Schümchen, N., Szalontai, Á., Ünal-Logacev, Ö., Zeller, J., Perlman, M. & Winter, B. (2022). The bouba/kiki effect is robust across cultures and writing systems. *Philosophical Transactions of the Royal Society B*, 377(1841), 20200390. \doi{10.1098/rstb.2020.0390}
 #' @source `data-raw/bouba_kiki_meta.R`
 #' @examples
 #' head(bouba_kiki_meta)
@@ -1319,7 +1319,7 @@
 #'   switches are binomial with probability 0.25, 0.6 and 0.4 for the three
 #'   generations.
 #' @references
-#' Poplack, S. (1980). Sometimes I'll start a sentence in Spanish y termino en español: Toward a typology of code-switching. *Linguistics*, 18(7-8), 581-618.
+#' Poplack, S. (1980). Sometimes I'll start a sentence in Spanish y termino en español: Toward a typology of code-switching. *Linguistics*, 18(7-8), 581-618. \doi{10.1515/ling.1980.18.7-8.581}
 #' @source `data-raw/code_switching.R`
 #' @examples
 #' head(code_switching)
@@ -1352,11 +1352,11 @@
 #'   The group differences follow findings for DGS (signers higher) and for
 #'   ASL and Israeli Sign Language (verbs higher for non-signers).
 #' @references
-#' Trettenbrein, P. C., Pendzich, N.-K., Cramer, J.-M., Steinbach, M. & Zaccarella, E. (2021). Psycholinguistic norms for more than 300 lexical signs in German Sign Language (DGS). *Behavior Research Methods*, 53(5), 1817-1832.
+#' Trettenbrein, P. C., Pendzich, N.-K., Cramer, J.-M., Steinbach, M. & Zaccarella, E. (2021). Psycholinguistic norms for more than 300 lexical signs in German Sign Language (DGS). *Behavior Research Methods*, 53(5), 1817-1832. \doi{10.3758/s13428-020-01524-y}
 #'
-#' Sehyr, Z. S. & Emmorey, K. (2019). The perceived mapping between form and meaning in American Sign Language depends on linguistic knowledge and task: Evidence from iconicity and transparency judgments. *Language and Cognition*, 11(2), 208-234.
+#' Sehyr, Z. S. & Emmorey, K. (2019). The perceived mapping between form and meaning in American Sign Language depends on linguistic knowledge and task: Evidence from iconicity and transparency judgments. *Language and Cognition*, 11(2), 208-234. \doi{10.1017/langcog.2019.18}
 #'
-#' Thompson, R. L., Vinson, D. P., Woll, B. & Vigliocco, G. (2012). The road to language learning is iconic: Evidence from British Sign Language. *Psychological Science*, 23(12), 1443-1448.
+#' Thompson, R. L., Vinson, D. P., Woll, B. & Vigliocco, G. (2012). The road to language learning is iconic: Evidence from British Sign Language. *Psychological Science*, 23(12), 1443-1448. \doi{10.1177/0956797612459763}
 #' @source `data-raw/dgs_iconicity.R`
 #' @examples
 #' head(dgs_iconicity)
@@ -1387,7 +1387,7 @@
 #'   multiplied by a speaker effect (SD 0.5 on the log scale). Turn lengths
 #'   are log-normal with a median of 9 syllables.
 #' @references
-#' Di Napoli, J. (2020). Filled pauses and prolongations in Roman Italian task-oriented dialogue. *Laughter and Other Non-Verbal Vocalisations Workshop 2020*.
+#' Di Napoli, J. (2020). Filled pauses and prolongations in Roman Italian task-oriented dialogue. *Laughter and Other Non-Verbal Vocalisations Workshop 2020*. \doi{10.4119/lw2020-915}
 #' @source `data-raw/disfluencies.R`
 #' @examples
 #' table(disfluencies$filled_pauses)

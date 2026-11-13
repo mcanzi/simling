@@ -42,6 +42,6 @@ its Cllr is about 0.25, against about 0.7 for the formant system.
 head(forensic_comparison)
 }
 \references{
-Brümmer, N. & du Preez, J. (2006). Application-independent evaluation of speaker detection. \emph{Computer Speech and Language}, 20(2-3), 230-275.
+Brümmer, N. & du Preez, J. (2006). Application-independent evaluation of speaker detection. \emph{Computer Speech and Language}, 20(2-3), 230-275. \doi{10.1016/j.csl.2005.08.001}
 }
 \keyword{datasets}

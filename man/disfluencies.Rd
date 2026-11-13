@@ -40,6 +40,6 @@ are log-normal with a median of 9 syllables.
 table(disfluencies$filled_pauses)
 }
 \references{
-Di Napoli, J. (2020). Filled pauses and prolongations in Roman Italian task-oriented dialogue. \emph{Laughter and Other Non-Verbal Vocalisations Workshop 2020}.
+Di Napoli, J. (2020). Filled pauses and prolongations in Roman Italian task-oriented dialogue. \emph{Laughter and Other Non-Verbal Vocalisations Workshop 2020}. \doi{10.4119/lw2020-915}
 }
 \keyword{datasets}

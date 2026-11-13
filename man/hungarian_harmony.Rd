@@ -44,8 +44,8 @@ out.
 table(hungarian_harmony$stem_type, hungarian_harmony$suffix)
 }
 \references{
-Hayes, B. & Londe, Z. C. (2006). Stochastic phonological knowledge: The case of Hungarian vowel harmony. \emph{Phonology}, 23, 59-104.
+Hayes, B. & Londe, Z. C. (2006). Stochastic phonological knowledge: The case of Hungarian vowel harmony. \emph{Phonology}, 23, 59-104. \doi{10.1017/S0952675706000765}
 
-Hayes, B., Zuraw, K., Siptár, P. & Londe, Z. (2009). Natural and unnatural constraints in Hungarian vowel harmony. \emph{Language}, 85, 822-863.
+Hayes, B., Zuraw, K., Siptár, P. & Londe, Z. (2009). Natural and unnatural constraints in Hungarian vowel harmony. \emph{Language}, 85, 822-863. \doi{10.1353/lan.0.0169}
 }
 \keyword{datasets}

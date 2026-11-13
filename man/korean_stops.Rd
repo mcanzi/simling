@@ -45,6 +45,6 @@ follows reports of the VOT merger in younger Seoul speakers (Silva
 head(korean_stops)
 }
 \references{
-Silva, D. J. (2006). Acoustic evidence for the emergence of tonal contrast in contemporary Korean. \emph{Phonology}, 23(2), 287-308.
+Silva, D. J. (2006). Acoustic evidence for the emergence of tonal contrast in contemporary Korean. \emph{Phonology}, 23(2), 287-308. \doi{10.1017/S0952675706000911}
 }
 \keyword{datasets}

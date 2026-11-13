@@ -3,6 +3,9 @@ template:
   bootstrap: 5
 
 reference:
+- title: Finding a data set
+  contents:
+  - simling_datasets
 - title: Phonetics
   contents:
   - formants
@@ -13,9 +16,11 @@ reference:
   - korean_stops
   - price_f2
   - mandarin_tones
-- title: Phonology and prosody
+- title: Phonology
   contents:
   - hungarian_harmony
+- title: Prosody
+  contents:
   - tobi_agreement
   - rhythm_metrics
 - title: Psycholinguistics
@@ -29,37 +34,47 @@ reference:
   - naming_pilot
   - lexical_accuracy
   - zipf_rt
+  - disfluencies
   - megastudy
   - pupil_noise
   - n400
   - visual_world
-  - disfluencies
-- title: Syntax and morphology
+- title: Syntax
   contents:
   - agreement_attraction
   - acceptability
   - german_relatives
+- title: Morphology
+  contents:
   - german_plurals
-- title: Semantics, pragmatics and conversation
+- title: Semantics and pragmatics
   contents:
   - scalar_implicature
+- title: Conversation
+  contents:
   - turn_taking
 - title: Corpus linguistics
   contents:
   - passives
   - relativizers
-- title: Sociolinguistics and dialectology
+- title: Sociolinguistics
   contents:
   - address_forms
   - language_attitudes
   - cantonese_tone_merger
   - td_deletion
+- title: Dialectology
+  contents:
   - dialect_survey
+- title: Bilingualism
+  contents:
   - code_switching
-- title: Second language and acquisition
+- title: Second language
   contents:
   - perception_training
   - accent
+- title: Language acquisition
+  contents:
   - overregularization
   - vocabulary_growth
   - first_words
@@ -69,9 +84,11 @@ reference:
 - title: Forensic speech science
   contents:
   - forensic_comparison
-- title: Historical linguistics and typology
+- title: Historical linguistics
   contents:
   - do_support
+- title: Typology
+  contents:
   - word_order
 - title: Meta-analysis
   contents:

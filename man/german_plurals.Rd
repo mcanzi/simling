@@ -43,6 +43,6 @@ response-level noise (SD 0.3).
 table(german_plurals$final, german_plurals$plural)
 }
 \references{
-Berko, J. (1958). The child's learning of English morphology. \emph{Word}, 14(2-3), 150-177.
+Berko, J. (1958). The child's learning of English morphology. \emph{Word}, 14(2-3), 150-177. \doi{10.1080/00437956.1958.11659661}
 }
 \keyword{datasets}
