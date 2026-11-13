@@ -21,8 +21,9 @@ A tibble with 400 rows and 5 columns:
 freq_length
 }
 \description{
-400 words whose frequency and length interact: the length effect is
-smaller for frequent words. A continuous-by-continuous interaction.
+400 words whose frequency and length interact in a
+continuous-by-continuous interaction. The length effect is smaller for
+frequent words.
 }
 \details{
 True model: \code{log(rt) = 6.63 - 0.04 * lf_c + 0.018 * len_c - 0.0065 * lf_c * len_c + e}, with \code{e} normal, SD 0.05.

@@ -118,8 +118,8 @@
 #' Frequency effects in L1 and L2 speakers
 #'
 #' Reaction times of L1 and L2 speakers to words of varying frequency. The
-#' frequency effect is stronger for L2 speakers: a continuous-by-categorical
-#' interaction.
+#' frequency effect is stronger for L2 speakers, so frequency and group
+#' interact (a continuous-by-categorical interaction).
 #'
 #' @format A tibble with 400 rows and 3 columns:
 #' \describe{
@@ -138,7 +138,7 @@
 #'
 #' A 2 x 2 design: casual or clear speech, voiceless or voiced following
 #' consonant, 40 tokens per cell. The voicing effect is larger in clear
-#' speech: a categorical-by-categorical interaction.
+#' speech, which makes this a categorical-by-categorical interaction.
 #'
 #' @format A tibble with 160 rows and 3 columns:
 #' \describe{
@@ -155,8 +155,9 @@
 
 #' Reaction times with a frequency-by-length interaction
 #'
-#' 400 words whose frequency and length interact: the length effect is
-#' smaller for frequent words. A continuous-by-continuous interaction.
+#' 400 words whose frequency and length interact in a
+#' continuous-by-continuous interaction. The length effect is smaller for
+#' frequent words.
 #'
 #' @format A tibble with 400 rows and 5 columns:
 #' \describe{

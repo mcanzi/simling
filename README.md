@@ -8,11 +8,7 @@ Every data set in simling is simulated, and the code that generated it is in [`d
 
 ## Installation
 
-```r
-install.packages("simling", repos = c("https://mcanzi.r-universe.dev", "https://cloud.r-project.org"))
-```
-
-or, from GitHub:
+simling is on GitHub only for now. Install it with:
 
 ```r
 # install.packages("remotes")

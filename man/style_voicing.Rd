@@ -21,7 +21,7 @@ style_voicing
 \description{
 A 2 x 2 design: casual or clear speech, voiceless or voiced following
 consonant, 40 tokens per cell. The voicing effect is larger in clear
-speech: a categorical-by-categorical interaction.
+speech, which makes this a categorical-by-categorical interaction.
 }
 \details{
 True model: cell means are 110 (casual, voiceless), 145 (casual,
