@@ -30,7 +30,8 @@ ggplot(pupil_noise, aes(time, pupil, colour = condition)) +
   geom_line(aes(group = trial_id), alpha = 0.08) +
   stat_summary(fun = mean, geom = "line", linewidth = 1.2) +
   scale_colour_manual(values = c(quiet = "#4f86b5", noise = "#e0735a")) +
-  labs(x = "Time from stimulus onset (ms)", y = "Pupil size (baseline-corrected)") +
+  labs(x = "Time from stimulus onset (ms)",
+       y = "Pupil size (baseline-corrected)") +
   theme_minimal()
 ```
 
