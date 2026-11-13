@@ -19,7 +19,7 @@ Description: Simulated data sets for teaching statistics to linguists, from
     comes with the code that generated it, so the true effects are known. A
     function lists the data sets by branch, language, size and response.
 License: MIT + file LICENSE
-URL: https://github.com/mcanzi/simling, https://mcanzi.github.io/simling/
+URL: https://github.com/mcanzi/simling, https://mcanzi.de/simling/
 BugReports: https://github.com/mcanzi/simling/issues
 Depends: R (>= 3.5)
 Imports: tibble

@@ -1,6 +1,33 @@
-url: https://mcanzi.github.io/simling/
+url: https://mcanzi.de/simling/
+
 template:
   bootstrap: 5
+  theme: a11y-dark
+  bslib:
+    bg: "#13151c"
+    fg: "#f3e7da"
+    primary: "#f28a1e"
+    secondary: "#a9978f"
+    link-color: "#f6ad7b"
+    link-hover-color: "#f28a1e"
+    code-color: "#f6c445"
+    border-color: "#3a3240"
+    navbar-bg: "#13151c"
+    base_font: "Atkinson Hyperlegible"
+    heading_font: "Bricolage Grotesque"
+    code_font: "JetBrains Mono"
+  includes:
+    in_header: <link rel="stylesheet" href="https://mcanzi.de/fonts/fonts.css">
+
+navbar:
+  structure:
+    left: [intro, reference, news]
+    right: [search, website, github]
+  components:
+    website:
+      text: mcanzi.de
+      href: https://mcanzi.de/
+      aria-label: Massimiliano Canzi's website
 
 reference:
 - title: Finding a data set
