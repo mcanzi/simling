@@ -4,7 +4,7 @@
 
 Simulated linguistic data for teaching statistics in R.
 
-Every data set in simling is simulated, and the code that generated it is in [`data-raw/`](data-raw). Because the true effects are known, you can fit a model and check whether it recovers them. Each help page (`?vowel_duration`) lists the variables and the true model.
+Every data set in simling is simulated, and the code that generated it is in [`data-raw/`](https://github.com/mcanzi/simling/tree/main/data-raw). Because the true effects are known, you can fit a model and check whether it recovers them. Each help page (`?vowel_duration`) lists the variables and the true model.
 
 ## Installation
 

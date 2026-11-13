@@ -15,9 +15,11 @@ Description: Simulated data sets for teaching statistics to linguists, from
     Language. Responses include continuous measures, reaction times, binary
     and multi-category outcomes, ratings, counts, censored ages, effect sizes,
     eye-tracking and EEG measures and time series, in data sets from 18 to
-    over 20,000 rows, plus one messy export for data cleaning. Each data set
-    comes with the code that generated it, so the true effects are known. A
-    function lists the data sets by branch, language, size and response.
+    over 20,000 rows, plus one messy export for data cleaning. Each help page
+    states the true model the data were simulated from, so students can check
+    whether their analysis recovers it; the simulation code is in the source
+    repository. A function lists the data sets by branch, language, size and
+    response.
 License: MIT + file LICENSE
 URL: https://github.com/mcanzi/simling, https://mcanzi.de/simling/
 BugReports: https://github.com/mcanzi/simling/issues
