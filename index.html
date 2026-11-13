@@ -74,10 +74,23 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
+<p>Each data set loads with the package. Here is the pupil data, with single trials and the mean in each condition:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mcanzi/simling" class="external-link">simling</a></span><span class="op">)</span></span>
-<span><span class="va">vowel_duration</span></span></code></pre></div>
-<p><code><a href="reference/simling_datasets.html">simling_datasets()</a></code> lists every data set with its branch, language, size, response and topic, so you can filter it to find one for a lesson:</p>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">pupil_noise</span></span>
+<span><span class="op">?</span><span class="va">pupil_noise</span></span>
+<span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">pupil_noise</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">time</span>, <span class="va">pupil</span>, colour <span class="op">=</span> <span class="va">condition</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>group <span class="op">=</span> <span class="va">trial_id</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.08</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">stat_summary</span><span class="op">(</span>fun <span class="op">=</span> <span class="va">mean</span>, geom <span class="op">=</span> <span class="st">"line"</span>, linewidth <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_colour_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>quiet <span class="op">=</span> <span class="st">"#4f86b5"</span>, noise <span class="op">=</span> <span class="st">"#e0735a"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Time from stimulus onset (ms)"</span>, y <span class="op">=</span> <span class="st">"Pupil size (baseline-corrected)"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-pupil.png" alt="Pupil size over time in quiet and in noise: single trials in pale lines, condition means in bold" width="100%"></p>
+<p>In the true model on the help page, the pupil peaks 90 units higher and 250 ms later in noise than in quiet. In the plotted means the difference is about 77 units and 300 ms. Raw averages only approximate the true values, which is why the help page suggests a GAMM with autocorrelated residuals for these data.</p>
+<p>To find a data set for a lesson, <code><a href="reference/simling_datasets.html">simling_datasets()</a></code> lists all of them with their branch, language, size, response and topic:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/simling_datasets.html">simling_datasets</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">branch</span> <span class="op">==</span> <span class="st">"Psycholinguistics"</span><span class="op">)</span></span>

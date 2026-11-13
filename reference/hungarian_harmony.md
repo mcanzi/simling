@@ -86,5 +86,5 @@ if (requireNamespace("lme4", quietly = TRUE)) {
   lme4::fixef(m)
 }
 #>  (Intercept)  stem_typeBé  stem_typeBe stem_typeBNN 
-#>    -2.412547     2.089060     2.851847     3.535148 
+#>    -2.412552     2.089060     2.851864     3.535149 
 ```
