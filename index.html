@@ -11,8 +11,8 @@
 <script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Simulated Linguistic Data for Teaching Statistics">
-<meta name="description" content="Simulated data sets for teaching statistics to linguists, from phonetics, phonology, prosody, psycholinguistics, syntax, morphology, semantics and pragmatics, conversation analysis, corpus linguistics, sociolinguistics, dialectology, bilingualism, second language research, language acquisition, sign language, forensic speech science, historical linguistics and typology, and from languages including German, Italian, Portuguese, Hungarian, Mandarin, Cantonese, Korean and German Sign Language. Responses include continuous measures, reaction times, binary and multi-category outcomes, ratings, counts, censored ages, effect sizes, eye-tracking and EEG measures and time series, in data sets from 18 to over 20,000 rows, plus one messy export for data cleaning. Each data set comes with the code that generated it, so the true effects are known.">
-<meta property="og:description" content="Simulated data sets for teaching statistics to linguists, from phonetics, phonology, prosody, psycholinguistics, syntax, morphology, semantics and pragmatics, conversation analysis, corpus linguistics, sociolinguistics, dialectology, bilingualism, second language research, language acquisition, sign language, forensic speech science, historical linguistics and typology, and from languages including German, Italian, Portuguese, Hungarian, Mandarin, Cantonese, Korean and German Sign Language. Responses include continuous measures, reaction times, binary and multi-category outcomes, ratings, counts, censored ages, effect sizes, eye-tracking and EEG measures and time series, in data sets from 18 to over 20,000 rows, plus one messy export for data cleaning. Each data set comes with the code that generated it, so the true effects are known.">
+<meta name="description" content="Simulated data sets for teaching statistics to linguists, from phonetics, phonology, prosody, psycholinguistics, syntax, morphology, semantics and pragmatics, conversation analysis, corpus linguistics, sociolinguistics, dialectology, bilingualism, second language research, language acquisition, sign language, forensic speech science, historical linguistics and typology, and from languages including German, Italian, Portuguese, Hungarian, Mandarin, Cantonese, Korean and German Sign Language. Responses include continuous measures, reaction times, binary and multi-category outcomes, ratings, counts, censored ages, effect sizes, eye-tracking and EEG measures and time series, in data sets from 18 to over 20,000 rows, plus one messy export for data cleaning. Each data set comes with the code that generated it, so the true effects are known. A function lists the data sets by branch, language, size and response.">
+<meta property="og:description" content="Simulated data sets for teaching statistics to linguists, from phonetics, phonology, prosody, psycholinguistics, syntax, morphology, semantics and pragmatics, conversation analysis, corpus linguistics, sociolinguistics, dialectology, bilingualism, second language research, language acquisition, sign language, forensic speech science, historical linguistics and typology, and from languages including German, Italian, Portuguese, Hungarian, Mandarin, Cantonese, Korean and German Sign Language. Responses include continuous measures, reaction times, binary and multi-category outcomes, ratings, counts, censored ages, effect sizes, eye-tracking and EEG measures and time series, in data sets from 18 to over 20,000 rows, plus one messy export for data cleaning. Each data set comes with the code that generated it, so the true effects are known. A function lists the data sets by branch, language, size and response.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -68,11 +68,17 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mcanzi/simling" class="external-link">simling</a></span><span class="op">)</span></span>
 <span><span class="va">vowel_duration</span></span></code></pre></div>
+<p><code><a href="reference/simling_datasets.html">simling_datasets()</a></code> lists every data set with its branch, language, size, response and topic, so you can filter it to find one for a lesson:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/simling_datasets.html">simling_datasets</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">branch</span> <span class="op">==</span> <span class="st">"Psycholinguistics"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/simling_datasets.html">simling_datasets</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"counts"</span>, <span class="va">response</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Every categorical column is a factor. Its first level is the reference level: the baseline condition, such as <code>"voiceless"</code> in <code>vowel_duration</code> or <code>"grammatical"</code> in <code>agreement_attraction</code>. IDs such as participants, speakers and words are factors too. Binary outcomes coded 0/1 and rating scales are numeric. The one exception is <code>messy_export</code>, which keeps the text columns of a raw export so that students can clean it.</p>
 </div>
 <div class="section level2">
 <h2 id="data-sets">Data sets<a class="anchor" aria-label="anchor" href="#data-sets"></a>
 </h2>
+<!-- datasets:start -->
 <table class="table">
 <colgroup>
 <col width="15%">
@@ -156,6 +162,30 @@
 <td>Contour shape, speaker normalisation</td>
 </tr>
 <tr>
+<td>Phonology</td>
+<td><code>hungarian_harmony</code></td>
+<td>Hungarian</td>
+<td align="right">4,200</td>
+<td>binary</td>
+<td>Mixed logistic regression, wug tests</td>
+</tr>
+<tr>
+<td>Prosody</td>
+<td><code>tobi_agreement</code></td>
+<td>German</td>
+<td align="right">456</td>
+<td>labels from two coders</td>
+<td>Inter-rater agreement, kappa</td>
+</tr>
+<tr>
+<td></td>
+<td><code>rhythm_metrics</code></td>
+<td>8 languages</td>
+<td align="right">400</td>
+<td>continuous</td>
+<td>Classification, rhythm classes</td>
+</tr>
+<tr>
 <td>Psycholinguistics</td>
 <td><code>rt_frequency</code></td>
 <td>–</td>
@@ -229,6 +259,14 @@
 </tr>
 <tr>
 <td></td>
+<td><code>disfluencies</code></td>
+<td>Italian</td>
+<td align="right">2,400</td>
+<td>counts, many zeros</td>
+<td>Zero-inflated count models</td>
+</tr>
+<tr>
+<td></td>
 <td><code>megastudy</code></td>
 <td>–</td>
 <td align="right">6,000</td>
@@ -258,14 +296,6 @@
 <td align="right">23,040</td>
 <td>samples per object</td>
 <td>Eye tracking, time-course analysis</td>
-</tr>
-<tr>
-<td></td>
-<td><code>disfluencies</code></td>
-<td>Italian</td>
-<td align="right">2,400</td>
-<td>counts, many zeros</td>
-<td>Zero-inflated count models</td>
 </tr>
 <tr>
 <td>Syntax</td>
@@ -372,6 +402,14 @@
 <td>Maps, spatial patterns</td>
 </tr>
 <tr>
+<td>Bilingualism</td>
+<td><code>code_switching</code></td>
+<td>Portuguese–German</td>
+<td align="right">360</td>
+<td>counts</td>
+<td>Negative binomial regression, offsets</td>
+</tr>
+<tr>
 <td>Second language</td>
 <td><code>perception_training</code></td>
 <td>–</td>
@@ -412,6 +450,22 @@
 <td>Survival analysis</td>
 </tr>
 <tr>
+<td>Sign language</td>
+<td><code>dgs_iconicity</code></td>
+<td>German Sign Language</td>
+<td align="right">18,000</td>
+<td>7-point ratings</td>
+<td>Crossed random effects, group differences</td>
+</tr>
+<tr>
+<td>Forensic speech science</td>
+<td><code>forensic_comparison</code></td>
+<td>German</td>
+<td align="right">3,240</td>
+<td>similarity scores</td>
+<td>Likelihood ratios, Cllr, calibration</td>
+</tr>
+<tr>
 <td>Historical linguistics</td>
 <td><code>do_support</code></td>
 <td>English</td>
@@ -428,54 +482,6 @@
 <td>Non-independence of languages</td>
 </tr>
 <tr>
-<td>Forensic speech science</td>
-<td><code>forensic_comparison</code></td>
-<td>German</td>
-<td align="right">3,240</td>
-<td>similarity scores</td>
-<td>Likelihood ratios, Cllr, calibration</td>
-</tr>
-<tr>
-<td>Prosody</td>
-<td><code>tobi_agreement</code></td>
-<td>German</td>
-<td align="right">456</td>
-<td>labels from two coders</td>
-<td>Inter-rater agreement, kappa</td>
-</tr>
-<tr>
-<td></td>
-<td><code>rhythm_metrics</code></td>
-<td>8 languages</td>
-<td align="right">400</td>
-<td>continuous</td>
-<td>Classification, rhythm classes</td>
-</tr>
-<tr>
-<td>Phonology</td>
-<td><code>hungarian_harmony</code></td>
-<td>Hungarian</td>
-<td align="right">4,200</td>
-<td>binary</td>
-<td>Mixed logistic regression, wug tests</td>
-</tr>
-<tr>
-<td>Sign language</td>
-<td><code>dgs_iconicity</code></td>
-<td>German Sign Language</td>
-<td align="right">18,000</td>
-<td>7-point ratings</td>
-<td>Crossed random effects, group differences</td>
-</tr>
-<tr>
-<td>Bilingualism</td>
-<td><code>code_switching</code></td>
-<td>Portuguese–German</td>
-<td align="right">360</td>
-<td>counts</td>
-<td>Negative binomial regression, offsets</td>
-</tr>
-<tr>
 <td>Meta-analysis</td>
 <td><code>bouba_kiki_meta</code></td>
 <td>21 languages</td>
@@ -484,7 +490,7 @@
 <td>Random-effects meta-analysis, publication bias</td>
 </tr>
 <tr>
-<td>Data wrangling</td>
+<td>Data cleaning</td>
 <td><code>messy_export</code></td>
 <td>–</td>
 <td align="right">1,086</td>
@@ -493,7 +499,7 @@
 </tr>
 </tbody>
 </table>
-<p>“–” marks data sets without a particular language.</p>
+<!-- datasets:end --><p>“–” marks data sets without a particular language.</p>
 </div>
 <div class="section level2">
 <h2 id="rebuilding-the-data">Rebuilding the data<a class="anchor" aria-label="anchor" href="#rebuilding-the-data"></a>

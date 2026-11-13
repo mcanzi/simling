@@ -57,6 +57,7 @@ intercepts (SD 0.8) and interaction slopes (SD 0.3); by-item intercepts
 Sprouse, J., Wagers, M. & Phillips, C. (2012). A test of the relation
 between working-memory capacity and syntactic island effects.
 *Language*, 88(1), 82-123.
+[doi:10.1353/lan.2012.0004](https://doi.org/10.1353/lan.2012.0004)
 
 ## Examples
 

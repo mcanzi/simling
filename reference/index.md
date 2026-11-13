@@ -1,5 +1,10 @@
 # Package index
 
+## Finding a data set
+
+- [`simling_datasets()`](https://mcanzi.github.io/simling/reference/simling_datasets.md)
+  : List the data sets in simling
+
 ## Phonetics
 
 - [`formants`](https://mcanzi.github.io/simling/reference/formants.md) :
@@ -19,10 +24,13 @@
 - [`mandarin_tones`](https://mcanzi.github.io/simling/reference/mandarin_tones.md)
   : f0 contours of the four Mandarin tones
 
-## Phonology and prosody
+## Phonology
 
 - [`hungarian_harmony`](https://mcanzi.github.io/simling/reference/hungarian_harmony.md)
   : Hungarian vowel harmony in a wug test
+
+## Prosody
+
 - [`tobi_agreement`](https://mcanzi.github.io/simling/reference/tobi_agreement.md)
   : Two coders' GToBI labels
 - [`rhythm_metrics`](https://mcanzi.github.io/simling/reference/rhythm_metrics.md)
@@ -48,6 +56,8 @@
   : Accuracy in an Italian lexical decision task
 - [`zipf_rt`](https://mcanzi.github.io/simling/reference/zipf_rt.md) :
   Reaction times and Zipfian word frequency
+- [`disfluencies`](https://mcanzi.github.io/simling/reference/disfluencies.md)
+  : Filled pauses in Italian dialogue
 - [`megastudy`](https://mcanzi.github.io/simling/reference/megastudy.md)
   : Megastudy of 6000 words
 - [`pupil_noise`](https://mcanzi.github.io/simling/reference/pupil_noise.md)
@@ -56,10 +66,8 @@
   Single-trial N400 amplitudes
 - [`visual_world`](https://mcanzi.github.io/simling/reference/visual_world.md)
   : Visual-world eye tracking: anticipatory looks
-- [`disfluencies`](https://mcanzi.github.io/simling/reference/disfluencies.md)
-  : Filled pauses in Italian dialogue
 
-## Syntax and morphology
+## Syntax
 
 - [`agreement_attraction`](https://mcanzi.github.io/simling/reference/agreement_attraction.md)
   : Eye-tracking while reading: agreement attraction
@@ -67,13 +75,19 @@
   : Acceptability judgments for whether-islands
 - [`german_relatives`](https://mcanzi.github.io/simling/reference/german_relatives.md)
   : Self-paced reading of German relative clauses
+
+## Morphology
+
 - [`german_plurals`](https://mcanzi.github.io/simling/reference/german_plurals.md)
   : A wug test of German noun plurals
 
-## Semantics, pragmatics and conversation
+## Semantics and pragmatics
 
 - [`scalar_implicature`](https://mcanzi.github.io/simling/reference/scalar_implicature.md)
   : Scalar implicature: truth-value judgments
+
+## Conversation
+
 - [`turn_taking`](https://mcanzi.github.io/simling/reference/turn_taking.md)
   : Turn-taking in 10 languages
 
@@ -84,7 +98,7 @@
 - [`relativizers`](https://mcanzi.github.io/simling/reference/relativizers.md)
   : Relativizer choice: that, which or zero
 
-## Sociolinguistics and dialectology
+## Sociolinguistics
 
 - [`address_forms`](https://mcanzi.github.io/simling/reference/address_forms.md)
   : Forms of address: du or Sie
@@ -94,17 +108,26 @@
   : Merging of the Cantonese rising tones
 - [`td_deletion`](https://mcanzi.github.io/simling/reference/td_deletion.md)
   : /t, d/ deletion
+
+## Dialectology
+
 - [`dialect_survey`](https://mcanzi.github.io/simling/reference/dialect_survey.md)
   : A dialect survey of degemination in Italy
+
+## Bilingualism
+
 - [`code_switching`](https://mcanzi.github.io/simling/reference/code_switching.md)
   : Code-switching by Portuguese-German bilinguals
 
-## Second language and acquisition
+## Second language
 
 - [`perception_training`](https://mcanzi.github.io/simling/reference/perception_training.md)
   : Perceptual training of a non-native contrast
 - [`accent`](https://mcanzi.github.io/simling/reference/accent.md) :
   Acoustic cues to a foreign accent
+
+## Language acquisition
+
 - [`overregularization`](https://mcanzi.github.io/simling/reference/overregularization.md)
   : Past-tense overregularization
 - [`vocabulary_growth`](https://mcanzi.github.io/simling/reference/vocabulary_growth.md)
@@ -122,10 +145,13 @@
 - [`forensic_comparison`](https://mcanzi.github.io/simling/reference/forensic_comparison.md)
   : Forensic voice comparison scores
 
-## Historical linguistics and typology
+## Historical linguistics
 
 - [`do_support`](https://mcanzi.github.io/simling/reference/do_support.md)
   : The rise of periphrastic do
+
+## Typology
+
 - [`word_order`](https://mcanzi.github.io/simling/reference/word_order.md)
   : Word order in a typological sample
 

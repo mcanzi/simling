@@ -65,15 +65,18 @@ Trettenbrein, P. C., Pendzich, N.-K., Cramer, J.-M., Steinbach, M. &
 Zaccarella, E. (2021). Psycholinguistic norms for more than 300 lexical
 signs in German Sign Language (DGS). *Behavior Research Methods*, 53(5),
 1817-1832.
+[doi:10.3758/s13428-020-01524-y](https://doi.org/10.3758/s13428-020-01524-y)
 
 Sehyr, Z. S. & Emmorey, K. (2019). The perceived mapping between form
 and meaning in American Sign Language depends on linguistic knowledge
 and task: Evidence from iconicity and transparency judgments. *Language
 and Cognition*, 11(2), 208-234.
+[doi:10.1017/langcog.2019.18](https://doi.org/10.1017/langcog.2019.18)
 
 Thompson, R. L., Vinson, D. P., Woll, B. & Vigliocco, G. (2012). The
 road to language learning is iconic: Evidence from British Sign
 Language. *Psychological Science*, 23(12), 1443-1448.
+[doi:10.1177/0956797612459763](https://doi.org/10.1177/0956797612459763)
 
 ## Examples
 

@@ -67,6 +67,7 @@ merger in younger Seoul speakers (Silva 2006); the data are simulated.
 
 Silva, D. J. (2006). Acoustic evidence for the emergence of tonal
 contrast in contemporary Korean. *Phonology*, 23(2), 287-308.
+[doi:10.1017/S0952675706000911](https://doi.org/10.1017/S0952675706000911)
 
 ## Examples
 

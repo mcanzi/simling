@@ -60,10 +60,11 @@ identified by their stem type; the nonce word forms are left out.
 
 Hayes, B. & Londe, Z. C. (2006). Stochastic phonological knowledge: The
 case of Hungarian vowel harmony. *Phonology*, 23, 59-104.
+[doi:10.1017/S0952675706000765](https://doi.org/10.1017/S0952675706000765)
 
 Hayes, B., Zuraw, K., Siptár, P. & Londe, Z. (2009). Natural and
 unnatural constraints in Hungarian vowel harmony. *Language*, 85,
-822-863.
+822-863. [doi:10.1353/lan.0.0169](https://doi.org/10.1353/lan.0.0169)
 
 ## Examples
 

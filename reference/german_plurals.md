@@ -62,6 +62,7 @@ response-level noise (SD 0.3).
 
 Berko, J. (1958). The child's learning of English morphology. *Word*,
 14(2-3), 150-177.
+[doi:10.1080/00437956.1958.11659661](https://doi.org/10.1080/00437956.1958.11659661)
 
 ## Examples
 

@@ -66,13 +66,16 @@ for %V, 3 ms for ΔC, 0.4 syll/s for rate.
 
 Ramus, F., Nespor, M. & Mehler, J. (1999). Correlates of linguistic
 rhythm in the speech signal. *Cognition*, 73(3), 265-292.
+[doi:10.1016/S0010-0277(99)00058-X](https://doi.org/10.1016/S0010-0277%2899%2900058-X)
 
 White, L. & Mattys, S. L. (2007). Calibrating rhythm: First language and
 second language studies. *Journal of Phonetics*, 35(4), 501-522.
+[doi:10.1016/j.wocn.2007.02.003](https://doi.org/10.1016/j.wocn.2007.02.003)
 
 Frota, S. & Vigário, M. (2001). On the correlates of rhythmic
 distinctions: The European/Brazilian Portuguese case. *Probus*, 13(2),
 247-275.
+[doi:10.1515/prbs.2001.005](https://doi.org/10.1515/prbs.2001.005)
 
 ## Examples
 

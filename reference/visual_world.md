@@ -69,6 +69,7 @@ evenly.
 Altmann, G. T. M. & Kamide, Y. (1999). Incremental interpretation at
 verbs: Restricting the domain of subsequent reference. *Cognition*,
 73(3), 247-264.
+[doi:10.1016/S0010-0277(99)00059-1](https://doi.org/10.1016/S0010-0277%2899%2900059-1)
 
 ## Examples
 

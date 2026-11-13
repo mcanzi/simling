@@ -56,6 +56,7 @@ Cllr is about 0.25, against about 0.7 for the formant system.
 
 Brümmer, N. & du Preez, J. (2006). Application-independent evaluation of
 speaker detection. *Computer Speech and Language*, 20(2-3), 230-275.
+[doi:10.1016/j.csl.2005.08.001](https://doi.org/10.1016/j.csl.2005.08.001)
 
 ## Examples
 

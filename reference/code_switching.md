@@ -68,6 +68,7 @@ binomial with probability 0.25, 0.6 and 0.4 for the three generations.
 Poplack, S. (1980). Sometimes I'll start a sentence in Spanish y termino
 en español: Toward a typology of code-switching. *Linguistics*, 18(7-8),
 581-618.
+[doi:10.1515/ling.1980.18.7-8.581](https://doi.org/10.1515/ling.1980.18.7-8.581)
 
 ## Examples
 

@@ -72,6 +72,7 @@ Szalontai, Á., Ünal-Logacev, Ö., Zeller, J., Perlman, M. & Winter, B.
 (2022). The bouba/kiki effect is robust across cultures and writing
 systems. *Philosophical Transactions of the Royal Society B*, 377(1841),
 20200390.
+[doi:10.1098/rstb.2020.0390](https://doi.org/10.1098/rstb.2020.0390)
 
 ## Examples
 

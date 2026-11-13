@@ -62,6 +62,7 @@ Zuo & Wong 2013); the data are simulated.
 Mok, P. P. K., Zuo, D. & Wong, P. W. Y. (2013). Production and
 perception of a sound change in progress: Tone merging in Hong Kong
 Cantonese. *Language Variation and Change*, 25(3), 341-370.
+[doi:10.1017/S0954394513000161](https://doi.org/10.1017/S0954394513000161)
 
 ## Examples
 

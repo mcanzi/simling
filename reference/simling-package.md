@@ -3,6 +3,8 @@
 Simulated data sets from many branches of linguistics. Each help page
 lists the variables and the true model the data were simulated from; the
 code is in `data-raw/` on GitHub.
+[`simling_datasets()`](https://mcanzi.github.io/simling/reference/simling_datasets.md)
+lists them all, with their branch, language, size, response and topic.
 
 ## Details
 

@@ -65,6 +65,7 @@ Heinemann, T., Hoymann, G., Rossano, F., de Ruiter, J. P., Yoon, K.-E. &
 Levinson, S. C. (2009). Universals and cultural variation in turn-taking
 in conversation. *Proceedings of the National Academy of Sciences*,
 106(26), 10587-10592.
+[doi:10.1073/pnas.0903616106](https://doi.org/10.1073/pnas.0903616106)
 
 ## Examples
 
