@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 518 600" width="518" height="600">
 <defs>
- <radialGradient id="sun" cx="0.78" cy="0.12" r="0.75">
+ <radialGradient id="sun" cx="0.78" cy="-19.9" r="0.75">
   <stop offset="0" stop-color="#f28a1e" stop-opacity="0.38"/>
   <stop offset="0.55" stop-color="#b54b33" stop-opacity="0.10"/>
   <stop offset="1" stop-color="#13151c" stop-opacity="0"/>
@@ -16,40 +16,31 @@
 <polygon points="259,6 512,152 512,448 259,594 6,448 6,152" fill="#13151c"/>
 <g clip-path="url(#hex)">
  <rect width="518" height="600" fill="url(#sun)"/>
- <line x1="60" y1="285" x2="458" y2="285" stroke="#3a3240" stroke-width="2"/>
- <polyline points="70.0,285.0 71.5,284.9 73.0,284.7 74.5,284.4 76.0,283.9 77.5,283.2 79.0,282.5 80.5,281.6 82.0,280.6 83.5,279.5 85.0,278.4 86.5,277.2 88.0,276.1 89.5,274.9 91.0,273.8 92.5,272.8 94.0,271.9 95.5,271.1 97.0,270.4 98.5,270.0 100.0,269.7 101.5,269.7 103.0,269.9 104.5,270.4 106.0,271.2 107.5,272.2 109.0,273.4 110.5,275.0 112.0,276.8 113.5,278.9 115.0,281.2 116.5,283.7 118.0,286.4 119.5,289.2 121.0,292.2 122.5,295.3 124.0,298.5 125.5,301.7 127.0,304.9 128.5,308.0 130.0,311.0 131.5,313.8 133.0,316.5 134.5,319.0 136.0,321.1 137.5,323.0 139.0,324.5 140.5,325.6 142.0,326.4 143.5,326.7 145.0,326.5 146.5,325.9 148.0,324.8 149.5,323.3 151.0,321.3 152.5,318.8 154.0,315.8 155.5,312.5 157.0,308.7 158.5,304.5 160.0,300.0 161.5,295.3 163.0,290.2 164.5,285.0 166.0,279.6 167.5,274.2 169.0,268.7 170.5,263.2 172.0,257.8 173.5,252.6 175.0,247.6 176.5,242.9 178.0,238.5 179.5,234.5 181.0,230.9 182.5,227.8 184.0,225.3 185.5,223.3 187.0,221.9 188.5,221.2 190.0,221.1 191.5,221.7 193.0,222.9 194.5,224.8 196.0,227.3 197.5,230.5 199.0,234.3 200.5,238.7 202.0,243.6 203.5,249.0 205.0,254.8 206.5,261.1 208.0,267.6 209.5,274.4 211.0,281.4 212.5,288.6 214.0,295.7 215.5,302.9 217.0,309.9 218.5,316.8 220.0,323.3 221.5,329.6 223.0,335.5 224.5,340.9 226.0,345.7 227.5,350.0 229.0,353.7 230.5,356.7 232.0,358.9 233.5,360.5 235.0,361.3 236.5,361.3 238.0,360.5 239.5,359.0 241.0,356.7 242.5,353.7 244.0,350.0 245.5,345.6 247.0,340.5 248.5,334.9 250.0,328.8 251.5,322.2 253.0,315.3 254.5,308.0 256.0,300.5 257.5,292.8 259.0,285.0" fill="none" stroke="#f3e7da" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
- <circle cx="262.0" cy="270.0" r="4.6" fill="url(#dotg)"/>
-<circle cx="268.2" cy="246.0" r="4.6" fill="url(#dotg)"/>
-<circle cx="274.4" cy="214.8" r="4.6" fill="url(#dotg)"/>
-<circle cx="280.6" cy="213.5" r="4.6" fill="url(#dotg)"/>
-<circle cx="286.8" cy="211.0" r="4.6" fill="url(#dotg)"/>
-<circle cx="293.0" cy="226.3" r="4.6" fill="url(#dotg)"/>
-<circle cx="299.2" cy="260.4" r="4.6" fill="url(#dotg)"/>
-<circle cx="305.4" cy="281.7" r="4.6" fill="url(#dotg)"/>
-<circle cx="311.6" cy="309.2" r="4.6" fill="url(#dotg)"/>
-<circle cx="317.8" cy="335.5" r="4.6" fill="url(#dotg)"/>
-<circle cx="324.0" cy="351.0" r="4.6" fill="url(#dotg)"/>
-<circle cx="330.2" cy="348.4" r="4.6" fill="url(#dotg)"/>
-<circle cx="336.4" cy="343.0" r="4.6" fill="url(#dotg)"/>
-<circle cx="342.6" cy="319.3" r="4.6" fill="url(#dotg)"/>
-<circle cx="348.8" cy="300.4" r="4.6" fill="url(#dotg)"/>
-<circle cx="355.0" cy="277.8" r="4.6" fill="url(#dotg)"/>
-<circle cx="361.2" cy="254.8" r="4.6" fill="url(#dotg)"/>
-<circle cx="367.4" cy="241.4" r="4.6" fill="url(#dotg)"/>
-<circle cx="373.6" cy="236.0" r="4.6" fill="url(#dotg)"/>
-<circle cx="379.8" cy="245.2" r="4.6" fill="url(#dotg)"/>
-<circle cx="386.0" cy="254.5" r="4.6" fill="url(#dotg)"/>
-<circle cx="392.2" cy="266.2" r="4.6" fill="url(#dotg)"/>
-<circle cx="398.4" cy="280.9" r="4.6" fill="url(#dotg)"/>
-<circle cx="404.6" cy="285.3" r="4.6" fill="url(#dotg)"/>
-<circle cx="410.8" cy="297.7" r="4.6" fill="url(#dotg)"/>
-<circle cx="417.0" cy="301.4" r="4.6" fill="url(#dotg)"/>
-<circle cx="423.2" cy="302.0" r="4.6" fill="url(#dotg)"/>
-<circle cx="429.4" cy="290.6" r="4.6" fill="url(#dotg)"/>
-<circle cx="435.6" cy="287.9" r="4.6" fill="url(#dotg)"/>
-<circle cx="441.8" cy="277.1" r="4.6" fill="url(#dotg)"/>
-<circle cx="448.0" cy="282.7" r="4.6" fill="url(#dotg)"/>
- <text x="259" y="470" text-anchor="middle" font-family="Bricolage Grotesque" font-weight="800" font-size="92" letter-spacing="-1" fill="url(#title)">simling</text>
+ <path d="M114 152 H404 Q444 152 444 192 V352 Q444 392 404 392 H232 L178 446 L186 392 H114 Q74 392 74 352 V192 Q74 152 114 152 Z" fill="#20222d" stroke="#f3e7da" stroke-width="8" stroke-linejoin="round"/>
+<text x="259" y="266" text-anchor="middle" font-family="Bricolage Grotesque" font-weight="800" font-size="90" letter-spacing="-1" fill="url(#title)">simling</text>
+<circle cx="115.3" cy="356.3" r="5.2" fill="url(#dotg)"/>
+<circle cx="131.3" cy="347.2" r="5.2" fill="url(#dotg)"/>
+<circle cx="142.7" cy="359.6" r="5.2" fill="url(#dotg)"/>
+<circle cx="158.6" cy="339.1" r="5.2" fill="url(#dotg)"/>
+<circle cx="172.0" cy="350.9" r="5.2" fill="url(#dotg)"/>
+<circle cx="184.5" cy="349.3" r="5.2" fill="url(#dotg)"/>
+<circle cx="199.7" cy="359.0" r="5.2" fill="url(#dotg)"/>
+<circle cx="210.4" cy="350.3" r="5.2" fill="url(#dotg)"/>
+<circle cx="223.9" cy="368.8" r="5.2" fill="url(#dotg)"/>
+<circle cx="241.4" cy="346.3" r="5.2" fill="url(#dotg)"/>
+<circle cx="256.0" cy="335.0" r="5.2" fill="url(#dotg)"/>
+<circle cx="265.1" cy="333.6" r="5.2" fill="url(#dotg)"/>
+<circle cx="280.0" cy="347.2" r="5.2" fill="url(#dotg)"/>
+<circle cx="292.4" cy="343.5" r="5.2" fill="url(#dotg)"/>
+<circle cx="304.2" cy="330.0" r="5.2" fill="url(#dotg)"/>
+<circle cx="323.9" cy="321.2" r="5.2" fill="url(#dotg)"/>
+<circle cx="333.6" cy="316.4" r="5.2" fill="url(#dotg)"/>
+<circle cx="347.4" cy="318.7" r="5.2" fill="url(#dotg)"/>
+<circle cx="358.5" cy="334.7" r="5.2" fill="url(#dotg)"/>
+<circle cx="372.4" cy="320.5" r="5.2" fill="url(#dotg)"/>
+<circle cx="390.2" cy="319.1" r="5.2" fill="url(#dotg)"/>
+<circle cx="404.7" cy="331.6" r="5.2" fill="url(#dotg)"/>
+<line x1="112" y1="361" x2="406" y2="311" stroke="#f3e7da" stroke-width="4" stroke-linecap="round" opacity="0.85"/>
 </g>
 <polygon points="259,6 512,152 512,448 259,594 6,448 6,152" fill="none" stroke="#f28a1e" stroke-width="12" stroke-linejoin="round"/>
 </svg>
