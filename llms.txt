@@ -84,7 +84,7 @@ text columns of a raw export so that students can clean it.
 |  | `mandarin_tones` | Mandarin | 4,224 | trajectories | Contour shape, speaker normalisation |
 | Phonology | `hungarian_harmony` | Hungarian | 4,200 | binary | Mixed logistic regression, wug tests |
 | Prosody | `tobi_agreement` | German | 456 | labels from two coders | Inter-rater agreement, kappa |
-|  | `rhythm_metrics` | 8 languages | 400 | continuous | Classification, rhythm classes |
+|  | `rhythm_metrics` | 6 languages | 1,200 | continuous | Variance partitioning, testing rhythm classes |
 | Psycholinguistics | `rt_frequency` | – | 200 | RT, binary | Data wrangling |
 |  | `word_rt` | – | 400 | RT | Multiple regression, collinearity |
 |  | `freq_length` | – | 400 | RT | Continuous × continuous interaction |
@@ -178,7 +178,7 @@ MIT © Massimiliano Canzi
 - [`tobi_agreement`](https://mcanzi.de/simling/reference/tobi_agreement.md)
   : Two coders' GToBI labels
 - [`rhythm_metrics`](https://mcanzi.de/simling/reference/rhythm_metrics.md)
-  : Rhythm metrics in eight languages
+  : Rhythm metrics across languages, speakers and speech materials
 
 ## Psycholinguistics
 

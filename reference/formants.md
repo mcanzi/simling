@@ -1,7 +1,11 @@
 # Formants of three vowels from two speakers
 
 F1 and F2 of /i a u/, 20 tokens per vowel from each of two speakers.
-Speaker B has a shorter vocal tract, so all formants are 20% higher.
+Every formant of speaker B is 1.2 times the same formant of speaker A.
+This uniform scaling is a simplification. Between real speakers, and
+between women and men, the ratio differs across vowels and formants
+(Fant 1966), so normalisation methods that assume one factor per speaker
+work better here than on real data.
 
 ## Usage
 
@@ -38,6 +42,12 @@ A tibble with 120 rows and 5 columns:
 True model: speaker A's mean F1 and F2 are 300 and 2300 Hz for /i/, 750
 and 1300 Hz for /a/, and 320 and 800 Hz for /u/; speaker B's are 1.2
 times higher. Token SD is 40 Hz for F1 and 120 Hz for F2.
+
+## References
+
+Fant, G. (1966). A note on vocal tract size factors and non-uniform
+F-pattern scalings. *Speech Transmission Laboratory Quarterly Progress
+and Status Report*, 7(4), 22-30.
 
 ## Examples
 

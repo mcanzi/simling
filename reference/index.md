@@ -34,7 +34,7 @@
 - [`tobi_agreement`](https://mcanzi.de/simling/reference/tobi_agreement.md)
   : Two coders' GToBI labels
 - [`rhythm_metrics`](https://mcanzi.de/simling/reference/rhythm_metrics.md)
-  : Rhythm metrics in eight languages
+  : Rhythm metrics across languages, speakers and speech materials
 
 ## Psycholinguistics
 
