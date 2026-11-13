@@ -1,10 +1,10 @@
-# simling
+# simling <img src="man/figures/logo.png" align="right" height="139" alt="simling logo" />
 
 [![R-CMD-check](https://github.com/mcanzi/simling/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mcanzi/simling/actions/workflows/R-CMD-check.yaml)
 
 Simulated linguistic data for teaching statistics in R.
 
-Every data set in simling is simulated, and the code that generated it is in [`data-raw/`](data-raw). The true effects are therefore known: you can fit a model and check whether it recovers them. Each help page (`?vowel_duration`) lists the variables and the true model.
+Every data set in simling is simulated, and the code that generated it is in [`data-raw/`](data-raw). Because the true effects are known, you can fit a model and check whether it recovers them. Each help page (`?vowel_duration`) lists the variables and the true model.
 
 ## Installation
 

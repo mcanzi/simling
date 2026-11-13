@@ -104,6 +104,7 @@ a:hover { color: var(--pandan); }
 .dropdown-item { color: var(--mist); }
 .dropdown-item:hover, .dropdown-item:focus { background: var(--understory); color: var(--pandan); }
 
+code, pre, kbd, samp, .navbar-brand, .navbar .nav-link { font-variant-ligatures: none; }
 code { color: var(--hornbill); }
 pre, div.sourceCode {
   background: var(--understory) !important;
@@ -111,7 +112,7 @@ pre, div.sourceCode {
   border-radius: 10px;
 }
 pre code { color: var(--mist); }
-div.sourceCode pre { border: 0; background: none !important; }
+div.sourceCode pre { border: 0; margin: 0; background: none !important; }
 pre .r-out, pre .r-wrn, pre .r-msg { color: var(--muted); }
 
 .table { color: var(--mist); --bs-table-bg: transparent; --bs-table-color: var(--mist); }
