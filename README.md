@@ -36,7 +36,7 @@ ggplot(pupil_noise, aes(time, pupil, colour = condition)) +
 
 <img src="man/figures/README-pupil.png" alt="Pupil size over time in quiet and in noise: single trials in pale lines, condition means in bold" width="100%" />
 
-In the true model on the help page, the pupil peaks 90 units higher and 250 ms later in noise than in quiet. In the plotted means the difference is about 77 units and 300 ms. Raw averages only approximate the true values, which is why the help page suggests a GAMM with autocorrelated residuals for these data.
+In the true model on the help page, the pupil peaks 90 units higher and 250 ms later in noise than in quiet. In the plotted means the difference is about 77 units and 300 ms. The help page suggests a GAMM with autocorrelated residuals for estimating these differences.
 
 To find a data set for a lesson, `simling_datasets()` lists all of them with their branch, language, size, response and topic:
 
