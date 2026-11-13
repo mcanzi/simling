@@ -68,14 +68,26 @@ residual SD 0.2.
 ## Examples
 
 ``` r
-head(german_relatives)
-#> # A tibble: 6 × 8
-#>   participant  list item  condition position region        length    rt
-#>   <fct>       <int> <fct> <fct>        <int> <fct>          <int> <dbl>
-#> 1 P01             1 i01   subject          1 det                3   245
-#> 2 P01             1 i01   subject          2 noun               6   322
-#> 3 P01             1 i01   subject          3 rel_pronoun        3   270
-#> 4 P01             1 i01   subject          4 rc_det             3   277
-#> 5 P01             1 i01   subject          5 rc_noun            8   247
-#> 6 P01             1 i01   subject          6 rc_participle      6   255
+round(tapply(german_relatives$rt, german_relatives[c("region", "condition")], mean))
+#>                condition
+#> region          subject object
+#>   det               349    353
+#>   noun              362    359
+#>   rel_pronoun       344    354
+#>   rc_det            344    351
+#>   rc_noun           356    363
+#>   rc_participle     354    375
+#>   rc_auxiliary      332    366
+#>   main_verb         345    368
+#>   spillover_1       340    354
+#>   spillover_2       341    336
+#>   spillover_3       340    335
+#>   final             338    341
+if (requireNamespace("lme4", quietly = TRUE)) {
+  mv <- subset(german_relatives, region == "main_verb")
+  m <- lme4::lmer(log(rt) ~ condition + (1 | participant) + (1 | item), data = mv)
+  lme4::fixef(m)
+}
+#>     (Intercept) conditionobject 
+#>       5.8027047       0.0651166 
 ```

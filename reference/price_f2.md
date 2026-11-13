@@ -54,14 +54,18 @@ offsets (SD 40 Hz); residuals are AR(1) with rho 0.6 and SD 30 Hz.
 ## Examples
 
 ``` r
-head(price_f2)
-#> # A tibble: 6 × 6
-#>   speaker l1      traj  duration  time    f2
-#>   <fct>   <fct>   <fct>    <dbl> <dbl> <dbl>
-#> 1 S01     English S01.1      252     0  1199
-#> 2 S01     English S01.1      252    10  1232
-#> 3 S01     English S01.1      252    20  1174
-#> 4 S01     English S01.1      252    30  1194
-#> 5 S01     English S01.1      252    40  1280
-#> 6 S01     English S01.1      252    50  1399
+if (requireNamespace("mgcv", quietly = TRUE)) {
+  m <- mgcv::bam(f2 ~ l1 + s(time, by = l1) + s(time, speaker, bs = "fs", m = 1),
+                 data = price_f2)
+  summary(m)
+  new <- expand.grid(time = c(0, 50, 100), l1 = c("English", "Italian"), speaker = "S01")
+  cbind(new, f2 = predict(m, new, exclude = "s(time,speaker)"))
+}
+#>   time      l1 speaker       f2
+#> 1    0 English     S01 1276.931
+#> 2   50 English     S01 1408.882
+#> 3  100 English     S01 1991.965
+#> 4    0 Italian     S01 1315.532
+#> 5   50 Italian     S01 1551.971
+#> 6  100 Italian     S01 1780.778
 ```

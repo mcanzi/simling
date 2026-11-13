@@ -74,14 +74,21 @@ prosodic transcription labeling reliability in the ToBI framework.
 ## Examples
 
 ``` r
-table(tobi_agreement$accent_1, tobi_agreement$accent_2)
-#>        
-#>         none  H* L+H*  L* L*+H H+!H* H+L*
-#>   none   184  19    1  15    1     0    0
-#>   H*      12  48    3   0    0     8    0
-#>   L+H*     1  12   34   1   12     0    0
-#>   L*      12   0    0  29    4     0    2
-#>   L*+H     0   2    8   6   14     0    0
-#>   H+!H*    1   8    0   0    0    11    2
-#>   H+L*     0   1    0   0    0     1    4
+kappa <- function(a, b) {
+  tab <- table(a, b)
+  po <- sum(diag(tab)) / sum(tab)
+  pe <- sum(rowSums(tab) * colSums(tab)) / sum(tab)^2
+  c(agreement = po, kappa = (po - pe) / (1 - pe))
+}
+with(tobi_agreement, kappa(accent_1 != "none", accent_2 != "none"))
+#> agreement     kappa 
+#> 0.8640351 0.7273148 
+with(subset(tobi_agreement, accent_1 != "none" & accent_2 != "none"), kappa(accent_1, accent_2))
+#> agreement     kappa 
+#> 0.6666667 0.5754880 
+sapply(split(tobi_agreement, tobi_agreement$style),
+       function(d) kappa(d$accent_1 != "none", d$accent_2 != "none"))
+#>                read spontaneous
+#> agreement 0.8864629   0.8414097
+#> kappa     0.7706118   0.6833785
 ```

@@ -103,16 +103,24 @@ out.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">hungarian_harmony</span><span class="op">$</span><span class="va">stem_type</span>, <span class="va">hungarian_harmony</span><span class="op">$</span><span class="va">suffix</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/proportions.html" class="external-link">prop.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">hungarian_harmony</span><span class="op">$</span><span class="va">stem_type</span>, <span class="va">hungarian_harmony</span><span class="op">$</span><span class="va">suffix</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       back front</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   B    581    19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   F     16   584</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   N     62   538</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Bi   542    58</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Bé   343   257</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Be   241   359</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   BNN  160   440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B   0.97  0.03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   F   0.03  0.97</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   N   0.10  0.90</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Bi  0.90  0.10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Bé  0.57  0.43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Be  0.40  0.60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   BNN 0.27  0.73</span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"lme4"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">mixed</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">hungarian_harmony</span>, <span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">is.element</a></span><span class="op">(</span><span class="va">stem_type</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Bi"</span>, <span class="st">"Bé"</span>, <span class="st">"Be"</span>, <span class="st">"BNN"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/glmer.html" class="external-link">glmer</a></span><span class="op">(</span><span class="va">suffix</span> <span class="op">~</span> <span class="va">stem_type</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">participant</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">item</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                   data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/droplevels.html" class="external-link">droplevels</a></span><span class="op">(</span><span class="va">mixed</span><span class="op">)</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/nlme/man/fixed.effects.html" class="external-link">fixef</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  (Intercept)  stem_typeBé  stem_typeBe stem_typeBNN </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    -2.412547     2.089060     2.851847     3.535148 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

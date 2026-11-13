@@ -38,14 +38,11 @@ voiced), 125 (clear, voiceless) and 180 ms (clear, voiced); SD 18 ms.
 ## Examples
 
 ``` r
-head(style_voicing)
-#> # A tibble: 6 × 3
-#>   style  voicing   duration
-#>   <fct>  <fct>        <dbl>
-#> 1 casual voiceless       99
-#> 2 casual voiceless      110
-#> 3 casual voiceless       83
-#> 4 casual voiceless       85
-#> 5 casual voiceless      131
-#> 6 casual voiceless       93
+m <- lm(duration ~ style * voicing, data = style_voicing)
+coef(m)
+#>              (Intercept)               styleclear            voicingvoiced 
+#>                  104.175                   20.675                   41.525 
+#> styleclear:voicingvoiced 
+#>                   15.425 
+with(style_voicing, interaction.plot(voicing, style, duration))
 ```

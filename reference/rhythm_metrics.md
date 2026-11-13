@@ -80,14 +80,21 @@ distinctions: The European/Brazilian Portuguese case. *Probus*, 13(2),
 ## Examples
 
 ``` r
-head(rhythm_metrics)
-#> # A tibble: 6 × 7
-#>   language             speaker sentence  rate percent_v delta_c varco_v
-#>   <fct>                <fct>   <fct>    <dbl>     <dbl>   <dbl>   <dbl>
-#> 1 Brazilian Portuguese Bra_01  sent1     5.52      45.6    46.5    50.6
-#> 2 Brazilian Portuguese Bra_01  sent2     5.41      47.4    39.9    55  
-#> 3 Brazilian Portuguese Bra_01  sent3     5.47      47.2    41.7    60.4
-#> 4 Brazilian Portuguese Bra_01  sent4     4.64      44      48      52.5
-#> 5 Brazilian Portuguese Bra_01  sent5     5.4       47.5    39.4    56.6
-#> 6 Brazilian Portuguese Bra_02  sent1     5.66      46.9    40.3    46.1
+means <- aggregate(cbind(percent_v, delta_c, varco_v) ~ language,
+                   data = rhythm_metrics, FUN = mean)
+means[order(means$percent_v), ]
+#>               language percent_v delta_c varco_v
+#> 1              English    41.586  53.914  65.460
+#> 3                Dutch    41.850  52.832  63.088
+#> 2               German    42.028  53.136  61.564
+#> 4  European Portuguese    43.314  49.806  57.650
+#> 5 Brazilian Portuguese    45.908  45.086  52.816
+#> 6              Spanish    46.292  45.020  46.400
+#> 7              Italian    47.606  47.440  52.362
+#> 8             Japanese    53.018  36.492  44.206
+plot(delta_c ~ percent_v, data = rhythm_metrics, col = language)
+
+coef(lm(delta_c ~ rate + language, data = rhythm_metrics))["rate"]
+#>      rate 
+#> -6.527458 
 ```

@@ -74,16 +74,24 @@ Speaker B has a shorter vocal tract, so all formants are 20% higher.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">formants</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   speaker vowel token    f1    f2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> A       a         1   747  <span style="text-decoration: underline;">1</span>163</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> A       a         2   784  <span style="text-decoration: underline;">1</span>093</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> A       a         3   731  <span style="text-decoration: underline;">1</span>256</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> A       a         4   728  <span style="text-decoration: underline;">1</span>519</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> A       a         5   779  <span style="text-decoration: underline;">1</span>357</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> A       a         6   746  <span style="text-decoration: underline;">1</span>317</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">f1</span>, <span class="va">f2</span><span class="op">)</span> <span class="op">~</span> <span class="va">speaker</span> <span class="op">+</span> <span class="va">vowel</span>, data <span class="op">=</span> <span class="va">formants</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   speaker vowel     f1      f2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       A     i 306.80 2325.65</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       B     i 353.40 2760.25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       A     a 741.95 1274.20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       B     a 892.70 1559.30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       A     u 316.50  816.55</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6       B     u 377.90  950.10</span>
+<span class="r-in"><span><span class="va">formants</span><span class="op">$</span><span class="va">f1_z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/ave.html" class="external-link">ave</a></span><span class="op">(</span><span class="va">formants</span><span class="op">$</span><span class="va">f1</span>, <span class="va">formants</span><span class="op">$</span><span class="va">speaker</span>, FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html" class="external-link">scale</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">formants</span><span class="op">$</span><span class="va">f2_z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/ave.html" class="external-link">ave</a></span><span class="op">(</span><span class="va">formants</span><span class="op">$</span><span class="va">f2</span>, <span class="va">formants</span><span class="op">$</span><span class="va">speaker</span>, FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html" class="external-link">scale</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">f1_z</span>, <span class="va">f2_z</span><span class="op">)</span> <span class="op">~</span> <span class="va">speaker</span> <span class="op">+</span> <span class="va">vowel</span>, data <span class="op">=</span> <span class="va">formants</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   speaker vowel       f1_z       f2_z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       A     i -0.7119075  1.3136014</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       B     i -0.7372816  1.3090919</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       A     a  1.3772454 -0.3046285</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       B     a  1.3784471 -0.2572665</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       A     u -0.6653379 -1.0089729</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6       B     u -0.6411656 -1.0518254</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -62,54 +62,27 @@ between working-memory capacity and syntactic island effects.
 ## Examples
 
 ``` r
-table(acceptability$length, acceptability$structure, acceptability$rating)
-#> , ,  = 1
-#> 
-#>        
-#>         non-island island
-#>   short         11     25
-#>   long          24     65
-#> 
-#> , ,  = 2
-#> 
-#>        
-#>         non-island island
-#>   short         23     30
-#>   long          41     65
-#> 
-#> , ,  = 3
-#> 
-#>        
-#>         non-island island
-#>   short         46     48
-#>   long          62     69
-#> 
-#> , ,  = 4
-#> 
-#>        
-#>         non-island island
-#>   short         69     68
-#>   long          68     74
-#> 
-#> , ,  = 5
-#> 
-#>        
-#>         non-island island
-#>   short         75     86
-#>   long          80     50
-#> 
-#> , ,  = 6
-#> 
-#>        
-#>         non-island island
-#>   short         72     59
-#>   long          56     41
-#> 
-#> , ,  = 7
-#> 
-#>        
-#>         non-island island
-#>   short         88     68
-#>   long          53     20
-#> 
+round(tapply(acceptability$rating, acceptability[c("length", "structure")], mean), 2)
+#>        structure
+#> length  non-island island
+#>   short       4.93   4.59
+#>   long        4.35   3.47
+# \donttest{
+if (requireNamespace("ordinal", quietly = TRUE)) {
+  acceptability$rating <- factor(acceptability$rating, ordered = TRUE)
+  m <- ordinal::clmm(rating ~ length * structure + (1 | participant) + (1 | item),
+                     data = acceptability)
+  coef(summary(m))
+}
+#>                              Estimate Std. Error    z value     Pr(>|z|)
+#> 1|2                        -3.6771585  0.2058756 -17.861070 2.370507e-71
+#> 2|3                        -2.5896943  0.1910695 -13.553678 7.535764e-42
+#> 3|4                        -1.6227889  0.1838110  -8.828574 1.060188e-18
+#> 4|5                        -0.6520930  0.1801418  -3.619887 2.947318e-04
+#> 5|6                         0.3802503  0.1798911   2.113781 3.453398e-02
+#> 6|7                         1.4589720  0.1850249   7.885275 3.138429e-15
+#> lengthlong                 -0.7158602  0.1290834  -5.545720 2.927464e-08
+#> structureisland            -0.4314978  0.1299174  -3.321324 8.959159e-04
+#> lengthlong:structureisland -0.5824123  0.1828323  -3.185501 1.445037e-03
+# }
 ```

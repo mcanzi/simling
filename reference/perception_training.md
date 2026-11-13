@@ -39,26 +39,30 @@ mean 0.6 and SD 0.35.
 ## Examples
 
 ``` r
-perception_training
-#> # A tibble: 18 × 3
-#>    learner   pre  post
-#>    <fct>   <int> <int>
-#>  1 L01        26    33
-#>  2 L02        23    27
-#>  3 L03        28    26
-#>  4 L04        24    28
-#>  5 L05        33    37
-#>  6 L06        25    30
-#>  7 L07        27    29
-#>  8 L08        23    20
-#>  9 L09        28    30
-#> 10 L10        22    30
-#> 11 L11        25    25
-#> 12 L12        24    29
-#> 13 L13        27    30
-#> 14 L14        25    29
-#> 15 L15        23    24
-#> 16 L16        27    35
-#> 17 L17        35    38
-#> 18 L18        31    34
+t.test(perception_training$post, perception_training$pre, paired = TRUE)
+#> 
+#>  Paired t-test
+#> 
+#> data:  perception_training$post and perception_training$pre
+#> t = 4.5553, df = 17, p-value = 0.0002806
+#> alternative hypothesis: true mean difference is not equal to 0
+#> 95 percent confidence interval:
+#>  1.729816 4.714629
+#> sample estimates:
+#> mean difference 
+#>        3.222222 
+#> 
+t.test(perception_training$post, perception_training$pre)
+#> 
+#>  Welch Two Sample t-test
+#> 
+#> data:  perception_training$post and perception_training$pre
+#> t = 2.36, df = 32.132, p-value = 0.02451
+#> alternative hypothesis: true difference in means is not equal to 0
+#> 95 percent confidence interval:
+#>  0.4415294 6.0029150
+#> sample estimates:
+#> mean of x mean of y 
+#>  29.66667  26.44444 
+#> 
 ```

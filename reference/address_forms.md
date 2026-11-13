@@ -43,9 +43,25 @@ speakers over 50.
 ## Examples
 
 ``` r
-table(address_forms$age_group, address_forms$form)
-#>           
-#>            Sie du
-#>   under 30  41 49
-#>   over 50   68 22
+tab <- xtabs(~ setting + form + age_group, data = address_forms)
+round(prop.table(tab, c(1, 3))[, "du", ], 2)
+#>             age_group
+#> setting      under 30 over 50
+#>   university     0.83    0.47
+#>   office         0.47    0.17
+#>   shop           0.33    0.10
+chisq.test(tab[, , "under 30"])
+#> 
+#>  Pearson's Chi-squared test
+#> 
+#> data:  tab[, , "under 30"]
+#> X-squared = 16.217, df = 2, p-value = 0.000301
+#> 
+chisq.test(tab[, , "over 50"])
+#> 
+#>  Pearson's Chi-squared test
+#> 
+#> data:  tab[, , "over 50"]
+#> X-squared = 12.393, df = 2, p-value = 0.002036
+#> 
 ```

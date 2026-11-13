@@ -59,16 +59,34 @@ responses are the latent item scores cut at -1.3, -0.4, 0.4 and 1.3.
 ## Examples
 
 ``` r
-head(language_attitudes)
-#> # A tibble: 6 × 15
-#>   respondent   age dialect_speaker intelligent educated competent  lazy friendly
-#>   <fct>      <int> <fct>                 <int>    <int>     <int> <int>    <int>
-#> 1 R001          69 yes                       1        3         1     4        2
-#> 2 R002          72 yes                       2        3         3     5        3
-#> 3 R003          74 no                        4        4         3     2        3
-#> 4 R004          65 no                        2        2         3     5        3
-#> 5 R005          30 no                        4        5         2     2        5
-#> 6 R006          25 no                        2        4         2     1        3
-#> # ℹ 7 more variables: warm <int>, trustworthy <int>, cold <int>,
-#> #   used_by_young <int>, will_survive <int>, teach_school <int>, identity <int>
+la <- language_attitudes
+la$lazy <- 6 - la$lazy
+la$cold <- 6 - la$cold
+items <- na.omit(la[, 4:15])
+fa <- factanal(items, factors = 3, rotation = "promax")
+print(fa$loadings, cutoff = 0.3)
+#> 
+#> Loadings:
+#>               Factor1 Factor2 Factor3
+#> intelligent            0.732         
+#> educated               0.763         
+#> competent              0.643         
+#> lazy                   0.503         
+#> friendly       0.804                 
+#> warm           0.758                 
+#> trustworthy    0.666                 
+#> cold           0.654                 
+#> used_by_young                  0.661 
+#> will_survive                   0.584 
+#> teach_school                   0.645 
+#> identity                       0.609 
+#> 
+#>                Factor1 Factor2 Factor3
+#> SS loadings      2.107   1.797   1.582
+#> Proportion Var   0.176   0.150   0.132
+#> Cumulative Var   0.176   0.325   0.457
+aggregate(cbind(intelligent, friendly, will_survive) ~ dialect_speaker, data = la, FUN = mean)
+#>   dialect_speaker intelligent friendly will_survive
+#> 1              no    3.005618 3.179775         3.00
+#> 2             yes    2.933333 3.416667         3.35
 ```

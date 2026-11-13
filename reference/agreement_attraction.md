@@ -79,15 +79,26 @@ Psychology*, 23(1), 45-93.
 ## Examples
 
 ``` r
-head(agreement_attraction)
-#> # A tibble: 6 × 10
-#>   participant  list item  grammaticality attractor skipped first_fixation
-#>   <fct>       <int> <fct> <fct>          <fct>       <int>          <dbl>
-#> 1 P01             1 i01   ungrammatical  singular        0            398
-#> 2 P01             1 i02   ungrammatical  plural          0            349
-#> 3 P01             1 i03   grammatical    singular        0            135
-#> 4 P01             1 i04   grammatical    plural          0            217
-#> 5 P01             1 i05   ungrammatical  singular        0            229
-#> 6 P01             1 i06   ungrammatical  plural          0            265
-#> # ℹ 3 more variables: gaze_duration <dbl>, regression <int>, total_time <dbl>
+aggregate(gaze_duration ~ grammaticality + attractor, data = agreement_attraction,
+          FUN = mean)
+#>   grammaticality attractor gaze_duration
+#> 1    grammatical  singular      271.5694
+#> 2  ungrammatical  singular      306.6347
+#> 3    grammatical    plural      276.6960
+#> 4  ungrammatical    plural      286.7132
+mean(agreement_attraction$skipped)
+#> [1] 0.1429688
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::lmer(log(gaze_duration) ~ grammaticality * attractor + (1 | participant) +
+                    (1 | item), data = agreement_attraction)
+  lme4::fixef(m)
+}
+#>                                 (Intercept) 
+#>                                  5.55015633 
+#>                 grammaticalityungrammatical 
+#>                                  0.11821301 
+#>                             attractorplural 
+#>                                  0.01384567 
+#> grammaticalityungrammatical:attractorplural 
+#>                                 -0.08109389 
 ```

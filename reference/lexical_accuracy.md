@@ -47,14 +47,40 @@ By-participant intercepts `u0` have SD 0.8 and slopes `u1` SD 0.3
 ## Examples
 
 ``` r
-head(lexical_accuracy)
-#> # A tibble: 6 × 5
-#>   participant word  log_freq freq_c correct
-#>   <fct>       <fct>    <dbl>  <dbl>   <int>
-#> 1 P01         w01       5.96  2.38        1
-#> 2 P01         w02       3.48 -0.101       1
-#> 3 P01         w03       3.42 -0.161       1
-#> 4 P01         w04       1.87 -1.71        0
-#> 5 P01         w05       4.77  1.19        1
-#> 6 P01         w06       3.27 -0.311       0
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::glmer(correct ~ freq_c + (1 + freq_c || participant) + (1 | word),
+                   data = lexical_accuracy, family = binomial)
+  summary(m)
+}
+#> Generalized linear mixed model fit by maximum likelihood (Laplace
+#>   Approximation) [glmerMod]
+#>  Family: binomial  ( logit )
+#> Formula: correct ~ freq_c + ((1 | participant) + (0 + freq_c | participant)) +  
+#>     (1 | word)
+#>    Data: lexical_accuracy
+#> 
+#>       AIC       BIC    logLik -2*log(L)  df.resid 
+#>    1686.6    1714.1    -838.3    1676.6      1795 
+#> 
+#> Scaled residuals: 
+#>     Min      1Q  Median      3Q     Max 
+#> -7.8242 -0.3672  0.3045  0.5102  2.8066 
+#> 
+#> Random effects:
+#>  Groups        Name        Variance Std.Dev.
+#>  word          (Intercept) 0.10757  0.3280  
+#>  participant   freq_c      0.07574  0.2752  
+#>  participant.1 (Intercept) 0.59914  0.7740  
+#> Number of obs: 1800, groups:  word, 60; participant, 30
+#> 
+#> Fixed effects:
+#>             Estimate Std. Error z value Pr(>|z|)    
+#> (Intercept)  1.47165    0.16659   8.834   <2e-16 ***
+#> freq_c       0.85216    0.08532   9.988   <2e-16 ***
+#> ---
+#> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+#> 
+#> Correlation of Fixed Effects:
+#>        (Intr)
+#> freq_c 0.164 
 ```

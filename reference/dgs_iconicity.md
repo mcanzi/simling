@@ -81,14 +81,21 @@ Language. *Psychological Science*, 23(12), 1443-1448.
 ## Examples
 
 ``` r
-head(dgs_iconicity)
-#> # A tibble: 6 × 7
-#>   rater group       sign    category handedness   aoa rating
-#>   <fct> <fct>       <fct>   <fct>    <fct>      <dbl>  <int>
-#> 1 R01   deaf signer sign001 noun     one-handed   4.5      6
-#> 2 R01   deaf signer sign002 noun     two-handed   6.9      5
-#> 3 R01   deaf signer sign003 verb     two-handed   5        6
-#> 4 R01   deaf signer sign004 noun     one-handed   8.8      1
-#> 5 R01   deaf signer sign005 noun     one-handed   6.8      4
-#> 6 R01   deaf signer sign006 verb     one-handed   6.4      7
+round(tapply(dgs_iconicity$rating, dgs_iconicity[c("group", "category")], mean), 2)
+#>                     category
+#> group                noun verb
+#>   hearing non-signer 3.65 4.15
+#>   deaf signer        4.01 4.06
+signs <- aggregate(rating ~ sign + group, data = dgs_iconicity, FUN = mean)
+signs <- reshape(signs, idvar = "sign", timevar = "group", direction = "wide")
+cor(signs[, 2], signs[, 3])
+#> [1] 0.9620867
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::lmer(rating ~ group * category + (1 | rater) + (1 | sign), data = dgs_iconicity)
+  lme4::fixef(m)
+}
+#>                   (Intercept)              groupdeaf signer 
+#>                     3.6522682                     0.3571992 
+#>                  categoryverb groupdeaf signer:categoryverb 
+#>                     0.4981134                    -0.4482934 
 ```

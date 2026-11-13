@@ -78,11 +78,29 @@ reference to the order of meaningful elements. In J. H. Greenberg (ed.),
 ## Examples
 
 ``` r
-table(word_order$order, word_order$adpositions)
+round(prop.table(table(word_order$order)), 2)
+#> 
+#>               SOV               SVO               VSO no dominant order 
+#>              0.44              0.36              0.06              0.14 
+round(prop.table(table(word_order$order, word_order$adpositions), 1), 2)
 #>                    
 #>                     postpositions prepositions
-#>   SOV                         158           17
-#>   SVO                          20          125
-#>   VSO                           1           23
-#>   no dominant order            26           30
+#>   SOV                        0.90         0.10
+#>   SVO                        0.14         0.86
+#>   VSO                        0.04         0.96
+#>   no dominant order          0.46         0.54
+head(sort(table(word_order$family), decreasing = TRUE))
+#> 
+#> Family 002 Family 069 Family 005 Family 006 Family 052 Family 004 
+#>         17         16         14         13         13         11 
+if (requireNamespace("lme4", quietly = TRUE)) {
+  word_order$sov <- word_order$order == "SOV"
+  m1 <- glm(adpositions ~ sov, data = word_order, family = binomial)
+  m2 <- lme4::glmer(adpositions ~ sov + (1 | family), data = word_order, family = binomial)
+  rbind(glm = summary(m1)$coefficients["sovTRUE", 1:2],
+        glmer = summary(m2)$coefficients["sovTRUE", 1:2])
+}
+#>        Estimate Std. Error
+#> glm   -3.561018  0.3033691
+#> glmer -3.629515  0.3637423
 ```

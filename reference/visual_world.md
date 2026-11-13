@@ -74,15 +74,13 @@ verbs: Restricting the domain of subsequent reference. *Cognition*,
 ## Examples
 
 ``` r
-head(visual_world)
-#> # A tibble: 6 × 10
-#>   participant  list item  condition    time target competitor distractor_1
-#>   <fct>       <int> <fct> <fct>       <dbl>  <int>      <int>        <int>
-#> 1 P01             1 i01   restrictive     0      8          5            6
-#> 2 P01             1 i01   restrictive    50      5          3            8
-#> 3 P01             1 i01   restrictive   100      8          5            8
-#> 4 P01             1 i01   restrictive   150     10          4            5
-#> 5 P01             1 i01   restrictive   200      7          7            8
-#> 6 P01             1 i01   restrictive   250      3          5           13
-#> # ℹ 2 more variables: distractor_2 <int>, samples <int>
+visual_world$p_target <- visual_world$target / visual_world$samples
+looks <- aggregate(p_target ~ condition + time, data = visual_world, FUN = mean)
+plot(p_target ~ time, data = looks, col = condition)
+abline(v = 600, lty = 2)
+
+looks[looks$time == 600, ]
+#>          condition time  p_target
+#> 25 non-restrictive  600 0.2989583
+#> 26     restrictive  600 0.5344792
 ```

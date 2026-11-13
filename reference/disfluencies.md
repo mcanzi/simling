@@ -64,8 +64,18 @@ Workshop 2020*.
 ## Examples
 
 ``` r
-table(disfluencies$filled_pauses)
-#> 
-#>    0    1    2    3    5 
-#> 2298   82   17    2    1 
+m0 <- glm(filled_pauses ~ role + offset(log(syllables / 100)), data = disfluencies,
+          family = poisson)
+c(observed_zeros = mean(disfluencies$filled_pauses == 0),
+  poisson_zeros = mean(dpois(0, fitted(m0))))
+#> observed_zeros  poisson_zeros 
+#>      0.9575000      0.9508454 
+if (requireNamespace("pscl", quietly = TRUE)) {
+  m <- pscl::zeroinfl(filled_pauses ~ role + offset(log(syllables / 100)) | 1,
+                      data = disfluencies)
+  exp(coef(m, "count"))
+  plogis(coef(m, "zero"))
+}
+#> (Intercept) 
+#>   0.6950195 
 ```

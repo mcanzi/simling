@@ -72,14 +72,29 @@ contrast in contemporary Korean. *Phonology*, 23(2), 287-308.
 ## Examples
 
 ``` r
-head(korean_stops)
-#> # A tibble: 6 × 8
-#>   speaker generation gender stop      place     rep   vot    f0
-#>   <fct>   <fct>      <fct>  <fct>     <fct>   <int> <dbl> <dbl>
-#> 1 S01     older      female aspirated coronal     1   100   217
-#> 2 S01     older      female aspirated coronal     2    59   215
-#> 3 S01     older      female aspirated coronal     3   114   207
-#> 4 S01     older      female aspirated coronal     4    82   197
-#> 5 S01     older      female aspirated labial      1   107   218
-#> 6 S01     older      female aspirated labial      2    94   212
+aggregate(cbind(vot, f0) ~ generation + stop, data = korean_stops, FUN = mean)
+#>   generation      stop      vot       f0
+#> 1      older     lenis 57.85000 143.1750
+#> 2    younger     lenis 81.12917 130.9750
+#> 3      older     tense 14.35417 167.6083
+#> 4    younger     tense 14.39167 170.9750
+#> 5      older aspirated 99.00000 170.2958
+#> 6    younger aspirated 85.27500 179.8167
+korean_stops$f0_st <- 12 * log2(korean_stops$f0 / ave(korean_stops$f0, korean_stops$speaker))
+for (g in c("older", "younger")) {
+  d <- subset(korean_stops, generation == g)
+  set.seed(1)
+  cl <- kmeans(scale(d[c("vot", "f0_st")]), centers = 3, nstart = 10)
+  print(table(d$stop, cl$cluster))
+}
+#>            
+#>               1   2   3
+#>   lenis       0 238   2
+#>   tense     240   0   0
+#>   aspirated   2   7 231
+#>            
+#>               1   2   3
+#>   lenis       0 240   0
+#>   tense     240   0   0
+#>   aspirated   1   0 239
 ```

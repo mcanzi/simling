@@ -58,14 +58,16 @@ of Child Language*, 44(3), 677-694.
 ## Examples
 
 ``` r
-head(vocabulary_growth)
-#> # A tibble: 6 × 4
-#>   child input   age vocabulary
-#>   <fct> <int> <int>      <int>
-#> 1 C01     861    16         17
-#> 2 C01     861    18         45
-#> 3 C01     861    20         66
-#> 4 C01     861    22        147
-#> 5 C01     861    24        254
-#> 6 C01     861    28        454
+plot(vocabulary ~ age, data = vocabulary_growth, col = grey(0.4))
+
+if (requireNamespace("lme4", quietly = TRUE)) {
+  vocabulary_growth$session <- seq_len(nrow(vocabulary_growth))
+  m <- lme4::glmer(cbind(vocabulary, 680 - vocabulary) ~ I(age - 24) +
+                     I(log2(input / 1200)) + (1 | child) + (1 | session),
+                   data = vocabulary_growth, family = binomial)
+  b <- lme4::fixef(m)
+  c(spurt_at_1200_words = 24 - b[[1]] / b[[2]], months_per_doubling = b[[3]] / b[[2]])
+}
+#> spurt_at_1200_words months_per_doubling 
+#>           24.603348            1.663168 
 ```

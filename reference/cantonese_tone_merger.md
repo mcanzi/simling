@@ -67,14 +67,17 @@ Cantonese. *Language Variation and Change*, 25(3), 341-370.
 ## Examples
 
 ``` r
-head(cantonese_tone_merger)
-#> # A tibble: 6 × 7
-#>   speaker   age gender word  tone  log_freq  rise
-#>   <fct>   <int> <fct>  <fct> <fct>    <dbl> <dbl>
-#> 1 S01        42 male   w01   T2        3.14  8.24
-#> 2 S01        42 male   w02   T2        3.65  8.65
-#> 3 S01        42 male   w03   T2        3.67  9.24
-#> 4 S01        42 male   w04   T2        2.88  7.58
-#> 5 S01        42 male   w05   T2        2.39  7.11
-#> 6 S01        42 male   w06   T2        3.18  7.54
+rise <- tapply(cantonese_tone_merger$rise,
+               cantonese_tone_merger[c("speaker", "tone")], mean)
+age <- tapply(cantonese_tone_merger$age, cantonese_tone_merger$speaker, unique)
+difference <- rise[, "T2"] - rise[, "T5"]
+hist(difference, breaks = 20)
+
+plot(age, difference)
+
+table(merger = difference < 2, under_40 = age < 40)
+#>        under_40
+#> merger  FALSE TRUE
+#>   FALSE    56   10
+#>   TRUE      2   22
 ```

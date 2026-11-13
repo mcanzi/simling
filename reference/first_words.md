@@ -57,14 +57,14 @@ observations are censored.
 ## Examples
 
 ``` r
-head(first_words)
-#> # A tibble: 6 × 6
-#>   child word  category log_freq   age produced
-#>   <fct> <fct> <fct>       <dbl> <int>    <int>
-#> 1 C01   w01   noun         1.3     24        0
-#> 2 C01   w02   noun         1.16    24        0
-#> 3 C01   w03   noun         1.31    21        1
-#> 4 C01   w04   noun         3.39    13        1
-#> 5 C01   w05   noun         2.91    24        0
-#> 6 C01   w06   noun         2.14    23        1
+if (requireNamespace("survival", quietly = TRUE)) {
+  km <- survival::survfit(survival::Surv(age, produced) ~ category, data = first_words)
+  plot(km, col = 1:3, xlim = c(10, 24))
+  m <- survival::coxph(survival::Surv(age, produced) ~ category + log_freq +
+                         survival::frailty(child), data = first_words)
+  coef(m)
+}
+
+#>  categoryverb categoryother      log_freq 
+#>    -0.6855188    -1.0264078     0.4688890 
 ```

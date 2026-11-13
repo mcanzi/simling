@@ -47,14 +47,14 @@ longer. Accuracy is 95% for high- and 85% for low-frequency words.
 ## Examples
 
 ``` r
-head(rt_frequency)
-#> # A tibble: 6 × 5
-#>   participant word  frequency    rt correct
-#>   <fct>       <fct> <fct>     <dbl>   <int>
-#> 1 P01         w01   high        805       1
-#> 2 P01         w02   high        887       1
-#> 3 P01         w03   high        747       1
-#> 4 P01         w04   high        624       1
-#> 5 P01         w05   high        744       1
-#> 6 P01         w06   high        558       1
+aggregate(cbind(rt, correct) ~ frequency, data = rt_frequency, FUN = mean)
+#>   frequency     rt correct
+#> 1      high 630.86    0.96
+#> 2       low 692.68    0.86
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::lmer(log(rt) ~ frequency + (1 | participant) + (1 | word), data = rt_frequency)
+  exp(lme4::fixef(m))
+}
+#>  (Intercept) frequencylow 
+#>   619.355116     1.102924 
 ```

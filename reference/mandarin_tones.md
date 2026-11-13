@@ -70,14 +70,13 @@ Chao, Y. R. (1930). A system of tone letters. *Le Maître Phonétique*,
 ## Examples
 
 ``` r
-head(mandarin_tones)
-#> # A tibble: 6 × 8
-#>   speaker gender tone  syllable token_id    duration  time    f0
-#>   <fct>   <fct>  <fct> <fct>    <fct>          <dbl> <dbl> <dbl>
-#> 1 S01     female T1    syl1     S01.T1.syl1      242     0   313
-#> 2 S01     female T1    syl1     S01.T1.syl1      242    10   316
-#> 3 S01     female T1    syl1     S01.T1.syl1      242    20   317
-#> 4 S01     female T1    syl1     S01.T1.syl1      242    30   312
-#> 5 S01     female T1    syl1     S01.T1.syl1      242    40   315
-#> 6 S01     female T1    syl1     S01.T1.syl1      242    50   312
+mandarin_tones$st <- 12 * log2(mandarin_tones$f0 /
+  ave(mandarin_tones$f0, mandarin_tones$speaker))
+round(tapply(mandarin_tones$st, mandarin_tones[c("tone", "time")], mean), 1)
+#>     time
+#> tone    0   10   20   30   40   50   60   70   80   90  100
+#>   T1  3.8  3.7  3.7  3.7  3.7  3.6  3.6  3.4  3.4  3.3  3.2
+#>   T2 -1.4 -1.7 -1.9 -1.8 -1.4 -0.6  0.2  1.2  2.1  2.9  3.6
+#>   T3 -3.4 -4.0 -4.6 -5.3 -6.0 -6.4 -6.4 -6.0 -5.1 -4.0 -2.6
+#>   T4  3.7  3.3  2.9  2.3  1.4  0.4 -0.8 -2.0 -3.3 -4.6 -6.0
 ```

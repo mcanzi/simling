@@ -69,14 +69,22 @@ unnatural constraints in Hungarian vowel harmony. *Language*, 85,
 ## Examples
 
 ``` r
-table(hungarian_harmony$stem_type, hungarian_harmony$suffix)
+round(prop.table(table(hungarian_harmony$stem_type, hungarian_harmony$suffix), 1), 2)
 #>      
 #>       back front
-#>   B    581    19
-#>   F     16   584
-#>   N     62   538
-#>   Bi   542    58
-#>   Bé   343   257
-#>   Be   241   359
-#>   BNN  160   440
+#>   B   0.97  0.03
+#>   F   0.03  0.97
+#>   N   0.10  0.90
+#>   Bi  0.90  0.10
+#>   Bé  0.57  0.43
+#>   Be  0.40  0.60
+#>   BNN 0.27  0.73
+if (requireNamespace("lme4", quietly = TRUE)) {
+  mixed <- subset(hungarian_harmony, is.element(stem_type, c("Bi", "Bé", "Be", "BNN")))
+  m <- lme4::glmer(suffix ~ stem_type + (1 | participant) + (1 | item),
+                   data = droplevels(mixed), family = binomial)
+  lme4::fixef(m)
+}
+#>  (Intercept)  stem_typeBé  stem_typeBe stem_typeBNN 
+#>    -2.412547     2.089060     2.851847     3.535148 
 ```

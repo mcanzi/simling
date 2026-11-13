@@ -33,14 +33,18 @@ before voiced consonants.
 ## Examples
 
 ``` r
-head(vowel_voicing)
-#> # A tibble: 6 × 2
-#>   voicing   duration
-#>   <fct>        <dbl>
-#> 1 voiceless      166
-#> 2 voiceless       96
-#> 3 voiceless      106
-#> 4 voiceless      112
-#> 5 voiceless      101
-#> 6 voiceless      101
+t.test(duration ~ voicing, data = vowel_voicing)
+#> 
+#>  Welch Two Sample t-test
+#> 
+#> data:  duration by voicing
+#> t = -10.471, df = 117.99, p-value < 2.2e-16
+#> alternative hypothesis: true difference in means between group voiceless and group voiced is not equal to 0
+#> 95 percent confidence interval:
+#>  -44.90931 -30.62403
+#> sample estimates:
+#> mean in group voiceless    mean in group voiced 
+#>                124.3000                162.0667 
+#> 
+boxplot(duration ~ voicing, data = vowel_voicing)
 ```

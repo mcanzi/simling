@@ -39,14 +39,9 @@ True model: `log(rt) = 6.56 - 0.04 * log_freq` for L1 and
 ## Examples
 
 ``` r
-head(l2_frequency)
-#> # A tibble: 6 × 3
-#>   group log_freq    rt
-#>   <fct>    <dbl> <dbl>
-#> 1 L1        3.54   659
-#> 2 L1        2.53   651
-#> 3 L1        3.13   677
-#> 4 L1        4.47   622
-#> 5 L1        1.43   625
-#> 6 L1        2.13   668
+m <- lm(log(rt) ~ log_freq * group, data = l2_frequency)
+coef(m)
+#>      (Intercept)         log_freq          groupL2 log_freq:groupL2 
+#>       6.57721546      -0.04308238       0.29221918      -0.03213221 
+plot(log(rt) ~ log_freq, data = l2_frequency, col = group)
 ```

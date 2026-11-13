@@ -47,14 +47,8 @@ with `e` normal, SD 0.05.
 ## Examples
 
 ``` r
-head(freq_length)
-#> # A tibble: 6 × 5
-#>   log_freq length  lf_c len_c    rt
-#>      <dbl>  <int> <dbl> <dbl> <dbl>
-#> 1     1.35      3 -2.12 -4.45   719
-#> 2     5.09      5  1.62 -2.45   651
-#> 3     5.71      7  2.24 -0.45   645
-#> 4     2.35      8 -1.12  0.55   816
-#> 5     1.85     11 -1.62  3.55   901
-#> 6     1.17      4 -2.30 -3.45   749
+m <- lm(log(rt) ~ lf_c * len_c, data = freq_length)
+coef(m)
+#>  (Intercept)         lf_c        len_c   lf_c:len_c 
+#>  6.626117467 -0.037866256  0.017640267 -0.006635436 
 ```

@@ -65,14 +65,26 @@ off for very rare and very frequent words. Accuracy is \`plogis(2.5
 ## Examples
 
 ``` r
-head(megastudy)
-#> # A tibble: 6 × 8
-#>   word  log_freq length neighbours   aoa concreteness    rt accuracy
-#>   <fct>    <dbl>  <int>      <int> <dbl>        <dbl> <dbl>    <dbl>
-#> 1 w0001     1.08      6          1   8.9         3.21   678    0.789
-#> 2 w0002     3.45      8          1   6.8         2.22   628    0.981
-#> 3 w0003     1.49      4          7  11.2         2.43   723    0.946
-#> 4 w0004     2.96      7          3  10.1         1      679    0.921
-#> 5 w0005     2.6       7          2   7.5         2.4    671    0.924
-#> 6 w0006     2.86      9          0   6.3         1.72   712    0.903
+m1 <- lm(rt ~ log_freq + length + neighbours + aoa + concreteness, data = megastudy)
+m2 <- lm(rt ~ splines::ns(log_freq, 4) + length + neighbours + aoa + concreteness,
+         data = megastudy)
+anova(m1, m2)
+#> Analysis of Variance Table
+#> 
+#> Model 1: rt ~ log_freq + length + neighbours + aoa + concreteness
+#> Model 2: rt ~ splines::ns(log_freq, 4) + length + neighbours + aoa + concreteness
+#>   Res.Df     RSS Df Sum of Sq     F    Pr(>F)    
+#> 1   5994 7175939                                 
+#> 2   5991 7128571  3     47368 13.27 1.245e-08 ***
+#> ---
+#> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+coef(m2)[c("length", "neighbours", "aoa", "concreteness")]
+#>       length   neighbours          aoa concreteness 
+#>     8.820286    -2.221157    10.032493    -5.273099 
+round(cor(megastudy[c("log_freq", "length", "neighbours", "aoa")]), 2)
+#>            log_freq length neighbours   aoa
+#> log_freq       1.00  -0.40       0.29 -0.58
+#> length        -0.40   1.00      -0.71  0.24
+#> neighbours     0.29  -0.71       1.00 -0.18
+#> aoa           -0.58   0.24      -0.18  1.00
 ```

@@ -70,15 +70,30 @@ consonants; deletion drops sharply around age 45.
 ## Examples
 
 ``` r
-head(td_deletion)
-#> # A tibble: 6 × 11
-#>   speaker deleted  following morph         rate log_freq   age gender education
-#>   <fct>   <fct>    <fct>     <fct>        <dbl>    <dbl> <int> <fct>  <fct>    
-#> 1 S01     deleted  consonant past          4.14     2.64    55 female school   
-#> 2 S01     retained vowel     monomorpheme  4.17     2.55    55 female school   
-#> 3 S01     deleted  vowel     monomorpheme  4.4      3.85    55 female school   
-#> 4 S01     deleted  vowel     monomorpheme  5.76     5.8     55 female school   
-#> 5 S01     deleted  consonant past          5.42     3.86    55 female school   
-#> 6 S01     retained pause     monomorpheme  4.19     3.88    55 female school   
-#> # ℹ 2 more variables: noise_cont <dbl>, noise_bin <fct>
+if (requireNamespace("rpart", quietly = TRUE)) {
+  tree <- rpart::rpart(deleted ~ following + morph + rate + log_freq + age + gender +
+                         education + noise_cont + noise_bin, data = td_deletion)
+  round(tree$variable.importance)
+}
+#>  following        age       rate   log_freq  education      morph noise_cont 
+#>         85         39         27         22         19          6          2 
+#>  noise_bin 
+#>          1 
+if (requireNamespace("randomForest", quietly = TRUE)) {
+  set.seed(1)
+  rf <- randomForest::randomForest(deleted ~ following + morph + rate + log_freq + age +
+                                     gender + education + noise_cont + noise_bin,
+                                   data = td_deletion, importance = TRUE)
+  round(randomForest::importance(rf, type = 1), 1)
+}
+#>            MeanDecreaseAccuracy
+#> following                  62.4
+#> morph                      22.6
+#> rate                       10.4
+#> log_freq                   10.1
+#> age                        28.9
+#> gender                      5.0
+#> education                  12.3
+#> noise_cont                  2.2
+#> noise_bin                  -0.2
 ```

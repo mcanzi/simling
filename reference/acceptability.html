@@ -93,56 +93,29 @@ interaction slopes (SD 0.3); by-item intercepts (SD 0.4).</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">acceptability</span><span class="op">$</span><span class="va">length</span>, <span class="va">acceptability</span><span class="op">$</span><span class="va">structure</span>, <span class="va">acceptability</span><span class="op">$</span><span class="va">rating</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> , ,  = 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         non-island island</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   short         11     25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   long          24     65</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> , ,  = 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         non-island island</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   short         23     30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   long          41     65</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> , ,  = 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         non-island island</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   short         46     48</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   long          62     69</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> , ,  = 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         non-island island</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   short         69     68</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   long          68     74</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> , ,  = 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         non-island island</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   short         75     86</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   long          80     50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> , ,  = 6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         non-island island</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   short         72     59</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   long          56     41</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> , ,  = 7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         non-island island</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   short         88     68</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   long          53     20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tapply.html" class="external-link">tapply</a></span><span class="op">(</span><span class="va">acceptability</span><span class="op">$</span><span class="va">rating</span>, <span class="va">acceptability</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"length"</span>, <span class="st">"structure"</span><span class="op">)</span><span class="op">]</span>, <span class="va">mean</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        structure</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> length  non-island island</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   short       4.93   4.59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   long        4.35   3.47</span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"ordinal"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">acceptability</span><span class="op">$</span><span class="va">rating</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">acceptability</span><span class="op">$</span><span class="va">rating</span>, ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">ordinal</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ordinal/man/clmm.html" class="external-link">clmm</a></span><span class="op">(</span><span class="va">rating</span> <span class="op">~</span> <span class="va">length</span> <span class="op">*</span> <span class="va">structure</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">participant</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">item</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                     data <span class="op">=</span> <span class="va">acceptability</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              Estimate Std. Error    z value     Pr(&gt;|z|)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1|2                        -3.6771585  0.2058756 -17.861070 2.370507e-71</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2|3                        -2.5896943  0.1910695 -13.553678 7.535764e-42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3|4                        -1.6227889  0.1838110  -8.828574 1.060188e-18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4|5                        -0.6520930  0.1801418  -3.619887 2.947318e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5|6                         0.3802503  0.1798911   2.113781 3.453398e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6|7                         1.4589720  0.1850249   7.885275 3.138429e-15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> lengthlong                 -0.7158602  0.1290834  -5.545720 2.927464e-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> structureisland            -0.4314978  0.1299174  -3.321324 8.959159e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> lengthlong:structureisland -0.5824123  0.1828323  -3.185501 1.445037e-03</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

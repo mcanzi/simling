@@ -42,14 +42,22 @@ times higher. Token SD is 40 Hz for F1 and 120 Hz for F2.
 ## Examples
 
 ``` r
-head(formants)
-#> # A tibble: 6 × 5
-#>   speaker vowel token    f1    f2
-#>   <fct>   <fct> <int> <dbl> <dbl>
-#> 1 A       a         1   747  1163
-#> 2 A       a         2   784  1093
-#> 3 A       a         3   731  1256
-#> 4 A       a         4   728  1519
-#> 5 A       a         5   779  1357
-#> 6 A       a         6   746  1317
+aggregate(cbind(f1, f2) ~ speaker + vowel, data = formants, FUN = mean)
+#>   speaker vowel     f1      f2
+#> 1       A     i 306.80 2325.65
+#> 2       B     i 353.40 2760.25
+#> 3       A     a 741.95 1274.20
+#> 4       B     a 892.70 1559.30
+#> 5       A     u 316.50  816.55
+#> 6       B     u 377.90  950.10
+formants$f1_z <- ave(formants$f1, formants$speaker, FUN = function(x) c(scale(x)))
+formants$f2_z <- ave(formants$f2, formants$speaker, FUN = function(x) c(scale(x)))
+aggregate(cbind(f1_z, f2_z) ~ speaker + vowel, data = formants, FUN = mean)
+#>   speaker vowel       f1_z       f2_z
+#> 1       A     i -0.7119075  1.3136014
+#> 2       B     i -0.7372816  1.3090919
+#> 3       A     a  1.3772454 -0.3046285
+#> 4       B     a  1.3784471 -0.2572665
+#> 5       A     u -0.6653379 -1.0089729
+#> 6       B     u -0.6411656 -1.0518254
 ```

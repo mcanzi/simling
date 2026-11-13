@@ -62,14 +62,27 @@ Kroch, A. S. (1989). Reflexes of grammar in patterns of language change.
 ## Examples
 
 ``` r
-head(do_support)
-#> # A tibble: 6 × 5
-#>   text   year context                    do eligible
-#>   <fct> <int> <fct>                   <int>    <int>
-#> 1 T001   1481 affirmative declarative     0       56
-#> 2 T001   1481 affirmative question        2       16
-#> 3 T001   1481 negative declarative        0       10
-#> 4 T001   1481 negative question           4       15
-#> 5 T002   1522 affirmative declarative     0       75
-#> 6 T002   1522 affirmative question        9       12
+do_support$century <- (do_support$year - 1550) / 100
+m <- glm(cbind(do, eligible - do) ~ 0 + context + context:century, data = do_support,
+         family = binomial)
+round(coef(m), 2)
+#>         contextaffirmative declarative            contextnegative declarative 
+#>                                  -7.35                                  -0.63 
+#>            contextaffirmative question               contextnegative question 
+#>                                   1.02                                   1.61 
+#> contextaffirmative declarative:century    contextnegative declarative:century 
+#>                                   3.46                                   3.50 
+#>    contextaffirmative question:century       contextnegative question:century 
+#>                                   3.52                                   3.45 
+rising <- subset(do_support, context != "affirmative declarative")
+anova(glm(cbind(do, eligible - do) ~ context + century, data = rising, family = binomial),
+      glm(cbind(do, eligible - do) ~ context * century, data = rising, family = binomial),
+      test = "Chisq")
+#> Analysis of Deviance Table
+#> 
+#> Model 1: cbind(do, eligible - do) ~ context + century
+#> Model 2: cbind(do, eligible - do) ~ context * century
+#>   Resid. Df Resid. Dev Df Deviance Pr(>Chi)
+#> 1       896     969.09                     
+#> 2       894     968.92  2  0.17152   0.9178
 ```

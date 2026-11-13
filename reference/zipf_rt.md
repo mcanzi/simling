@@ -44,14 +44,11 @@ SD 0.15.
 ## Examples
 
 ``` r
-head(zipf_rt)
-#> # A tibble: 6 × 4
-#>   word   rank  freq    rt
-#>   <fct> <int> <dbl> <dbl>
-#> 1 w0001    49 1020.   511
-#> 2 w0002    70  714.   738
-#> 3 w0003   125  400    624
-#> 4 w0004   135  370.   522
-#> 5 w0005   136  368.   589
-#> 6 w0006   169  296.   598
+hist(zipf_rt$freq, breaks = 50)
+
+hist(log10(zipf_rt$freq), breaks = 50)
+
+coef(lm(log(rt) ~ log10(freq), data = zipf_rt))
+#> (Intercept) log10(freq) 
+#>  6.62591038 -0.09607583 
 ```

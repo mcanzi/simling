@@ -61,14 +61,15 @@ speaker detection. *Computer Speech and Language*, 20(2-3), 230-275.
 ## Examples
 
 ``` r
-head(forensic_comparison)
-#> # A tibble: 6 × 6
-#>   comparison speaker_a speaker_b same_speaker score_auto score_formant
-#>   <fct>      <fct>     <fct>     <fct>             <dbl>         <dbl>
-#> 1 C0001      S01       S01       yes               3.42          2.38 
-#> 2 C0002      S01       S02       no               -0.201         0.214
-#> 3 C0003      S01       S03       no               -0.523        -0.176
-#> 4 C0004      S01       S04       no               -1.01         -0.047
-#> 5 C0005      S01       S05       no               -3.63          1.07 
-#> 6 C0006      S01       S06       no               -0.704         1.48 
+cllr <- function(score, same) {
+  m <- glm(same ~ score, family = binomial)
+  log_lr <- predict(m) - log(mean(same) / (1 - mean(same)))
+  0.5 * (mean(log2(1 + exp(-log_lr[same]))) + mean(log2(1 + exp(log_lr[!same]))))
+}
+same <- forensic_comparison$same_speaker == "yes"
+c(automatic = cllr(forensic_comparison$score_auto, same),
+  formant = cllr(forensic_comparison$score_formant, same))
+#> automatic   formant 
+#> 0.2531693 0.7061386 
+boxplot(score_auto ~ same_speaker, data = forensic_comparison)
 ```

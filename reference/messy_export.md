@@ -79,15 +79,17 @@ clean data: `log(rt) = 6.38 + 0.1 * low + p0 + w0 + e`, with participant
 ## Examples
 
 ``` r
-head(messy_export)
-#> # A tibble: 6 × 10
-#>   `Subject ID` Lab   Age   Block     Item Cond. `Response Time (ms)` ACC  
-#>   <chr>        <chr> <chr> <chr>    <int> <chr> <chr>                <chr>
-#> 1 p1           A     31    practice     1 Low   707.6                1    
-#> 2 p1           A     31    practice     2 high  732.4                1    
-#> 3 p1           A     31    practice     3 High  477.5                1    
-#> 4 p1           A     31    practice     4 Low   810.6                1    
-#> 5 p1           A     31    test         1 High  602.1                1    
-#> 6 p1           A     31    test         2 high  933.2                1    
-#> # ℹ 2 more variables: Timestamp <chr>, Notes <chr>
+x <- messy_export
+table(x$Cond.)
+#> 
+#> HIGH   High   LOW   Low    hi  high   lo    low 
+#>   128   131   132   135   138   142   142   138 
+condition <- ifelse(substr(tolower(trimws(x$Cond.)), 1, 1) == "h", "high", "low")
+rt <- as.numeric(sub(",", ".", x[["Response Time (ms)"]]))
+rt[rt == -999] <- NA
+id <- as.integer(gsub("[^0-9]", "", x[["Subject ID"]]))
+test <- x$Block == "test" & !duplicated(data.frame(id, x$Item, x$Block))
+tapply(rt[test], condition[test], mean, na.rm = TRUE)
+#>     high      low 
+#> 592.8893 631.4163 
 ```

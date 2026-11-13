@@ -103,16 +103,15 @@ Token offsets have SD 0.5 semitones and residuals are AR(1) with rho
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mandarin_tones</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   speaker gender tone  syllable token_id    duration  time    f0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> S01     female T1    syl1     S01.T1.syl1      242     0   313</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> S01     female T1    syl1     S01.T1.syl1      242    10   316</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> S01     female T1    syl1     S01.T1.syl1      242    20   317</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> S01     female T1    syl1     S01.T1.syl1      242    30   312</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> S01     female T1    syl1     S01.T1.syl1      242    40   315</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> S01     female T1    syl1     S01.T1.syl1      242    50   312</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">mandarin_tones</span><span class="op">$</span><span class="va">st</span> <span class="op">&lt;-</span> <span class="fl">12</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="va">mandarin_tones</span><span class="op">$</span><span class="va">f0</span> <span class="op">/</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/ave.html" class="external-link">ave</a></span><span class="op">(</span><span class="va">mandarin_tones</span><span class="op">$</span><span class="va">f0</span>, <span class="va">mandarin_tones</span><span class="op">$</span><span class="va">speaker</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tapply.html" class="external-link">tapply</a></span><span class="op">(</span><span class="va">mandarin_tones</span><span class="op">$</span><span class="va">st</span>, <span class="va">mandarin_tones</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tone"</span>, <span class="st">"time"</span><span class="op">)</span><span class="op">]</span>, <span class="va">mean</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> tone    0   10   20   30   40   50   60   70   80   90  100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   T1  3.8  3.7  3.7  3.7  3.7  3.6  3.6  3.4  3.4  3.3  3.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   T2 -1.4 -1.7 -1.9 -1.8 -1.4 -0.6  0.2  1.2  2.1  2.9  3.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   T3 -3.4 -4.0 -4.6 -5.3 -6.0 -6.4 -6.4 -6.0 -5.1 -4.0 -2.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   T4  3.7  3.3  2.9  2.3  1.4  0.4 -0.8 -2.0 -3.3 -4.6 -6.0</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

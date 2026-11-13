@@ -112,17 +112,15 @@ evenly.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">visual_world</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 10</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   participant  list item  condition    time target competitor distractor_1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> P01             1 i01   restrictive     0      8          5            6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> P01             1 i01   restrictive    50      5          3            8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> P01             1 i01   restrictive   100      8          5            8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> P01             1 i01   restrictive   150     10          4            5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> P01             1 i01   restrictive   200      7          7            8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> P01             1 i01   restrictive   250      3          5           13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: distractor_2 &lt;int&gt;, samples &lt;int&gt;</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">visual_world</span><span class="op">$</span><span class="va">p_target</span> <span class="op">&lt;-</span> <span class="va">visual_world</span><span class="op">$</span><span class="va">target</span> <span class="op">/</span> <span class="va">visual_world</span><span class="op">$</span><span class="va">samples</span></span></span>
+<span class="r-in"><span><span class="va">looks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">p_target</span> <span class="op">~</span> <span class="va">condition</span> <span class="op">+</span> <span class="va">time</span>, data <span class="op">=</span> <span class="va">visual_world</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p_target</span> <span class="op">~</span> <span class="va">time</span>, data <span class="op">=</span> <span class="va">looks</span>, col <span class="op">=</span> <span class="va">condition</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fl">600</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="visual_world-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="va">looks</span><span class="op">[</span><span class="va">looks</span><span class="op">$</span><span class="va">time</span> <span class="op">==</span> <span class="fl">600</span>, <span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          condition time  p_target</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25 non-restrictive  600 0.2989583</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26     restrictive  600 0.5344792</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

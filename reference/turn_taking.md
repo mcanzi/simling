@@ -70,14 +70,18 @@ in conversation. *Proceedings of the National Academy of Sciences*,
 ## Examples
 
 ``` r
-head(turn_taking)
-#> # A tibble: 6 × 6
-#>   language      conversation response        answer gaze  offset
-#>   <fct>         <fct>        <fct>           <fct>  <fct>  <dbl>
-#> 1 ‡Ākhoe Hai‖om ‡Āk_01       disconfirmation answer no       242
-#> 2 ‡Ākhoe Hai‖om ‡Āk_01       disconfirmation answer no       402
-#> 3 ‡Ākhoe Hai‖om ‡Āk_01       disconfirmation answer no       463
-#> 4 ‡Ākhoe Hai‖om ‡Āk_01       confirmation    answer no        28
-#> 5 ‡Ākhoe Hai‖om ‡Āk_01       disconfirmation answer yes      447
-#> 6 ‡Ākhoe Hai‖om ‡Āk_01       confirmation    answer yes      -13
+sort(tapply(turn_taking$offset, turn_taking$language, median))
+#>      Japanese       Tzeltal     Yélî Dnye       English        Korean 
+#>          47.5         119.5         126.0         153.5         182.0 
+#>         Dutch       Italian           Lao ‡Ākhoe Hai‖om        Danish 
+#>         186.5         216.0         290.0         300.0         527.0 
+hist(turn_taking$offset, breaks = 60)
+
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::lmer(offset ~ response + answer + gaze + language + (1 | conversation),
+                  data = turn_taking)
+  lme4::fixef(m)[c("responsedisconfirmation", "answernon-answer", "gazeyes")]
+}
+#> responsedisconfirmation        answernon-answer                 gazeyes 
+#>               129.16949               229.97804               -84.39074 
 ```

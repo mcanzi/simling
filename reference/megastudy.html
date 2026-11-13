@@ -93,16 +93,28 @@ earlier.</p></li>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">megastudy</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   word  log_freq length neighbours   aoa concreteness    rt accuracy</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> w0001     1.08      6          1   8.9         3.21   678    0.789</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> w0002     3.45      8          1   6.8         2.22   628    0.981</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> w0003     1.49      4          7  11.2         2.43   723    0.946</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> w0004     2.96      7          3  10.1         1      679    0.921</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> w0005     2.6       7          2   7.5         2.4    671    0.924</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> w0006     2.86      9          0   6.3         1.72   712    0.903</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">rt</span> <span class="op">~</span> <span class="va">log_freq</span> <span class="op">+</span> <span class="va">length</span> <span class="op">+</span> <span class="va">neighbours</span> <span class="op">+</span> <span class="va">aoa</span> <span class="op">+</span> <span class="va">concreteness</span>, data <span class="op">=</span> <span class="va">megastudy</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">rt</span> <span class="op">~</span> <span class="fu">splines</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/splines/ns.html" class="external-link">ns</a></span><span class="op">(</span><span class="va">log_freq</span>, <span class="fl">4</span><span class="op">)</span> <span class="op">+</span> <span class="va">length</span> <span class="op">+</span> <span class="va">neighbours</span> <span class="op">+</span> <span class="va">aoa</span> <span class="op">+</span> <span class="va">concreteness</span>,</span></span>
+<span class="r-in"><span>         data <span class="op">=</span> <span class="va">megastudy</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">m1</span>, <span class="va">m2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Analysis of Variance Table</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model 1: rt ~ log_freq + length + neighbours + aoa + concreteness</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model 2: rt ~ splines::ns(log_freq, 4) + length + neighbours + aoa + concreteness</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Res.Df     RSS Df Sum of Sq     F    Pr(&gt;F)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   5994 7175939                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   5991 7128571  3     47368 13.27 1.245e-08 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">m2</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"length"</span>, <span class="st">"neighbours"</span>, <span class="st">"aoa"</span>, <span class="st">"concreteness"</span><span class="op">)</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       length   neighbours          aoa concreteness </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     8.820286    -2.221157    10.032493    -5.273099 </span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">megastudy</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"log_freq"</span>, <span class="st">"length"</span>, <span class="st">"neighbours"</span>, <span class="st">"aoa"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            log_freq length neighbours   aoa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log_freq       1.00  -0.40       0.29 -0.58</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> length        -0.40   1.00      -0.71  0.24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> neighbours     0.29  -0.71       1.00 -0.18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> aoa           -0.58   0.24      -0.18  1.00</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

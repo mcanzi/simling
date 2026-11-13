@@ -100,16 +100,28 @@ SD 0.2 and by-item intercepts <code>i0</code> SD 0.04; residual SD 0.2.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">german_relatives</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   participant  list item  condition position region        length    rt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> P01             1 i01   subject          1 det                3   245</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> P01             1 i01   subject          2 noun               6   322</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> P01             1 i01   subject          3 rel_pronoun        3   270</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> P01             1 i01   subject          4 rc_det             3   277</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> P01             1 i01   subject          5 rc_noun            8   247</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> P01             1 i01   subject          6 rc_participle      6   255</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tapply.html" class="external-link">tapply</a></span><span class="op">(</span><span class="va">german_relatives</span><span class="op">$</span><span class="va">rt</span>, <span class="va">german_relatives</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"region"</span>, <span class="st">"condition"</span><span class="op">)</span><span class="op">]</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                condition</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> region          subject object</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   det               349    353</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   noun              362    359</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rel_pronoun       344    354</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rc_det            344    351</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rc_noun           356    363</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rc_participle     354    375</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rc_auxiliary      332    366</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   main_verb         345    368</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   spillover_1       340    354</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   spillover_2       341    336</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   spillover_3       340    335</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   final             338    341</span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"lme4"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">mv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">german_relatives</span>, <span class="va">region</span> <span class="op">==</span> <span class="st">"main_verb"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">rt</span><span class="op">)</span> <span class="op">~</span> <span class="va">condition</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">participant</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">item</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mv</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/nlme/man/fixed.effects.html" class="external-link">fixef</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     (Intercept) conditionobject </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       5.8027047       0.0651166 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

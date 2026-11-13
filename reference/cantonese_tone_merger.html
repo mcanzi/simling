@@ -100,16 +100,19 @@ Wong 2013); the data are simulated.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cantonese_tone_merger</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   speaker   age gender word  tone  log_freq  rise</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> S01        42 male   w01   T2        3.14  8.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> S01        42 male   w02   T2        3.65  8.65</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> S01        42 male   w03   T2        3.67  9.24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> S01        42 male   w04   T2        2.88  7.58</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> S01        42 male   w05   T2        2.39  7.11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> S01        42 male   w06   T2        3.18  7.54</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">rise</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tapply.html" class="external-link">tapply</a></span><span class="op">(</span><span class="va">cantonese_tone_merger</span><span class="op">$</span><span class="va">rise</span>,</span></span>
+<span class="r-in"><span>               <span class="va">cantonese_tone_merger</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"speaker"</span>, <span class="st">"tone"</span><span class="op">)</span><span class="op">]</span>, <span class="va">mean</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">age</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tapply.html" class="external-link">tapply</a></span><span class="op">(</span><span class="va">cantonese_tone_merger</span><span class="op">$</span><span class="va">age</span>, <span class="va">cantonese_tone_merger</span><span class="op">$</span><span class="va">speaker</span>, <span class="va">unique</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">difference</span> <span class="op">&lt;-</span> <span class="va">rise</span><span class="op">[</span>, <span class="st">"T2"</span><span class="op">]</span> <span class="op">-</span> <span class="va">rise</span><span class="op">[</span>, <span class="st">"T5"</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">difference</span>, breaks <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="cantonese_tone_merger-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">difference</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="cantonese_tone_merger-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span>merger <span class="op">=</span> <span class="va">difference</span> <span class="op">&lt;</span> <span class="fl">2</span>, under_40 <span class="op">=</span> <span class="va">age</span> <span class="op">&lt;</span> <span class="fl">40</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        under_40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> merger  FALSE TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   FALSE    56   10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TRUE      2   22</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

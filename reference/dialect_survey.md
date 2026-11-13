@@ -56,14 +56,15 @@ Sardinia); the dialect data are simulated.
 ## Examples
 
 ``` r
-head(dialect_survey)
-#> # A tibble: 6 × 7
-#>   town       lat  long speaker      age words degeminated
-#>   <fct>    <dbl> <dbl> <fct>      <int> <int>       <int>
-#> 1 Acerra    41    14.4 Acerra_1      49    10           0
-#> 2 Acerra    41    14.4 Acerra_2      40    10           0
-#> 3 Acerra    41    14.4 Acerra_3      57    10           0
-#> 4 Acerra    41    14.4 Acerra_4      78    10           0
-#> 5 Acireale  37.6  15.2 Acireale_1    28    10           0
-#> 6 Acireale  37.6  15.2 Acireale_2    29    10           0
+dialect_survey$p <- dialect_survey$degeminated / dialect_survey$words
+plot(lat ~ long, data = dialect_survey, col = grey(1 - p), pch = 16, asp = 1.3)
+abline(h = 44.1, lty = 2)
+
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::glmer(cbind(degeminated, words - degeminated) ~ I(lat - 44.1) + I(age - 50) +
+                     (1 | town), data = dialect_survey, family = binomial)
+  lme4::fixef(m)
+}
+#>   (Intercept) I(lat - 44.1)   I(age - 50) 
+#>   -1.46171334    6.43810397    0.02378499 
 ```

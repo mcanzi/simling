@@ -77,14 +77,63 @@ systems. *Philosophical Transactions of the Royal Society B*, 377(1841),
 ## Examples
 
 ``` r
-head(bouba_kiki_meta)
-#> # A tibble: 6 × 8
-#>   study  year language script     n congruent log_odds    se
-#>   <fct> <int> <fct>    <fct>  <int>     <int>    <dbl> <dbl>
-#> 1 S01    2001 Farsi    other    195       151    1.23  0.171
-#> 2 S02    2001 Polish   Roman     24        16    0.663 0.422
-#> 3 S03    2001 Farsi    other    197       130    0.659 0.15 
-#> 4 S04    2001 Korean   other     56        40    0.898 0.292
-#> 5 S05    2002 Finnish  Roman    107        74    0.799 0.208
-#> 6 S06    2002 Greek    other     95        77    1.43  0.259
+if (requireNamespace("metafor", quietly = TRUE)) {
+  m <- metafor::rma(yi = log_odds, sei = se, data = bouba_kiki_meta)
+  print(m)
+  print(metafor::rma(yi = log_odds, sei = se, mods = ~ script, data = bouba_kiki_meta))
+  print(metafor::regtest(m))
+  metafor::funnel(m)
+}
+#> 
+#> Random-Effects Model (k = 40; tau^2 estimator: REML)
+#> 
+#> tau^2 (estimated amount of total heterogeneity): 0.1371 (SE = 0.0417)
+#> tau (square root of estimated tau^2 value):      0.3703
+#> I^2 (total heterogeneity / total variability):   80.86%
+#> H^2 (total variability / sampling variability):  5.22
+#> 
+#> Test for Heterogeneity:
+#> Q(df = 39) = 208.7467, p-val < .0001
+#> 
+#> Model Results:
+#> 
+#> estimate      se     zval    pval   ci.lb   ci.ub      
+#>   0.9158  0.0688  13.3111  <.0001  0.7809  1.0506  *** 
+#> 
+#> ---
+#> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+#> 
+#> 
+#> Mixed-Effects Model (k = 40; tau^2 estimator: REML)
+#> 
+#> tau^2 (estimated amount of residual heterogeneity):     0.1404 (SE = 0.0432)
+#> tau (square root of estimated tau^2 value):             0.3748
+#> I^2 (residual heterogeneity / unaccounted variability): 81.02%
+#> H^2 (unaccounted variability / sampling variability):   5.27
+#> R^2 (amount of heterogeneity accounted for):            0.00%
+#> 
+#> Test for Residual Heterogeneity:
+#> QE(df = 38) = 204.2884, p-val < .0001
+#> 
+#> Test of Moderators (coefficient 2):
+#> QM(df = 1) = 0.1321, p-val = 0.7163
+#> 
+#> Model Results:
+#> 
+#>              estimate      se     zval    pval    ci.lb   ci.ub      
+#> intrcpt        0.9433  0.1014   9.3015  <.0001   0.7445  1.1421  *** 
+#> scriptRoman   -0.0506  0.1391  -0.3634  0.7163  -0.3233  0.2222      
+#> 
+#> ---
+#> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+#> 
+#> 
+#> Regression Test for Funnel Plot Asymmetry
+#> 
+#> Model:     mixed-effects meta-regression model
+#> Predictor: standard error
+#> 
+#> Test for Funnel Plot Asymmetry: z = 2.7674, p = 0.0056
+#> Limit Estimate (as sei -> 0):   b = 0.5333 (CI: 0.2395, 0.8272)
+#> 
 ```

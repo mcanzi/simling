@@ -54,14 +54,13 @@ rho 0.8 and SD 12.
 ## Examples
 
 ``` r
-head(pupil_noise)
-#> # A tibble: 6 × 6
-#>   participant condition trial trial_id     time pupil
-#>   <fct>       <fct>     <int> <fct>       <dbl> <dbl>
-#> 1 P01         noise         1 P01.noise.1     0   5.2
-#> 2 P01         noise         1 P01.noise.1   100  -1  
-#> 3 P01         noise         1 P01.noise.1   200   1.8
-#> 4 P01         noise         1 P01.noise.1   300  20.1
-#> 5 P01         noise         1 P01.noise.1   400  55.6
-#> 6 P01         noise         1 P01.noise.1   500  84.4
+curve <- aggregate(pupil ~ condition + time, data = pupil_noise, FUN = mean)
+plot(pupil ~ time, data = curve, col = condition)
+
+peaks <- do.call(rbind, lapply(split(curve, curve$condition),
+                              function(d) d[which.max(d$pupil), ]))
+peaks
+#>       condition time    pupil
+#> quiet     quiet 1200 179.5469
+#> noise     noise 1500 256.2295
 ```

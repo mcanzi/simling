@@ -73,15 +73,19 @@ en español: Toward a typology of code-switching. *Linguistics*, 18(7-8),
 ## Examples
 
 ``` r
-head(code_switching)
-#> # A tibble: 6 × 8
-#>   speaker generation conversation  topic     interlocutor utterances switches
-#>   <fct>   <fct>      <fct>         <fct>     <fct>             <int>    <int>
-#> 1 S01     first      S01_family    family    bilingual           114        6
-#> 2 S01     first      S01_leisure   leisure   bilingual           144        2
-#> 3 S01     first      S01_migration migration monolingual         125        0
-#> 4 S01     first      S01_work      work      bilingual            91        8
-#> 5 S02     first      S02_family    family    bilingual           183        8
-#> 6 S02     first      S02_leisure   leisure   bilingual           145        5
-#> # ℹ 1 more variable: intrasentential <int>
+if (requireNamespace("MASS", quietly = TRUE)) {
+  m <- MASS::glm.nb(switches ~ generation + topic + interlocutor + offset(log(utterances)),
+                    data = code_switching)
+  round(exp(coef(m)), 2)
+}
+#>           (Intercept)      generationsecond       generationthird 
+#>                  0.02                  2.82                  1.87 
+#>             topicwork          topicleisure        topicmigration 
+#>                  0.51                  0.64                  0.70 
+#> interlocutorbilingual 
+#>                  3.99 
+totals <- aggregate(cbind(intrasentential, switches) ~ generation, data = code_switching,
+                    FUN = sum)
+totals$intrasentential / totals$switches
+#> [1] 0.2504744 0.5815516 0.4005213
 ```

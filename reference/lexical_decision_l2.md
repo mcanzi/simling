@@ -53,14 +53,13 @@ have SD 0.085 and slopes `p1` SD 0.015; by-word intercepts `w0` have SD
 ## Examples
 
 ``` r
-head(lexical_decision_l2)
-#> # A tibble: 6 × 6
-#>   participant group word  log_freq length    rt
-#>   <fct>       <fct> <fct>    <dbl>  <int> <dbl>
-#> 1 P01         L1    w01       4.38      3   568
-#> 2 P01         L1    w02       3.84      8   632
-#> 3 P01         L1    w03       2.64      8   636
-#> 4 P01         L1    w04       4.85      5   655
-#> 5 P01         L1    w05       1.68     10   666
-#> 6 P01         L1    w06       4.25      7   686
+lexical_decision_l2$freq_c <- lexical_decision_l2$log_freq - 3.5
+lexical_decision_l2$length_c <- lexical_decision_l2$length - 7
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::lmer(log(rt) ~ group * freq_c + length_c + (1 + freq_c | participant) +
+                    (1 | word), data = lexical_decision_l2)
+  lme4::fixef(m)
+}
+#>    (Intercept)        groupL2         freq_c       length_c groupL2:freq_c 
+#>     6.53334179     0.20409400    -0.02452505     0.01448920    -0.04226105 
 ```

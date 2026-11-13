@@ -57,4 +57,13 @@ table(relativizers$role, relativizers$relativizer)
 #>           that which zero
 #>   subject  869   463    0
 #>   object   394   249  425
+if (requireNamespace("nnet", quietly = TRUE)) {
+  obj <- subset(relativizers, role == "object")
+  obj$length_c <- obj$antecedent_length - 2
+  m <- nnet::multinom(relativizer ~ mode + length_c, data = obj, trace = FALSE)
+  round(coef(m), 2)
+}
+#>       (Intercept) modewritten length_c
+#> which       -1.94        1.85     0.28
+#> zero         0.62       -1.04    -0.33
 ```

@@ -82,16 +82,15 @@ frequency.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">lexical_decision_l2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   participant group word  log_freq length    rt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> P01         L1    w01       4.38      3   568</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> P01         L1    w02       3.84      8   632</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> P01         L1    w03       2.64      8   636</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> P01         L1    w04       4.85      5   655</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> P01         L1    w05       1.68     10   666</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> P01         L1    w06       4.25      7   686</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">lexical_decision_l2</span><span class="op">$</span><span class="va">freq_c</span> <span class="op">&lt;-</span> <span class="va">lexical_decision_l2</span><span class="op">$</span><span class="va">log_freq</span> <span class="op">-</span> <span class="fl">3.5</span></span></span>
+<span class="r-in"><span><span class="va">lexical_decision_l2</span><span class="op">$</span><span class="va">length_c</span> <span class="op">&lt;-</span> <span class="va">lexical_decision_l2</span><span class="op">$</span><span class="va">length</span> <span class="op">-</span> <span class="fl">7</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"lme4"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">rt</span><span class="op">)</span> <span class="op">~</span> <span class="va">group</span> <span class="op">*</span> <span class="va">freq_c</span> <span class="op">+</span> <span class="va">length_c</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">freq_c</span> <span class="op">|</span> <span class="va">participant</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>                    <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">word</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">lexical_decision_l2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/nlme/man/fixed.effects.html" class="external-link">fixef</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    (Intercept)        groupL2         freq_c       length_c groupL2:freq_c </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     6.53334179     0.20409400    -0.02452505     0.01448920    -0.04226105 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

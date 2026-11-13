@@ -43,14 +43,10 @@ True model: negative binomial with mean `rate * words / 1000` and size
 ## Examples
 
 ``` r
-head(passives)
-#> # A tibble: 6 × 4
-#>   text  register     words passives
-#>   <fct> <fct>        <int>    <int>
-#> 1 T001  conversation  1560        4
-#> 2 T002  conversation  1715        3
-#> 3 T003  conversation  3753        1
-#> 4 T004  conversation  4373       11
-#> 5 T005  conversation   927        0
-#> 6 T006  conversation  1027        5
+if (requireNamespace("MASS", quietly = TRUE)) {
+  m <- MASS::glm.nb(passives ~ 0 + register + offset(log(words / 1000)), data = passives)
+  exp(coef(m))
+  m$theta
+}
+#> [1] 3.936993
 ```

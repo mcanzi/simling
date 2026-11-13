@@ -58,10 +58,16 @@ by-item (SD 0.05) intercepts and residual SD 0.25.
 ## Examples
 
 ``` r
-table(scalar_implicature$context, scalar_implicature$response)
-#>       
-#>        true false
-#>   some  462    18
-#>   all   234   246
-#>   none   21   459
+all_ctx <- subset(scalar_implicature, context == "all")
+p_false <- tapply(all_ctx$response == "false", all_ctx$participant, mean)
+hist(p_false, breaks = 10)
+
+controls <- droplevels(subset(scalar_implicature, context != "all"))
+tapply(controls$response == "true", controls$context, mean)
+#>    some    none 
+#> 0.96250 0.04375 
+aggregate(rt ~ response, data = all_ctx, FUN = median)
+#>   response     rt
+#> 1     true 1437.5
+#> 2    false 1765.5
 ```

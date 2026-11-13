@@ -44,14 +44,35 @@ ms.
 ## Examples
 
 ``` r
-head(vowel_duration)
-#> # A tibble: 6 × 4
-#>   speaker word  voicing   duration
-#>   <fct>   <fct> <fct>        <dbl>
-#> 1 S01     w01   voiceless      133
-#> 2 S01     w02   voiceless      113
-#> 3 S01     w03   voiceless      125
-#> 4 S01     w04   voiceless      125
-#> 5 S01     w05   voiceless      176
-#> 6 S01     w06   voiceless      133
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::lmer(duration ~ voicing + (1 + voicing | speaker) + (1 | word),
+                  data = vowel_duration)
+  summary(m)
+}
+#> Linear mixed model fit by REML ['lmerMod']
+#> Formula: duration ~ voicing + (1 + voicing | speaker) + (1 | word)
+#>    Data: vowel_duration
+#> 
+#> REML criterion at convergence: 3492.4
+#> 
+#> Scaled residuals: 
+#>      Min       1Q   Median       3Q      Max 
+#> -2.68928 -0.58558 -0.03095  0.65537  2.75815 
+#> 
+#> Random effects:
+#>  Groups   Name          Variance Std.Dev. Corr  
+#>  word     (Intercept)   158.3    12.583         
+#>  speaker  (Intercept)   598.5    24.464         
+#>           voicingvoiced  57.9     7.609   -0.06 
+#>  Residual               402.0    20.049         
+#> Number of obs: 384, groups:  word, 24; speaker, 16
+#> 
+#> Fixed effects:
+#>               Estimate Std. Error t value
+#> (Intercept)    155.516      7.259  21.423
+#> voicingvoiced   20.516      5.848   3.508
+#> 
+#> Correlation of Fixed Effects:
+#>             (Intr)
+#> voicingvocd -0.376
 ```

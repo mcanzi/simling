@@ -53,14 +53,22 @@ the Society for Research in Child Development*, 57(4).
 ## Examples
 
 ``` r
-head(overregularization)
-#> # A tibble: 6 × 4
-#>   child   age attempts errors
-#>   <fct> <int>    <int>  <int>
-#> 1 C01      30       17      0
-#> 2 C01      36       26      4
-#> 3 C01      42       30      1
-#> 4 C01      48       42      0
-#> 5 C01      54       33      2
-#> 6 C01      60       44      2
+sum(overregularization$errors) / sum(overregularization$attempts)
+#> [1] 0.04491781
+aggregate(cbind(errors, attempts) ~ age, data = overregularization, FUN = sum)
+#>   age errors attempts
+#> 1  30     19      370
+#> 2  36     22      503
+#> 3  42     25      648
+#> 4  48     36      796
+#> 5  54     41      933
+#> 6  60     51     1069
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::glmer(cbind(errors, attempts - errors) ~ I((age - 45) / 12) + (1 | child),
+                   data = overregularization, family = binomial)
+  summary(m)$coefficients
+}
+#>                     Estimate Std. Error     z value      Pr(>|z|)
+#> (Intercept)      -3.11136919 0.10698042 -29.0835399 5.798139e-186
+#> I((age - 45)/12)  0.01244421 0.09174487   0.1356393  8.921064e-01
 ```

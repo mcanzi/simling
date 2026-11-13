@@ -48,14 +48,35 @@ correlated at -0.6; by-word intercepts `w0` have SD 0.045; residual SD
 ## Examples
 
 ``` r
-head(lexical_decision)
-#> # A tibble: 6 × 5
-#>   participant word  log_freq  freq_c    rt
-#>   <fct>       <fct>    <dbl>   <dbl> <dbl>
-#> 1 P01         w01       3.61 -0.169    655
-#> 2 P01         w02       5.95  2.17     529
-#> 3 P01         w03       1.32 -2.46     722
-#> 4 P01         w04       5.31  1.53     590
-#> 5 P01         w05       3.4  -0.379    779
-#> 6 P01         w06       3.68 -0.0992   761
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::lmer(log(rt) ~ freq_c + (1 + freq_c | participant) + (1 | word),
+                  data = lexical_decision)
+  summary(m)
+}
+#> Linear mixed model fit by REML ['lmerMod']
+#> Formula: log(rt) ~ freq_c + (1 + freq_c | participant) + (1 | word)
+#>    Data: lexical_decision
+#> 
+#> REML criterion at convergence: -1665.1
+#> 
+#> Scaled residuals: 
+#>      Min       1Q   Median       3Q      Max 
+#> -2.91814 -0.59608 -0.03356  0.66228  2.72553 
+#> 
+#> Random effects:
+#>  Groups      Name        Variance  Std.Dev. Corr  
+#>  word        (Intercept) 0.0014925 0.03863        
+#>  participant (Intercept) 0.0154301 0.12422        
+#>              freq_c      0.0006462 0.02542  -0.64 
+#>  Residual                0.0055712 0.07464        
+#> Number of obs: 800, groups:  word, 40; participant, 20
+#> 
+#> Fixed effects:
+#>              Estimate Std. Error t value
+#> (Intercept)  6.488661   0.028562 227.179
+#> freq_c      -0.044199   0.007188  -6.149
+#> 
+#> Correlation of Fixed Effects:
+#>        (Intr)
+#> freq_c -0.489
 ```

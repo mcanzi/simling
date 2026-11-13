@@ -53,14 +53,13 @@ by-picture intercepts `w0` have SD 0.04; residual SD 0.1.
 ## Examples
 
 ``` r
-head(naming_pilot)
-#> # A tibble: 6 × 6
-#>   participant age_group group picture freq_c latency
-#>   <fct>       <fct>     <dbl> <fct>    <dbl>   <dbl>
-#> 1 P01         younger    -0.5 pic01    -0.27     938
-#> 2 P01         younger    -0.5 pic02     1.33     777
-#> 3 P01         younger    -0.5 pic03     0.9      855
-#> 4 P01         younger    -0.5 pic04     2.22     765
-#> 5 P01         younger    -0.5 pic05    -2.43     872
-#> 6 P01         younger    -0.5 pic06     0.46     779
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::lmer(log(latency) ~ age_group * freq_c + (1 + freq_c | participant) +
+                    (1 | picture), data = naming_pilot)
+  lme4::fixef(m)
+}
+#>           (Intercept)        age_groupolder                freq_c 
+#>            6.67824899            0.15986993           -0.02301863 
+#> age_groupolder:freq_c 
+#>           -0.03207034 
 ```

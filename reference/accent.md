@@ -66,14 +66,30 @@ only and intensity by token only.
 ## Examples
 
 ``` r
-head(accent)
-#> # A tibble: 6 × 9
-#>   speaker l1      gender   vot vowel_ratio  rate    f0  h1h2 intensity
-#>   <fct>   <fct>   <fct>  <dbl>       <dbl> <dbl> <dbl> <dbl>     <dbl>
-#> 1 S01     English female   103        1.79  5.76   188   2.6      61.8
-#> 2 S01     English female    76        1.27  5.68   200   3        70.5
-#> 3 S01     English female    83        1.73  6.31   191   5.3      69  
-#> 4 S01     English female    85        1.67  5.26   211   2.6      67.6
-#> 5 S01     English female    74        1.8   4.25   188   5.2      70  
-#> 6 S01     English female    86        1.97  4.32   200   2.4      55.8
+aggregate(cbind(vot, vowel_ratio, rate, f0) ~ l1 + gender, data = accent, FUN = mean)
+#>        l1 gender      vot vowel_ratio     rate       f0
+#> 1 English female 75.49688    1.576250 5.412125 204.3281
+#> 2 Italian female 40.28929    1.208286 4.923964 213.5179
+#> 3 English   male 76.25714    1.561071 5.291464 114.3607
+#> 4 Italian   male 47.57500    1.183750 4.680313 122.8594
+speakers <- levels(accent$speaker)
+test <- is.element(accent$speaker, speakers[seq(1, length(speakers), by = 5)])
+m <- glm(l1 ~ vot + vowel_ratio + rate, data = accent[!test, ], family = binomial)
+mean((predict(m, accent[test, ], type = "response") > 0.5) == (accent$l1[test] == "Italian"))
+#> [1] 0.9166667
+if (requireNamespace("randomForest", quietly = TRUE)) {
+  set.seed(1)
+  rf <- randomForest::randomForest(l1 ~ vot + vowel_ratio + rate + f0 + h1h2 + intensity,
+                                   data = accent[!test, ], importance = TRUE)
+  print(round(randomForest::importance(rf, type = 1), 1))
+  mean(predict(rf, accent[test, ]) == accent$l1[test])
+}
+#>             MeanDecreaseAccuracy
+#> vot                        104.1
+#> vowel_ratio                 76.2
+#> rate                        20.9
+#> f0                          23.6
+#> h1h2                        36.7
+#> intensity                    2.7
+#> [1] 0.9083333
 ```

@@ -105,13 +105,33 @@ response-level noise (SD 0.3).</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">german_plurals</span><span class="op">$</span><span class="va">final</span>, <span class="va">german_plurals</span><span class="op">$</span><span class="va">plural</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/proportions.html" class="external-link">prop.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">german_plurals</span><span class="op">$</span><span class="va">final</span>, <span class="va">german_plurals</span><span class="op">$</span><span class="va">plural</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               -e -(e)n -er  -s zero</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   schwa       41   525  16  63   75</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -el/-er     49   219   8  84  360</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   consonant  277   234  79  94   36</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   full vowel  22    82  19 555   42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                -e -(e)n  -er   -s zero</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   schwa      0.06  0.73 0.02 0.09 0.10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   -el/-er    0.07  0.30 0.01 0.12 0.50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   consonant  0.38  0.32 0.11 0.13 0.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   full vowel 0.03  0.11 0.03 0.77 0.06</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/proportions.html" class="external-link">prop.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">german_plurals</span><span class="op">$</span><span class="va">gender</span>, <span class="va">german_plurals</span><span class="op">$</span><span class="va">plural</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               -e -(e)n  -er   -s zero</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   masculine 0.17  0.29 0.04 0.27 0.23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   feminine  0.07  0.61 0.01 0.24 0.06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   neuter    0.16  0.19 0.08 0.32 0.24</span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"nnet"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">nnet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">multinom</a></span><span class="op">(</span><span class="va">plural</span> <span class="op">~</span> <span class="va">gender</span> <span class="op">+</span> <span class="va">final</span>, data <span class="op">=</span> <span class="va">german_plurals</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       (Intercept) genderfeminine genderneuter final-el/-er finalconsonant</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -(e)n        2.33           1.89        -0.52        -1.58          -3.14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -er         -1.42          -0.45         0.81        -0.72          -0.18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -s           0.12           0.67         0.44         0.07          -1.53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> zero         0.58          -0.59         0.12         1.47          -2.58</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       finalfull vowel</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -(e)n           -1.76</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -er              0.99</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -s               2.78</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> zero             0.13</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
