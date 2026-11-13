@@ -17,12 +17,28 @@ remotes::install_github("mcanzi/simling")
 
 ## Usage
 
+Each data set loads with the package. Here is the pupil data, with single trials and the mean in each condition:
+
 ```r
 library(simling)
-vowel_duration
+library(ggplot2)
+
+pupil_noise
+?pupil_noise
+
+ggplot(pupil_noise, aes(time, pupil, colour = condition)) +
+  geom_line(aes(group = trial_id), alpha = 0.08) +
+  stat_summary(fun = mean, geom = "line", linewidth = 1.2) +
+  scale_colour_manual(values = c(quiet = "#4f86b5", noise = "#e0735a")) +
+  labs(x = "Time from stimulus onset (ms)", y = "Pupil size (baseline-corrected)") +
+  theme_minimal()
 ```
 
-`simling_datasets()` lists every data set with its branch, language, size, response and topic, so you can filter it to find one for a lesson:
+<img src="man/figures/README-pupil.png" alt="Pupil size over time in quiet and in noise: single trials in pale lines, condition means in bold" width="100%" />
+
+In the true model on the help page, the pupil peaks 90 units higher and 250 ms later in noise than in quiet. In the plotted means the difference is about 77 units and 300 ms. Raw averages only approximate the true values, which is why the help page suggests a GAMM with autocorrelated residuals for these data.
+
+To find a data set for a lesson, `simling_datasets()` lists all of them with their branch, language, size, response and topic:
 
 ```r
 library(dplyr)
