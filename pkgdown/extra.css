@@ -1,20 +1,20 @@
-/* The sunset theme of mcanzi.de (themes/arang/static/css/site.css in mcanzi/personal_website). */
+/* The glacier theme of mcanzi.de (themes/arang/static/css/site.css in mcanzi/personal_website). */
 
 :root {
-  --floor: #13151c;
-  --understory: #191b24;
-  --raised: #20222d;
-  --vine: #3a3240;
-  --mist: #f3e7da;
-  --muted: #a9978f;
-  --pandan: #f28a1e;
-  --hornbill: #f6c445;
-  --kingfisher: #f6ad7b;
-  --title-top: #fdf0c4;
-  --title-bottom: #ec6a0f;
-  --nav-bg: rgba(19, 21, 28, 0.9);
-  --glow-1: rgba(242, 138, 30, 0.14);
-  --glow-2: rgba(181, 75, 51, 0.07);
+  --floor: #1e2830;
+  --understory: #22303a;
+  --raised: #283844;
+  --vine: #34444f;
+  --mist: #dfe6ea;
+  --muted: #98a8b3;
+  --pandan: #a9cbe0;
+  --hornbill: #f2917a;
+  --kingfisher: #f6b8a4;
+  --title-top: #eef6fa;
+  --title-bottom: #8dbbd8;
+  --nav-bg: rgba(30, 40, 48, 0.9);
+  --glow-1: rgba(169, 203, 224, 0.10);
+  --glow-2: rgba(242, 145, 122, 0.05);
   color-scheme: dark;
 }
 
@@ -35,7 +35,7 @@ body::before {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: url("https://mcanzi.de/img/motifs/oranges.svg") repeat 0 0 / 600px 600px;
+  background: url("https://mcanzi.de/img/motifs/buttercup.svg") repeat 0 0 / 600px 600px;
   opacity: 0.2;
 }
 body > * { position: relative; z-index: 1; }
