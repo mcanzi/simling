@@ -47,9 +47,8 @@ lines, condition means in bold](reference/figures/README-pupil.png)
 
 In the true model on the help page, the pupil peaks 90 units higher and
 250 ms later in noise than in quiet. In the plotted means the difference
-is about 77 units and 300 ms. Raw averages only approximate the true
-values, which is why the help page suggests a GAMM with autocorrelated
-residuals for these data.
+is about 77 units and 300 ms. The help page suggests a GAMM with
+autocorrelated residuals for estimating these differences.
 
 To find a data set for a lesson,
 [`simling_datasets()`](https://mcanzi.de/simling/reference/simling_datasets.md)

@@ -89,7 +89,7 @@
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Time from stimulus onset (ms)"</span>, y <span class="op">=</span> <span class="st">"Pupil size (baseline-corrected)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-pupil.png" alt="Pupil size over time in quiet and in noise: single trials in pale lines, condition means in bold" width="100%"></p>
-<p>In the true model on the help page, the pupil peaks 90 units higher and 250 ms later in noise than in quiet. In the plotted means the difference is about 77 units and 300 ms. Raw averages only approximate the true values, which is why the help page suggests a GAMM with autocorrelated residuals for these data.</p>
+<p>In the true model on the help page, the pupil peaks 90 units higher and 250 ms later in noise than in quiet. In the plotted means the difference is about 77 units and 300 ms. The help page suggests a GAMM with autocorrelated residuals for estimating these differences.</p>
 <p>To find a data set for a lesson, <code><a href="reference/simling_datasets.html">simling_datasets()</a></code> lists all of them with their branch, language, size, response and topic:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
