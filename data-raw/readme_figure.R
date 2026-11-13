@@ -9,4 +9,11 @@ p <- ggplot(pupil_noise, aes(time, pupil, colour = condition)) +
        y = "Pupil size (baseline-corrected)") +
   theme_minimal()
 
-ggsave("man/figures/README-pupil.png", p, width = 7, height = 4, dpi = 150, bg = "white")
+glacier <- p +
+  scale_colour_manual(values = c(quiet = "#a9cbe0", noise = "#f2917a")) +
+  theme(text = element_text(colour = "#dfe6ea"),
+        axis.text = element_text(colour = "#98a8b3"),
+        panel.grid = element_line(colour = "#34444f"),
+        plot.background = element_rect(fill = "#1e2830", colour = NA))
+
+ggsave("man/figures/README-pupil.png", glacier, width = 7, height = 4, dpi = 150)
