@@ -6,7 +6,15 @@
 \alias{simling-package}
 \title{simling: Simulated Linguistic Data for Teaching Statistics}
 \description{
-Simulated data sets for teaching statistics to linguists, from phonetics, psycholinguistics, syntax, morphology, semantics and pragmatics, conversation analysis, corpus linguistics, sociolinguistics, dialectology, second language research, language acquisition, historical linguistics and typology, and from languages including German, Italian, Mandarin, Cantonese and Korean. Responses include continuous measures, reaction times, binary and multi-category outcomes, ratings, counts, eye-tracking and EEG measures and time series, in data sets from 18 to over 20,000 rows. Each data set comes with the code that generated it, so the true effects are known.
+Simulated data sets from many branches of linguistics. Each help page
+lists the variables and the true model the data were simulated from; the
+code is in \verb{data-raw/} on GitHub.
+}
+\details{
+Every categorical column is a factor. Its first level is the reference
+level: the baseline condition, the first group or the expected response.
+IDs such as participants, speakers and words are factors too. Binary
+outcomes coded 0/1 and rating scales are numeric.
 }
 \seealso{
 Useful links:

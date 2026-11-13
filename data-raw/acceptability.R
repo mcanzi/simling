@@ -25,4 +25,9 @@ acceptability <- crossing(participants, items) |>
          rating = as.integer(cut(latent, c(-Inf, -2.5, -1.5, -0.5, 0.5, 1.5, 2.5, Inf)))) |>
   select(participant, list, item, length, structure, rating)
 
+acceptability <- acceptability |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         length = factor(length, levels = c("short", "long")),
+         structure = factor(structure, levels = c("non-island", "island")))
+
 usethis::use_data(acceptability, overwrite = TRUE)

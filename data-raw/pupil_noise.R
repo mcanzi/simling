@@ -21,4 +21,7 @@ pupil_noise <- crossing(trials, time = seq(0, 3000, by = 100)) |>
          condition = fct_relevel(condition, "quiet")) |>
   select(participant, condition, trial, trial_id, time, pupil)
 
+pupil_noise <- pupil_noise |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
+
 usethis::use_data(pupil_noise, overwrite = TRUE)

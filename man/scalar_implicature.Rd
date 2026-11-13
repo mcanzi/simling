@@ -10,8 +10,8 @@ A tibble with 1440 rows and 6 columns:
 \item{participant}{Participant ID, \code{P01} to \code{P60}.}
 \item{list}{Counterbalancing list, 1 to 3.}
 \item{item}{Item ID, \code{i01} to \code{i24}.}
-\item{context}{How many cards have stars: \code{"all"} (critical),
-\code{"some"} (true control) or \code{"none"} (false control).}
+\item{context}{How many cards have stars: \code{"some"} (true control),
+\code{"all"} (critical) or \code{"none"} (false control).}
 \item{response}{\code{"true"} or \code{"false"}.}
 \item{rt}{Response time in ms.}
 }

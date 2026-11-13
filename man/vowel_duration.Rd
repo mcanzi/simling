@@ -9,7 +9,7 @@ A tibble with 384 rows and 4 columns:
 \describe{
 \item{speaker}{Speaker ID, \code{S01} to \code{S16}.}
 \item{word}{Word ID, \code{w01} to \code{w24}.}
-\item{voicing}{Factor, levels \code{"voiceless"} (reference) and \code{"voiced"}.}
+\item{voicing}{\code{"voiceless"} or \code{"voiced"}.}
 \item{duration}{Vowel duration in ms.}
 }
 }

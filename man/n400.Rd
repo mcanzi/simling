@@ -10,7 +10,7 @@ A tibble with 21600 rows and 9 columns:
 \item{participant}{Participant ID, \code{P01} to \code{P30}.}
 \item{list}{Counterbalancing list, 1 or 2.}
 \item{item}{Item ID, \code{i01} to \code{i80}.}
-\item{condition}{Factor, \code{"expected"} (reference) or \code{"unexpected"}.}
+\item{condition}{\code{"expected"} or \code{"unexpected"}.}
 \item{cloze}{Cloze probability of the final word.}
 \item{electrode}{\code{"F3"}, \code{"Fz"}, \code{"F4"}, \code{"C3"}, \code{"Cz"}, \code{"C4"},
 \code{"P3"}, \code{"Pz"} or \code{"P4"}.}

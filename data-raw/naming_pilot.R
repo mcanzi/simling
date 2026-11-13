@@ -14,4 +14,8 @@ naming_pilot <- crossing(participants, pictures) |>
                                (-0.04 - 0.02 * group + p1) * freq_c + rnorm(n(), 0, 0.1)))) |>
   select(participant, age_group, group, picture, freq_c, latency)
 
+naming_pilot <- naming_pilot |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         age_group = factor(age_group, levels = c("younger", "older")))
+
 usethis::use_data(naming_pilot, overwrite = TRUE)

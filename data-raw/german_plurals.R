@@ -58,4 +58,10 @@ german_plurals <- german_plurals |>
   mutate(across(where(is.character), enc2utf8),
          across(where(is.factor), \(f) { levels(f) <- enc2utf8(levels(f)); f }))
 
+german_plurals <- german_plurals |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         article = factor(article, levels = c("der", "die", "das")),
+         gender = factor(gender, levels = c("masculine", "feminine", "neuter")),
+         final = factor(final, levels = c("schwa", "-el/-er", "consonant", "full vowel")))
+
 usethis::use_data(german_plurals, overwrite = TRUE)

@@ -34,4 +34,8 @@ visual_world <- crossing(trials, time = seq(0, 1450, by = 50)) |>
   select(participant, list, item, condition, time, target, competitor,
          distractor_1, distractor_2, samples)
 
+visual_world <- visual_world |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         condition = factor(condition, levels = c("non-restrictive", "restrictive")))
+
 usethis::use_data(visual_world, overwrite = TRUE)

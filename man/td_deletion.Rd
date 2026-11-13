@@ -7,10 +7,10 @@
 \format{
 A tibble with 2000 rows and 11 columns:
 \describe{
-\item{speaker}{Factor, \code{S01} to \code{S40}.}
-\item{deleted}{Factor, levels \code{"retained"} and \code{"deleted"}.}
-\item{following}{Following segment: \code{"consonant"}, \code{"vowel"} or
-\code{"pause"}.}
+\item{speaker}{\code{S01} to \code{S40}.}
+\item{deleted}{\code{"retained"} or \code{"deleted"}.}
+\item{following}{Following segment: \code{"vowel"}, \code{"pause"} or
+\code{"consonant"}.}
 \item{morph}{\code{"monomorpheme"} (\emph{mist}) or \code{"past"} (\emph{missed}).}
 \item{rate}{Speech rate in syllables per second.}
 \item{log_freq}{log10 word frequency, 1 to 6.}

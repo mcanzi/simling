@@ -11,10 +11,10 @@ A tibble with 2880 rows and 7 columns:
 \item{item}{Item ID, \code{i01} to \code{i48}.}
 \item{nonce}{The nonce noun, e.g. \code{"Pünde"}.}
 \item{article}{\code{"der"}, \code{"die"} or \code{"das"}.}
-\item{gender}{Factor, \code{"feminine"}, \code{"masculine"} or \code{"neuter"}.}
-\item{final}{Factor, how the noun ends: \code{"-el/-er"}, \code{"consonant"},
-\code{"full vowel"} or \code{"schwa"}.}
-\item{plural}{Factor, \code{"-e"}, \code{"-(e)n"}, \code{"-er"}, \code{"-s"} or
+\item{gender}{\code{"masculine"}, \code{"feminine"} or \code{"neuter"}.}
+\item{final}{How the noun ends: \code{"schwa"}, \code{"-el/-er"}, \code{"consonant"}
+or \code{"full vowel"}.}
+\item{plural}{\code{"-e"}, \code{"-(e)n"}, \code{"-er"}, \code{"-s"} or
 \code{"zero"}.}
 }
 }

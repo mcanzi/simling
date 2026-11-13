@@ -7,11 +7,11 @@
 \format{
 A tibble with 1800 rows and 7 columns:
 \describe{
-\item{speaker}{Factor, \code{S01} to \code{S90}.}
+\item{speaker}{\code{S01} to \code{S90}.}
 \item{age}{Age in years.}
-\item{gender}{Factor, \code{"female"} or \code{"male"}.}
-\item{word}{Factor, \code{w01} to \code{w20}.}
-\item{tone}{Factor, \code{"T2"} or \code{"T5"}.}
+\item{gender}{\code{"female"} or \code{"male"}.}
+\item{word}{\code{w01} to \code{w20}.}
+\item{tone}{\code{"T2"} or \code{"T5"}.}
 \item{log_freq}{log10 word frequency, 1 to 5; no effect.}
 \item{rise}{f0 rise from onset to offset in semitones.}
 }

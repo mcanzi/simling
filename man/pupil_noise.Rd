@@ -7,10 +7,10 @@
 \format{
 A tibble with 17856 rows and 6 columns:
 \describe{
-\item{participant}{Factor, \code{P01} to \code{P24}.}
-\item{condition}{Factor, levels \code{"quiet"} (reference) and \code{"noise"}.}
+\item{participant}{\code{P01} to \code{P24}.}
+\item{condition}{\code{"quiet"} or \code{"noise"}.}
 \item{trial}{Trial number within condition, 1 to 12.}
-\item{trial_id}{Factor, one level per trial
+\item{trial_id}{One level per trial
 (\code{participant.condition.trial}).}
 \item{time}{Time from stimulus onset in ms, 0 to 3000 in steps of 100.}
 \item{pupil}{Baseline-corrected pupil size, arbitrary units.}

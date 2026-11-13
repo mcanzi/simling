@@ -20,4 +20,7 @@ lexical_decision <- crossing(participants, words) |>
          rt = round(exp(6.47 + u0 + w0 + (-0.045 + u1) * freq_c + rnorm(n(), 0, 0.075)))) |>
   select(participant, word, log_freq, freq_c, rt)
 
+lexical_decision <- lexical_decision |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
+
 usethis::use_data(lexical_decision, overwrite = TRUE)

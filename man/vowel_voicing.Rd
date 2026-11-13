@@ -7,8 +7,7 @@
 \format{
 A tibble with 120 rows and 2 columns:
 \describe{
-\item{voicing}{Factor, levels \code{"voiceless"} (reference) and
-\code{"voiced"}.}
+\item{voicing}{\code{"voiceless"} or \code{"voiced"}.}
 \item{duration}{Vowel duration in ms.}
 }
 }

@@ -20,4 +20,7 @@ vowel_duration <- crossing(speakers, words) |>
          voicing = factor(voicing, levels = c("voiceless", "voiced"))) |>
   select(speaker, word, voicing, duration)
 
+vowel_duration <- vowel_duration |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
+
 usethis::use_data(vowel_duration, overwrite = TRUE)

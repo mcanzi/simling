@@ -9,8 +9,8 @@ A tibble with 180 rows and 4 columns:
 \describe{
 \item{speaker}{Speaker ID, \code{S001} to \code{S180}.}
 \item{age_group}{\code{"under 30"} or \code{"over 50"}.}
-\item{setting}{\code{"university"}, \code{"shop"} or \code{"office"}.}
-\item{form}{\code{"du"} or \code{"Sie"}.}
+\item{setting}{\code{"university"}, \code{"office"} or \code{"shop"}.}
+\item{form}{\code{"Sie"} or \code{"du"}.}
 }
 }
 \source{

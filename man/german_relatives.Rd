@@ -10,7 +10,7 @@ A tibble with 13824 rows and 8 columns:
 \item{participant}{Participant ID, \code{P01} to \code{P48}.}
 \item{list}{Counterbalancing list, 1 or 2.}
 \item{item}{Item ID, \code{i01} to \code{i24}.}
-\item{condition}{Factor, \code{"subject"} (reference) or \code{"object"}
+\item{condition}{\code{"subject"} or \code{"object"}
 relative clause.}
 \item{position}{Word position in the sentence, 1 to 12.}
 \item{region}{Role of the word: \code{"det"}, \code{"noun"}, \code{"rel_pronoun"},

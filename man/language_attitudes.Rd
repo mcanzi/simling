@@ -10,7 +10,7 @@ A tibble with 320 rows and 15 columns:
 \item{respondent}{Respondent ID, \code{R001} to \code{R320}.}
 \item{age}{Age in years.}
 \item{dialect_speaker}{Whether the respondent speaks the dialect,
-\code{"yes"} or \code{"no"}.}
+\code{"no"} or \code{"yes"}.}
 \item{intelligent, educated, competent, lazy}{Status items: dialect
 speakers sound intelligent / educated / competent / lazy. \emph{lazy} is
 negatively worded.}

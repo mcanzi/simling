@@ -7,11 +7,11 @@
 \format{
 A tibble with 1440 rows and 8 columns:
 \describe{
-\item{speaker}{Factor, \code{S01} to \code{S40}.}
-\item{generation}{Factor, \code{"older"} or \code{"younger"}.}
-\item{gender}{Factor, \code{"female"} or \code{"male"}.}
-\item{stop}{Factor, \code{"lenis"}, \code{"tense"} or \code{"aspirated"}.}
-\item{place}{Factor, \code{"labial"}, \code{"coronal"} or \code{"velar"}.}
+\item{speaker}{\code{S01} to \code{S40}.}
+\item{generation}{\code{"older"} or \code{"younger"}.}
+\item{gender}{\code{"female"} or \code{"male"}.}
+\item{stop}{\code{"lenis"}, \code{"tense"} or \code{"aspirated"}.}
+\item{place}{\code{"labial"}, \code{"coronal"} or \code{"velar"}.}
 \item{rep}{Repetition, 1 to 4.}
 \item{vot}{Voice onset time in ms.}
 \item{f0}{f0 at the start of the following vowel in Hz.}

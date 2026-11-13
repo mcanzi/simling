@@ -8,7 +8,7 @@
 A tibble with 160 rows and 3 columns:
 \describe{
 \item{style}{\code{"casual"} or \code{"clear"}.}
-\item{voicing}{Factor, levels \code{"voiceless"} (reference) and \code{"voiced"}.}
+\item{voicing}{\code{"voiceless"} or \code{"voiced"}.}
 \item{duration}{Vowel duration in ms.}
 }
 }

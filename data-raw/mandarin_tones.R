@@ -35,4 +35,7 @@ mandarin_tones <- crossing(tokens, time = seq(0, 100, by = 10)) |>
          across(c(speaker, gender, tone, syllable, token_id), factor)) |>
   select(speaker, gender, tone, syllable, token_id, duration, time, f0)
 
+mandarin_tones <- mandarin_tones |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
+
 usethis::use_data(mandarin_tones, overwrite = TRUE)

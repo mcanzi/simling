@@ -17,4 +17,8 @@ style_voicing <- cells |>
          voicing = fct_relevel(voicing, "voiceless")) |>
   select(-mu)
 
+style_voicing <- style_voicing |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         style = factor(style, levels = c("casual", "clear")))
+
 usethis::use_data(style_voicing, overwrite = TRUE)

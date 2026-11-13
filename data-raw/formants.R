@@ -15,4 +15,8 @@ formants <- crossing(speaker = c("A", "B"), vowel_means, token = 1:20) |>
          F2 = round(F2 * k + rnorm(n(), 0, 120))) |>
   select(speaker, vowel, token, F1, F2)
 
+formants <- formants |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         vowel = factor(vowel, levels = c("i", "a", "u")))
+
 usethis::use_data(formants, overwrite = TRUE)

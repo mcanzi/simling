@@ -24,6 +24,8 @@ library(simling)
 vowel_duration
 ```
 
+Every categorical column is a factor. Its first level is the reference level: the baseline condition, such as `"voiceless"` in `vowel_duration` or `"grammatical"` in `agreement_attraction`. IDs such as participants, speakers and words are factors too. Binary outcomes coded 0/1 and rating scales are numeric.
+
 ## Data sets
 
 | Branch | Data set | Language | Rows | Response | Topic |

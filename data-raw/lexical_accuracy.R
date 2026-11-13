@@ -19,4 +19,7 @@ lexical_accuracy <- crossing(participants, words) |>
          correct = rbinom(n(), size = 1, prob = plogis(logit))) |>
   select(participant, word, log_freq, freq_c, correct)
 
+lexical_accuracy <- lexical_accuracy |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
+
 usethis::use_data(lexical_accuracy, overwrite = TRUE)

@@ -18,4 +18,8 @@ do_support <- crossing(texts, context = names(baseline)) |>
   filter(eligible > 0) |>
   select(text, year, context, do, eligible)
 
+do_support <- do_support |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         context = factor(context, levels = c("affirmative declarative", "negative declarative", "affirmative question", "negative question")))
+
 usethis::use_data(do_support, overwrite = TRUE)

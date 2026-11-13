@@ -39,4 +39,9 @@ agreement_attraction <- crossing(participants, items) |>
   select(participant, list, item, grammaticality, attractor, skipped,
          first_fixation, gaze_duration, regression, total_time)
 
+agreement_attraction <- agreement_attraction |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         grammaticality = factor(grammaticality, levels = c("grammatical", "ungrammatical")),
+         attractor = factor(attractor, levels = c("singular", "plural")))
+
 usethis::use_data(agreement_attraction, overwrite = TRUE)

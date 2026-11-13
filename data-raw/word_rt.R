@@ -10,4 +10,7 @@ word_rt <- tibble(
   mutate(rt = round(exp(6.62 - 0.04 * (log_freq - 3.5) + 0.0186 * (length - 7) +
                           rnorm(n(), 0, 0.06))))
 
+word_rt <- word_rt |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
+
 usethis::use_data(word_rt, overwrite = TRUE)

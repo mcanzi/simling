@@ -7,11 +7,11 @@
 \format{
 A tibble with 4224 rows and 8 columns:
 \describe{
-\item{speaker}{Factor, \code{S01} to \code{S12}.}
-\item{gender}{Factor, \code{"female"} or \code{"male"}.}
-\item{tone}{Factor, \code{"T1"} to \code{"T4"}.}
-\item{syllable}{Factor, \code{syl1} to \code{syl8}.}
-\item{token_id}{Factor, one level per token (\code{speaker.tone.syllable}).}
+\item{speaker}{\code{S01} to \code{S12}.}
+\item{gender}{\code{"female"} or \code{"male"}.}
+\item{tone}{\code{"T1"} to \code{"T4"}.}
+\item{syllable}{\code{syl1} to \code{syl8}.}
+\item{token_id}{One level per token (\code{speaker.tone.syllable}).}
 \item{duration}{Vowel duration in ms.}
 \item{time}{Normalised time, 0 to 100 in steps of 10.}
 \item{f0}{f0 in Hz.}

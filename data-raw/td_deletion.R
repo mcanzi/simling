@@ -19,4 +19,9 @@ td_deletion <- crossing(speakers, token = 1:50) |>
   mutate(across(c(speaker, gender, education, following, morph, noise_bin), factor)) |>
   select(speaker, deleted, following, morph, rate, log_freq, age, gender, education, noise_cont, noise_bin)
 
+td_deletion <- td_deletion |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         following = factor(following, levels = c("vowel", "pause", "consonant")),
+         morph = factor(morph, levels = c("monomorpheme", "past")))
+
 usethis::use_data(td_deletion, overwrite = TRUE)

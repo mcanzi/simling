@@ -15,4 +15,7 @@ vocabulary_growth <- crossing(children, age = seq(16, 30, by = 2)) |>
   filter(runif(n()) > 0.1) |>
   select(child, input, age, vocabulary)
 
+vocabulary_growth <- vocabulary_growth |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
+
 usethis::use_data(vocabulary_growth, overwrite = TRUE)

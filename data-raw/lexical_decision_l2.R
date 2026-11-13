@@ -17,4 +17,8 @@ lexical_decision_l2 <- crossing(participants, words) |>
                         slope * (log_freq - 3.5) + 0.017 * (length - 7) + rnorm(n(), 0, 0.09)))) |>
   select(participant, group, word, log_freq, length, rt)
 
+lexical_decision_l2 <- lexical_decision_l2 |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         group = factor(group, levels = c("L1", "L2")))
+
 usethis::use_data(lexical_decision_l2, overwrite = TRUE)

@@ -26,4 +26,9 @@ scalar_implicature <- crossing(participants, items) |>
                           rnorm(n(), 0, 0.25)))) |>
   select(participant, list, item, context, response, rt)
 
+scalar_implicature <- scalar_implicature |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         context = factor(context, levels = c("some", "all", "none")),
+         response = factor(response, levels = c("true", "false")))
+
 usethis::use_data(scalar_implicature, overwrite = TRUE)

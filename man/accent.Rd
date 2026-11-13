@@ -7,9 +7,9 @@
 \format{
 A tibble with 1200 rows and 9 columns:
 \describe{
-\item{speaker}{Factor, \code{S01} to \code{S30}.}
-\item{l1}{Factor, \code{"English"} or \code{"Italian"}.}
-\item{gender}{Factor, \code{"female"} or \code{"male"}.}
+\item{speaker}{\code{S01} to \code{S30}.}
+\item{l1}{\code{"English"} or \code{"Italian"}.}
+\item{gender}{\code{"female"} or \code{"male"}.}
 \item{vot}{Voice onset time of /p t k/ in ms.}
 \item{vowel_ratio}{Ratio of stressed to unstressed vowel duration.}
 \item{rate}{Speech rate in syllables per second.}

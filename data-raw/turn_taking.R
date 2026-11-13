@@ -29,4 +29,10 @@ turn_taking <- turn_taking |>
   mutate(across(where(is.character), enc2utf8),
          across(where(is.factor), \(f) { levels(f) <- enc2utf8(levels(f)); f }))
 
+turn_taking <- turn_taking |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         response = factor(response, levels = c("confirmation", "disconfirmation")),
+         answer = factor(answer, levels = c("answer", "non-answer")),
+         gaze = factor(gaze, levels = c("no", "yes")))
+
 usethis::use_data(turn_taking, overwrite = TRUE)

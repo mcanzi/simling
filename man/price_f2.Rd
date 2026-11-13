@@ -7,9 +7,9 @@
 \format{
 A tibble with 2200 rows and 6 columns:
 \describe{
-\item{speaker}{Factor, \code{S01} to \code{S20}.}
-\item{l1}{Factor, \code{"English"} or \code{"Italian"}.}
-\item{traj}{Factor, one level per token (\code{speaker.token}).}
+\item{speaker}{\code{S01} to \code{S20}.}
+\item{l1}{\code{"English"} or \code{"Italian"}.}
+\item{traj}{One level per token (\code{speaker.token}).}
 \item{duration}{Vowel duration in ms, 120 to 300.}
 \item{time}{Normalised time, 0 to 100 in steps of 10.}
 \item{f2}{F2 in Hz.}

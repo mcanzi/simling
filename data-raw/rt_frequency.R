@@ -14,4 +14,8 @@ rt_frequency <- crossing(participants, words) |>
          accuracy = rbinom(n(), 1, if_else(frequency == "low", 0.85, 0.95))) |>
   select(participant, word, frequency, rt, accuracy)
 
+rt_frequency <- rt_frequency |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         frequency = factor(frequency, levels = c("high", "low")))
+
 usethis::use_data(rt_frequency, overwrite = TRUE)

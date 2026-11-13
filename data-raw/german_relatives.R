@@ -28,4 +28,8 @@ german_relatives <- crossing(participants, items, regions) |>
          condition = factor(condition, levels = c("subject", "object"))) |>
   select(participant, list, item, condition, position, region, length, rt)
 
+german_relatives <- german_relatives |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         region = factor(region, levels = c("det", "noun", "rel_pronoun", "rc_det", "rc_noun", "rc_participle", "rc_auxiliary", "main_verb", "spillover_1", "spillover_2", "spillover_3", "final")))
+
 usethis::use_data(german_relatives, overwrite = TRUE)

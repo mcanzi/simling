@@ -10,7 +10,7 @@ A tibble with 23040 rows and 10 columns:
 \item{participant}{Participant ID, \code{P01} to \code{P32}.}
 \item{list}{Counterbalancing list, 1 or 2.}
 \item{item}{Item ID, \code{i01} to \code{i24}.}
-\item{condition}{\code{"restrictive"} or \code{"non-restrictive"} verb.}
+\item{condition}{\code{"non-restrictive"} or \code{"restrictive"} verb.}
 \item{time}{Start of the 50 ms bin, ms from verb onset, 0 to 1450.}
 \item{target, competitor, distractor_1, distractor_2}{Eye-tracker
 samples on each object in this bin; they add up to \code{samples}.}

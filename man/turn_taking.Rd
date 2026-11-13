@@ -7,12 +7,12 @@
 \format{
 A tibble with 3000 rows and 6 columns:
 \describe{
-\item{language}{Factor, 10 languages.}
-\item{conversation}{Factor, 12 per language.}
+\item{language}{10 languages.}
+\item{conversation}{12 per language.}
 \item{response}{\code{"confirmation"} or \code{"disconfirmation"}.}
 \item{answer}{\code{"answer"} or \code{"non-answer"} (e.g. \emph{I don't know}).}
 \item{gaze}{Whether the questioner was looking at the responder,
-\code{"yes"} or \code{"no"}.}
+\code{"no"} or \code{"yes"}.}
 \item{offset}{Time from the end of the question to the start of the
 answer in ms.}
 }

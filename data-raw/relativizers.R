@@ -24,4 +24,10 @@ relativizers <- crossing(texts, token = 1:10) |>
                                  TRUE ~ "zero")) |>
   select(text, mode, token, role, antecedent_length, relativizer)
 
+relativizers <- relativizers |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         mode = factor(mode, levels = c("spoken", "written")),
+         role = factor(role, levels = c("subject", "object")),
+         relativizer = factor(relativizer, levels = c("that", "which", "zero")))
+
 usethis::use_data(relativizers, overwrite = TRUE)

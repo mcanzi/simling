@@ -9,8 +9,8 @@ A tibble with 1200 rows and 5 columns:
 \describe{
 \item{text}{Text ID, \code{T001} to \code{T300}.}
 \item{year}{Year of the text.}
-\item{context}{\code{"affirmative question"}, \code{"negative question"},
-\code{"negative declarative"} or \code{"affirmative declarative"}.}
+\item{context}{\code{"affirmative declarative"}, \code{"negative declarative"},
+\code{"affirmative question"} or \code{"negative question"}.}
 \item{do}{Clauses with \emph{do}.}
 \item{eligible}{All clauses in this context in this text.}
 }

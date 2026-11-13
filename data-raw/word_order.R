@@ -40,4 +40,10 @@ word_order <- families |>
   arrange(language) |>
   select(language, family, area, order, adpositions, case_marking, consonants, vowels)
 
+word_order <- word_order |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         order = factor(order, levels = c("SOV", "SVO", "VSO", "no dominant order")),
+         adpositions = factor(adpositions, levels = c("postpositions", "prepositions")),
+         case_marking = factor(case_marking, levels = c("no", "yes")))
+
 usethis::use_data(word_order, overwrite = TRUE)

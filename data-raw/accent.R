@@ -17,4 +17,7 @@ accent <- crossing(speakers, token = 1:40) |>
   mutate(across(c(speaker, l1, gender), factor)) |>
   select(speaker, l1, gender, vot, vowel_ratio, rate, f0, h1h2, intensity)
 
+accent <- accent |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
+
 usethis::use_data(accent, overwrite = TRUE)

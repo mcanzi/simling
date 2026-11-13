@@ -24,4 +24,7 @@ dialect_survey <- dialect_survey |>
   mutate(across(where(is.character), enc2utf8),
          across(where(is.factor), \(f) { levels(f) <- enc2utf8(levels(f)); f }))
 
+dialect_survey <- dialect_survey |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
+
 usethis::use_data(dialect_survey, overwrite = TRUE)

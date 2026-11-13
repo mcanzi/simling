@@ -7,10 +7,10 @@
 \format{
 A tibble with 1200 rows and 6 columns:
 \describe{
-\item{participant}{Factor, \code{P01} to \code{P30}.}
+\item{participant}{\code{P01} to \code{P30}.}
 \item{age_group}{\code{"younger"} or \code{"older"}.}
 \item{group}{\code{age_group} contrast-coded: -0.5 younger, 0.5 older.}
-\item{picture}{Factor, \code{pic01} to \code{pic40}.}
+\item{picture}{\code{pic01} to \code{pic40}.}
 \item{freq_c}{Centred log10 frequency of the picture name, about -2.5
 to 2.5.}
 \item{latency}{Naming latency in ms.}

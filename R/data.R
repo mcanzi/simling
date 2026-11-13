@@ -1,7 +1,3 @@
-# All data sets are simulated. The code that generated each one is in
-# data-raw/ (https://github.com/mcanzi/simling/tree/main/data-raw), so the
-# true effects are known and listed under "True model".
-
 #' Reaction times to high- and low-frequency words
 #'
 #' A small lexical decision task: 10 participants each respond to the same 20
@@ -93,8 +89,7 @@
 #'
 #' @format A tibble with 120 rows and 2 columns:
 #' \describe{
-#'   \item{voicing}{Factor, levels `"voiceless"` (reference) and
-#'     `"voiced"`.}
+#'   \item{voicing}{`"voiceless"` or `"voiced"`.}
 #'   \item{duration}{Vowel duration in ms.}
 #' }
 #' @details True model: mean 120 ms (SD 20) before voiceless and 160 ms
@@ -148,7 +143,7 @@
 #' @format A tibble with 160 rows and 3 columns:
 #' \describe{
 #'   \item{style}{`"casual"` or `"clear"`.}
-#'   \item{voicing}{Factor, levels `"voiceless"` (reference) and `"voiced"`.}
+#'   \item{voicing}{`"voiceless"` or `"voiced"`.}
 #'   \item{duration}{Vowel duration in ms.}
 #' }
 #' @details True model: cell means are 110 (casual, voiceless), 145 (casual,
@@ -212,7 +207,7 @@
 #' \describe{
 #'   \item{speaker}{Speaker ID, `S01` to `S16`.}
 #'   \item{word}{Word ID, `w01` to `w24`.}
-#'   \item{voicing}{Factor, levels `"voiceless"` (reference) and `"voiced"`.}
+#'   \item{voicing}{`"voiceless"` or `"voiced"`.}
 #'   \item{duration}{Vowel duration in ms.}
 #' }
 #' @details True model: `duration = 150 + s0 + w0 + (20 + s1) * voiced + e`.
@@ -278,9 +273,9 @@
 #'
 #' @format A tibble with 2200 rows and 6 columns:
 #' \describe{
-#'   \item{speaker}{Factor, `S01` to `S20`.}
-#'   \item{l1}{Factor, `"English"` or `"Italian"`.}
-#'   \item{traj}{Factor, one level per token (`speaker.token`).}
+#'   \item{speaker}{`S01` to `S20`.}
+#'   \item{l1}{`"English"` or `"Italian"`.}
+#'   \item{traj}{One level per token (`speaker.token`).}
 #'   \item{duration}{Vowel duration in ms, 120 to 300.}
 #'   \item{time}{Normalised time, 0 to 100 in steps of 10.}
 #'   \item{f2}{F2 in Hz.}
@@ -304,10 +299,10 @@
 #'
 #' @format A tibble with 17856 rows and 6 columns:
 #' \describe{
-#'   \item{participant}{Factor, `P01` to `P24`.}
-#'   \item{condition}{Factor, levels `"quiet"` (reference) and `"noise"`.}
+#'   \item{participant}{`P01` to `P24`.}
+#'   \item{condition}{`"quiet"` or `"noise"`.}
 #'   \item{trial}{Trial number within condition, 1 to 12.}
-#'   \item{trial_id}{Factor, one level per trial
+#'   \item{trial_id}{One level per trial
 #'     (`participant.condition.trial`).}
 #'   \item{time}{Time from stimulus onset in ms, 0 to 3000 in steps of 100.}
 #'   \item{pupil}{Baseline-corrected pupil size, arbitrary units.}
@@ -332,10 +327,10 @@
 #'
 #' @format A tibble with 2000 rows and 11 columns:
 #' \describe{
-#'   \item{speaker}{Factor, `S01` to `S40`.}
-#'   \item{deleted}{Factor, levels `"retained"` and `"deleted"`.}
-#'   \item{following}{Following segment: `"consonant"`, `"vowel"` or
-#'     `"pause"`.}
+#'   \item{speaker}{`S01` to `S40`.}
+#'   \item{deleted}{`"retained"` or `"deleted"`.}
+#'   \item{following}{Following segment: `"vowel"`, `"pause"` or
+#'     `"consonant"`.}
 #'   \item{morph}{`"monomorpheme"` (*mist*) or `"past"` (*missed*).}
 #'   \item{rate}{Speech rate in syllables per second.}
 #'   \item{log_freq}{log10 word frequency, 1 to 6.}
@@ -365,9 +360,9 @@
 #'
 #' @format A tibble with 1200 rows and 9 columns:
 #' \describe{
-#'   \item{speaker}{Factor, `S01` to `S30`.}
-#'   \item{l1}{Factor, `"English"` or `"Italian"`.}
-#'   \item{gender}{Factor, `"female"` or `"male"`.}
+#'   \item{speaker}{`S01` to `S30`.}
+#'   \item{l1}{`"English"` or `"Italian"`.}
+#'   \item{gender}{`"female"` or `"male"`.}
 #'   \item{vot}{Voice onset time of /p t k/ in ms.}
 #'   \item{vowel_ratio}{Ratio of stressed to unstressed vowel duration.}
 #'   \item{rate}{Speech rate in syllables per second.}
@@ -393,10 +388,10 @@
 #'
 #' @format A tibble with 1200 rows and 6 columns:
 #' \describe{
-#'   \item{participant}{Factor, `P01` to `P30`.}
+#'   \item{participant}{`P01` to `P30`.}
 #'   \item{age_group}{`"younger"` or `"older"`.}
 #'   \item{group}{`age_group` contrast-coded: -0.5 younger, 0.5 older.}
-#'   \item{picture}{Factor, `pic01` to `pic40`.}
+#'   \item{picture}{`pic01` to `pic40`.}
 #'   \item{freq_c}{Centred log10 frequency of the picture name, about -2.5
 #'     to 2.5.}
 #'   \item{latency}{Naming latency in ms.}
@@ -488,8 +483,8 @@
 #'   \item{participant}{Participant ID, `P01` to `P60`.}
 #'   \item{list}{Counterbalancing list, 1 to 3.}
 #'   \item{item}{Item ID, `i01` to `i24`.}
-#'   \item{context}{How many cards have stars: `"all"` (critical),
-#'     `"some"` (true control) or `"none"` (false control).}
+#'   \item{context}{How many cards have stars: `"some"` (true control),
+#'     `"all"` (critical) or `"none"` (false control).}
 #'   \item{response}{`"true"` or `"false"`.}
 #'   \item{rt}{Response time in ms.}
 #' }
@@ -520,7 +515,7 @@
 #'   \item{participant}{Participant ID, `P01` to `P32`.}
 #'   \item{list}{Counterbalancing list, 1 or 2.}
 #'   \item{item}{Item ID, `i01` to `i24`.}
-#'   \item{condition}{`"restrictive"` or `"non-restrictive"` verb.}
+#'   \item{condition}{`"non-restrictive"` or `"restrictive"` verb.}
 #'   \item{time}{Start of the 50 ms bin, ms from verb onset, 0 to 1450.}
 #'   \item{target, competitor, distractor_1, distractor_2}{Eye-tracker
 #'     samples on each object in this bin; they add up to `samples`.}
@@ -655,8 +650,8 @@
 #' \describe{
 #'   \item{text}{Text ID, `T001` to `T300`.}
 #'   \item{year}{Year of the text.}
-#'   \item{context}{`"affirmative question"`, `"negative question"`,
-#'     `"negative declarative"` or `"affirmative declarative"`.}
+#'   \item{context}{`"affirmative declarative"`, `"negative declarative"`,
+#'     `"affirmative question"` or `"negative question"`.}
 #'   \item{do}{Clauses with *do*.}
 #'   \item{eligible}{All clauses in this context in this text.}
 #' }
@@ -691,7 +686,7 @@
 #'   \item{order}{Basic word order: `"SOV"`, `"SVO"`, `"VSO"` or `"no
 #'     dominant order"`.}
 #'   \item{adpositions}{`"postpositions"` or `"prepositions"`.}
-#'   \item{case_marking}{Whether nouns are case-marked, `"yes"` or `"no"`.}
+#'   \item{case_marking}{Whether nouns are case-marked, `"no"` or `"yes"`.}
 #'   \item{consonants}{Size of the consonant inventory.}
 #'   \item{vowels}{Size of the vowel inventory.}
 #' }
@@ -724,8 +719,8 @@
 #' \describe{
 #'   \item{speaker}{Speaker ID, `S001` to `S180`.}
 #'   \item{age_group}{`"under 30"` or `"over 50"`.}
-#'   \item{setting}{`"university"`, `"shop"` or `"office"`.}
-#'   \item{form}{`"du"` or `"Sie"`.}
+#'   \item{setting}{`"university"`, `"office"` or `"shop"`.}
+#'   \item{form}{`"Sie"` or `"du"`.}
 #' }
 #' @details True model: the probability of *du* is 0.85 (university), 0.35
 #'   (shop) and 0.45 (office) for speakers under 30, and 0.40, 0.08 and 0.15
@@ -795,11 +790,11 @@
 #'
 #' @format A tibble with 4224 rows and 8 columns:
 #' \describe{
-#'   \item{speaker}{Factor, `S01` to `S12`.}
-#'   \item{gender}{Factor, `"female"` or `"male"`.}
-#'   \item{tone}{Factor, `"T1"` to `"T4"`.}
-#'   \item{syllable}{Factor, `syl1` to `syl8`.}
-#'   \item{token_id}{Factor, one level per token (`speaker.tone.syllable`).}
+#'   \item{speaker}{`S01` to `S12`.}
+#'   \item{gender}{`"female"` or `"male"`.}
+#'   \item{tone}{`"T1"` to `"T4"`.}
+#'   \item{syllable}{`syl1` to `syl8`.}
+#'   \item{token_id}{One level per token (`speaker.tone.syllable`).}
 #'   \item{duration}{Vowel duration in ms.}
 #'   \item{time}{Normalised time, 0 to 100 in steps of 10.}
 #'   \item{f0}{f0 in Hz.}
@@ -828,11 +823,11 @@
 #'
 #' @format A tibble with 1440 rows and 8 columns:
 #' \describe{
-#'   \item{speaker}{Factor, `S01` to `S40`.}
-#'   \item{generation}{Factor, `"older"` or `"younger"`.}
-#'   \item{gender}{Factor, `"female"` or `"male"`.}
-#'   \item{stop}{Factor, `"lenis"`, `"tense"` or `"aspirated"`.}
-#'   \item{place}{Factor, `"labial"`, `"coronal"` or `"velar"`.}
+#'   \item{speaker}{`S01` to `S40`.}
+#'   \item{generation}{`"older"` or `"younger"`.}
+#'   \item{gender}{`"female"` or `"male"`.}
+#'   \item{stop}{`"lenis"`, `"tense"` or `"aspirated"`.}
+#'   \item{place}{`"labial"`, `"coronal"` or `"velar"`.}
 #'   \item{rep}{Repetition, 1 to 4.}
 #'   \item{vot}{Voice onset time in ms.}
 #'   \item{f0}{f0 at the start of the following vowel in Hz.}
@@ -866,7 +861,7 @@
 #'   \item{participant}{Participant ID, `P01` to `P48`.}
 #'   \item{list}{Counterbalancing list, 1 or 2.}
 #'   \item{item}{Item ID, `i01` to `i24`.}
-#'   \item{condition}{Factor, `"subject"` (reference) or `"object"`
+#'   \item{condition}{`"subject"` or `"object"`
 #'     relative clause.}
 #'   \item{position}{Word position in the sentence, 1 to 12.}
 #'   \item{region}{Role of the word: `"det"`, `"noun"`, `"rel_pronoun"`,
@@ -899,7 +894,7 @@
 #'   \item{participant}{Participant ID, `P01` to `P30`.}
 #'   \item{list}{Counterbalancing list, 1 or 2.}
 #'   \item{item}{Item ID, `i01` to `i80`.}
-#'   \item{condition}{Factor, `"expected"` (reference) or `"unexpected"`.}
+#'   \item{condition}{`"expected"` or `"unexpected"`.}
 #'   \item{cloze}{Cloze probability of the final word.}
 #'   \item{electrode}{`"F3"`, `"Fz"`, `"F4"`, `"C3"`, `"Cz"`, `"C4"`,
 #'     `"P3"`, `"Pz"` or `"P4"`.}
@@ -934,11 +929,11 @@
 #'
 #' @format A tibble with 1800 rows and 7 columns:
 #' \describe{
-#'   \item{speaker}{Factor, `S01` to `S90`.}
+#'   \item{speaker}{`S01` to `S90`.}
 #'   \item{age}{Age in years.}
-#'   \item{gender}{Factor, `"female"` or `"male"`.}
-#'   \item{word}{Factor, `w01` to `w20`.}
-#'   \item{tone}{Factor, `"T2"` or `"T5"`.}
+#'   \item{gender}{`"female"` or `"male"`.}
+#'   \item{word}{`w01` to `w20`.}
+#'   \item{tone}{`"T2"` or `"T5"`.}
 #'   \item{log_freq}{log10 word frequency, 1 to 5; no effect.}
 #'   \item{rise}{f0 rise from onset to offset in semitones.}
 #' }
@@ -970,10 +965,10 @@
 #'   \item{item}{Item ID, `i01` to `i48`.}
 #'   \item{nonce}{The nonce noun, e.g. `"Pünde"`.}
 #'   \item{article}{`"der"`, `"die"` or `"das"`.}
-#'   \item{gender}{Factor, `"feminine"`, `"masculine"` or `"neuter"`.}
-#'   \item{final}{Factor, how the noun ends: `"-el/-er"`, `"consonant"`,
-#'     `"full vowel"` or `"schwa"`.}
-#'   \item{plural}{Factor, `"-e"`, `"-(e)n"`, `"-er"`, `"-s"` or
+#'   \item{gender}{`"masculine"`, `"feminine"` or `"neuter"`.}
+#'   \item{final}{How the noun ends: `"schwa"`, `"-el/-er"`, `"consonant"`
+#'     or `"full vowel"`.}
+#'   \item{plural}{`"-e"`, `"-(e)n"`, `"-er"`, `"-s"` or
 #'     `"zero"`.}
 #' }
 #' @details True model: each gender-by-ending cell has its own probabilities
@@ -999,12 +994,12 @@
 #'
 #' @format A tibble with 3000 rows and 6 columns:
 #' \describe{
-#'   \item{language}{Factor, 10 languages.}
-#'   \item{conversation}{Factor, 12 per language.}
+#'   \item{language}{10 languages.}
+#'   \item{conversation}{12 per language.}
 #'   \item{response}{`"confirmation"` or `"disconfirmation"`.}
 #'   \item{answer}{`"answer"` or `"non-answer"` (e.g. *I don't know*).}
 #'   \item{gaze}{Whether the questioner was looking at the responder,
-#'     `"yes"` or `"no"`.}
+#'     `"no"` or `"yes"`.}
 #'   \item{offset}{Time from the end of the question to the start of the
 #'     answer in ms.}
 #' }
@@ -1035,7 +1030,7 @@
 #'   \item{respondent}{Respondent ID, `R001` to `R320`.}
 #'   \item{age}{Age in years.}
 #'   \item{dialect_speaker}{Whether the respondent speaks the dialect,
-#'     `"yes"` or `"no"`.}
+#'     `"no"` or `"yes"`.}
 #'   \item{intelligent, educated, competent, lazy}{Status items: dialect
 #'     speakers sound intelligent / educated / competent / lazy. *lazy* is
 #'     negatively worded.}

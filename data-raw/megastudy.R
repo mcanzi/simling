@@ -15,4 +15,7 @@ megastudy <- tibble(word = sprintf("w%04d", 1:n),
          accuracy = round(plogis(2.5 + 0.7 * (log_freq - 2.5) - 0.2 * (aoa - 7) +
                                    rnorm(n, 0, 0.5)), 3))
 
+megastudy <- megastudy |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
+
 usethis::use_data(megastudy, overwrite = TRUE)

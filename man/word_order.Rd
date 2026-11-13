@@ -12,7 +12,7 @@ A tibble with 400 rows and 8 columns:
 \item{area}{\code{"Area A"} to \code{"Area F"}.}
 \item{order}{Basic word order: \code{"SOV"}, \code{"SVO"}, \code{"VSO"} or \code{"no dominant order"}.}
 \item{adpositions}{\code{"postpositions"} or \code{"prepositions"}.}
-\item{case_marking}{Whether nouns are case-marked, \code{"yes"} or \code{"no"}.}
+\item{case_marking}{Whether nouns are case-marked, \code{"no"} or \code{"yes"}.}
 \item{consonants}{Size of the consonant inventory.}
 \item{vowels}{Size of the vowel inventory.}
 }

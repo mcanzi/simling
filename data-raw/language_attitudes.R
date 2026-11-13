@@ -42,4 +42,8 @@ for (i in seq_len(nrow(items))) {
 language_attitudes <- language_attitudes |>
   select(respondent, age, dialect_speaker, all_of(items$item))
 
+language_attitudes <- language_attitudes |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         dialect_speaker = factor(dialect_speaker, levels = c("no", "yes")))
+
 usethis::use_data(language_attitudes, overwrite = TRUE)

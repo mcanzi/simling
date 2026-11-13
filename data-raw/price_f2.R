@@ -24,4 +24,7 @@ price_f2 <- crossing(tokens, time = seq(0, 100, by = 10)) |>
   mutate(across(c(speaker, l1, traj), factor)) |>
   select(speaker, l1, traj, duration, time, f2)
 
+price_f2 <- price_f2 |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
+
 usethis::use_data(price_f2, overwrite = TRUE)

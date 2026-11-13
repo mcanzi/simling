@@ -39,4 +39,9 @@ korean_stops <- crossing(speakers, stop = c("lenis", "tense", "aspirated"),
          across(c(speaker, generation, gender, stop, place), factor)) |>
   select(speaker, generation, gender, stop, place, rep, vot, f0)
 
+korean_stops <- korean_stops |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         stop = factor(stop, levels = c("lenis", "tense", "aspirated")),
+         place = factor(place, levels = c("labial", "coronal", "velar")))
+
 usethis::use_data(korean_stops, overwrite = TRUE)
