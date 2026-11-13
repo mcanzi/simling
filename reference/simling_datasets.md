@@ -50,24 +50,24 @@ A tibble with one row per data set and the columns:
 
 ``` r
 simling_datasets()
-#> # A tibble: 50 × 7
-#>    name              branch    language             rows columns response  topic
-#>    <chr>             <fct>     <chr>               <int>   <int> <chr>     <chr>
-#>  1 formants          Phonetics NA                    120       5 continuo… Norm…
-#>  2 vowel_voicing     Phonetics English               120       2 continuo… Two …
-#>  3 speech_styles     Phonetics NA                    150       2 continuo… Cate…
-#>  4 style_voicing     Phonetics NA                    160       3 continuo… Cate…
-#>  5 vowel_duration    Phonetics NA                    384       4 continuo… Mixe…
-#>  6 korean_stops      Phonetics Korean               1440       8 continuo… Clus…
-#>  7 price_f2          Phonetics English (L1 and L2)  2200       6 trajecto… GAMs…
-#>  8 mandarin_tones    Phonetics Mandarin             4224       8 trajecto… Cont…
-#>  9 hungarian_harmony Phonology Hungarian            4200       6 binary    Mixe…
-#> 10 tobi_agreement    Prosody   German                456       8 labels f… Inte…
-#> # ℹ 40 more rows
+#> # A tibble: 55 × 7
+#>    name               branch    language             rows columns response topic
+#>    <chr>              <fct>     <chr>               <int>   <int> <chr>    <chr>
+#>  1 formants           Phonetics NA                    120       5 continu… Norm…
+#>  2 vowel_voicing      Phonetics English               120       2 continu… Two …
+#>  3 speech_styles      Phonetics NA                    150       2 continu… Cate…
+#>  4 style_voicing      Phonetics NA                    160       3 continu… Cate…
+#>  5 vowel_duration     Phonetics NA                    384       4 continu… Mixe…
+#>  6 korean_stops       Phonetics Korean               1440       8 continu… Clus…
+#>  7 price_f2           Phonetics English (L1 and L2)  2200       6 traject… GAMs…
+#>  8 mandarin_tones     Phonetics Mandarin             4224       8 traject… Cont…
+#>  9 vot_identification Phonetics English, Spanish     1224       6 binomia… Psyc…
+#> 10 hungarian_harmony  Phonology Hungarian            4200       6 binary   Mixe…
+#> # ℹ 45 more rows
 
 sets <- simling_datasets()
 sets[sets$branch == "Psycholinguistics", ]
-#> # A tibble: 14 × 7
+#> # A tibble: 15 × 7
 #>    name                branch            language    rows columns response topic
 #>    <chr>               <fct>             <chr>      <int>   <int> <chr>    <chr>
 #>  1 rt_frequency        Psycholinguistics NA           200       5 RT, bin… Data…
@@ -84,31 +84,36 @@ sets[sets$branch == "Psycholinguistics", ]
 #> 12 pupil_noise         Psycholinguistics NA         17856       6 traject… GAMM…
 #> 13 n400                Psycholinguistics German     21600       9 ERP amp… EEG,…
 #> 14 visual_world        Psycholinguistics English    23040      10 samples… Eye …
+#> 15 reading_skipping    Psycholinguistics English     1512       9 binary,… Skip…
 sets[grepl("counts", sets$response), c("name", "rows", "topic")]
-#> # A tibble: 7 × 3
-#>   name               rows topic                                            
-#>   <chr>             <int> <chr>                                            
-#> 1 disfluencies       2400 Zero-inflated count models                       
-#> 2 passives            400 Poisson and negative binomial regression, offsets
-#> 3 dialect_survey      580 Maps, spatial patterns                           
-#> 4 code_switching      360 Negative binomial regression, offsets            
-#> 5 vocabulary_growth   572 Growth curves, longitudinal data                 
-#> 6 do_support         1200 Logistic change, Constant Rate Effect            
-#> 7 word_order          400 Non-independence of languages                    
+#> # A tibble: 9 × 3
+#>   name                rows topic                                            
+#>   <chr>              <int> <chr>                                            
+#> 1 vot_identification  1224 Psychometric curves, category boundaries         
+#> 2 disfluencies        2400 Zero-inflated count models                       
+#> 3 passives             400 Poisson and negative binomial regression, offsets
+#> 4 dialect_survey       580 Maps, spatial patterns                           
+#> 5 code_switching       360 Negative binomial regression, offsets            
+#> 6 vocabulary_growth    572 Growth curves, longitudinal data                 
+#> 7 do_support          1200 Logistic change, Constant Rate Effect            
+#> 8 iterated_learning     80 Growth over generations, few clusters            
+#> 9 word_order           400 Non-independence of languages                    
 table(sets$branch)
 #> 
 #>                Phonetics                Phonology                  Prosody 
-#>                        8                        1                        2 
+#>                        9                        1                        3 
 #>        Psycholinguistics                   Syntax               Morphology 
-#>                       14                        3                        1 
+#>                       15                        3                        1 
 #> Semantics and pragmatics             Conversation       Corpus linguistics 
 #>                        1                        1                        2 
 #>         Sociolinguistics             Dialectology             Bilingualism 
 #>                        4                        1                        1 
-#>          Second language     Language acquisition            Sign language 
+#>          Second language     Language acquisition     Clinical linguistics 
 #>                        2                        3                        1 
-#>  Forensic speech science   Historical linguistics                 Typology 
+#>            Sign language  Forensic speech science   Historical linguistics 
 #>                        1                        1                        1 
-#>            Meta-analysis            Data cleaning 
-#>                        1                        1 
+#>       Language evolution                 Typology            Meta-analysis 
+#>                        1                        1                        1 
+#>            Data cleaning 
+#>                        1 
 ```

@@ -82,9 +82,11 @@ text columns of a raw export so that students can clean it.
 |  | `korean_stops` | Korean | 1,440 | continuous | Cluster analysis, sound change |
 |  | `price_f2` | English (L1 and L2) | 2,200 | trajectories | GAMs and GAMMs |
 |  | `mandarin_tones` | Mandarin | 4,224 | trajectories | Contour shape, speaker normalisation |
+|  | `vot_identification` | English, Spanish | 1,224 | binomial counts | Psychometric curves, category boundaries |
 | Phonology | `hungarian_harmony` | Hungarian | 4,200 | binary | Mixed logistic regression, wug tests |
 | Prosody | `tobi_agreement` | German | 456 | labels from two coders | Inter-rater agreement, kappa |
 |  | `rhythm_metrics` | 6 languages | 1,200 | continuous | Variance partitioning, speech rate |
+|  | `speech_to_song` | English | 516 | binary, ordinal | Mixed logistic and ordinal models |
 | Psycholinguistics | `rt_frequency` | – | 200 | RT, binary | Data wrangling |
 |  | `word_rt` | – | 400 | RT | Multiple regression, collinearity |
 |  | `freq_length` | – | 400 | RT | Continuous × continuous interaction |
@@ -99,6 +101,7 @@ text columns of a raw export so that students can clean it.
 |  | `pupil_noise` | – | 17,856 | trajectories | GAMMs, autocorrelation |
 |  | `n400` | German | 21,600 | ERP amplitude | EEG, topography, continuous predictors |
 |  | `visual_world` | English | 23,040 | samples per object | Eye tracking, time-course analysis |
+|  | `reading_skipping` | English | 1,512 | binary, durations | Skipping and fixation times, missing by design |
 | Syntax | `agreement_attraction` | English | 1,280 | eye-tracking measures, binary | Reading measures, missing data |
 |  | `acceptability` | English | 1,536 | 7-point ratings | Ordinal regression |
 |  | `german_relatives` | German | 13,824 | reading times | Self-paced reading, region-by-region analysis |
@@ -118,9 +121,11 @@ text columns of a raw export so that students can clean it.
 | Language acquisition | `overregularization` | English | 144 | errors out of attempts | Binomial regression, null effects |
 |  | `vocabulary_growth` | English | 572 | counts out of 680 | Growth curves, longitudinal data |
 |  | `first_words` | European Portuguese | 2,400 | age at first word, censored | Survival analysis |
+| Clinical linguistics | `aphasia_naming` | English | 5,760 | binary | Pre-post designs, generalisation |
 | Sign language | `dgs_iconicity` | German Sign Language | 18,000 | 7-point ratings | Crossed random effects, group differences |
 | Forensic speech science | `forensic_comparison` | German | 3,240 | similarity scores | Likelihood ratios, Cllr, calibration |
 | Historical linguistics | `do_support` | English | 1,200 | counts out of trials | Logistic change, Constant Rate Effect |
+| Language evolution | `iterated_learning` | – | 80 | continuous, counts | Growth over generations, few clusters |
 | Typology | `word_order` | 400 invented languages | 400 | categorical, counts | Non-independence of languages |
 | Meta-analysis | `bouba_kiki_meta` | 21 languages | 40 | effect sizes | Random-effects meta-analysis, publication bias |
 | Data cleaning | `messy_export` | – | 1,086 | raw text | Cleaning a real-looking export |

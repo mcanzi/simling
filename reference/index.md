@@ -23,6 +23,8 @@
   trajectories of the PRICE diphthong
 - [`mandarin_tones`](https://mcanzi.de/simling/reference/mandarin_tones.md)
   : f0 contours of the four Mandarin tones
+- [`vot_identification`](https://mcanzi.de/simling/reference/vot_identification.md)
+  : Identification of stops along a VOT continuum
 
 ## Phonology
 
@@ -35,6 +37,8 @@
   : Two coders' GToBI labels
 - [`rhythm_metrics`](https://mcanzi.de/simling/reference/rhythm_metrics.md)
   : Rhythm metrics across languages, speakers and speech materials
+- [`speech_to_song`](https://mcanzi.de/simling/reference/speech_to_song.md)
+  : The speech-to-song illusion
 
 ## Psycholinguistics
 
@@ -66,6 +70,8 @@
   N400 amplitudes
 - [`visual_world`](https://mcanzi.de/simling/reference/visual_world.md)
   : Visual-world eye tracking: anticipatory looks
+- [`reading_skipping`](https://mcanzi.de/simling/reference/reading_skipping.md)
+  : Word skipping and fixation times in reading
 
 ## Syntax
 
@@ -135,6 +141,12 @@
 - [`first_words`](https://mcanzi.de/simling/reference/first_words.md) :
   Age of first production of words
 
+## Clinical linguistics
+
+- [`aphasia_naming`](https://mcanzi.de/simling/reference/aphasia_naming.md)
+  : Picture naming before and after therapy for word-finding
+  difficulties
+
 ## Sign language
 
 - [`dgs_iconicity`](https://mcanzi.de/simling/reference/dgs_iconicity.md)
@@ -149,6 +161,11 @@
 
 - [`do_support`](https://mcanzi.de/simling/reference/do_support.md) :
   The rise of periphrastic do
+
+## Language evolution
+
+- [`iterated_learning`](https://mcanzi.de/simling/reference/iterated_learning.md)
+  : Iterated learning of an artificial language
 
 ## Typology
 
