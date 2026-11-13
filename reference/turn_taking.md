@@ -20,11 +20,13 @@ A tibble with 3000 rows and 6 columns:
 
 - language:
 
-  10 languages.
+  `"Danish"`, `"Dutch"`, `"English"`, `"Italian"`, `"Japanese"`,
+  `"Korean"`, `"Lao"`, `"Tzeltal"`, `"Yélî Dnye"` or `"ǂĀkhoe Haiǁom"`.
 
 - conversation:
 
-  12 per language.
+  Conversation ID: the first three letters of the language and a number,
+  e.g. `Dan_01`; 12 per language.
 
 - response:
 

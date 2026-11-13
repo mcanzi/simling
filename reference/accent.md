@@ -60,8 +60,9 @@ A tibble with 1200 rows and 9 columns:
 True model: speaker means for English vs Italian are 70 vs 45 ms VOT,
 1.6 vs 1.2 vowel ratio and 5.2 vs 4.7 syllables/s. VOT and vowel ratio
 vary log-normally around the speaker mean, so they stay positive. f0 is
-210 Hz for female and 120 Hz for male speakers. H1-H2 varies by speaker
-only and intensity by token only.
+210 Hz for female and 120 Hz for male speakers. H1-H2 differs between
+speakers but not by L1 or gender, and intensity varies only between
+tokens.
 
 ## Examples
 

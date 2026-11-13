@@ -136,7 +136,10 @@ text columns of a raw export so that students can clean it.
 
 Run `source("data-raw/make_all.R")` from the package root, in a UTF-8
 locale (the default on macOS and most Linux systems). Each script sets
-its own seed, so the data are identical every time.
+its own seed, so the data are identical every time with the same R
+version, random number generator and package versions. The versions used
+for the current data are in
+[`data-raw/session_info.txt`](https://github.com/mcanzi/simling/blob/main/data-raw/session_info.txt).
 
 ## Citation
 
