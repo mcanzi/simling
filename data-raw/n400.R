@@ -26,8 +26,7 @@ n400 <- crossing(participants, items) |>
          trial_noise = rnorm(n(), 0, 4)) |>
   crossing(electrodes) |>
   mutate(amplitude = round(2 + p0 + i0 + e0 + trial_noise +
-                             weight * (-4 + p_n400) * (1 - cloze) + rnorm(n(), 0, 3), 2),
-         condition = factor(condition, levels = c("expected", "unexpected"))) |>
+                             weight * (-4 + p_n400) * (1 - cloze) + rnorm(n(), 0, 3), 2)) |>
   select(participant, list, item, condition, cloze, electrode, anteriority,
          laterality, amplitude)
 
@@ -35,6 +34,7 @@ n400 <- n400 |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
          electrode = factor(electrode, levels = electrodes$electrode),
          anteriority = factor(anteriority, levels = c("frontal", "central", "parietal")),
-         laterality = factor(laterality, levels = c("left", "midline", "right")))
+         laterality = factor(laterality, levels = c("left", "midline", "right")),
+         condition = factor(condition, levels = c("expected", "unexpected")))
 
 usethis::use_data(n400, overwrite = TRUE)

@@ -33,9 +33,7 @@ bouba_kiki_meta <- conducted |>
 
 bouba_kiki_meta <- bouba_kiki_meta |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
-         script = factor(script, levels = c("other", "Roman")))
-
-bouba_kiki_meta <- bouba_kiki_meta |>
-  mutate(across(c(year, n, congruent), as.integer))
+         script = factor(script, levels = c("other", "Roman")),
+         across(c(year, n, congruent), as.integer))
 
 usethis::use_data(bouba_kiki_meta, overwrite = TRUE)

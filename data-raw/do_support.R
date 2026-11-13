@@ -22,9 +22,7 @@ do_support <- crossing(texts, context = names(baseline)) |>
 do_support <- do_support |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
          context = factor(context, levels = c("affirmative declarative", "negative declarative",
-                                              "affirmative question", "negative question")))
-
-do_support <- do_support |>
-  mutate(across(c(year, do, eligible), as.integer))
+                                              "affirmative question", "negative question")),
+         across(c(year, do, eligible), as.integer))
 
 usethis::use_data(do_support, overwrite = TRUE)

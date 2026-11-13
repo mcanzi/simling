@@ -26,9 +26,7 @@ code_switching <- code_switching |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
          generation = factor(generation, levels = c("first", "second", "third")),
          topic = factor(topic, levels = c("family", "work", "leisure", "migration")),
-         interlocutor = factor(interlocutor, levels = c("monolingual", "bilingual")))
-
-code_switching <- code_switching |>
-  mutate(across(c(utterances, switches, intrasentential), as.integer))
+         interlocutor = factor(interlocutor, levels = c("monolingual", "bilingual")),
+         across(c(utterances, switches, intrasentential), as.integer))
 
 usethis::use_data(code_switching, overwrite = TRUE)

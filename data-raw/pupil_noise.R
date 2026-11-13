@@ -1,7 +1,6 @@
 library(dplyr)
 library(tidyr)
 library(tibble)
-library(forcats)
 
 set.seed(2031)
 participants <- tibble(participant = sprintf("P%02d", 1:24),
@@ -19,11 +18,10 @@ pupil_noise <- crossing(trials, time = seq(0, 3000, by = 100)) |>
   group_by(trial_id) |>
   mutate(pupil = round(pupil + as.numeric(arima.sim(list(ar = 0.8), n = n(), sd = 12)), 1)) |>
   ungroup() |>
-  mutate(across(c(participant, condition, trial_id), factor),
-         condition = fct_relevel(condition, "quiet")) |>
   select(participant, condition, trial, trial_id, time, pupil)
 
 pupil_noise <- pupil_noise |>
-  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         condition = factor(condition, levels = c("quiet", "noise")))
 
 usethis::use_data(pupil_noise, overwrite = TRUE)

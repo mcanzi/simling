@@ -24,15 +24,13 @@ german_relatives <- crossing(participants, items, regions) |>
                             TRUE ~ pmax(2, round(rnorm(n(), 6, 2)))),
          rt = round(exp(5.85 + p0 + i0 + 0.012 * (length - 5) - 0.008 * position +
                           (condition == "object") * (orc_cost + p_orc * (orc_cost > 0)) +
-                          rnorm(n(), 0, 0.2))),
-         condition = factor(condition, levels = c("subject", "object"))) |>
+                          rnorm(n(), 0, 0.2)))) |>
   select(participant, list, item, condition, position, region, length, rt)
 
 german_relatives <- german_relatives |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
-         region = factor(region, levels = regions$region))
-
-german_relatives <- german_relatives |>
-  mutate(across(c(length), as.integer))
+         region = factor(region, levels = regions$region),
+         across(c(length), as.integer),
+         condition = factor(condition, levels = c("subject", "object")))
 
 usethis::use_data(german_relatives, overwrite = TRUE)

@@ -19,9 +19,7 @@ lexical_decision_l2 <- crossing(participants, words) |>
 
 lexical_decision_l2 <- lexical_decision_l2 |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
-         group = factor(group, levels = c("L1", "L2")))
-
-lexical_decision_l2 <- lexical_decision_l2 |>
-  mutate(across(c(length), as.integer))
+         group = factor(group, levels = c("L1", "L2")),
+         across(c(length), as.integer))
 
 usethis::use_data(lexical_decision_l2, overwrite = TRUE)

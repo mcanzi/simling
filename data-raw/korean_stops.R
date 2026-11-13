@@ -5,22 +5,22 @@ library(tibble)
 
 set.seed(4002)
 vot_mean <- tribble(
-  ~generation, ~stop,       ~vot,
-  "older",     "tense",      12,
-  "older",     "lenis",      55,
-  "older",     "aspirated",  95,
-  "younger",   "tense",      12,
-  "younger",   "lenis",      78,
-  "younger",   "aspirated",  82
+  ~generation, ~stop, ~vot,
+  "older", "tense", 12,
+  "older", "lenis", 55,
+  "older", "aspirated", 95,
+  "younger", "tense", 12,
+  "younger", "lenis", 78,
+  "younger", "aspirated", 82
 )
 f0_shift <- tribble(
-  ~generation, ~stop,       ~shift,
-  "older",     "tense",      1.2,
-  "older",     "lenis",     -1.5,
-  "older",     "aspirated",  1.5,
-  "younger",   "tense",      1.2,
-  "younger",   "lenis",     -3.5,
-  "younger",   "aspirated",  2.0
+  ~generation, ~stop, ~shift,
+  "older", "tense", 1.2,
+  "older", "lenis", -1.5,
+  "older", "aspirated", 1.5,
+  "younger", "tense", 1.2,
+  "younger", "lenis", -3.5,
+  "younger", "aspirated", 2.0
 )
 
 speakers <- tibble(speaker = sprintf("S%02d", 1:40),
@@ -35,8 +35,7 @@ korean_stops <- crossing(speakers, stop = c("lenis", "tense", "aspirated"),
   left_join(f0_shift, by = c("generation", "stop")) |>
   mutate(vot = round(exp(log(vot + c(labial = -5, coronal = 0, velar = 10)[place]) + s_vot +
                            rnorm(n(), 0, if_else(stop == "tense", 0.3, 0.18)))),
-         f0 = round(base * 2^((shift + rnorm(n(), 0, 0.8)) / 12)),
-         across(c(speaker, generation, gender, stop, place), factor)) |>
+         f0 = round(base * 2^((shift + rnorm(n(), 0, 0.8)) / 12))) |>
   select(speaker, generation, gender, stop, place, rep, vot, f0)
 
 korean_stops <- korean_stops |>

@@ -28,9 +28,7 @@ relativizers <- relativizers |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
          mode = factor(mode, levels = c("spoken", "written")),
          role = factor(role, levels = c("subject", "object")),
-         relativizer = factor(relativizer, levels = c("that", "which", "zero")))
-
-relativizers <- relativizers |>
-  mutate(across(c(antecedent_length), as.integer))
+         relativizer = factor(relativizer, levels = c("that", "which", "zero")),
+         across(c(antecedent_length), as.integer))
 
 usethis::use_data(relativizers, overwrite = TRUE)

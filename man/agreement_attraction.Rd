@@ -41,6 +41,12 @@ True model: \code{log(gaze_duration) = 5.55 + 0.14 * ungrammatical - 0.09 * ungr
 (SD 0.08) intercepts and residual SD 0.3. First-pass regressions, in
 log-odds: \code{-1.9 + 0.9 * ungrammatical - 0.5 * ungrammatical * plural},
 by-participant SD 0.5. Skipping rate about 14\%, unrelated to condition.
+The first fixation equals the gaze duration in 65\% of trials and is 50
+to 85\% of it otherwise. Total time adds a rereading time (log-normal,
+median about 220 ms) with probability `plogis(-1 + 0.6 * ungrammatical
+\itemize{
+\item 1.5 * regression)`.
+}
 }
 \examples{
 aggregate(gaze_duration ~ grammaticality + attractor, data = agreement_attraction,

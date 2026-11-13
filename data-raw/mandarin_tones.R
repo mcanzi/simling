@@ -31,8 +31,7 @@ mandarin_tones <- crossing(tokens, time = seq(0, 100, by = 10)) |>
   mutate(st = (level - 1) * span + t0 +
            as.numeric(arima.sim(list(ar = 0.7), n = n(), sd = 0.25))) |>
   ungroup() |>
-  mutate(f0 = round(base * 2^(st / 12)),
-         across(c(speaker, gender, tone, syllable, token_id), factor)) |>
+  mutate(f0 = round(base * 2^(st / 12))) |>
   select(speaker, gender, tone, syllable, token_id, duration, time, f0)
 
 mandarin_tones <- mandarin_tones |>

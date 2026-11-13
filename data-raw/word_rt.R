@@ -11,9 +11,6 @@ word_rt <- tibble(
                           rnorm(n(), 0, 0.06))))
 
 word_rt <- word_rt |>
-  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
-
-word_rt <- word_rt |>
   mutate(across(c(length, syllables), as.integer))
 
 usethis::use_data(word_rt, overwrite = TRUE)

@@ -20,9 +20,7 @@ disfluencies <- speakers |>
 
 disfluencies <- disfluencies |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
-         role = factor(role, levels = c("follower", "giver")))
-
-disfluencies <- disfluencies |>
-  mutate(across(c(syllables, filled_pauses), as.integer))
+         role = factor(role, levels = c("follower", "giver")),
+         across(c(syllables, filled_pauses), as.integer))
 
 usethis::use_data(disfluencies, overwrite = TRUE)

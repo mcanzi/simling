@@ -33,7 +33,7 @@ more negative the less predictable the word (lower cloze probability), and
 largest over centro-parietal sites. 80 items, two counterbalanced lists.
 }
 \details{
-True model: \code{amplitude = 2 + p0 + i0 + e0 + weight * (-4 + p1) * (1 - cloze) + trial + e}. The electrode weight is 1 at Pz, 0.85 to 0.9
+True model: \code{amplitude = 2 + p0 + i0 + e0 + weight * (-4 + p1) * (1 - cloze) + trial + e}. The electrode weight is 1 at Pz, 0.8 to 0.9
 at other parietal and central sites and 0.5 to 0.6 at frontal sites;
 \code{e0} is a small electrode offset. By-participant intercepts \code{p0} (SD 1.5)
 and N400 slopes \code{p1} (SD 1); by-item intercepts \code{i0} (SD 0.5); trial

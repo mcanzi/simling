@@ -15,7 +15,6 @@ accent <- crossing(speakers, token = 1:40) |>
          vowel_ratio = round(exp(log(ratio_s) + rnorm(n(), 0, 0.17)), 2),
          rate = round(rate_s + rnorm(n(), 0, 0.6), 2), f0 = round(f0_s + rnorm(n(), 0, 10)),
          h1h2 = round(h1h2_s + rnorm(n(), 0, 1), 1), intensity = round(rnorm(n(), 68, 4), 1)) |>
-  mutate(across(c(speaker, l1, gender), factor)) |>
   select(speaker, l1, gender, vot, vowel_ratio, rate, f0, h1h2, intensity)
 
 accent <- accent |>

@@ -1,5 +1,6 @@
 # GToBI: Grice, Baumann & Benzmüller (2005), in Jun (ed.), Prosodic Typology, 55-83.
-# Agreement benchmarks: Pitrelli, Beckman & Hirschberg (1994), Proceedings of ICSLP 1994.
+# Agreement: Grice, Reyelt, Benzmüller, Mayer & Batliner (1996), Proceedings of ICSLP 1996, 1716-1719;
+# Pitrelli, Beckman & Hirschberg (1994), Proceedings of ICSLP 1994.
 library(dplyr)
 library(tidyr)
 library(tibble)
@@ -25,7 +26,7 @@ words <- utterances |>
                                    TRUE ~ "none"),
          difficulty = rnorm(n(), if_else(style == "spontaneous", 0.5, 0), 0.5))
 
-label <- function(truth, levels, p_correct_logit, confusable) {
+label <- function(truth, p_correct_logit, confusable) {
   correct <- runif(length(truth)) < plogis(p_correct_logit)
   vapply(seq_along(truth), function(i) {
     if (correct[i]) truth[i] else sample(setdiff(confusable[[truth[i]]], truth[i]), 1)
@@ -41,10 +42,10 @@ boundary_confusions <- list("none" = c("intermediate"),
 
 tobi_agreement <- words |>
   mutate(base = if_else(true_accent == "none", 2.6, 1.6),
-         accent_1 = label(true_accent, accents, base - difficulty, accent_confusions),
-         accent_2 = label(true_accent, accents, base - 0.2 - difficulty, accent_confusions),
-         boundary_1 = label(true_boundary, boundaries, 2.6 - difficulty, boundary_confusions),
-         boundary_2 = label(true_boundary, boundaries, 2.4 - difficulty, boundary_confusions)) |>
+         accent_1 = label(true_accent, base - difficulty, accent_confusions),
+         accent_2 = label(true_accent, base - 0.2 - difficulty, accent_confusions),
+         boundary_1 = label(true_boundary, 2.6 - difficulty, boundary_confusions),
+         boundary_2 = label(true_boundary, 2.4 - difficulty, boundary_confusions)) |>
   select(utterance, style, word, position, accent_1, accent_2, boundary_1, boundary_2)
 
 tobi_agreement <- tobi_agreement |>

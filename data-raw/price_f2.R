@@ -21,7 +21,6 @@ price_f2 <- crossing(tokens, time = seq(0, 100, by = 10)) |>
   group_by(traj) |>
   mutate(f2 = round(f2 + as.numeric(arima.sim(list(ar = 0.6), n = n(), sd = 30)))) |>
   ungroup() |>
-  mutate(across(c(speaker, l1, traj), factor)) |>
   select(speaker, l1, traj, duration, time, f2)
 
 price_f2 <- price_f2 |>

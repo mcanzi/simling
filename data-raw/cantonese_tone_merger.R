@@ -17,14 +17,11 @@ cantonese_tone_merger <- crossing(speakers, words) |>
   mutate(target = case_when(merger == 1 ~ 5.2 + if_else(tone == "T2", 0.4, -0.4),
                             tone == "T2" ~ 7,
                             TRUE ~ 3.5),
-         rise = round(target + s0 + rnorm(n(), 0, 0.9), 2),
-         across(c(speaker, gender, word, tone), factor)) |>
+         rise = round(target + s0 + rnorm(n(), 0, 0.9), 2)) |>
   select(speaker, age, gender, word, tone, log_freq, rise)
 
 cantonese_tone_merger <- cantonese_tone_merger |>
-  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
-
-cantonese_tone_merger <- cantonese_tone_merger |>
-  mutate(across(c(age), as.integer))
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         across(c(age), as.integer))
 
 usethis::use_data(cantonese_tone_merger, overwrite = TRUE)

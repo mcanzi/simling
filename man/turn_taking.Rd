@@ -7,8 +7,11 @@
 \format{
 A tibble with 3000 rows and 6 columns:
 \describe{
-\item{language}{10 languages.}
-\item{conversation}{12 per language.}
+\item{language}{\code{"Danish"}, \code{"Dutch"}, \code{"English"}, \code{"Italian"},
+\code{"Japanese"}, \code{"Korean"}, \code{"Lao"}, \code{"Tzeltal"}, \code{"Yélî Dnye"} or
+\ifelse{latex}{\code{"\\u01c2\\u0100khoe Hai\\u01c1om"}}{\code{"ǂĀkhoe Haiǁom"}}.}
+  \item{conversation}{Conversation ID: the first three letters of the
+language and a number, e.g. \code{Dan_01}; 12 per language.}
 \item{response}{\code{"confirmation"} or \code{"disconfirmation"}.}
 \item{answer}{\code{"answer"} or \code{"non-answer"} (e.g. \emph{I don't know}).}
 \item{gaze}{Whether the questioner was looking at the responder,

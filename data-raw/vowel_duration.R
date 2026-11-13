@@ -4,7 +4,7 @@ library(tibble)
 
 set.seed(1)
 n_speakers <- 16
-n_words    <- 24
+n_words <- 24
 
 speakers <- tibble(speaker = sprintf("S%02d", 1:n_speakers),
                    s0 = rnorm(n_speakers, 0, 25),
@@ -16,11 +16,11 @@ words <- tibble(word = sprintf("w%02d", 1:n_words),
 vowel_duration <- crossing(speakers, words) |>
   mutate(duration = round(150 + s0 + w0 +
                           (20 + s1) * (voicing == "voiced") +
-                          rnorm(n(), 0, 20)),
-         voicing = factor(voicing, levels = c("voiceless", "voiced"))) |>
+                          rnorm(n(), 0, 20))) |>
   select(speaker, word, voicing, duration)
 
 vowel_duration <- vowel_duration |>
-  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         voicing = factor(voicing, levels = c("voiceless", "voiced")))
 
 usethis::use_data(vowel_duration, overwrite = TRUE)

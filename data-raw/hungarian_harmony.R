@@ -6,14 +6,14 @@ library(tibble)
 
 set.seed(5004)
 stem_types <- tribble(
-  ~stem_type, ~n_neutral, ~last_vowel,     ~p_back,
-  "B",        0,          "back",          0.97,
-  "F",        0,          "front rounded", 0.03,
-  "N",        2,          "high",          0.08,
-  "Bi",       1,          "high",          0.90,
-  "Bé",       1,          "mid",           0.60,
-  "Be",       1,          "low",           0.35,
-  "BNN",      2,          "low",           0.20
+  ~stem_type, ~n_neutral, ~last_vowel, ~p_back,
+  "B", 0, "back", 0.97,
+  "F", 0, "front rounded", 0.03,
+  "N", 2, "high", 0.08,
+  "Bi", 1, "high", 0.90,
+  "Bé", 1, "mid", 0.60,
+  "Be", 1, "low", 0.35,
+  "BNN", 2, "low", 0.20
 )
 
 items <- stem_types |>
@@ -36,9 +36,7 @@ hungarian_harmony <- hungarian_harmony |>
          suffix = factor(suffix, levels = c("back", "front")))
 
 hungarian_harmony <- hungarian_harmony |>
-  mutate(across(where(is.factor), \(f) factor(f, levels = levels(f), labels = enc2utf8(levels(f)))))
-
-hungarian_harmony <- hungarian_harmony |>
-  mutate(across(c(n_neutral), as.integer))
+  mutate(across(where(is.factor), \(f) factor(f, levels = levels(f), labels = enc2utf8(levels(f)))),
+         across(c(n_neutral), as.integer))
 
 usethis::use_data(hungarian_harmony, overwrite = TRUE)

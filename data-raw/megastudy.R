@@ -17,9 +17,7 @@ megastudy <- tibble(word = sprintf("w%04d", 1:n),
                                    rnorm(n, 0, 0.5)), 3))
 
 megastudy <- megastudy |>
-  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
-
-megastudy <- megastudy |>
-  mutate(across(c(length, neighbours), as.integer))
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         across(c(length, neighbours), as.integer))
 
 usethis::use_data(megastudy, overwrite = TRUE)

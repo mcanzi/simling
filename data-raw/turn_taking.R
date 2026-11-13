@@ -24,7 +24,6 @@ turn_taking <- conversations |>
                           207 * (response == "disconfirmation") + 132 * (answer == "non-answer") -
                           69 * (gaze == "yes") +
                           rnorm(n(), 0, 200) + rexp(n(), 1 / 150))) |>
-  mutate(across(c(language, conversation), factor)) |>
   select(language, conversation, response, answer, gaze, offset)
 
 turn_taking <- turn_taking |>

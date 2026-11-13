@@ -27,26 +27,26 @@ A tibble with 1200 rows and 8 columns:
 rhythm_metrics
 }
 \description{
-\%V, ΔC and VarcoV from 8 speakers of each of six languages: English,
+\%V, \ifelse{latex}{\out{$\Delta$C}}{ΔC} and VarcoV from 8 speakers of each of six languages: English,
 German, Greek, Italian, Korean and Spanish. Ramus et al. (1999) proposed
-\%V and ΔC to sort languages into rhythm classes. Each speaker produced
+\%V and \ifelse{latex}{\out{$\Delta$C}}{ΔC} to sort languages into rhythm classes. Each speaker produced
 five samples of five kinds of material: uncontrolled sentences, sentences
 built from complex syllables, sentences built from simple syllables, a read
 story and spontaneous speech. The design follows Arvaniti (2012). Language
 means differ little, and speakers, elicitation method and syllable
-complexity move the metrics about as much as language does. ΔC also falls
+complexity move the metrics about as much as language does. \ifelse{latex}{\out{$\Delta$C}}{ΔC} also falls
 as speech rate rises. For partitioning variance with mixed models.
 }
 \details{
 True model: each metric is the sum of a language mean, a
 material effect, a language-by-material deviation, a speaker effect and
-noise. Language means for \%V, ΔC and VarcoV are 43.5, 49, 56 (English),
+noise. Language means for \%V, \ifelse{latex}{\out{$\Delta$C}}{ΔC} and VarcoV are 43.5, 49, 56 (English),
 42.5, 51, 57 (German), 46, 46, 52 (Greek), 45, 47, 54 (Italian), 45, 50,
 55 (Korean) and 44, 48, 55 (Spanish). Material effects, relative to the
 uncontrolled sentences, are -3, +7, +3 (complex-syllable sentences), +3,
 -6, -4 (simple-syllable sentences), -1, +2, +2 (story) and -1.5, +6, +7
 (spontaneous). Language-by-material deviations have SD 1, 3 and 3,
-speaker effects SD 2, 4 and 4, and residuals SD 2, 5 and 6. ΔC falls by
+speaker effects SD 2, 4 and 4, and residuals SD 2, 5 and 6. \ifelse{latex}{\out{$\Delta$C}}{ΔC} falls by
 6 ms per syllable per second. All values were chosen for the
 simulation to reproduce the pattern Arvaniti (2012) reports; they are
 not her measurements.

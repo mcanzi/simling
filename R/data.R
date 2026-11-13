@@ -440,8 +440,9 @@
 #' @details True model: speaker means for English vs Italian are 70 vs 45 ms
 #'   VOT, 1.6 vs 1.2 vowel ratio and 5.2 vs 4.7 syllables/s. VOT and vowel
 #'   ratio vary log-normally around the speaker mean, so they stay positive.
-#'   f0 is 210 Hz for female and 120 Hz for male speakers. H1-H2 varies by speaker only and
-#'   intensity by token only.
+#'   f0 is 210 Hz for female and 120 Hz for male speakers. H1-H2 differs
+#'   between speakers but not by L1 or gender, and intensity varies only
+#'   between tokens.
 #' @source `data-raw/accent.R`
 #' @examples
 #' aggregate(cbind(vot, vowel_ratio, rate, f0) ~ l1 + gender, data = accent, FUN = mean)
@@ -553,6 +554,10 @@
 #'   (SD 0.08) intercepts and residual SD 0.3. First-pass regressions, in
 #'   log-odds: `-1.9 + 0.9 * ungrammatical - 0.5 * ungrammatical * plural`,
 #'   by-participant SD 0.5. Skipping rate about 14%, unrelated to condition.
+#'   The first fixation equals the gaze duration in 65% of trials and is 50
+#'   to 85% of it otherwise. Total time adds a rereading time (log-normal,
+#'   median about 220 ms) with probability `plogis(-1 + 0.6 * ungrammatical
+#'   + 1.5 * regression)`.
 #' @references
 #' Bock, K. & Miller, C. A. (1991). Broken agreement. *Cognitive Psychology*, 23(1), 45-93. \doi{10.1016/0010-0285(91)90003-7}
 #' @source `data-raw/agreement_attraction.R`
@@ -1087,7 +1092,7 @@
 #'   \item{amplitude}{Mean amplitude in microvolts.}
 #' }
 #' @details True model: `amplitude = 2 + p0 + i0 + e0 + weight * (-4 + p1) *
-#'   (1 - cloze) + trial + e`. The electrode weight is 1 at Pz, 0.85 to 0.9
+#'   (1 - cloze) + trial + e`. The electrode weight is 1 at Pz, 0.8 to 0.9
 #'   at other parietal and central sites and 0.5 to 0.6 at frontal sites;
 #'   `e0` is a small electrode offset. By-participant intercepts `p0` (SD 1.5)
 #'   and N400 slopes `p1` (SD 1); by-item intercepts `i0` (SD 0.5); trial
@@ -1195,8 +1200,11 @@
 #'
 #' @format A tibble with 3000 rows and 6 columns:
 #' \describe{
-#'   \item{language}{10 languages.}
-#'   \item{conversation}{12 per language.}
+#'   \item{language}{`"Danish"`, `"Dutch"`, `"English"`, `"Italian"`,
+#'     `"Japanese"`, `"Korean"`, `"Lao"`, `"Tzeltal"`, `"Yélî Dnye"` or
+#'     \ifelse{latex}{\code{"\\u01c2\\u0100khoe Hai\\u01c1om"}}{\code{"ǂĀkhoe Haiǁom"}}.}
+#'   \item{conversation}{Conversation ID: the first three letters of the
+#'     language and a number, e.g. `Dan_01`; 12 per language.}
 #'   \item{response}{`"confirmation"` or `"disconfirmation"`.}
 #'   \item{answer}{`"answer"` or `"non-answer"` (e.g. *I don't know*).}
 #'   \item{gaze}{Whether the questioner was looking at the responder,
@@ -1394,14 +1402,14 @@
 
 #' Rhythm metrics across languages, speakers and speech materials
 #'
-#' %V, ΔC and VarcoV from 8 speakers of each of six languages: English,
+#' %V, \ifelse{latex}{\out{$\Delta$C}}{ΔC} and VarcoV from 8 speakers of each of six languages: English,
 #' German, Greek, Italian, Korean and Spanish. Ramus et al. (1999) proposed
-#' %V and ΔC to sort languages into rhythm classes. Each speaker produced
+#' %V and \ifelse{latex}{\out{$\Delta$C}}{ΔC} to sort languages into rhythm classes. Each speaker produced
 #' five samples of five kinds of material: uncontrolled sentences, sentences
 #' built from complex syllables, sentences built from simple syllables, a read
 #' story and spontaneous speech. The design follows Arvaniti (2012). Language
 #' means differ little, and speakers, elicitation method and syllable
-#' complexity move the metrics about as much as language does. ΔC also falls
+#' complexity move the metrics about as much as language does. \ifelse{latex}{\out{$\Delta$C}}{ΔC} also falls
 #' as speech rate rises. For partitioning variance with mixed models.
 #'
 #' @format A tibble with 1200 rows and 8 columns:
@@ -1421,13 +1429,13 @@
 #' }
 #' @details True model: each metric is the sum of a language mean, a
 #'   material effect, a language-by-material deviation, a speaker effect and
-#'   noise. Language means for %V, ΔC and VarcoV are 43.5, 49, 56 (English),
+#'   noise. Language means for %V, \ifelse{latex}{\out{$\Delta$C}}{ΔC} and VarcoV are 43.5, 49, 56 (English),
 #'   42.5, 51, 57 (German), 46, 46, 52 (Greek), 45, 47, 54 (Italian), 45, 50,
 #'   55 (Korean) and 44, 48, 55 (Spanish). Material effects, relative to the
 #'   uncontrolled sentences, are -3, +7, +3 (complex-syllable sentences), +3,
 #'   -6, -4 (simple-syllable sentences), -1, +2, +2 (story) and -1.5, +6, +7
 #'   (spontaneous). Language-by-material deviations have SD 1, 3 and 3,
-#'   speaker effects SD 2, 4 and 4, and residuals SD 2, 5 and 6. ΔC falls by
+#'   speaker effects SD 2, 4 and 4, and residuals SD 2, 5 and 6. \ifelse{latex}{\out{$\Delta$C}}{ΔC} falls by
 #'   6 ms per syllable per second. All values were chosen for the
 #'   simulation to reproduce the pattern Arvaniti (2012) reports; they are
 #'   not her measurements.

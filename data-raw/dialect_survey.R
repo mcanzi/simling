@@ -1,7 +1,6 @@
 # Towns and coordinates: maps::world.cities (towns over 50,000 inhabitants).
 library(dplyr)
 library(tidyr)
-library(tibble)
 
 set.seed(4009)
 towns <- maps::world.cities |>
@@ -25,9 +24,7 @@ dialect_survey <- dialect_survey |>
          across(where(is.factor), \(f) factor(f, levels = levels(f), labels = enc2utf8(levels(f)))))
 
 dialect_survey <- dialect_survey |>
-  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))))
-
-dialect_survey <- dialect_survey |>
-  mutate(across(c(age), as.integer))
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         across(c(age), as.integer))
 
 usethis::use_data(dialect_survey, overwrite = TRUE)

@@ -4,13 +4,13 @@ library(tibble)
 
 set.seed(3011)
 p_du <- tribble(
-  ~age_group, ~setting,     ~p,
+  ~age_group, ~setting, ~p,
   "under 30", "university", 0.85,
-  "under 30", "shop",       0.35,
-  "under 30", "office",     0.45,
-  "over 50",  "university", 0.40,
-  "over 50",  "shop",       0.08,
-  "over 50",  "office",     0.15
+  "under 30", "shop", 0.35,
+  "under 30", "office", 0.45,
+  "over 50", "university", 0.40,
+  "over 50", "shop", 0.08,
+  "over 50", "office", 0.15
 )
 
 address_forms <- p_du |>
