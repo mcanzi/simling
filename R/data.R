@@ -399,3 +399,346 @@
 #' @examples
 #' head(pilot_rt)
 "pilot_rt"
+
+#' Acceptability judgments for whether-islands
+#'
+#' 7-point acceptability ratings in a 2 x 2 factorial design: dependency
+#' length (short or long) by structure (non-island or island). Island effects
+#' show up as an interaction: long dependencies out of islands are worse than
+#' the two main effects predict. 48 participants rate 32 items, each item in
+#' one condition per participant (four counterbalanced lists).
+#'
+#' @format A tibble with 1536 rows and 6 columns:
+#' \describe{
+#'   \item{participant}{Participant ID, `P01` to `P48`.}
+#'   \item{list}{Counterbalancing list, 1 to 4.}
+#'   \item{item}{Item ID, `i01` to `i32`.}
+#'   \item{length}{Dependency length, `"short"` or `"long"`.}
+#'   \item{structure}{`"non-island"` or `"island"`.}
+#'   \item{rating}{Rating from 1 (unacceptable) to 7 (acceptable).}
+#' }
+#' @details True model: a cumulative logit model with thresholds at -2.5,
+#'   -1.5, -0.5, 0.5, 1.5 and 2.5 on a latent scale `1.5 - 0.6 * long - 0.4 *
+#'   island - 0.9 * long * island`. By-participant intercepts (SD 0.8) and
+#'   interaction slopes (SD 0.3); by-item intercepts (SD 0.4).
+#' @source `data-raw/acceptability.R`
+#' @examples
+#' table(acceptability$length, acceptability$structure, acceptability$rating)
+"acceptability"
+
+#' Eye-tracking while reading: agreement attraction
+#'
+#' Reading measures on the verb in sentences like *The key to the cabinet(s)
+#' was/were rusty*: grammaticality by number of the attractor noun. A plural
+#' attractor makes ungrammatical *were* easier to read. 40 participants read
+#' 32 items, each in one condition (four counterbalanced lists).
+#'
+#' @format A tibble with 1280 rows and 10 columns:
+#' \describe{
+#'   \item{participant}{Participant ID, `P01` to `P40`.}
+#'   \item{list}{Counterbalancing list, 1 to 4.}
+#'   \item{item}{Item ID, `i01` to `i32`.}
+#'   \item{grammaticality}{`"grammatical"` or `"ungrammatical"`.}
+#'   \item{attractor}{Number of the attractor noun, `"singular"` or
+#'     `"plural"`.}
+#'   \item{skipped}{1 if the verb was skipped in first-pass reading.}
+#'   \item{first_fixation}{Duration of the first fixation on the verb in
+#'     ms; `NA` if skipped.}
+#'   \item{gaze_duration}{Sum of first-pass fixations in ms; `NA` if
+#'     skipped.}
+#'   \item{regression}{1 if the reader made a regression out of the verb in
+#'     first pass; `NA` if skipped.}
+#'   \item{total_time}{Sum of all fixations on the verb in ms; `NA` if never
+#'     fixated.}
+#' }
+#' @details True model: `log(gaze_duration) = 5.55 + 0.14 * ungrammatical -
+#'   0.09 * ungrammatical * plural`, with by-participant (SD 0.15) and by-item
+#'   (SD 0.08) intercepts and residual SD 0.3. First-pass regressions, in
+#'   log-odds: `-1.9 + 0.9 * ungrammatical - 0.5 * ungrammatical * plural`,
+#'   by-participant SD 0.5. Skipping rate about 14%, unrelated to condition.
+#' @source `data-raw/agreement_attraction.R`
+#' @examples
+#' head(agreement_attraction)
+"agreement_attraction"
+
+#' Scalar implicature: truth-value judgments
+#'
+#' Participants judge *Some of the cards have stars* when all, some or none of
+#' the cards have stars. In the all-context the sentence is literally true but
+#' under-informative: pragmatic responders say "false", logical responders
+#' "true". Participants differ strongly, so responses there are bimodal by
+#' participant. 60 participants, 24 items, three counterbalanced lists.
+#'
+#' @format A tibble with 1440 rows and 6 columns:
+#' \describe{
+#'   \item{participant}{Participant ID, `P01` to `P60`.}
+#'   \item{list}{Counterbalancing list, 1 to 3.}
+#'   \item{item}{Item ID, `i01` to `i24`.}
+#'   \item{context}{How many cards have stars: `"all"` (critical),
+#'     `"some"` (true control) or `"none"` (false control).}
+#'   \item{response}{`"true"` or `"false"`.}
+#'   \item{rt}{Response time in ms.}
+#' }
+#' @details True model: in the all-context, each participant answers "false"
+#'   with their own probability, drawn from Beta(0.5, 0.5) (mostly near 0 or
+#'   1). Controls are answered correctly 96% of the time. `log(rt) = 7.25 +
+#'   0.22 * pragmatic "false" + 0.08 * logical "true"` (both in the
+#'   all-context only), with by-participant (SD 0.15) and by-item (SD 0.05)
+#'   intercepts and residual SD 0.25.
+#' @source `data-raw/scalar_implicature.R`
+#' @examples
+#' table(scalar_implicature$context, scalar_implicature$response)
+"scalar_implicature"
+
+#' Visual-world eye tracking: anticipatory looks
+#'
+#' Listeners hear *The boy will eat / move the cake* while looking at four
+#' objects, only one of them edible. After a restrictive verb (*eat*) they
+#' look at the target before the noun is heard. Looks to the target in 50 ms
+#' bins from verb onset; the noun starts at 600 ms. 32 participants, 24
+#' items, 12 per condition (two counterbalanced lists).
+#'
+#' @format A tibble with 23040 rows and 7 columns:
+#' \describe{
+#'   \item{participant}{Participant ID, `P01` to `P32`.}
+#'   \item{list}{Counterbalancing list, 1 or 2.}
+#'   \item{item}{Item ID, `i01` to `i24`.}
+#'   \item{condition}{`"restrictive"` or `"non-restrictive"` verb.}
+#'   \item{time}{Start of the 50 ms bin, ms from verb onset, 0 to 1450.}
+#'   \item{target}{Eye-tracker samples on the target in this bin.}
+#'   \item{samples}{Samples per bin: always 25 (500 Hz).}
+#' }
+#' @details True model: on the logit scale, looks to the target rise from
+#'   chance (0.25) to about 0.88 along a logistic curve with width 90 ms,
+#'   centred at 650 ms after restrictive and 900 ms after non-restrictive
+#'   verbs. By-participant variation in the centre (SD 80 ms) and in the final
+#'   level (SD 0.3 logits); by-item variation in the centre (SD 40 ms). Within
+#'   a trial, deviations are AR(1) with rho 0.9.
+#' @source `data-raw/visual_world.R`
+#' @examples
+#' head(visual_world)
+"visual_world"
+
+#' Passives in four registers
+#'
+#' Number of passive constructions in 400 texts, 100 each from conversation,
+#' fiction, news and academic writing. Texts differ in length, so counts need
+#' an exposure term. The counts are overdispersed.
+#'
+#' @format A tibble with 400 rows and 4 columns:
+#' \describe{
+#'   \item{text}{Text ID, `T001` to `T400`.}
+#'   \item{register}{`"conversation"`, `"fiction"`, `"news"` or
+#'     `"academic"`.}
+#'   \item{words}{Text length in words.}
+#'   \item{passives}{Number of passives.}
+#' }
+#' @details True model: negative binomial with mean `rate * words / 1000`
+#'   and size 4, where `rate` per 1000 words is 2 (conversation), 5 (fiction),
+#'   10 (news) and 18 (academic).
+#' @source `data-raw/passives.R`
+#' @examples
+#' head(passives)
+"passives"
+
+#' Relativizer choice: that, which or zero
+#'
+#' The relativizer in restrictive relative clauses (*the book that / which /
+#' 0 I read*), 10 tokens from each of 240 texts, half spoken, half written.
+#' A three-way outcome; zero is impossible in subject relatives.
+#'
+#' @format A tibble with 2400 rows and 6 columns:
+#' \describe{
+#'   \item{text}{Text ID, `T001` to `T240`.}
+#'   \item{mode}{`"spoken"` or `"written"`.}
+#'   \item{token}{Token number within the text, 1 to 10.}
+#'   \item{role}{Role of the relativized noun in the clause, `"subject"`
+#'     or `"object"`.}
+#'   \item{antecedent_length}{Length of the antecedent noun phrase in
+#'     words.}
+#'   \item{relativizer}{`"that"`, `"which"` or `"zero"`.}
+#' }
+#' @details True model: multinomial logit with "that" as reference. Which:
+#'   `-1.6 + 1.4 * written + 0.25 * (antecedent_length - 2)`. Zero (object
+#'   relatives only): `0.6 - 1.2 * written - 0.4 * (antecedent_length - 2)`.
+#'   By-text intercepts with SD 0.5 for each.
+#' @source `data-raw/relativizers.R`
+#' @examples
+#' table(relativizers$role, relativizers$relativizer)
+"relativizers"
+
+#' Vocabulary growth in toddlers
+#'
+#' Productive vocabulary on a 680-word parental checklist, every two months
+#' from 12 to 30 months, for 80 children. Growth is S-shaped, and children
+#' who hear more speech start their vocabulary spurt earlier. About 10% of
+#' sessions are missing.
+#'
+#' @format A tibble with 715 rows and 4 columns:
+#' \describe{
+#'   \item{child}{Child ID, `C01` to `C80`.}
+#'   \item{input}{Adult words per hour heard at home (one value per child).}
+#'   \item{age}{Age in months.}
+#'   \item{vocabulary}{Number of words produced, out of 680.}
+#' }
+#' @details True model: `vocabulary` is binomial out of 680 with probability
+#'   `plogis((age - mid) / 2.8)`, where `mid = 23 - 2 * log2(input / 1200)`
+#'   plus a by-child deviation (SD 1.8 months), and session-level noise on
+#'   the logit scale (SD 0.15). Doubling the input moves the spurt 2 months
+#'   earlier.
+#' @source `data-raw/vocabulary_growth.R`
+#' @examples
+#' head(vocabulary_growth)
+"vocabulary_growth"
+
+#' Past-tense overregularization
+#'
+#' Overregularization errors (*goed*, *holded*) out of all irregular past-tense
+#' contexts, for 24 children recorded every six months from 30 to 60 months.
+#' Errors are rare and peak around 42 months. For binomial models of errors
+#' out of attempts.
+#'
+#' @format A tibble with 144 rows and 4 columns:
+#' \describe{
+#'   \item{child}{Child ID, `C01` to `C24`.}
+#'   \item{age}{Age in months.}
+#'   \item{attempts}{Irregular past-tense contexts in the recording.}
+#'   \item{errors}{Overregularizations among them.}
+#' }
+#' @details True model, in log-odds: `-3 - 0.006 * (age - 42)^2`, with
+#'   by-child intercepts of SD 0.5. The error rate peaks at about 5%.
+#' @source `data-raw/overregularization.R`
+#' @examples
+#' head(overregularization)
+"overregularization"
+
+#' The rise of periphrastic do
+#'
+#' Use of *do* (*Did he go?*, *He did not go*) in 300 texts dated 1400 to
+#' 1700, in four sentence types: the number of clauses with *do* out of all
+#' eligible clauses. In three contexts the change follows S-curves with the
+#' same slope but different starting points (the Constant Rate Effect);
+#' affirmative declaratives barely take part.
+#'
+#' @format A tibble with 1200 rows and 5 columns:
+#' \describe{
+#'   \item{text}{Text ID, `T001` to `T300`.}
+#'   \item{year}{Year of the text.}
+#'   \item{context}{`"affirmative question"`, `"negative question"`,
+#'     `"negative declarative"` or `"affirmative declarative"`.}
+#'   \item{do}{Clauses with *do*.}
+#'   \item{eligible}{All clauses in this context in this text.}
+#' }
+#' @details True model, in log-odds: `baseline + 0.035 * (year - 1550)`
+#'   (3.5 per century in every context), with baselines 1.0 (affirmative
+#'   questions), 1.6 (negative questions), -0.6 (negative declaratives) and
+#'   -7.5 (affirmative declaratives), and by-text intercepts (SD 0.4). The
+#'   later decline of *do* in affirmative declaratives is not simulated.
+#' @source `data-raw/do_support.R`
+#' @examples
+#' head(do_support)
+"do_support"
+
+#' Word order in a typological sample
+#'
+#' 400 invented languages from 60 invented families in six invented areas.
+#' Languages mostly inherit their family's word order, so observations are
+#' not independent. Adposition order and case marking correlate with word
+#' order, in the spirit of Greenberg's universals. Family sizes are skewed:
+#' a few large families and many small ones.
+#'
+#' @format A tibble with 400 rows and 8 columns:
+#' \describe{
+#'   \item{language}{Language ID, `L001` to `L400`.}
+#'   \item{family}{`"Family 01"` to `"Family 60"`.}
+#'   \item{area}{`"Area A"` to `"Area F"`.}
+#'   \item{order}{Basic word order: `"SOV"`, `"SVO"`, `"VSO"` or `"no
+#'     dominant order"`.}
+#'   \item{adpositions}{`"postpositions"` or `"prepositions"`.}
+#'   \item{case_marking}{Whether nouns are case-marked, `"yes"` or `"no"`.}
+#'   \item{consonants}{Size of the consonant inventory.}
+#'   \item{vowels}{Size of the vowel inventory.}
+#' }
+#' @details True model: each family draws a word order from its area's
+#'   preferences; each language keeps it with probability 0.8 and otherwise
+#'   draws again. Postpositions have probability 0.92 in SOV, 0.5 in
+#'   no-dominant-order and 0.12 in VO languages. Case marking has probability
+#'   0.7 in SOV and 0.3 in other languages. Consonant inventories are 6 plus a
+#'   negative binomial count (mean 16, by-family variation); vowel
+#'   inventories are 3 plus a Poisson count (mean 2.5). All names and figures
+#'   are invented, not real typological data.
+#' @source `data-raw/word_order.R`
+#' @examples
+#' table(word_order$order, word_order$adpositions)
+"word_order"
+
+#' Forms of address: du or Sie
+#'
+#' Whether German speakers address a stranger with informal *du* or formal
+#' *Sie*, by speaker age group and setting. 30 speakers per cell, one
+#' observation each. For contingency tables and chi-squared tests.
+#'
+#' @format A tibble with 180 rows and 4 columns:
+#' \describe{
+#'   \item{speaker}{Speaker ID, `S001` to `S180`.}
+#'   \item{age_group}{`"under 30"` or `"over 50"`.}
+#'   \item{setting}{`"university"`, `"shop"` or `"office"`.}
+#'   \item{form}{`"du"` or `"Sie"`.}
+#' }
+#' @details True model: the probability of *du* is 0.85 (university), 0.35
+#'   (shop) and 0.45 (office) for speakers under 30, and 0.40, 0.08 and 0.15
+#'   for speakers over 50.
+#' @source `data-raw/address_forms.R`
+#' @examples
+#' table(address_forms$age_group, address_forms$form)
+"address_forms"
+
+#' Perceptual training of a non-native contrast
+#'
+#' 18 learners identify a non-native consonant contrast in 40 trials before
+#' and after a week of perceptual training. A small paired design in wide
+#' format.
+#'
+#' @format A tibble with 18 rows and 3 columns:
+#' \describe{
+#'   \item{learner}{Learner ID, `L01` to `L18`.}
+#'   \item{pre}{Correct responses out of 40 before training.}
+#'   \item{post}{Correct responses out of 40 after training.}
+#' }
+#' @details True model: binomial out of 40, with log-odds `0.4 + ability`
+#'   before and `0.4 + ability + gain` after training. `ability` has SD 0.6;
+#'   `gain` has mean 0.6 and SD 0.35.
+#' @source `data-raw/perception_training.R`
+#' @examples
+#' perception_training
+"perception_training"
+
+#' Megastudy of 6000 words
+#'
+#' Item-level norms for 6000 words, as in large lexical decision megastudies:
+#' mean RT and accuracy per word, with correlated lexical predictors. For
+#' multiple regression, collinearity, non-linear effects and variable
+#' importance.
+#'
+#' @format A tibble with 6000 rows and 8 columns:
+#' \describe{
+#'   \item{word}{Word ID, `w0001` to `w6000`.}
+#'   \item{log_freq}{log10 frequency per million words.}
+#'   \item{length}{Length in letters, 2 to 16.}
+#'   \item{neighbours}{Number of orthographic neighbours.}
+#'   \item{aoa}{Age of acquisition in years.}
+#'   \item{concreteness}{Concreteness rating, 1 to 5.}
+#'   \item{rt}{Mean lexical decision RT in ms.}
+#'   \item{accuracy}{Proportion of correct responses.}
+#' }
+#' @details True model: `rt = 720 - 120 * plogis(log_freq - 2.5) + 9 *
+#'   (length - 7) - 2 * neighbours + 10 * (aoa - 7) - 6 * (concreteness - 3) +
+#'   e`, with `e` normal, SD 35 ms. The frequency effect is S-shaped: it
+#'   levels off for very rare and very frequent words. Accuracy is `plogis(2.5
+#'   + 0.7 * (log_freq - 2.5) - 0.2 * (aoa - 7) + e)`, with `e` SD 0.5.
+#'   Frequent words are shorter, have more neighbours and are acquired
+#'   earlier.
+#' @source `data-raw/megastudy.R`
+#' @examples
+#' head(megastudy)
+"megastudy"

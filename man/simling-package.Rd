@@ -6,7 +6,7 @@
 \alias{simling-package}
 \title{simling: Simulated Linguistic Data for Teaching Statistics}
 \description{
-Simulated data sets from linguistics for teaching statistics in R: reaction times, vowel durations, formants, accuracy, formant and pupil trajectories, and sociolinguistic variation. Each data set comes with the code that generated it, so the true effects are known.
+Simulated data sets for teaching statistics to linguists, from phonetics, psycholinguistics, syntax, semantics and pragmatics, corpus linguistics, sociolinguistics, language acquisition, historical linguistics and typology. Responses include continuous measures, binary and multi-category outcomes, ratings, counts, eye-tracking measures and time series, in data sets from 18 to over 20,000 rows. Each data set comes with the code that generated it, so the true effects are known.
 }
 \seealso{
 Useful links:
