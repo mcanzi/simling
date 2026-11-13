@@ -7,7 +7,8 @@
 #' Every categorical column is a factor. Its first level is the reference
 #' level: the baseline condition, the first group or the expected response.
 #' IDs such as participants, speakers and words are factors too. Binary
-#' outcomes coded 0/1 and rating scales are numeric.
+#' outcomes coded 0/1 and rating scales are numeric. The exception is
+#' [messy_export], which keeps the text columns of a raw export.
 #'
 #' @keywords internal
 #' @importFrom tibble tibble

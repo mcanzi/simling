@@ -1078,3 +1078,357 @@
 #' @examples
 #' head(dialect_survey)
 "dialect_survey"
+
+#' Forensic voice comparison scores
+#'
+#' Scores from two systems comparing pairs of recordings of 80 male speakers
+#' of German: an automatic speaker recognition system and a formant-based
+#' system. Every speaker is compared with himself (same-speaker comparisons,
+#' recordings from two sessions) and with every other speaker
+#' (different-speaker comparisons). Higher scores mean more similar voices.
+#' For calibrating scores into likelihood ratios, computing Cllr and
+#' comparing or fusing systems.
+#'
+#' @format A tibble with 3240 rows and 6 columns:
+#' \describe{
+#'   \item{comparison}{Comparison ID, `C0001` to `C3240`.}
+#'   \item{speaker_a, speaker_b}{The two speakers, `S01` to `S80`.}
+#'   \item{same_speaker}{`"no"` or `"yes"`.}
+#'   \item{score_auto}{Score of the automatic system.}
+#'   \item{score_formant}{Score of the formant-based system.}
+#' }
+#' @details True model: automatic scores are normal with mean 2.5 (SD 1) for
+#'   same-speaker and -1 (SD 1.3) for different-speaker comparisons;
+#'   formant scores have means 1 (SD 1) and -0.5 (SD 1.1). Each speaker shifts
+#'   his scores by a speaker effect (SD 0.4 automatic, 0.3 formant; the mean
+#'   of the two speakers in different-speaker comparisons). The automatic
+#'   system discriminates much better: after logistic-regression calibration
+#'   its Cllr is about 0.25, against about 0.7 for the formant system.
+#' @references
+#' Brümmer, N. & du Preez, J. (2006). Application-independent evaluation of speaker detection. *Computer Speech and Language*, 20(2-3), 230-275.
+#' @source `data-raw/forensic_comparison.R`
+#' @examples
+#' head(forensic_comparison)
+"forensic_comparison"
+
+#' Two coders' GToBI labels
+#'
+#' Two trained coders label the same 456 words from 40 German utterances
+#' with GToBI pitch accents and phrase boundaries: 20 utterances of read and
+#' 20 of spontaneous speech. Coders agree on whether a word is accented about
+#' 85-90% of the time and on the type of accent about 60-70% of the time,
+#' close to published benchmarks for ToBI. Accent agreement is lower in
+#' spontaneous speech. For percentage agreement and Cohen's kappa.
+#'
+#' @format A tibble with 456 rows and 8 columns:
+#' \describe{
+#'   \item{utterance}{Utterance ID, `U01` to `U40`.}
+#'   \item{style}{`"read"` or `"spontaneous"`.}
+#'   \item{word}{Word ID (`utterance_wNN`).}
+#'   \item{position}{Position of the word in the utterance.}
+#'   \item{accent_1, accent_2}{Pitch accent labelled by coder 1 and coder 2:
+#'     `"none"`, `"H*"`, `"L+H*"`, `"L*"`, `"L*+H"`, `"H+!H*"` or `"H+L*"`.}
+#'   \item{boundary_1, boundary_2}{Boundary after the word labelled by coder
+#'     1 and coder 2: `"none"`, `"intermediate"` or `"intonation phrase"`.}
+#' }
+#' @details True model: each word has a true accent (55% none) and boundary
+#'   (always an intonation phrase boundary at the end of the utterance, 12%
+#'   intermediate boundaries elsewhere). Each coder gives the true label with
+#'   probability `plogis(base - difficulty)`, where `base` is 2.6 for
+#'   unaccented and 1.6 for accented words (0.2 lower for coder 2) and the
+#'   word's difficulty has mean 0 in read and 0.5 in spontaneous speech (SD
+#'   0.5). Otherwise the coder picks a similar label (e.g. `"L+H*"` for
+#'   `"H*"`).
+#' @references
+#' Grice, M., Baumann, S. & Benzmüller, R. (2005). German intonation in autosegmental-metrical phonology. In S.-A. Jun (ed.), *Prosodic Typology: The Phonology of Intonation and Phrasing* (pp. 55-83). Oxford: Oxford University Press.
+#'
+#' Pitrelli, J. F., Beckman, M. E. & Hirschberg, J. (1994). Evaluation of prosodic transcription labeling reliability in the ToBI framework. *Proceedings of ICSLP 1994*.
+#' @source `data-raw/tobi_agreement.R`
+#' @examples
+#' table(tobi_agreement$accent_1, tobi_agreement$accent_2)
+"tobi_agreement"
+
+#' Rhythm metrics in eight languages
+#'
+#' %V, ΔC and VarcoV for 5 sentences from each of 10 speakers of 8
+#' languages. Languages traditionally called stress-timed (English, German,
+#' Dutch) have lower %V and higher ΔC and VarcoV, syllable-timed languages
+#' (Spanish, Italian) the reverse, and Japanese the highest %V. European
+#' Portuguese, with its reduced and deleted vowels, sits closer to the
+#' stress-timed languages than Brazilian Portuguese. ΔC falls with speech
+#' rate; VarcoV is rate-normalised. For classifying languages by their rhythm
+#' metrics.
+#'
+#' @format A tibble with 400 rows and 7 columns:
+#' \describe{
+#'   \item{language}{`"English"`, `"German"`, `"Dutch"`, `"European
+#'     Portuguese"`, `"Brazilian Portuguese"`, `"Spanish"`, `"Italian"` or
+#'     `"Japanese"`.}
+#'   \item{speaker}{Speaker ID, e.g. `Eng_01`.}
+#'   \item{sentence}{`sent1` to `sent5`.}
+#'   \item{rate}{Speech rate in syllables per second.}
+#'   \item{percent_v}{Percentage of the sentence that is vocalic.}
+#'   \item{delta_c}{Standard deviation of consonantal intervals in ms.}
+#'   \item{varco_v}{Coefficient of variation of vocalic intervals.}
+#' }
+#' @details True model: language means for %V, ΔC and VarcoV are 41, 54, 65
+#'   (English), 42, 52, 62 (German), 42, 53, 63 (Dutch), 43, 50, 58
+#'   (European Portuguese), 46, 45, 52 (Brazilian Portuguese), 46, 46, 48
+#'   (Spanish), 47, 47, 52 (Italian) and 53, 36, 45 (Japanese). These values
+#'   follow the ordering reported in the literature and were chosen for the
+#'   simulation. ΔC falls by 6 ms per syllable per
+#'   second. By-speaker variation: SD 1.2 for %V, 3 ms for ΔC, 0.4 syll/s
+#'   for rate.
+#' @references
+#' Ramus, F., Nespor, M. & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. *Cognition*, 73(3), 265-292.
+#'
+#' White, L. & Mattys, S. L. (2007). Calibrating rhythm: First language and second language studies. *Journal of Phonetics*, 35(4), 501-522.
+#'
+#' Frota, S. & Vigário, M. (2001). On the correlates of rhythmic distinctions: The European/Brazilian Portuguese case. *Probus*, 13(2), 247-275.
+#' @source `data-raw/rhythm_metrics.R`
+#' @examples
+#' head(rhythm_metrics)
+"rhythm_metrics"
+
+#' Hungarian vowel harmony in a wug test
+#'
+#' 50 Hungarian speakers choose between a back (*-nak*) and a front (*-nek*)
+#' dative suffix for 84 nonce stems. Stems with only back vowels take back
+#' suffixes and stems with front rounded vowels front ones. Stems with a back
+#' vowel followed by neutral vowels vary: the lower the last neutral vowel
+#' (*i* > *é* > *e*), the more front suffixes (the Height Effect), and two
+#' neutral vowels give more front suffixes than one (the Count Effect).
+#'
+#' @format A tibble with 4200 rows and 6 columns:
+#' \describe{
+#'   \item{participant}{Participant ID, `P01` to `P50`.}
+#'   \item{item}{Item ID, `i01` to `i84`.}
+#'   \item{stem_type}{Vowels of the stem: `"B"` (back), `"F"` (front
+#'     rounded), `"N"` (neutral only), `"Bi"`, `"Bé"`, `"Be"` (back vowel
+#'     plus one neutral vowel) or `"BNN"` (back vowel plus two neutral
+#'     vowels).}
+#'   \item{n_neutral}{Number of neutral vowels after the last back vowel.}
+#'   \item{last_vowel}{Last vowel of the stem: `"back"`, `"front rounded"`,
+#'     `"high"`, `"mid"` or `"low"`.}
+#'   \item{suffix}{`"back"` or `"front"`.}
+#' }
+#' @details True model: the probability of a back suffix is 0.97 (B), 0.03
+#'   (F), 0.08 (N), 0.90 (Bi), 0.60 (Bé), 0.35 (Be) and 0.20 (BNN), shifted
+#'   on the logit scale by participant (SD 0.5) and item (SD 0.4) effects.
+#'   Items are identified by their stem type; the nonce word forms are left
+#'   out.
+#' @references
+#' Hayes, B. & Londe, Z. C. (2006). Stochastic phonological knowledge: The case of Hungarian vowel harmony. *Phonology*, 23, 59-104.
+#'
+#' Hayes, B., Zuraw, K., Siptár, P. & Londe, Z. (2009). Natural and unnatural constraints in Hungarian vowel harmony. *Language*, 85, 822-863.
+#' @source `data-raw/hungarian_harmony.R`
+#' @examples
+#' table(hungarian_harmony$stem_type, hungarian_harmony$suffix)
+"hungarian_harmony"
+
+#' Age of first production of words
+#'
+#' Parents of 60 children acquiring European Portuguese report each month,
+#' from 10 to 24 months, whether their child says each of 40 words. For each
+#' child and word, the data give the age at which the child first said the
+#' word, or 24 months if the child had not said it by the end of the study
+#' (a censored observation). Frequent words and nouns are learned earlier.
+#' For survival analysis.
+#'
+#' @format A tibble with 2400 rows and 6 columns:
+#' \describe{
+#'   \item{child}{Child ID, `C01` to `C60`.}
+#'   \item{word}{Word ID, `w01` to `w40`.}
+#'   \item{category}{`"noun"`, `"verb"` or `"other"`.}
+#'   \item{log_freq}{log10 frequency of the word in child-directed speech.}
+#'   \item{age}{Age in months at first production, or 24 if censored.}
+#'   \item{produced}{1 if the child said the word by 24 months, 0 if
+#'     censored.}
+#' }
+#' @details True model: a discrete-time hazard. In each month from 10 to 24
+#'   the probability of first saying a word is `plogis(-5.2 + 0.28 * (age -
+#'   10) + 0.6 * (log_freq - 2) + category + c0 + w0)`, with category effects
+#'   0.5 (noun), -0.3 (verb) and -0.6 (other), by-child effects `c0` (SD 0.6)
+#'   and by-word effects `w0` (SD 0.4). About 37% of observations are
+#'   censored.
+#' @source `data-raw/first_words.R`
+#' @examples
+#' head(first_words)
+"first_words"
+
+#' A meta-analysis of the bouba/kiki effect
+#'
+#' 40 published studies of the bouba/kiki effect: how many participants
+#' matched *bouba* with a round and *kiki* with a spiky shape. The studies
+#' tested speakers of 21 languages. Studies with a non-significant result
+#' were less likely to be published, so the published effects are inflated.
+#' For random-effects meta-analysis, moderators, funnel plots and
+#' publication bias.
+#'
+#' @format A tibble with 40 rows and 8 columns:
+#' \describe{
+#'   \item{study}{Study ID, `S01` to `S40`.}
+#'   \item{year}{Year of publication.}
+#'   \item{language}{Language of the participants.}
+#'   \item{script}{Writing system of the language: `"other"` or `"Roman"`.}
+#'   \item{n}{Number of participants.}
+#'   \item{congruent}{Participants giving the congruent match.}
+#'   \item{log_odds}{Log-odds of a congruent match, `log((congruent + 0.5) /
+#'     (n - congruent + 0.5))`.}
+#'   \item{se}{Standard error of `log_odds`.}
+#' }
+#' @details True model: each study's true log-odds is `0.85 + 0.1 * Roman`
+#'   plus a study effect with SD (tau) 0.35, about 70% congruent matches. Of
+#'   90 simulated studies, those with a significant positive result were
+#'   published with probability 0.95 and the rest with probability 0.3; the
+#'   first 40 published studies are included. Studies, years and samples are
+#'   invented.
+#' @references
+#' Ćwiek, A., Fuchs, S., Draxler, C., Asu, E. L., Dediu, D., Hiovain, K., Kawahara, S., Koutalidis, S., Krifka, M., Lippus, P., Lupyan, G., Oh, G. E., Paul, J., Petrone, C., Ridouane, R., Reiter, S., Schümchen, N., Szalontai, Á., Ünal-Logacev, Ö., Zeller, J., Perlman, M. & Winter, B. (2022). The bouba/kiki effect is robust across cultures and writing systems. *Philosophical Transactions of the Royal Society B*, 377(1841), 20200390.
+#' @source `data-raw/bouba_kiki_meta.R`
+#' @examples
+#' head(bouba_kiki_meta)
+"bouba_kiki_meta"
+
+#' Code-switching by Portuguese-German bilinguals
+#'
+#' Switches between Portuguese and German in conversations of 90 speakers of
+#' Portuguese heritage in Germany, 30 from each of three generations. Each
+#' speaker is recorded in four conversations on different topics, with a
+#' bilingual or a monolingual (German) interlocutor. Second-generation
+#' speakers switch most, and more of their switches fall within a sentence.
+#' Speakers rarely switch with monolingual interlocutors. For count models
+#' with an exposure.
+#'
+#' @format A tibble with 360 rows and 8 columns:
+#' \describe{
+#'   \item{speaker}{Speaker ID, `S01` to `S90`.}
+#'   \item{generation}{`"first"`, `"second"` or `"third"`.}
+#'   \item{conversation}{Conversation ID (`speaker_topic`).}
+#'   \item{topic}{`"family"`, `"work"`, `"leisure"` or `"migration"`.}
+#'   \item{interlocutor}{`"monolingual"` or `"bilingual"`.}
+#'   \item{utterances}{Utterances by the speaker in the conversation.}
+#'   \item{switches}{Switches between the languages.}
+#'   \item{intrasentential}{Of these, switches within a sentence.}
+#' }
+#' @details True model: switches are negative binomial (size 6) with mean
+#'   `rate * utterances`, where `rate` is 0.04 (first), 0.12 (second) or
+#'   0.07 (third generation), multiplied by 1.3 (family), 0.8 (work), 1
+#'   (leisure) or 1.1 (migration), by 0.25 with a monolingual interlocutor,
+#'   and by a speaker effect (SD 0.35 on the log scale). Intrasentential
+#'   switches are binomial with probability 0.25, 0.6 and 0.4 for the three
+#'   generations.
+#' @references
+#' Poplack, S. (1980). Sometimes I'll start a sentence in Spanish y termino en español: Toward a typology of code-switching. *Linguistics*, 18(7-8), 581-618.
+#' @source `data-raw/code_switching.R`
+#' @examples
+#' head(code_switching)
+"code_switching"
+
+#' Iconicity ratings for signs of German Sign Language
+#'
+#' 30 deaf signers of German Sign Language (DGS) and 30 hearing non-signers
+#' rate 300 DGS signs for iconicity (1 = not iconic, 7 = very iconic).
+#' Ratings by the two groups are highly correlated. Signers rate signs as
+#' more iconic overall, and non-signers rate verbs as more iconic than
+#' nouns. More iconic signs are acquired earlier. For mixed models of
+#' ratings with crossed raters and items.
+#'
+#' @format A tibble with 18000 rows and 7 columns:
+#' \describe{
+#'   \item{rater}{Rater ID, `R01` to `R60`.}
+#'   \item{group}{`"hearing non-signer"` or `"deaf signer"`.}
+#'   \item{sign}{Sign ID, `sign001` to `sign300`.}
+#'   \item{category}{`"noun"` or `"verb"`.}
+#'   \item{handedness}{`"one-handed"` or `"two-handed"`; no effect.}
+#'   \item{aoa}{Age of acquisition of the sign in years, as rated by deaf
+#'     signers.}
+#'   \item{rating}{Iconicity rating, 1 to 7.}
+#' }
+#' @details True model: `rating` is `3.6 + iconicity + r0 + 0.4 * signer +
+#'   0.5 * verb * non-signer + e`, rounded and limited to 1-7. Each sign's
+#'   iconicity has SD 1.2, raters differ by SD 0.5 and `e` has SD 0.9. Age
+#'   of acquisition is `5.5 - 0.6 * iconicity` years plus noise (SD 1.3).
+#'   The group differences follow findings for DGS (signers higher) and for
+#'   ASL and Israeli Sign Language (verbs higher for non-signers).
+#' @references
+#' Trettenbrein, P. C., Pendzich, N.-K., Cramer, J.-M., Steinbach, M. & Zaccarella, E. (2021). Psycholinguistic norms for more than 300 lexical signs in German Sign Language (DGS). *Behavior Research Methods*, 53(5), 1817-1832.
+#'
+#' Sehyr, Z. S. & Emmorey, K. (2019). The perceived mapping between form and meaning in American Sign Language depends on linguistic knowledge and task: Evidence from iconicity and transparency judgments. *Language and Cognition*, 11(2), 208-234.
+#'
+#' Thompson, R. L., Vinson, D. P., Woll, B. & Vigliocco, G. (2012). The road to language learning is iconic: Evidence from British Sign Language. *Psychological Science*, 23(12), 1443-1448.
+#' @source `data-raw/dgs_iconicity.R`
+#' @examples
+#' head(dgs_iconicity)
+"dgs_iconicity"
+
+#' Filled pauses in Italian dialogue
+#'
+#' Filled pauses (*ehm*, *eeh*) in 60 turns from each of 40 speakers in 20
+#' Italian Map Task dialogues, in which an instruction giver guides a
+#' follower along a route. Filled pauses are rare: about 4% of turns contain
+#' one, about 0.4 per 100 syllables. Many turns are fluent and cannot
+#' contain a filled pause at all, so the data have more zeros than a Poisson
+#' model predicts. Givers produce more filled pauses than followers. For
+#' zero-inflated count models with an exposure.
+#'
+#' @format A tibble with 2400 rows and 6 columns:
+#' \describe{
+#'   \item{dialogue}{Dialogue ID, `D01` to `D20`.}
+#'   \item{speaker}{Speaker ID, `S01` to `S40`.}
+#'   \item{role}{`"follower"` or `"giver"`.}
+#'   \item{turn}{Turn number, 1 to 60.}
+#'   \item{syllables}{Length of the turn in syllables.}
+#'   \item{filled_pauses}{Number of filled pauses in the turn.}
+#' }
+#' @details True model: with probability 0.55 a turn is fluent and has no
+#'   filled pauses. Otherwise the count is Poisson with mean `rate *
+#'   syllables / 100`, where `rate` is 1.2 for givers and 0.6 for followers,
+#'   multiplied by a speaker effect (SD 0.5 on the log scale). Turn lengths
+#'   are log-normal with a median of 9 syllables.
+#' @references
+#' Di Napoli, J. (2020). Filled pauses and prolongations in Roman Italian task-oriented dialogue. *Laughter and Other Non-Verbal Vocalisations Workshop 2020*.
+#' @source `data-raw/disfluencies.R`
+#' @examples
+#' table(disfluencies$filled_pauses)
+"disfluencies"
+
+#' A messy experiment export
+#'
+#' The raw export of a lexical decision experiment with 24 participants run
+#' in two labs, as it might come out of experiment software and a
+#' spreadsheet. The underlying data are clean (high- vs low-frequency words,
+#' as in [rt_frequency]); the export needs cleaning before analysis. All
+#' columns except `Item` are character, so this data set is the exception to
+#' the package's factor convention.
+#'
+#' @format A tibble with 1086 rows and 10 columns:
+#' \describe{
+#'   \item{Subject ID}{Participant ID, written in four ways (`P01`, `p1`,
+#'     `P 01`, `01`).}
+#'   \item{Lab}{`"A"` or `"B"`.}
+#'   \item{Age}{Age, sometimes with `" years"`.}
+#'   \item{Block}{`"practice"` or `"test"`.}
+#'   \item{Item}{Item number, 1 to 40; practice items reuse 1 to 4.}
+#'   \item{Cond.}{Word frequency, spelled in eight ways (`high`, `High`,
+#'     `HIGH `, `hi`, `low`, `Low`, `LOW`, `lo `), some with trailing
+#'     spaces.}
+#'   \item{Response Time (ms)}{Reaction time, with a decimal comma in lab B,
+#'     `"-999"` or `""` for missing values.}
+#'   \item{ACC}{Accuracy: `"1"`/`"0"` in lab A, `"correct"`/`"incorrect"`
+#'     in lab B.}
+#'   \item{Timestamp}{Time of the trial: `2026-05-04 10:00:03` in lab A,
+#'     `04.05.2026 10:00` in lab B.}
+#'   \item{Notes}{Always empty.}
+#' }
+#' @details Problems to fix: inconsistent IDs, condition labels and
+#'   accuracy codes; a decimal comma; two codes for missing values; ages
+#'   stored as text; two date formats; 96 practice trials; 30 duplicated
+#'   test trials; an empty column; column names with spaces and punctuation.
+#'   True model of the clean data: `log(rt) = 6.38 + 0.1 * low + p0 + w0 +
+#'   e`, with participant (SD 0.12) and item (SD 0.05) effects and residual
+#'   SD 0.15; accuracy is 96% for high- and 88% for low-frequency words.
+#' @source `data-raw/messy_export.R`
+#' @examples
+#' head(messy_export)
+"messy_export"

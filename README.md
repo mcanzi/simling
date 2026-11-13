@@ -24,7 +24,7 @@ library(simling)
 vowel_duration
 ```
 
-Every categorical column is a factor. Its first level is the reference level: the baseline condition, such as `"voiceless"` in `vowel_duration` or `"grammatical"` in `agreement_attraction`. IDs such as participants, speakers and words are factors too. Binary outcomes coded 0/1 and rating scales are numeric.
+Every categorical column is a factor. Its first level is the reference level: the baseline condition, such as `"voiceless"` in `vowel_duration` or `"grammatical"` in `agreement_attraction`. IDs such as participants, speakers and words are factors too. Binary outcomes coded 0/1 and rating scales are numeric. The one exception is `messy_export`, which keeps the text columns of a raw export so that students can clean it.
 
 ## Data sets
 
@@ -51,6 +51,7 @@ Every categorical column is a factor. Its first level is the reference level: th
 | | `pupil_noise` | – | 17,856 | trajectories | GAMMs, autocorrelation |
 | | `n400` | German | 21,600 | ERP amplitude | EEG, topography, continuous predictors |
 | | `visual_world` | English | 23,040 | samples per object | Eye tracking, time-course analysis |
+| | `disfluencies` | Italian | 2,400 | counts, many zeros | Zero-inflated count models |
 | Syntax | `agreement_attraction` | English | 1,280 | eye-tracking measures, binary | Reading measures, missing data |
 | | `acceptability` | English | 1,536 | 7-point ratings | Ordinal regression |
 | | `german_relatives` | German | 13,824 | reading times | Self-paced reading, region-by-region analysis |
@@ -68,8 +69,17 @@ Every categorical column is a factor. Its first level is the reference level: th
 | | `accent` | English (L1 and L2) | 1,200 | categorical | Random forests, cross-validation |
 | Language acquisition | `overregularization` | English | 144 | errors out of attempts | Binomial regression, null effects |
 | | `vocabulary_growth` | English | 572 | counts out of 680 | Growth curves, longitudinal data |
+| | `first_words` | European Portuguese | 2,400 | age at first word, censored | Survival analysis |
 | Historical linguistics | `do_support` | English | 1,200 | counts out of trials | Logistic change, Constant Rate Effect |
 | Typology | `word_order` | 400 invented languages | 400 | categorical, counts | Non-independence of languages |
+| Forensic speech science | `forensic_comparison` | German | 3,240 | similarity scores | Likelihood ratios, Cllr, calibration |
+| Prosody | `tobi_agreement` | German | 456 | labels from two coders | Inter-rater agreement, kappa |
+| | `rhythm_metrics` | 8 languages | 400 | continuous | Classification, rhythm classes |
+| Phonology | `hungarian_harmony` | Hungarian | 4,200 | binary | Mixed logistic regression, wug tests |
+| Sign language | `dgs_iconicity` | German Sign Language | 18,000 | 7-point ratings | Crossed random effects, group differences |
+| Bilingualism | `code_switching` | Portuguese–German | 360 | counts | Negative binomial regression, offsets |
+| Meta-analysis | `bouba_kiki_meta` | 21 languages | 40 | effect sizes | Random-effects meta-analysis, publication bias |
+| Data wrangling | `messy_export` | – | 1,086 | raw text | Cleaning a real-looking export |
 
 "–" marks data sets without a particular language.
 
