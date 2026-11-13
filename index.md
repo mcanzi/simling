@@ -5,10 +5,10 @@
 Simulated linguistic data for teaching statistics in R.
 
 Every data set in simling is simulated, and the code that generated it
-is in [`data-raw/`](https://mcanzi.github.io/simling/data-raw). The true
+is in [`data-raw/`](https://mcanzi.de/simling/data-raw). The true
 effects are therefore known: you can fit a model and check whether it
 recovers them. Each help page
-([`?vowel_duration`](https://mcanzi.github.io/simling/reference/vowel_duration.md))
+([`?vowel_duration`](https://mcanzi.de/simling/reference/vowel_duration.md))
 lists the variables and the true model.
 
 ## Installation
@@ -29,7 +29,7 @@ library(simling)
 vowel_duration
 ```
 
-[`simling_datasets()`](https://mcanzi.github.io/simling/reference/simling_datasets.md)
+[`simling_datasets()`](https://mcanzi.de/simling/reference/simling_datasets.md)
 lists every data set with its branch, language, size, response and
 topic, so you can filter it to find one for a lesson:
 

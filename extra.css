@@ -1,0 +1,128 @@
+/* The sunset theme of mcanzi.de (themes/arang/static/css/site.css in mcanzi/personal_website). */
+
+:root {
+  --floor: #13151c;
+  --understory: #191b24;
+  --raised: #20222d;
+  --vine: #3a3240;
+  --mist: #f3e7da;
+  --muted: #a9978f;
+  --pandan: #f28a1e;
+  --hornbill: #f6c445;
+  --kingfisher: #f6ad7b;
+  --title-top: #fdf0c4;
+  --title-bottom: #ec6a0f;
+  --nav-bg: rgba(19, 21, 28, 0.9);
+  --glow-1: rgba(242, 138, 30, 0.14);
+  --glow-2: rgba(181, 75, 51, 0.07);
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--floor);
+  background-image:
+    radial-gradient(1100px 600px at 85% -120px, var(--glow-1), transparent 70%),
+    radial-gradient(900px 500px at 0% 420px, var(--glow-2), transparent 70%);
+  background-repeat: no-repeat;
+  color: var(--mist);
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: url("https://mcanzi.de/img/motifs/oranges.svg") repeat 0 0 / 600px 600px;
+  opacity: 0.2;
+}
+body > * { position: relative; z-index: 1; }
+@media (max-width: 700px) { body::before { background-size: 400px 400px; opacity: 0.18; } }
+@media print { body::before { display: none; } }
+
+::selection { background: var(--hornbill); color: var(--floor); }
+:focus-visible { outline: 2px solid var(--pandan); outline-offset: 2px; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--pandan);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+h1 {
+  background: linear-gradient(180deg, var(--title-top) 8%, var(--title-bottom) 92%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+h1::selection, h1 ::selection { -webkit-text-fill-color: var(--floor); }
+@media print { h1 { background: none; -webkit-text-fill-color: currentColor; } }
+
+a { color: var(--kingfisher); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--pandan); }
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--nav-bg) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--vine);
+}
+.navbar-brand {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 600;
+  color: var(--mist) !important;
+}
+.navbar-brand::before { content: "~/"; color: var(--pandan); }
+.navbar-brand::after {
+  content: "";
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--hornbill);
+  animation: blink 1.1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .navbar-brand::after { animation: none; } }
+.navbar .nav-link,
+.navbar .nav-text {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.9rem;
+  color: var(--muted) !important;
+  border-radius: 6px;
+}
+.navbar .nav-link:hover { color: var(--mist) !important; background: var(--raised); }
+.navbar .nav-item.active .nav-link,
+.navbar .nav-link.active { color: var(--pandan) !important; background: var(--raised); }
+.dropdown-menu { background: var(--raised); border-color: var(--vine); }
+.dropdown-item { color: var(--mist); }
+.dropdown-item:hover, .dropdown-item:focus { background: var(--understory); color: var(--pandan); }
+
+code { color: var(--hornbill); }
+pre, div.sourceCode {
+  background: var(--understory) !important;
+  border: 1px solid var(--vine);
+  border-radius: 10px;
+}
+pre code { color: var(--mist); }
+div.sourceCode pre { border: 0; background: none !important; }
+pre .r-out, pre .r-wrn, pre .r-msg { color: var(--muted); }
+
+.table { color: var(--mist); --bs-table-bg: transparent; --bs-table-color: var(--mist); }
+.table > :not(caption) > * > * { border-color: var(--vine); }
+.text-muted, .nav-text.text-muted { color: var(--muted) !important; }
+
+#toc .nav-link { color: var(--muted); }
+#toc .nav-link.active, #toc .nav-link:hover { color: var(--pandan); }
+aside h2, aside h3 { -webkit-text-fill-color: currentColor; background: none; }
+
+.form-control { background: var(--raised); color: var(--mist); border-color: var(--vine); }
+.form-control::placeholder { color: var(--muted); }
+
+footer { border-top: 1px solid var(--vine); color: var(--muted); }

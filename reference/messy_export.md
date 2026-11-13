@@ -4,7 +4,7 @@ The raw export of a lexical decision experiment with 24 participants run
 in two labs, as it might come out of experiment software and a
 spreadsheet. The underlying data are clean (high- vs low-frequency
 words, as in
-[rt_frequency](https://mcanzi.github.io/simling/reference/rt_frequency.md));
+[rt_frequency](https://mcanzi.de/simling/reference/rt_frequency.md));
 the export needs cleaning before analysis. All columns except `Item` are
 character, so this data set is the exception to the package's factor
 convention.
