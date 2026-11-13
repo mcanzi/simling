@@ -1,5 +1,5 @@
 # word_order: typology, a sample of languages
-# 400 invented languages from 60 invented families in six invented areas.
+# 400 invented languages from 100 invented families in six invented areas.
 # Languages inherit their family's word order most of the time, so they are
 # not independent. Adposition order and case marking correlate with verb-
 # object order (in the spirit of Greenberg's universals). Also includes
@@ -8,21 +8,23 @@ library(dplyr)
 library(tidyr)
 library(tibble)
 
-set.seed(3010)
+set.seed(3016)   # first seed from 3010 whose proportions fall within 3 points of WALS
 orders <- c("SOV", "SVO", "VSO", "no dominant order")
 areas <- paste("Area", LETTERS[1:6])
-area_pref <- list(c(0.60, 0.25, 0.05, 0.10), c(0.35, 0.50, 0.05, 0.10),
-                  c(0.45, 0.30, 0.15, 0.10), c(0.30, 0.55, 0.10, 0.05),
-                  c(0.50, 0.20, 0.20, 0.10), c(0.40, 0.40, 0.05, 0.15))
+# Averaged over areas: about 42% SOV, 36% SVO, 7% VSO, 14% no dominant order,
+# close to the world-wide proportions in WALS (Dryer 2013, feature 81A).
+area_pref <- list(c(0.60, 0.22, 0.05, 0.13), c(0.30, 0.55, 0.05, 0.10),
+                  c(0.45, 0.33, 0.07, 0.15), c(0.30, 0.48, 0.10, 0.12),
+                  c(0.50, 0.25, 0.10, 0.15), c(0.40, 0.35, 0.05, 0.20))
 
-family_sizes <- pmax(1, round(rexp(60, 1 / 6.7)))
-family_sizes <- round(family_sizes * 400 / sum(family_sizes))
-family_sizes[1] <- family_sizes[1] + 400 - sum(family_sizes)
+family_sizes <- pmax(1, round(rexp(100, 1 / 4)))
+family_sizes <- pmax(1, round(family_sizes * 400 / sum(family_sizes)))
+family_sizes[which.max(family_sizes)] <- max(family_sizes) + 400 - sum(family_sizes)
 
-families <- tibble(family = sprintf("Family %02d", 1:60),
-                   area_i = sample(1:6, 60, replace = TRUE),
+families <- tibble(family = sprintf("Family %03d", 1:100),
+                   area_i = sample(1:6, 100, replace = TRUE),
                    size = family_sizes,
-                   f_cons = rnorm(60, 0, 0.25)) |>
+                   f_cons = rnorm(100, 0, 0.25)) |>
   rowwise() |>
   mutate(family_order = sample(orders, 1, prob = area_pref[[area_i]])) |>
   ungroup()

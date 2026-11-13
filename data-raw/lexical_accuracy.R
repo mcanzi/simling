@@ -1,4 +1,5 @@
-# lexical_accuracy: Statistics, lecture 12 (Mixed logistic regression)
+# lexical_accuracy: psycholinguistics, accuracy in an Italian lexical decision task
+# Statistics, lecture 12 (Mixed logistic regression)
 library(dplyr)
 library(tidyr)
 library(tibble)

@@ -1,8 +1,9 @@
-# visual_world: psycholinguistics/semantics, visual-world eye tracking
+# visual_world: psycholinguistics, visual-world eye tracking
 # "The boy will eat/move the cake": a restrictive verb lets listeners look at
-# the only edible object before the noun. Four objects on screen; looks to the
-# target in 50 ms bins from verb onset. The noun starts at 600 ms.
-# 32 participants, 24 items (12 per condition, 2 lists).
+# the only edible object before the noun. Four objects on screen: the target
+# (cake), a phonological competitor (cage), and two unrelated distractors.
+# Eye-tracker samples on each object in 50 ms bins from verb onset; the noun
+# starts at 600 ms. 32 participants, 24 items (12 per condition, 2 lists).
 library(dplyr)
 library(tidyr)
 library(tibble)
@@ -30,7 +31,14 @@ visual_world <- crossing(trials, time = seq(0, 1450, by = 50)) |>
   mutate(logit_p = logit_p + as.numeric(arima.sim(list(ar = 0.9), n = n(), sd = 0.25))) |>
   ungroup() |>
   mutate(samples = 25L,                                     # 50 ms at 500 Hz
-         target = rbinom(n(), samples, plogis(logit_p))) |>
-  select(participant, list, item, condition, time, target, samples)
+         target = rbinom(n(), samples, plogis(logit_p)),
+         # share of the remaining looks going to the competitor: a third at
+         # baseline, with a transient bump while the noun unfolds
+         comp_share = 1 / 3 + 0.25 * exp(-((time - 850) / 150)^2),
+         competitor = rbinom(n(), samples - target, comp_share),
+         distractor_1 = rbinom(n(), samples - target - competitor, 0.5),
+         distractor_2 = samples - target - competitor - distractor_1) |>
+  select(participant, list, item, condition, time, target, competitor,
+         distractor_1, distractor_2, samples)
 
 usethis::use_data(visual_world, overwrite = TRUE)

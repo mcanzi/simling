@@ -25,8 +25,8 @@ reaction time. Frequent words are shorter, so frequency and length are
 correlated.
 }
 \details{
-True model: \code{rt = 760 - 30 * log_freq + 14 * length + e}, with
-\code{e} normal, SD 45 ms. Syllables have no effect of their own.
+True model: \code{log(rt) = 6.62 - 0.04 * (log_freq - 3.5) + 0.0186 * (length - 7) + e}, with \code{e} normal, SD 0.06. Syllables have no effect of
+their own.
 }
 \examples{
 head(word_rt)

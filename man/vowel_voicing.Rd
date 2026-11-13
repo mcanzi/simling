@@ -7,9 +7,8 @@
 \format{
 A tibble with 120 rows and 2 columns:
 \describe{
-\item{voicing}{Voicing of the following consonant, \code{"voiceless"} or
-\code{"voiced"} (character, so \code{"voiced"} is the reference level in
-\code{lm()} unless releveled).}
+\item{voicing}{Factor, levels \code{"voiceless"} (reference) and
+\code{"voiced"}.}
 \item{duration}{Vowel duration in ms.}
 }
 }
@@ -20,8 +19,8 @@ A tibble with 120 rows and 2 columns:
 vowel_voicing
 }
 \description{
-A simulated production study: 60 vowels before voiceless consonants
-(\emph{beat}) and 60 before voiced ones (\emph{bead}).
+A production study: 60 vowels before voiceless consonants (\emph{beat}) and 60
+before voiced ones (\emph{bead}).
 }
 \details{
 True model: mean 120 ms (SD 20) before voiceless and 160 ms

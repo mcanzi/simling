@@ -1,4 +1,5 @@
-# accent: Advanced Statistics, session 7 (Random forests in practice)
+# accent: second language speech, acoustic cues to an Italian accent in English
+# Advanced Statistics, session 7 (Random forests in practice)
 library(dplyr)
 library(tidyr)
 library(tibble)
@@ -11,7 +12,8 @@ speakers <- tibble(speaker = sprintf("S%02d", 1:30), l1 = rep(c("English", "Ital
          ratio_s = if_else(l1 == "English", 1.6, 1.2) + rnorm(30, 0, 0.15),
          rate_s = if_else(l1 == "English", 5.2, 4.7) + rnorm(30, 0, 0.5))
 accent <- crossing(speakers, token = 1:40) |>
-  mutate(vot = round(vot_s + rnorm(n(), 0, 15)), vowel_ratio = round(ratio_s + rnorm(n(), 0, 0.25), 2),
+  mutate(vot = round(exp(log(vot_s) + rnorm(n(), 0, 0.22))),
+         vowel_ratio = round(exp(log(ratio_s) + rnorm(n(), 0, 0.17)), 2),
          rate = round(rate_s + rnorm(n(), 0, 0.6), 2), f0 = round(f0_s + rnorm(n(), 0, 10)),
          h1h2 = round(h1h2_s + rnorm(n(), 0, 1), 1), intensity = round(rnorm(n(), 68, 4), 1)) |>
   mutate(across(c(speaker, l1, gender), factor)) |>

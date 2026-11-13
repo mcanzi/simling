@@ -24,8 +24,8 @@ frequency effect is stronger for L2 speakers: a continuous-by-categorical
 interaction.
 }
 \details{
-True model: \code{rt = 700 - 25 * log_freq} for L1 and
-\code{900 - 55 * log_freq} for L2 speakers, plus normal noise with SD 40 ms.
+True model: \code{log(rt) = 6.56 - 0.04 * log_freq} for L1 and
+\code{6.85 - 0.07 * log_freq} for L2 speakers, plus normal noise with SD 0.06.
 }
 \examples{
 head(l2_frequency)

@@ -8,7 +8,7 @@
 A tibble with 400 rows and 8 columns:
 \describe{
 \item{language}{Language ID, \code{L001} to \code{L400}.}
-\item{family}{\code{"Family 01"} to \code{"Family 60"}.}
+\item{family}{\code{"Family 001"} to \code{"Family 100"}.}
 \item{area}{\code{"Area A"} to \code{"Area F"}.}
 \item{order}{Basic word order: \code{"SOV"}, \code{"SVO"}, \code{"VSO"} or \code{"no dominant order"}.}
 \item{adpositions}{\code{"postpositions"} or \code{"prepositions"}.}
@@ -24,7 +24,7 @@ A tibble with 400 rows and 8 columns:
 word_order
 }
 \description{
-400 invented languages from 60 invented families in six invented areas.
+400 invented languages from 100 invented families in six invented areas.
 Languages mostly inherit their family's word order, so observations are
 not independent. Adposition order and case marking correlate with word
 order, in the spirit of Greenberg's universals. Family sizes are skewed:
@@ -37,8 +37,10 @@ draws again. Postpositions have probability 0.92 in SOV, 0.5 in
 no-dominant-order and 0.12 in VO languages. Case marking has probability
 0.7 in SOV and 0.3 in other languages. Consonant inventories are 6 plus a
 negative binomial count (mean 16, by-family variation); vowel
-inventories are 3 plus a Poisson count (mean 2.5). All names and figures
-are invented, not real typological data.
+inventories are 3 plus a Poisson count (mean 2.5). Overall, about 44\% of
+the languages are SOV, 36\% SVO, 6\% VSO and 14\% have no dominant order,
+close to the world-wide proportions in WALS (feature 81A). All names and
+figures are invented, not real typological data.
 }
 \examples{
 table(word_order$order, word_order$adpositions)

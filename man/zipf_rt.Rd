@@ -5,10 +5,11 @@
 \alias{zipf_rt}
 \title{Reaction times and Zipfian word frequency}
 \format{
-A tibble with 2000 rows and 3 columns:
+A tibble with 2000 rows and 4 columns:
 \describe{
-\item{rank}{Frequency rank, 1 to 2000.}
-\item{freq}{Frequency per million tokens, \code{round(1e6 / rank)}.}
+\item{word}{Word ID, \code{w0001} to \code{w2000}.}
+\item{rank}{Frequency rank in the corpus, 1 to 50,000.}
+\item{freq}{Frequency per million words, \code{50000 / rank}.}
 \item{rt}{Reaction time in ms.}
 }
 }
@@ -19,12 +20,14 @@ A tibble with 2000 rows and 3 columns:
 zipf_rt
 }
 \description{
-2000 words whose frequencies follow Zipf's law (frequency proportional to
-1 / rank), with a reaction time to each. Useful for log transformations.
+2000 words sampled at random from the 50,000 most frequent word types of a
+corpus whose frequencies follow Zipf's law (frequency proportional to
+1 / rank). As in real corpora, most words are rare and a few are very
+frequent, so frequency is extremely skewed. Useful for log transformations.
 }
 \details{
-True model: \code{log(rt) = 6.75 - 0.06 * log10(freq) + e}, with
-\code{e} normal, SD 0.18.
+True model: \code{log(rt) = 6.62 - 0.08 * log10(freq) + e}, with
+\code{e} normal, SD 0.15.
 }
 \examples{
 head(zipf_rt)

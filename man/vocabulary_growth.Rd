@@ -5,7 +5,7 @@
 \alias{vocabulary_growth}
 \title{Vocabulary growth in toddlers}
 \format{
-A tibble with 715 rows and 4 columns:
+A tibble with 572 rows and 4 columns:
 \describe{
 \item{child}{Child ID, \code{C01} to \code{C80}.}
 \item{input}{Adult words per hour heard at home (one value per child).}
@@ -21,16 +21,15 @@ vocabulary_growth
 }
 \description{
 Productive vocabulary on a 680-word parental checklist, every two months
-from 12 to 30 months, for 80 children. Growth is S-shaped, and children
+from 16 to 30 months, for 80 children. Growth is S-shaped, and children
 who hear more speech start their vocabulary spurt earlier. About 10\% of
 sessions are missing.
 }
 \details{
 True model: \code{vocabulary} is binomial out of 680 with probability
-\code{plogis((age - mid) / 2.8)}, where \code{mid = 23 - 2 * log2(input / 1200)}
-plus a by-child deviation (SD 1.8 months), and session-level noise on
-the logit scale (SD 0.15). Doubling the input moves the spurt 2 months
-earlier.
+\code{plogis((age - mid) / 2.8)}, where \code{mid = 25.2 - 2 * log2(input / 1200)} plus a by-child deviation (SD 2.6 months), and session-level noise
+on the logit scale (SD 0.15). Doubling the input moves the spurt 2 months
+earlier. Children average about 300 words at 24 months.
 }
 \examples{
 head(vocabulary_growth)

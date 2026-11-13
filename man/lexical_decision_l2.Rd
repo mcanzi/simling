@@ -3,7 +3,7 @@
 \docType{data}
 \name{lexical_decision_l2}
 \alias{lexical_decision_l2}
-\title{Lexical decision by L1 and L2 speakers}
+\title{German lexical decision by L1 and L2 speakers}
 \format{
 A tibble with 1200 rows and 6 columns:
 \describe{
@@ -22,13 +22,13 @@ A tibble with 1200 rows and 6 columns:
 lexical_decision_l2
 }
 \description{
-30 participants (15 L1 and 15 L2 speakers of English) each respond to the
-same 40 words. L2 speakers are slower and more sensitive to frequency.
+30 participants (15 L1 and 15 L2 speakers of German) each respond to the
+same 40 German words. L2 speakers are slower and more sensitive to
+frequency.
 }
 \details{
-True model: \code{rt = 700 + 120 * L2 + p0 + w0 + slope * (log_freq - 3.5) + 12 * (length - 7) + e}, where \code{slope = -25 - 25 * L2 + p1}.
-By-participant intercepts \code{p0} have SD 60 ms and slopes \code{p1} SD 12 ms;
-by-word intercepts \code{w0} have SD 30 ms; residual SD 70 ms.
+True model: \code{log(rt) = 6.55 + 0.16 * L2 + p0 + w0 + slope * (log_freq - 3.5) + 0.017 * (length - 7) + e}, where \code{slope = -0.035 - 0.03 * L2 + p1}. By-participant intercepts \code{p0} have SD 0.085 and slopes
+\code{p1} SD 0.015; by-word intercepts \code{w0} have SD 0.04; residual SD 0.09.
 }
 \examples{
 head(lexical_decision_l2)

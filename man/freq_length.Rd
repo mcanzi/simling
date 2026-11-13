@@ -25,10 +25,7 @@ freq_length
 smaller for frequent words. A continuous-by-continuous interaction.
 }
 \details{
-True model: `rt = 760 - 30 * lf_c + 14 * len_c - 5 * lf_c * len_c
-\itemize{
-\item e\verb{, with }e` normal, SD 40 ms.
-}
+True model: \code{log(rt) = 6.63 - 0.04 * lf_c + 0.018 * len_c - 0.0065 * lf_c * len_c + e}, with \code{e} normal, SD 0.05.
 }
 \examples{
 head(freq_length)

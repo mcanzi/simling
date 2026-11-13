@@ -5,14 +5,15 @@
 \alias{visual_world}
 \title{Visual-world eye tracking: anticipatory looks}
 \format{
-A tibble with 23040 rows and 7 columns:
+A tibble with 23040 rows and 10 columns:
 \describe{
 \item{participant}{Participant ID, \code{P01} to \code{P32}.}
 \item{list}{Counterbalancing list, 1 or 2.}
 \item{item}{Item ID, \code{i01} to \code{i24}.}
 \item{condition}{\code{"restrictive"} or \code{"non-restrictive"} verb.}
 \item{time}{Start of the 50 ms bin, ms from verb onset, 0 to 1450.}
-\item{target}{Eye-tracker samples on the target in this bin.}
+\item{target, competitor, distractor_1, distractor_2}{Eye-tracker
+samples on each object in this bin; they add up to \code{samples}.}
 \item{samples}{Samples per bin: always 25 (500 Hz).}
 }
 }
@@ -24,9 +25,12 @@ visual_world
 }
 \description{
 Listeners hear \emph{The boy will eat / move the cake} while looking at four
-objects, only one of them edible. After a restrictive verb (\emph{eat}) they
-look at the target before the noun is heard. Looks to the target in 50 ms
-bins from verb onset; the noun starts at 600 ms. 32 participants, 24
+objects: the target (a cake, the only edible object), a phonological
+competitor (a cage) and two unrelated distractors. After a restrictive
+verb (\emph{eat}) they look at the target before the noun is heard; while the
+noun unfolds, the competitor briefly attracts looks too. Eye-tracker
+samples on each object in 50 ms bins from verb onset; the noun starts at
+600 ms. 32 participants, 24
 items, 12 per condition (two counterbalanced lists).
 }
 \details{
@@ -35,7 +39,10 @@ chance (0.25) to about 0.88 along a logistic curve with width 90 ms,
 centred at 650 ms after restrictive and 900 ms after non-restrictive
 verbs. By-participant variation in the centre (SD 80 ms) and in the final
 level (SD 0.3 logits); by-item variation in the centre (SD 40 ms). Within
-a trial, deviations are AR(1) with rho 0.9.
+a trial, deviations are AR(1) with rho 0.9. Of the remaining samples,
+the competitor gets a third plus a bump of up to 25 percentage points
+centred at 850 ms (SD about 100 ms); the two distractors split the rest
+evenly.
 }
 \examples{
 head(visual_world)

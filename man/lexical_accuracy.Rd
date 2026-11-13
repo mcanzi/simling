@@ -3,7 +3,7 @@
 \docType{data}
 \name{lexical_accuracy}
 \alias{lexical_accuracy}
-\title{Lexical decision accuracy}
+\title{Accuracy in an Italian lexical decision task}
 \format{
 A tibble with 1800 rows and 5 columns:
 \describe{
@@ -21,8 +21,9 @@ A tibble with 1800 rows and 5 columns:
 lexical_accuracy
 }
 \description{
-30 participants each respond to the same 60 words; the outcome is whether
-the response was correct. For mixed-effects logistic regression.
+30 native speakers of Italian decide whether each of 60 Italian words is a
+word; the outcome is whether the response was correct. For mixed-effects
+logistic regression.
 }
 \details{
 True model, in log-odds: \code{1.5 + u0 + w0 + (0.8 + u1) * freq_c}.

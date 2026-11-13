@@ -5,13 +5,12 @@
 \alias{formants}
 \title{Formants of three vowels from two speakers}
 \format{
-A tibble with 120 rows and 6 columns:
+A tibble with 120 rows and 5 columns:
 \describe{
 \item{speaker}{\code{"A"} or \code{"B"}.}
 \item{vowel}{\code{"i"}, \code{"a"} or \code{"u"}.}
-\item{F1, F2}{First and second formant in Hz.}
 \item{token}{Token number, 1 to 20.}
-\item{k}{Scaling factor of the speaker's formants: 1 for A, 1.2 for B.}
+\item{F1, F2}{First and second formant in Hz.}
 }
 }
 \source{

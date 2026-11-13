@@ -21,13 +21,14 @@ A tibble with 200 rows and 5 columns:
 rt_frequency
 }
 \description{
-A simulated lexical decision task: 10 participants each respond to the same
-20 words, 10 of high and 10 of low frequency.
+A small lexical decision task: 10 participants each respond to the same 20
+words, 10 of high and 10 of low frequency.
 }
 \details{
-True model: \code{rt} is normal with mean 600 ms for high- and 660 ms
-for low-frequency words, SD 80 ms. Accuracy is 90\%. There are no
-participant or word effects.
+True model: \code{log(rt) = 6.38 + 0.1 * low + p0 + w0 + e}, with
+by-participant intercepts \code{p0} (SD 0.12), by-word intercepts \code{w0} (SD
+0.06) and residual SD 0.15, so low-frequency words take about 10\%
+longer. Accuracy is 95\% for high- and 85\% for low-frequency words.
 }
 \examples{
 head(rt_frequency)

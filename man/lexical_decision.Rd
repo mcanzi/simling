@@ -26,10 +26,10 @@ speed and in the size of their frequency effect; words differ in
 difficulty. For crossed random effects.
 }
 \details{
-True model: \code{rt = 650 + u0 + w0 + (-30 + u1) * freq_c + e}.
-By-participant intercepts \code{u0} have SD 70 ms and slopes \code{u1} SD 18 ms,
-correlated at -0.6; by-word intercepts \code{w0} have SD 30 ms; residual SD
-50 ms. Not to be confused with \code{languageR::lexdec}, which is real data.
+True model: \code{log(rt) = 6.47 + u0 + w0 + (-0.045 + u1) * freq_c + e}. By-participant intercepts \code{u0} have SD 0.11 and slopes \code{u1} SD
+0.025, correlated at -0.6; by-word intercepts \code{w0} have SD 0.045;
+residual SD 0.075. Not to be confused with \code{languageR::lexdec}, which is
+real data.
 }
 \examples{
 head(lexical_decision)
