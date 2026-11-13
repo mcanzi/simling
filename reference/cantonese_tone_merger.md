@@ -2,7 +2,7 @@
 
 Hong Kong Cantonese has two rising tones, T2 (high rising, 25) and T5
 (low rising, 23), which some younger speakers merge. 90 speakers aged 18
-to 75 each produce 10 T2 and 10 T5 words; the size of the f0 rise is
+to 74 each produce 10 T2 and 10 T5 words; the size of the f0 rise is
 measured in semitones. For a sound change in apparent time and for
 individual differences: mergers form a separate group of speakers, most
 of them young.

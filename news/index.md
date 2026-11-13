@@ -10,3 +10,7 @@
   topic.
 - Every data set comes with the code that generated it (`data-raw/`) and
   a help page listing its variables, its true model and its references.
+- Each help page has an example that fits the model the data were
+  simulated from, or summarises the pattern the page describes, so its
+  output can be compared with the true values. Examples that need a
+  package other than base R run only when that package is installed.
