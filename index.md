@@ -13,12 +13,7 @@ lists the variables and the true model.
 
 ## Installation
 
-``` r
-
-install.packages("simling", repos = c("https://mcanzi.r-universe.dev", "https://cloud.r-project.org"))
-```
-
-or, from GitHub:
+simling is on GitHub only for now. Install it with:
 
 ``` r
 

@@ -1,7 +1,8 @@
 # Reaction times with a frequency-by-length interaction
 
-400 words whose frequency and length interact: the length effect is
-smaller for frequent words. A continuous-by-continuous interaction.
+400 words whose frequency and length interact in a
+continuous-by-continuous interaction. The length effect is smaller for
+frequent words.
 
 ## Usage
 

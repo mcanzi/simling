@@ -1,8 +1,8 @@
 # Frequency effects in L1 and L2 speakers
 
 Reaction times of L1 and L2 speakers to words of varying frequency. The
-frequency effect is stronger for L2 speakers: a
-continuous-by-categorical interaction.
+frequency effect is stronger for L2 speakers, so frequency and group
+interact (a continuous-by-categorical interaction).
 
 ## Usage
 
