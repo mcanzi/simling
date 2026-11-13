@@ -300,7 +300,7 @@ if (requireNamespace("lme4", quietly = TRUE)) {
                      I(log2(input / 1200)) + (1 | child) + (1 | session),
                    data = vocabulary_growth, family = binomial)
   b <- lme4::fixef(m)
-  c(spurt_at_1200_words = 24 - b[[1]] / b[[2]], months_per_doubling = b[[3]] / b[[2]])
+  c(midpoint_at_1200_words = 24 - b[[1]] / b[[2]], months_per_doubling = b[[3]] / b[[2]])
 }"""
 
 EX["first_words"] = """if (requireNamespace("survival", quietly = TRUE)) {

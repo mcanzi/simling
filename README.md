@@ -64,7 +64,7 @@ Every categorical column is a factor. Its first level is the reference level: th
 |  | `mandarin_tones` | Mandarin | 4,224 | trajectories | Contour shape, speaker normalisation |
 | Phonology | `hungarian_harmony` | Hungarian | 4,200 | binary | Mixed logistic regression, wug tests |
 | Prosody | `tobi_agreement` | German | 456 | labels from two coders | Inter-rater agreement, kappa |
-|  | `rhythm_metrics` | 8 languages | 400 | continuous | Classification, rhythm classes |
+|  | `rhythm_metrics` | 6 languages | 1,200 | continuous | Variance partitioning, testing rhythm classes |
 | Psycholinguistics | `rt_frequency` | – | 200 | RT, binary | Data wrangling |
 |  | `word_rt` | – | 400 | RT | Multiple regression, collinearity |
 |  | `freq_length` | – | 400 | RT | Continuous × continuous interaction |

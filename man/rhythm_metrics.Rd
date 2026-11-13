@@ -3,16 +3,19 @@
 \docType{data}
 \name{rhythm_metrics}
 \alias{rhythm_metrics}
-\title{Rhythm metrics in eight languages}
+\title{Rhythm metrics across languages, speakers and speech materials}
 \format{
-A tibble with 400 rows and 7 columns:
+A tibble with 1200 rows and 8 columns:
 \describe{
-\item{language}{\code{"English"}, \code{"German"}, \code{"Dutch"}, \code{"European Portuguese"}, \code{"Brazilian Portuguese"}, \code{"Spanish"}, \code{"Italian"} or
-\code{"Japanese"}.}
-\item{speaker}{Speaker ID, e.g. \code{Eng_01}.}
-\item{sentence}{\code{sent1} to \code{sent5}.}
+\item{language}{\code{"English"}, \code{"German"}, \code{"Greek"}, \code{"Italian"},
+\code{"Korean"} or \code{"Spanish"}.}
+\item{speaker}{Speaker ID: ISO 639-3 language code and number, e.g.
+\code{eng_01}.}
+\item{material}{\code{"uncontrolled sentences"}, \code{"complex-syllable sentences"}, \code{"simple-syllable sentences"}, \code{"story"} or
+\code{"spontaneous"}.}
+\item{item}{Sample number within speaker and material, 1 to 5.}
 \item{rate}{Speech rate in syllables per second.}
-\item{percent_v}{Percentage of the sentence that is vocalic.}
+\item{percent_v}{Percentage of the sample that is vocalic.}
 \item{delta_c}{Standard deviation of consonantal intervals in ms.}
 \item{varco_v}{Coefficient of variation of vocalic intervals.}
 }
@@ -24,37 +27,57 @@ A tibble with 400 rows and 7 columns:
 rhythm_metrics
 }
 \description{
-\%V, ΔC and VarcoV for 5 sentences from each of 10 speakers of 8
-languages. Languages traditionally called stress-timed (English, German,
-Dutch) have lower \%V and higher ΔC and VarcoV, syllable-timed languages
-(Spanish, Italian) the reverse, and Japanese the highest \%V. European
-Portuguese, with its reduced and deleted vowels, sits closer to the
-stress-timed languages than Brazilian Portuguese. ΔC falls with speech
-rate; VarcoV is rate-normalised. For classifying languages by their rhythm
-metrics.
+\%V, ΔC and VarcoV from 8 speakers of each of six languages: English,
+German, Greek, Italian, Korean and Spanish. Each speaker produced five
+samples of five kinds of material. Three are sets of read sentences:
+uncontrolled sentences, sentences built from complex syllables (the
+"stress-timed" set) and sentences built from simple syllables (the
+"syllable-timed" set). The other two are a read story and spontaneous
+speech. The design follows Arvaniti (2012). As in her data, the language
+means differ little and do not split into a stress-timed and a
+syllable-timed group. Speakers, elicitation method and syllable complexity
+move the metrics about as much as language does. ΔC falls with speech
+rate. For partitioning variance with mixed models and for testing whether
+the metrics support rhythm classes.
 }
 \details{
-True model: language means for \%V, ΔC and VarcoV are 41, 54, 65
-(English), 42, 52, 62 (German), 42, 53, 63 (Dutch), 43, 50, 58
-(European Portuguese), 46, 45, 52 (Brazilian Portuguese), 46, 46, 48
-(Spanish), 47, 47, 52 (Italian) and 53, 36, 45 (Japanese). These values
-follow the ordering reported in the literature and were chosen for the
-simulation. ΔC falls by 6 ms per syllable per
-second. By-speaker variation: SD 1.2 for \%V, 3 ms for ΔC, 0.4 syll/s
-for rate.
+True model: each metric is the sum of a language mean, a
+material effect, a language-by-material deviation, a speaker effect and
+noise. Language means for \%V, ΔC and VarcoV are 43.5, 49, 56 (English),
+42.5, 51, 57 (German), 46, 46, 52 (Greek), 45, 47, 54 (Italian), 45, 50,
+55 (Korean) and 44, 48, 55 (Spanish). Material effects, relative to the
+uncontrolled sentences, are -3, +7, +3 (complex-syllable sentences), +3,
+-6, -4 (simple-syllable sentences), -1, +2, +2 (story) and -1.5, +6, +7
+(spontaneous). Language-by-material deviations have SD 1, 3 and 3,
+speaker effects SD 2, 4 and 4, and residuals SD 2, 5 and 6. ΔC falls by
+6 ms per syllable per second. All values were chosen for the
+simulation to reproduce the pattern Arvaniti (2012) reports; they are
+not her measurements.
 }
 \examples{
-means <- aggregate(cbind(percent_v, delta_c, varco_v) ~ language,
-                   data = rhythm_metrics, FUN = mean)
-means[order(means$percent_v), ]
-plot(delta_c ~ percent_v, data = rhythm_metrics, col = language)
-coef(lm(delta_c ~ rate + language, data = rhythm_metrics))["rate"]
+round(tapply(rhythm_metrics$percent_v, rhythm_metrics[c("material", "language")], mean), 1)
+boxplot(percent_v ~ material, data = rhythm_metrics)
+lang <- aggregate(cbind(percent_v, delta_c, varco_v) ~ language, data = rhythm_metrics,
+                  FUN = mean)
+set.seed(1)
+data.frame(language = lang$language,
+           cluster = kmeans(scale(lang[, -1]), centers = 2, nstart = 20)$cluster)
+speakers <- aggregate(percent_v ~ speaker + language, data = rhythm_metrics, FUN = mean)
+t.test(percent_v ~ language,
+       data = droplevels(subset(speakers, is.element(language, c("English", "Spanish")))))
+coef(lm(delta_c ~ rate + language + material, data = rhythm_metrics))["rate"]
+if (requireNamespace("lme4", quietly = TRUE)) {
+  m <- lme4::lmer(percent_v ~ language + material + (1 | speaker), data = rhythm_metrics)
+  round(lme4::fixef(m), 2)
+}
 }
 \references{
+Arvaniti, A. (2012). The usefulness of metrics in the quantification of speech rhythm. \emph{Journal of Phonetics}, 40(3), 351-373. \doi{10.1016/j.wocn.2012.02.003}
+
+Rathcke, T. & Smith, R. (2015). Speech timing and linguistic rhythm: On the acoustic bases of rhythm typologies. \emph{Journal of the Acoustical Society of America}, 137(5), 2834-2845. \doi{10.1121/1.4919322}
+
 Ramus, F., Nespor, M. & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. \emph{Cognition}, 73(3), 265-292. \doi{10.1016/S0010-0277(99)00058-X}
 
 White, L. & Mattys, S. L. (2007). Calibrating rhythm: First language and second language studies. \emph{Journal of Phonetics}, 35(4), 501-522. \doi{10.1016/j.wocn.2007.02.003}
-
-Frota, S. & Vigário, M. (2001). On the correlates of rhythmic distinctions: The European/Brazilian Portuguese case. \emph{Probus}, 13(2), 247-275. \doi{10.1515/prbs.2001.005}
 }
 \keyword{datasets}

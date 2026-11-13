@@ -27,7 +27,11 @@
 #' Formants of three vowels from two speakers
 #'
 #' F1 and F2 of /i a u/, 20 tokens per vowel from each of two speakers.
-#' Speaker B has a shorter vocal tract, so all formants are 20% higher.
+#' Every formant of speaker B is 1.2 times the same formant of speaker A.
+#' This uniform scaling is a simplification. Between real speakers, and
+#' between women and men, the ratio differs across vowels and formants
+#' (Fant 1966), so normalisation methods that assume one factor per speaker
+#' work better here than on real data.
 #'
 #' @format A tibble with 120 rows and 5 columns:
 #' \describe{
@@ -39,6 +43,8 @@
 #' @details True model: speaker A's mean F1 and F2 are 300 and 2300 Hz for
 #'   /i/, 750 and 1300 Hz for /a/, and 320 and 800 Hz for /u/; speaker B's are
 #'   1.2 times higher. Token SD is 40 Hz for F1 and 120 Hz for F2.
+#' @references
+#' Fant, G. (1966). A note on vocal tract size factors and non-uniform F-pattern scalings. *Speech Transmission Laboratory Quarterly Progress and Status Report*, 7(4), 22-30.
 #' @source `data-raw/formants.R`
 #' @examples
 #' aggregate(cbind(f1, f2) ~ speaker + vowel, data = formants, FUN = mean)
@@ -698,8 +704,11 @@
 #' Vocabulary growth in toddlers
 #'
 #' Productive vocabulary on a 680-word parental checklist, every two months
-#' from 16 to 30 months, for 80 children. Growth is S-shaped, and children
-#' who hear more speech start their vocabulary spurt earlier. About 10% of
+#' from 16 to 30 months, for 80 children. Each child's vocabulary follows an
+#' S-shaped (logistic) curve, and children who hear more speech reach its
+#' steep middle part earlier. Whether real vocabulary growth has a distinct
+#' spurt is debated. Ganger and Brent (2004) found that a logistic curve fitted
+#' better than a quadratic one for only 5 of 38 children. About 10% of
 #' sessions are missing.
 #'
 #' @format A tibble with 572 rows and 4 columns:
@@ -712,12 +721,15 @@
 #' @details True model: `vocabulary` is binomial out of 680 with probability
 #'   `plogis((age - mid) / 2.8)`, where `mid = 25.2 - 2 * log2(input /
 #'   1200)` plus a by-child deviation (SD 2.6 months), and session-level noise
-#'   on the logit scale (SD 0.15). Doubling the input moves the spurt 2 months
-#'   earlier. Children average about 300 words at 24 months.
+#'   on the logit scale (SD 0.15). Doubling the input moves the midpoint of
+#'   the curve 2 months earlier. Children average about 300 words at 24
+#'   months.
 #' @references
 #' Fenson, L., Marchman, V. A., Thal, D. J., Dale, P. S., Reznick, J. S. & Bates, E. (2007). *MacArthur-Bates Communicative Development Inventories: User's guide and technical manual* (2nd ed.). Baltimore: Brookes.
 #'
 #' Frank, M. C., Braginsky, M., Yurovsky, D. & Marchman, V. A. (2017). Wordbank: An open repository for developmental vocabulary data. *Journal of Child Language*, 44(3), 677-694. \doi{10.1017/S0305000916000209}
+#'
+#' Ganger, J. & Brent, M. R. (2004). Reexamining the vocabulary spurt. *Developmental Psychology*, 40(4), 621-632. \doi{10.1037/0012-1649.40.4.621}
 #' @source `data-raw/vocabulary_growth.R`
 #' @examples
 #' plot(vocabulary ~ age, data = vocabulary_growth, col = grey(0.4))
@@ -727,7 +739,7 @@
 #'                      I(log2(input / 1200)) + (1 | child) + (1 | session),
 #'                    data = vocabulary_growth, family = binomial)
 #'   b <- lme4::fixef(m)
-#'   c(spurt_at_1200_words = 24 - b[[1]] / b[[2]], months_per_doubling = b[[3]] / b[[2]])
+#'   c(midpoint_at_1200_words = 24 - b[[1]] / b[[2]], months_per_doubling = b[[3]] / b[[2]])
 #' }
 "vocabulary_growth"
 
@@ -735,9 +747,12 @@
 #'
 #' Overregularization errors (*goed*, *holded*) out of all irregular past-tense
 #' contexts, for 24 children recorded every six months from 30 to 60 months.
-#' Errors are rare, and their rate stays about the same across ages while
-#' children differ in how often they make them. For binomial models of errors
-#' out of attempts and for testing an effect that is absent.
+#' The simulation follows the account of Marcus et al. (1992): errors are
+#' rare, their rate does not change with age, and children differ in how
+#' often they make them. Maratsos (2000) disputed the low rates, arguing that
+#' averages over all verbs hide much higher rates for verbs a child uses
+#' rarely. These data have no verb-level information. For binomial models of
+#' errors out of attempts and for testing an effect that is absent.
 #'
 #' @format A tibble with 144 rows and 4 columns:
 #' \describe{
@@ -751,6 +766,8 @@
 #'   attempt more irregular past tenses as they get older.
 #' @references
 #' Marcus, G. F., Pinker, S., Ullman, M., Hollander, M., Rosen, T. J. & Xu, F. (1992). Overregularization in language acquisition. *Monographs of the Society for Research in Child Development*, 57(4). \doi{10.2307/1166115}
+#'
+#' Maratsos, M. (2000). More overregularizations after all: New data and discussion on Marcus, Pinker, Ullman, Hollander, Rosen & Xu. *Journal of Child Language*, 27(1), 183-212.
 #' @source `data-raw/overregularization.R`
 #' @examples
 #' sum(overregularization$errors) / sum(overregularization$attempts)
@@ -805,9 +822,11 @@
 #'
 #' 400 invented languages from 100 invented families in six invented areas.
 #' Languages mostly inherit their family's word order, so languages from the
-#' same family are similar. Adposition order and case marking correlate with word
-#' order, in the spirit of Greenberg's universals. Family sizes are skewed:
-#' a few large families and many small ones.
+#' same family are similar. Adposition order and case marking correlate with
+#' word order in the same way in every family, as in Greenberg's (1963)
+#' universals. Dunn et al. (2011) argue that such dependencies are mostly
+#' specific to lineages, so real samples need not share one pattern. Family
+#' sizes are skewed: a few large families and many small ones.
 #'
 #' @format A tibble with 400 rows and 8 columns:
 #' \describe{
@@ -835,6 +854,8 @@
 #' Dryer, M. S. (2013). Order of subject, object and verb. In M. S. Dryer & M. Haspelmath (eds.), *WALS Online*. Leipzig: Max Planck Institute for Evolutionary Anthropology. <https://wals.info/chapter/81>
 #'
 #' Greenberg, J. H. (1963). Some universals of grammar with particular reference to the order of meaningful elements. In J. H. Greenberg (ed.), *Universals of Language* (pp. 58-90). Cambridge, MA: MIT Press.
+#'
+#' Dunn, M., Greenhill, S. J., Levinson, S. C. & Gray, R. D. (2011). Evolved structure of language shows lineage-specific trends in word-order universals. *Nature*, 473(7345), 79-82. \doi{10.1038/nature09923}
 #' @source `data-raw/word_order.R`
 #' @examples
 #' round(prop.table(table(word_order$order)), 2)
@@ -1364,50 +1385,73 @@
 #'        function(d) kappa(d$accent_1 != "none", d$accent_2 != "none"))
 "tobi_agreement"
 
-#' Rhythm metrics in eight languages
+#' Rhythm metrics across languages, speakers and speech materials
 #'
-#' %V, ΔC and VarcoV for 5 sentences from each of 10 speakers of 8
-#' languages. Languages traditionally called stress-timed (English, German,
-#' Dutch) have lower %V and higher ΔC and VarcoV, syllable-timed languages
-#' (Spanish, Italian) the reverse, and Japanese the highest %V. European
-#' Portuguese, with its reduced and deleted vowels, sits closer to the
-#' stress-timed languages than Brazilian Portuguese. ΔC falls with speech
-#' rate; VarcoV is rate-normalised. For classifying languages by their rhythm
-#' metrics.
+#' %V, ΔC and VarcoV from 8 speakers of each of six languages: English,
+#' German, Greek, Italian, Korean and Spanish. Each speaker produced five
+#' samples of five kinds of material. Three are sets of read sentences:
+#' uncontrolled sentences, sentences built from complex syllables (the
+#' "stress-timed" set) and sentences built from simple syllables (the
+#' "syllable-timed" set). The other two are a read story and spontaneous
+#' speech. The design follows Arvaniti (2012). As in her data, the language
+#' means differ little and do not split into a stress-timed and a
+#' syllable-timed group. Speakers, elicitation method and syllable complexity
+#' move the metrics about as much as language does. ΔC falls with speech
+#' rate. For partitioning variance with mixed models and for testing whether
+#' the metrics support rhythm classes.
 #'
-#' @format A tibble with 400 rows and 7 columns:
+#' @format A tibble with 1200 rows and 8 columns:
 #' \describe{
-#'   \item{language}{`"English"`, `"German"`, `"Dutch"`, `"European
-#'     Portuguese"`, `"Brazilian Portuguese"`, `"Spanish"`, `"Italian"` or
-#'     `"Japanese"`.}
-#'   \item{speaker}{Speaker ID, e.g. `Eng_01`.}
-#'   \item{sentence}{`sent1` to `sent5`.}
+#'   \item{language}{`"English"`, `"German"`, `"Greek"`, `"Italian"`,
+#'     `"Korean"` or `"Spanish"`.}
+#'   \item{speaker}{Speaker ID: ISO 639-3 language code and number, e.g.
+#'     `eng_01`.}
+#'   \item{material}{`"uncontrolled sentences"`, `"complex-syllable
+#'     sentences"`, `"simple-syllable sentences"`, `"story"` or
+#'     `"spontaneous"`.}
+#'   \item{item}{Sample number within speaker and material, 1 to 5.}
 #'   \item{rate}{Speech rate in syllables per second.}
-#'   \item{percent_v}{Percentage of the sentence that is vocalic.}
+#'   \item{percent_v}{Percentage of the sample that is vocalic.}
 #'   \item{delta_c}{Standard deviation of consonantal intervals in ms.}
 #'   \item{varco_v}{Coefficient of variation of vocalic intervals.}
 #' }
-#' @details True model: language means for %V, ΔC and VarcoV are 41, 54, 65
-#'   (English), 42, 52, 62 (German), 42, 53, 63 (Dutch), 43, 50, 58
-#'   (European Portuguese), 46, 45, 52 (Brazilian Portuguese), 46, 46, 48
-#'   (Spanish), 47, 47, 52 (Italian) and 53, 36, 45 (Japanese). These values
-#'   follow the ordering reported in the literature and were chosen for the
-#'   simulation. ΔC falls by 6 ms per syllable per
-#'   second. By-speaker variation: SD 1.2 for %V, 3 ms for ΔC, 0.4 syll/s
-#'   for rate.
+#' @details True model: each metric is the sum of a language mean, a
+#'   material effect, a language-by-material deviation, a speaker effect and
+#'   noise. Language means for %V, ΔC and VarcoV are 43.5, 49, 56 (English),
+#'   42.5, 51, 57 (German), 46, 46, 52 (Greek), 45, 47, 54 (Italian), 45, 50,
+#'   55 (Korean) and 44, 48, 55 (Spanish). Material effects, relative to the
+#'   uncontrolled sentences, are -3, +7, +3 (complex-syllable sentences), +3,
+#'   -6, -4 (simple-syllable sentences), -1, +2, +2 (story) and -1.5, +6, +7
+#'   (spontaneous). Language-by-material deviations have SD 1, 3 and 3,
+#'   speaker effects SD 2, 4 and 4, and residuals SD 2, 5 and 6. ΔC falls by
+#'   6 ms per syllable per second. All values were chosen for the
+#'   simulation to reproduce the pattern Arvaniti (2012) reports; they are
+#'   not her measurements.
 #' @references
+#' Arvaniti, A. (2012). The usefulness of metrics in the quantification of speech rhythm. *Journal of Phonetics*, 40(3), 351-373. \doi{10.1016/j.wocn.2012.02.003}
+#'
+#' Rathcke, T. & Smith, R. (2015). Speech timing and linguistic rhythm: On the acoustic bases of rhythm typologies. *Journal of the Acoustical Society of America*, 137(5), 2834-2845. \doi{10.1121/1.4919322}
+#'
 #' Ramus, F., Nespor, M. & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. *Cognition*, 73(3), 265-292. \doi{10.1016/S0010-0277(99)00058-X}
 #'
 #' White, L. & Mattys, S. L. (2007). Calibrating rhythm: First language and second language studies. *Journal of Phonetics*, 35(4), 501-522. \doi{10.1016/j.wocn.2007.02.003}
-#'
-#' Frota, S. & Vigário, M. (2001). On the correlates of rhythmic distinctions: The European/Brazilian Portuguese case. *Probus*, 13(2), 247-275. \doi{10.1515/prbs.2001.005}
 #' @source `data-raw/rhythm_metrics.R`
 #' @examples
-#' means <- aggregate(cbind(percent_v, delta_c, varco_v) ~ language,
-#'                    data = rhythm_metrics, FUN = mean)
-#' means[order(means$percent_v), ]
-#' plot(delta_c ~ percent_v, data = rhythm_metrics, col = language)
-#' coef(lm(delta_c ~ rate + language, data = rhythm_metrics))["rate"]
+#' round(tapply(rhythm_metrics$percent_v, rhythm_metrics[c("material", "language")], mean), 1)
+#' boxplot(percent_v ~ material, data = rhythm_metrics)
+#' lang <- aggregate(cbind(percent_v, delta_c, varco_v) ~ language, data = rhythm_metrics,
+#'                   FUN = mean)
+#' set.seed(1)
+#' data.frame(language = lang$language,
+#'            cluster = kmeans(scale(lang[, -1]), centers = 2, nstart = 20)$cluster)
+#' speakers <- aggregate(percent_v ~ speaker + language, data = rhythm_metrics, FUN = mean)
+#' t.test(percent_v ~ language,
+#'        data = droplevels(subset(speakers, is.element(language, c("English", "Spanish")))))
+#' coef(lm(delta_c ~ rate + language + material, data = rhythm_metrics))["rate"]
+#' if (requireNamespace("lme4", quietly = TRUE)) {
+#'   m <- lme4::lmer(percent_v ~ language + material + (1 | speaker), data = rhythm_metrics)
+#'   round(lme4::fixef(m), 2)
+#' }
 "rhythm_metrics"
 
 #' Hungarian vowel harmony in a wug test

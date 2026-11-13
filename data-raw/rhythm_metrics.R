@@ -1,41 +1,58 @@
+# Arvaniti (2012), Journal of Phonetics 40(3), 351-373;
+# Rathcke & Smith (2015), Journal of the Acoustical Society of America 137(5), 2834-2845;
 # Ramus, Nespor & Mehler (1999), Cognition 73(3), 265-292;
-# White & Mattys (2007), Journal of Phonetics 35(4), 501-522;
-# European vs Brazilian Portuguese: Frota & Vigário (2001), Probus 13(2), 247-275.
+# White & Mattys (2007), Journal of Phonetics 35(4), 501-522.
 library(dplyr)
 library(tidyr)
 library(tibble)
 
-set.seed(5003)
+set.seed(5004)
 languages <- tribble(
-  ~language,              ~percent_v, ~delta_c, ~varco_v,
-  "English",              41,         54,       65,
-  "German",               42,         52,       62,
-  "Dutch",                42,         53,       63,
-  "European Portuguese",  43,         50,       58,
-  "Brazilian Portuguese", 46,         45,       52,
-  "Spanish",              46,         46,       48,
-  "Italian",              47,         47,       52,
-  "Japanese",             53,         36,       45
+  ~language, ~code, ~l_v, ~l_c, ~l_varco,
+  "English", "eng", 43.5, 49, 56,
+  "German", "deu", 42.5, 51, 57,
+  "Greek", "ell", 46, 46, 52,
+  "Italian", "ita", 45, 47, 54,
+  "Korean", "kor", 45, 50, 55,
+  "Spanish", "spa", 44, 48, 55
 )
 
+materials <- tribble(
+  ~material, ~m_v, ~m_c, ~m_varco, ~m_rate,
+  "uncontrolled sentences", 0, 0, 0, 0,
+  "complex-syllable sentences", -3, 7, 3, -0.3,
+  "simple-syllable sentences", 3, -6, -4, 0.3,
+  "story", -1, 2, 2, 0.2,
+  "spontaneous", -1.5, 6, 7, -0.6
+)
+
+cells <- crossing(languages, materials) |>
+  mutate(lm_v = rnorm(n(), 0, 1),
+         lm_c = rnorm(n(), 0, 3),
+         lm_varco = rnorm(n(), 0, 3))
+
 speakers <- languages |>
-  crossing(speaker_no = 1:10) |>
-  mutate(speaker = paste(substr(gsub(" ", "", language), 1, 3), sprintf("%02d", speaker_no),
-                         sep = "_"),
-         s_v = rnorm(n(), 0, 1.2),
-         s_c = rnorm(n(), 0, 3),
-         s_rate = rnorm(n(), 0, 0.4))
+  select(language, code) |>
+  crossing(speaker_no = 1:8) |>
+  mutate(speaker = paste(code, sprintf("%02d", speaker_no), sep = "_"),
+         s_v = rnorm(n(), 0, 2),
+         s_c = rnorm(n(), 0, 4),
+         s_varco = rnorm(n(), 0, 4),
+         s_rate = rnorm(n(), 0, 0.5))
 
 rhythm_metrics <- speakers |>
-  crossing(sentence = sprintf("sent%d", 1:5)) |>
-  mutate(rate = round(5.5 + s_rate + rnorm(n(), 0, 0.35), 2),
-         percent_v = round(percent_v + s_v + rnorm(n(), 0, 1.5), 1),
-         delta_c = round(delta_c + s_c - 6 * (rate - 5.5) + rnorm(n(), 0, 4), 1),
-         varco_v = round(varco_v + rnorm(n(), 0, 5), 1)) |>
-  select(language, speaker, sentence, rate, percent_v, delta_c, varco_v)
+  left_join(cells, by = c("language", "code"), relationship = "many-to-many") |>
+  crossing(item = 1:5) |>
+  mutate(rate = round(5.6 + m_rate + s_rate + rnorm(n(), 0, 0.35), 2),
+         percent_v = round(l_v + m_v + lm_v + s_v + rnorm(n(), 0, 2), 1),
+         delta_c = round(l_c + m_c + lm_c + s_c - 6 * (rate - 5.6) + rnorm(n(), 0, 5), 1),
+         varco_v = round(l_varco + m_varco + lm_varco + s_varco + rnorm(n(), 0, 6), 1)) |>
+  select(language, speaker, material, item, rate, percent_v, delta_c, varco_v)
 
 rhythm_metrics <- rhythm_metrics |>
-  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
-         language = factor(language, levels = languages$language))
+  mutate(language = factor(language, levels = languages$language),
+         speaker = factor(speaker, levels = sort(unique(speaker), method = "radix")),
+         material = factor(material, levels = materials$material),
+         item = as.integer(item))
 
 usethis::use_data(rhythm_metrics, overwrite = TRUE)

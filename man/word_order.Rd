@@ -26,9 +26,11 @@ word_order
 \description{
 400 invented languages from 100 invented families in six invented areas.
 Languages mostly inherit their family's word order, so languages from the
-same family are similar. Adposition order and case marking correlate with word
-order, in the spirit of Greenberg's universals. Family sizes are skewed:
-a few large families and many small ones.
+same family are similar. Adposition order and case marking correlate with
+word order in the same way in every family, as in Greenberg's (1963)
+universals. Dunn et al. (2011) argue that such dependencies are mostly
+specific to lineages, so real samples need not share one pattern. Family
+sizes are skewed: a few large families and many small ones.
 }
 \details{
 True model: each family draws a word order from its area's
@@ -58,5 +60,7 @@ if (requireNamespace("lme4", quietly = TRUE)) {
 Dryer, M. S. (2013). Order of subject, object and verb. In M. S. Dryer & M. Haspelmath (eds.), \emph{WALS Online}. Leipzig: Max Planck Institute for Evolutionary Anthropology. \url{https://wals.info/chapter/81}
 
 Greenberg, J. H. (1963). Some universals of grammar with particular reference to the order of meaningful elements. In J. H. Greenberg (ed.), \emph{Universals of Language} (pp. 58-90). Cambridge, MA: MIT Press.
+
+Dunn, M., Greenhill, S. J., Levinson, S. C. & Gray, R. D. (2011). Evolved structure of language shows lineage-specific trends in word-order universals. \emph{Nature}, 473(7345), 79-82. \doi{10.1038/nature09923}
 }
 \keyword{datasets}

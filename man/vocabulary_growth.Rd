@@ -21,15 +21,19 @@ vocabulary_growth
 }
 \description{
 Productive vocabulary on a 680-word parental checklist, every two months
-from 16 to 30 months, for 80 children. Growth is S-shaped, and children
-who hear more speech start their vocabulary spurt earlier. About 10\% of
+from 16 to 30 months, for 80 children. Each child's vocabulary follows an
+S-shaped (logistic) curve, and children who hear more speech reach its
+steep middle part earlier. Whether real vocabulary growth has a distinct
+spurt is debated. Ganger and Brent (2004) found that a logistic curve fitted
+better than a quadratic one for only 5 of 38 children. About 10\% of
 sessions are missing.
 }
 \details{
 True model: \code{vocabulary} is binomial out of 680 with probability
 \code{plogis((age - mid) / 2.8)}, where \code{mid = 25.2 - 2 * log2(input / 1200)} plus a by-child deviation (SD 2.6 months), and session-level noise
-on the logit scale (SD 0.15). Doubling the input moves the spurt 2 months
-earlier. Children average about 300 words at 24 months.
+on the logit scale (SD 0.15). Doubling the input moves the midpoint of
+the curve 2 months earlier. Children average about 300 words at 24
+months.
 }
 \examples{
 plot(vocabulary ~ age, data = vocabulary_growth, col = grey(0.4))
@@ -39,12 +43,14 @@ if (requireNamespace("lme4", quietly = TRUE)) {
                      I(log2(input / 1200)) + (1 | child) + (1 | session),
                    data = vocabulary_growth, family = binomial)
   b <- lme4::fixef(m)
-  c(spurt_at_1200_words = 24 - b[[1]] / b[[2]], months_per_doubling = b[[3]] / b[[2]])
+  c(midpoint_at_1200_words = 24 - b[[1]] / b[[2]], months_per_doubling = b[[3]] / b[[2]])
 }
 }
 \references{
 Fenson, L., Marchman, V. A., Thal, D. J., Dale, P. S., Reznick, J. S. & Bates, E. (2007). \emph{MacArthur-Bates Communicative Development Inventories: User's guide and technical manual} (2nd ed.). Baltimore: Brookes.
 
 Frank, M. C., Braginsky, M., Yurovsky, D. & Marchman, V. A. (2017). Wordbank: An open repository for developmental vocabulary data. \emph{Journal of Child Language}, 44(3), 677-694. \doi{10.1017/S0305000916000209}
+
+Ganger, J. & Brent, M. R. (2004). Reexamining the vocabulary spurt. \emph{Developmental Psychology}, 40(4), 621-632. \doi{10.1037/0012-1649.40.4.621}
 }
 \keyword{datasets}

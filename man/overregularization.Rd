@@ -22,9 +22,12 @@ overregularization
 \description{
 Overregularization errors (\emph{goed}, \emph{holded}) out of all irregular past-tense
 contexts, for 24 children recorded every six months from 30 to 60 months.
-Errors are rare, and their rate stays about the same across ages while
-children differ in how often they make them. For binomial models of errors
-out of attempts and for testing an effect that is absent.
+The simulation follows the account of Marcus et al. (1992): errors are
+rare, their rate does not change with age, and children differ in how
+often they make them. Maratsos (2000) disputed the low rates, arguing that
+averages over all verbs hide much higher rates for verbs a child uses
+rarely. These data have no verb-level information. For binomial models of
+errors out of attempts and for testing an effect that is absent.
 }
 \details{
 True model, in log-odds: \code{-3.2}, with by-child intercepts of SD
@@ -42,5 +45,7 @@ if (requireNamespace("lme4", quietly = TRUE)) {
 }
 \references{
 Marcus, G. F., Pinker, S., Ullman, M., Hollander, M., Rosen, T. J. & Xu, F. (1992). Overregularization in language acquisition. \emph{Monographs of the Society for Research in Child Development}, 57(4). \doi{10.2307/1166115}
+
+Maratsos, M. (2000). More overregularizations after all: New data and discussion on Marcus, Pinker, Ullman, Hollander, Rosen & Xu. \emph{Journal of Child Language}, 27(1), 183-212.
 }
 \keyword{datasets}

@@ -21,7 +21,11 @@ formants
 }
 \description{
 F1 and F2 of /i a u/, 20 tokens per vowel from each of two speakers.
-Speaker B has a shorter vocal tract, so all formants are 20\% higher.
+Every formant of speaker B is 1.2 times the same formant of speaker A.
+This uniform scaling is a simplification. Between real speakers, and
+between women and men, the ratio differs across vowels and formants
+(Fant 1966), so normalisation methods that assume one factor per speaker
+work better here than on real data.
 }
 \details{
 True model: speaker A's mean F1 and F2 are 300 and 2300 Hz for
@@ -33,5 +37,8 @@ aggregate(cbind(f1, f2) ~ speaker + vowel, data = formants, FUN = mean)
 formants$f1_z <- ave(formants$f1, formants$speaker, FUN = function(x) c(scale(x)))
 formants$f2_z <- ave(formants$f2, formants$speaker, FUN = function(x) c(scale(x)))
 aggregate(cbind(f1_z, f2_z) ~ speaker + vowel, data = formants, FUN = mean)
+}
+\references{
+Fant, G. (1966). A note on vocal tract size factors and non-uniform F-pattern scalings. \emph{Speech Transmission Laboratory Quarterly Progress and Status Report}, 7(4), 22-30.
 }
 \keyword{datasets}
