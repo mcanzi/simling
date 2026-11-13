@@ -1,0 +1,262 @@
+# simling
+
+[![R-CMD-check](https://github.com/mcanzi/simling/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mcanzi/simling/actions/workflows/R-CMD-check.yaml)
+
+Simulated linguistic data for teaching statistics in R.
+
+Every data set in simling is simulated, and the code that generated it
+is in [`data-raw/`](https://mcanzi.github.io/simling/data-raw). The true
+effects are therefore known: you can fit a model and check whether it
+recovers them. Each help page
+([`?vowel_duration`](https://mcanzi.github.io/simling/reference/vowel_duration.md))
+lists the variables and the true model.
+
+## Installation
+
+``` r
+
+install.packages("simling", repos = c("https://mcanzi.r-universe.dev", "https://cloud.r-project.org"))
+```
+
+or, from GitHub:
+
+``` r
+
+# install.packages("remotes")
+remotes::install_github("mcanzi/simling")
+```
+
+## Usage
+
+``` r
+
+library(simling)
+vowel_duration
+```
+
+Every categorical column is a factor. Its first level is the reference
+level: the baseline condition, such as `"voiceless"` in `vowel_duration`
+or `"grammatical"` in `agreement_attraction`. IDs such as participants,
+speakers and words are factors too. Binary outcomes coded 0/1 and rating
+scales are numeric. The one exception is `messy_export`, which keeps the
+text columns of a raw export so that students can clean it.
+
+## Data sets
+
+| Branch | Data set | Language | Rows | Response | Topic |
+|----|----|----|---:|----|----|
+| Phonetics | `formants` | – | 120 | continuous | Normalisation, z-scores |
+|  | `vowel_voicing` | English | 120 | continuous | Two groups, t-tests |
+|  | `speech_styles` | – | 150 | continuous | Categorical predictors with three levels |
+|  | `style_voicing` | – | 160 | continuous | Categorical × categorical interaction |
+|  | `vowel_duration` | – | 384 | continuous | Mixed models, random slopes |
+|  | `korean_stops` | Korean | 1,440 | continuous | Cluster analysis, sound change |
+|  | `price_f2` | English (L1 and L2) | 2,200 | trajectories | GAMs and GAMMs |
+|  | `mandarin_tones` | Mandarin | 4,224 | trajectories | Contour shape, speaker normalisation |
+| Psycholinguistics | `rt_frequency` | – | 200 | RT, binary | Data wrangling |
+|  | `word_rt` | – | 400 | RT | Multiple regression, collinearity |
+|  | `freq_length` | – | 400 | RT | Continuous × continuous interaction |
+|  | `l2_frequency` | – | 400 | RT | Continuous × categorical interaction |
+|  | `lexical_decision` | – | 800 | RT | Mixed models, crossed random effects |
+|  | `lexical_decision_l2` | German (L1 and L2) | 1,200 | RT | Mixed models with interactions, figures |
+|  | `naming_pilot` | German | 1,200 | naming latency | Power analysis by simulation |
+|  | `lexical_accuracy` | Italian | 1,800 | binary | Mixed logistic regression |
+|  | `zipf_rt` | – | 2,000 | RT | Skewed predictors, log transformations |
+|  | `megastudy` | – | 6,000 | RT, proportion | Large item-level data, non-linear effects |
+|  | `pupil_noise` | – | 17,856 | trajectories | GAMMs, autocorrelation |
+|  | `n400` | German | 21,600 | ERP amplitude | EEG, topography, continuous predictors |
+|  | `visual_world` | English | 23,040 | samples per object | Eye tracking, time-course analysis |
+|  | `disfluencies` | Italian | 2,400 | counts, many zeros | Zero-inflated count models |
+| Syntax | `agreement_attraction` | English | 1,280 | eye-tracking measures, binary | Reading measures, missing data |
+|  | `acceptability` | English | 1,536 | 7-point ratings | Ordinal regression |
+|  | `german_relatives` | German | 13,824 | reading times | Self-paced reading, region-by-region analysis |
+| Morphology | `german_plurals` | German | 2,880 | five categories | Multinomial regression, wug tests |
+| Semantics and pragmatics | `scalar_implicature` | English | 1,440 | binary, RT | Bimodal individual differences |
+| Conversation | `turn_taking` | 10 languages | 3,000 | gap duration | Skewed distributions, cross-linguistic comparison |
+| Corpus linguistics | `passives` | English | 400 | counts | Poisson and negative binomial regression, offsets |
+|  | `relativizers` | English | 2,400 | three categories | Multinomial regression |
+| Sociolinguistics | `address_forms` | German | 180 | categorical | Contingency tables, chi-squared |
+|  | `language_attitudes` | – | 320 | 5-point ratings | Factor analysis, reverse-coding |
+|  | `cantonese_tone_merger` | Cantonese | 1,800 | continuous | Sound change in apparent time, mixtures |
+|  | `td_deletion` | English | 2,000 | binary | Trees and random forests |
+| Dialectology | `dialect_survey` | Italian | 580 | counts out of 10 | Maps, spatial patterns |
+| Second language | `perception_training` | – | 18 | correct out of 40 | Paired designs, wide data |
+|  | `accent` | English (L1 and L2) | 1,200 | categorical | Random forests, cross-validation |
+| Language acquisition | `overregularization` | English | 144 | errors out of attempts | Binomial regression, null effects |
+|  | `vocabulary_growth` | English | 572 | counts out of 680 | Growth curves, longitudinal data |
+|  | `first_words` | European Portuguese | 2,400 | age at first word, censored | Survival analysis |
+| Historical linguistics | `do_support` | English | 1,200 | counts out of trials | Logistic change, Constant Rate Effect |
+| Typology | `word_order` | 400 invented languages | 400 | categorical, counts | Non-independence of languages |
+| Forensic speech science | `forensic_comparison` | German | 3,240 | similarity scores | Likelihood ratios, Cllr, calibration |
+| Prosody | `tobi_agreement` | German | 456 | labels from two coders | Inter-rater agreement, kappa |
+|  | `rhythm_metrics` | 8 languages | 400 | continuous | Classification, rhythm classes |
+| Phonology | `hungarian_harmony` | Hungarian | 4,200 | binary | Mixed logistic regression, wug tests |
+| Sign language | `dgs_iconicity` | German Sign Language | 18,000 | 7-point ratings | Crossed random effects, group differences |
+| Bilingualism | `code_switching` | Portuguese–German | 360 | counts | Negative binomial regression, offsets |
+| Meta-analysis | `bouba_kiki_meta` | 21 languages | 40 | effect sizes | Random-effects meta-analysis, publication bias |
+| Data wrangling | `messy_export` | – | 1,086 | raw text | Cleaning a real-looking export |
+
+“–” marks data sets without a particular language.
+
+## Rebuilding the data
+
+Run `source("data-raw/make_all.R")` from the package root, in a UTF-8
+locale (the default on macOS and most Linux systems). Each script sets
+its own seed, so the data are identical every time.
+
+## Citation
+
+Run `citation("simling")` for how to cite the package. Each help page
+also lists the studies its data set is based on.
+
+## License
+
+MIT © Massimiliano Canzi
+
+# Package index
+
+## Phonetics
+
+- [`formants`](https://mcanzi.github.io/simling/reference/formants.md) :
+  Formants of three vowels from two speakers
+- [`vowel_voicing`](https://mcanzi.github.io/simling/reference/vowel_voicing.md)
+  : Vowel duration before voiced and voiceless consonants
+- [`speech_styles`](https://mcanzi.github.io/simling/reference/speech_styles.md)
+  : Vowel duration in three speaking styles
+- [`style_voicing`](https://mcanzi.github.io/simling/reference/style_voicing.md)
+  : Vowel duration by speaking style and voicing
+- [`vowel_duration`](https://mcanzi.github.io/simling/reference/vowel_duration.md)
+  : Vowel duration with speakers and words
+- [`korean_stops`](https://mcanzi.github.io/simling/reference/korean_stops.md)
+  : The three-way stop contrast in Seoul Korean
+- [`price_f2`](https://mcanzi.github.io/simling/reference/price_f2.md) :
+  F2 trajectories of the PRICE diphthong
+- [`mandarin_tones`](https://mcanzi.github.io/simling/reference/mandarin_tones.md)
+  : f0 contours of the four Mandarin tones
+
+## Phonology and prosody
+
+- [`hungarian_harmony`](https://mcanzi.github.io/simling/reference/hungarian_harmony.md)
+  : Hungarian vowel harmony in a wug test
+- [`tobi_agreement`](https://mcanzi.github.io/simling/reference/tobi_agreement.md)
+  : Two coders' GToBI labels
+- [`rhythm_metrics`](https://mcanzi.github.io/simling/reference/rhythm_metrics.md)
+  : Rhythm metrics in eight languages
+
+## Psycholinguistics
+
+- [`rt_frequency`](https://mcanzi.github.io/simling/reference/rt_frequency.md)
+  : Reaction times to high- and low-frequency words
+- [`word_rt`](https://mcanzi.github.io/simling/reference/word_rt.md) :
+  Reaction times, word frequency and word length
+- [`freq_length`](https://mcanzi.github.io/simling/reference/freq_length.md)
+  : Reaction times with a frequency-by-length interaction
+- [`l2_frequency`](https://mcanzi.github.io/simling/reference/l2_frequency.md)
+  : Frequency effects in L1 and L2 speakers
+- [`lexical_decision`](https://mcanzi.github.io/simling/reference/lexical_decision.md)
+  : Lexical decision with participants and words
+- [`lexical_decision_l2`](https://mcanzi.github.io/simling/reference/lexical_decision_l2.md)
+  : German lexical decision by L1 and L2 speakers
+- [`naming_pilot`](https://mcanzi.github.io/simling/reference/naming_pilot.md)
+  : A pilot German picture-naming study for power analysis
+- [`lexical_accuracy`](https://mcanzi.github.io/simling/reference/lexical_accuracy.md)
+  : Accuracy in an Italian lexical decision task
+- [`zipf_rt`](https://mcanzi.github.io/simling/reference/zipf_rt.md) :
+  Reaction times and Zipfian word frequency
+- [`megastudy`](https://mcanzi.github.io/simling/reference/megastudy.md)
+  : Megastudy of 6000 words
+- [`pupil_noise`](https://mcanzi.github.io/simling/reference/pupil_noise.md)
+  : Pupil dilation when listening in quiet and in noise
+- [`n400`](https://mcanzi.github.io/simling/reference/n400.md) :
+  Single-trial N400 amplitudes
+- [`visual_world`](https://mcanzi.github.io/simling/reference/visual_world.md)
+  : Visual-world eye tracking: anticipatory looks
+- [`disfluencies`](https://mcanzi.github.io/simling/reference/disfluencies.md)
+  : Filled pauses in Italian dialogue
+
+## Syntax and morphology
+
+- [`agreement_attraction`](https://mcanzi.github.io/simling/reference/agreement_attraction.md)
+  : Eye-tracking while reading: agreement attraction
+- [`acceptability`](https://mcanzi.github.io/simling/reference/acceptability.md)
+  : Acceptability judgments for whether-islands
+- [`german_relatives`](https://mcanzi.github.io/simling/reference/german_relatives.md)
+  : Self-paced reading of German relative clauses
+- [`german_plurals`](https://mcanzi.github.io/simling/reference/german_plurals.md)
+  : A wug test of German noun plurals
+
+## Semantics, pragmatics and conversation
+
+- [`scalar_implicature`](https://mcanzi.github.io/simling/reference/scalar_implicature.md)
+  : Scalar implicature: truth-value judgments
+- [`turn_taking`](https://mcanzi.github.io/simling/reference/turn_taking.md)
+  : Turn-taking in 10 languages
+
+## Corpus linguistics
+
+- [`passives`](https://mcanzi.github.io/simling/reference/passives.md) :
+  Passives in four registers
+- [`relativizers`](https://mcanzi.github.io/simling/reference/relativizers.md)
+  : Relativizer choice: that, which or zero
+
+## Sociolinguistics and dialectology
+
+- [`address_forms`](https://mcanzi.github.io/simling/reference/address_forms.md)
+  : Forms of address: du or Sie
+- [`language_attitudes`](https://mcanzi.github.io/simling/reference/language_attitudes.md)
+  : Attitudes towards a regional dialect
+- [`cantonese_tone_merger`](https://mcanzi.github.io/simling/reference/cantonese_tone_merger.md)
+  : Merging of the Cantonese rising tones
+- [`td_deletion`](https://mcanzi.github.io/simling/reference/td_deletion.md)
+  : /t, d/ deletion
+- [`dialect_survey`](https://mcanzi.github.io/simling/reference/dialect_survey.md)
+  : A dialect survey of degemination in Italy
+- [`code_switching`](https://mcanzi.github.io/simling/reference/code_switching.md)
+  : Code-switching by Portuguese-German bilinguals
+
+## Second language and acquisition
+
+- [`perception_training`](https://mcanzi.github.io/simling/reference/perception_training.md)
+  : Perceptual training of a non-native contrast
+- [`accent`](https://mcanzi.github.io/simling/reference/accent.md) :
+  Acoustic cues to a foreign accent
+- [`overregularization`](https://mcanzi.github.io/simling/reference/overregularization.md)
+  : Past-tense overregularization
+- [`vocabulary_growth`](https://mcanzi.github.io/simling/reference/vocabulary_growth.md)
+  : Vocabulary growth in toddlers
+- [`first_words`](https://mcanzi.github.io/simling/reference/first_words.md)
+  : Age of first production of words
+
+## Sign language
+
+- [`dgs_iconicity`](https://mcanzi.github.io/simling/reference/dgs_iconicity.md)
+  : Iconicity ratings for signs of German Sign Language
+
+## Forensic speech science
+
+- [`forensic_comparison`](https://mcanzi.github.io/simling/reference/forensic_comparison.md)
+  : Forensic voice comparison scores
+
+## Historical linguistics and typology
+
+- [`do_support`](https://mcanzi.github.io/simling/reference/do_support.md)
+  : The rise of periphrastic do
+- [`word_order`](https://mcanzi.github.io/simling/reference/word_order.md)
+  : Word order in a typological sample
+
+## Meta-analysis
+
+- [`bouba_kiki_meta`](https://mcanzi.github.io/simling/reference/bouba_kiki_meta.md)
+  : A meta-analysis of the bouba/kiki effect
+
+## Data cleaning
+
+- [`messy_export`](https://mcanzi.github.io/simling/reference/messy_export.md)
+  : A messy experiment export
+
+## Package
+
+- [`simling`](https://mcanzi.github.io/simling/reference/simling-package.md)
+  [`simling-package`](https://mcanzi.github.io/simling/reference/simling-package.md)
+  : simling: Simulated Linguistic Data for Teaching Statistics
+
