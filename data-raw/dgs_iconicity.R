@@ -12,13 +12,17 @@ signs <- tibble(sign = sprintf("sign%03d", 1:300),
                 iconicity = rnorm(300, 0, 1.2)) |>
   mutate(aoa = round(pmin(pmax(5.5 - 0.6 * iconicity + rnorm(n(), 0, 1.3), 1.5), 12), 1))
 
+group_dev <- crossing(sign = signs$sign, group = c("deaf signer", "hearing non-signer")) |>
+  mutate(g0 = rnorm(n(), 0, 0.6))
+
 raters <- tibble(rater = sprintf("R%02d", 1:60),
                  group = rep(c("deaf signer", "hearing non-signer"), each = 30),
                  r0 = rnorm(60, 0, 0.5))
 
 dgs_iconicity <- crossing(raters, signs) |>
+  left_join(group_dev, by = c("sign", "group")) |>
   mutate(signer = group == "deaf signer",
-         latent = 3.6 + r0 + iconicity + 0.4 * signer +
+         latent = 3.3 + r0 + iconicity + g0 + signer +
            if_else(!signer & category == "verb", 0.5, 0) + rnorm(n(), 0, 0.9),
          rating = as.integer(pmin(pmax(round(latent), 1), 7))) |>
   select(rater, group, sign, category, handedness, aoa, rating)

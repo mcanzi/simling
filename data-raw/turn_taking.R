@@ -1,12 +1,14 @@
-# Stivers et al. (2009), PNAS 106(26), 10587-10592. Language means are invented.
+# Stivers et al. (2009), PNAS 106(26), 10587-10592;
+# Levinson & Torreira (2015), Frontiers in Psychology 6, 731.
 library(dplyr)
 library(tidyr)
 library(tibble)
 
 set.seed(4007)
-languages <- tibble(language = c("Japanese", "Tzeltal", "Yélî Dnye", "English", "Korean",
-                                 "Italian", "Dutch", "Lao", "‡Ākhoe Hai‖om", "Danish"),
-                    lang_mean = c(10, 60, 80, 140, 170, 200, 210, 280, 300, 460))
+languages <- tibble(language = c("Japanese", "Tzeltal", "Y\u00e9l\u00ee Dnye", "Dutch", "Korean",
+                                 "English", "Italian", "Lao", "\u01c2\u0100khoe Hai\u01c1om", "Danish"),
+                    reported = c(7, 67, 71, 108, 182, 236, 310, 419, 423, 469)) |>
+  mutate(lang_mean = reported - (0.3 * 207 + 0.1 * 132 - 0.5 * 69))
 
 conversations <- languages |>
   crossing(conv = 1:12) |>
@@ -19,8 +21,8 @@ turn_taking <- conversations |>
          answer = if_else(runif(n()) < 0.1, "non-answer", "answer"),
          gaze = sample(c("yes", "no"), n(), TRUE),
          offset = round(lang_mean + c0 - 150 +
-                          120 * (response == "disconfirmation") + 250 * (answer == "non-answer") -
-                          70 * (gaze == "yes") +
+                          207 * (response == "disconfirmation") + 132 * (answer == "non-answer") -
+                          69 * (gaze == "yes") +
                           rnorm(n(), 0, 200) + rexp(n(), 1 / 150))) |>
   mutate(across(c(language, conversation), factor)) |>
   select(language, conversation, response, answer, gaze, offset)

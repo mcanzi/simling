@@ -32,7 +32,7 @@ For random-effects meta-analysis, moderators, funnel plots and
 publication bias.
 }
 \details{
-True model: each study's true log-odds is \code{0.85 + 0.1 * Roman}
+True model: each study's true log-odds is \code{0.85 + 0.2 * Roman}
 plus a study effect with SD (tau) 0.35, about 70\% congruent matches. Of
 90 simulated studies, those with a significant positive result were
 published with probability 0.95 and the rest with probability 0.3; the

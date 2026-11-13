@@ -1204,14 +1204,18 @@
 #'   \item{offset}{Time from the end of the question to the start of the
 #'     answer in ms.}
 #' }
-#' @details True model: `offset = language_mean + c0 + 120 * disconfirmation
-#'   + 250 * non-answer - 70 * gaze + e`, where `c0` is a by-conversation
-#'   offset (SD 60 ms) and `e` is ex-Gaussian (a normal with SD 200 ms plus
-#'   an exponential with mean 150 ms, centred). Language means range from 10
-#'   ms (Japanese) to 460 ms (Danish). The design and the general pattern
-#'   follow Stivers et al. (2009); the language means are invented.
+#' @details True model: `offset = language_baseline + c0 + 207 *
+#'   disconfirmation + 132 * non-answer - 69 * gaze + e`, where `c0` is a
+#'   by-conversation offset (SD 60 ms) and `e` is ex-Gaussian (a normal with
+#'   SD 200 ms plus an exponential with mean 150 ms, centred). The three
+#'   effects are the estimates in Stivers et al. (2009, Table 1). Baselines
+#'   are set so that each language's expected mean equals the mean reported
+#'   for it, from 7 ms (Japanese) to 469 ms (Danish). The conversations and
+#'   answers are simulated.
 #' @references
 #' Stivers, T., Enfield, N. J., Brown, P., Englert, C., Hayashi, M., Heinemann, T., Hoymann, G., Rossano, F., de Ruiter, J. P., Yoon, K.-E. & Levinson, S. C. (2009). Universals and cultural variation in turn-taking in conversation. *Proceedings of the National Academy of Sciences*, 106(26), 10587-10592. \doi{10.1073/pnas.0903616106}
+#'
+#' Levinson, S. C. & Torreira, F. (2015). Timing in turn-taking and its implications for processing models of language. *Frontiers in Psychology*, 6, 731. \doi{10.3389/fpsyg.2015.00731}
 #' @source `data-raw/turn_taking.R`
 #' @examples
 #' sort(tapply(turn_taking$offset, turn_taking$language, median))
@@ -1343,10 +1347,11 @@
 #'
 #' Two trained coders label the same 456 words from 40 German utterances
 #' with GToBI pitch accents and phrase boundaries: 20 utterances of read and
-#' 20 of spontaneous speech. Coders agree on whether a word is accented about
-#' 85-90% of the time and on the type of accent about 60-70% of the time,
-#' close to published benchmarks for ToBI. Accent agreement is lower in
-#' spontaneous speech. For percentage agreement and Cohen's kappa.
+#' 20 of spontaneous speech. Coders agree on whether a word is accented for
+#' about 86% of words and on the exact accent label for about 71%, close to
+#' the agreement Grice et al. (1996) report for GToBI. In this simulation,
+#' accent agreement is lower in spontaneous speech. For percentage agreement
+#' and Cohen's kappa.
 #'
 #' @format A tibble with 456 rows and 8 columns:
 #' \describe{
@@ -1368,6 +1373,8 @@
 #'   0.5). Otherwise the coder picks a similar label (e.g. `"L+H*"` for
 #'   `"H*"`).
 #' @references
+#' Grice, M., Reyelt, M., Benzmüller, R., Mayer, J. & Batliner, A. (1996). Consistency in transcription and labelling of German intonation with GToBI. In *Proceedings of the 4th International Conference on Spoken Language Processing (ICSLP 96)* (pp. 1716-1719). Philadelphia. \doi{10.1109/ICSLP.1996.607958}
+#'
 #' Grice, M., Baumann, S. & Benzmüller, R. (2005). German intonation in autosegmental-metrical phonology. In S.-A. Jun (ed.), *Prosodic Typology: The Phonology of Intonation and Phrasing* (pp. 55-83). Oxford: Oxford University Press. \doi{10.1093/acprof:oso/9780199249633.003.0003}
 #'
 #' Pitrelli, J. F., Beckman, M. E. & Hirschberg, J. (1994). Evaluation of prosodic transcription labeling reliability in the ToBI framework. *Proceedings of ICSLP 1994*. <https://www.isca-archive.org/icslp_1994/pitrelli94_icslp.html>
@@ -1543,7 +1550,7 @@
 #'     (n - congruent + 0.5))`.}
 #'   \item{se}{Standard error of `log_odds`.}
 #' }
-#' @details True model: each study's true log-odds is `0.85 + 0.1 * Roman`
+#' @details True model: each study's true log-odds is `0.85 + 0.2 * Roman`
 #'   plus a study effect with SD (tau) 0.35, about 70% congruent matches. Of
 #'   90 simulated studies, those with a significant positive result were
 #'   published with probability 0.95 and the rest with probability 0.3; the
@@ -1608,9 +1615,9 @@
 #'
 #' 30 deaf signers of German Sign Language (DGS) and 30 hearing non-signers
 #' rate 300 DGS signs for iconicity (1 = not iconic, 7 = very iconic).
-#' Ratings by the two groups are highly correlated. Signers rate signs as
-#' more iconic overall, and non-signers rate verbs as more iconic than
-#' nouns. More iconic signs are acquired earlier. For mixed models of
+#' Ratings by the two groups are correlated (r about 0.78 for sign means,
+#' as in Trettenbrein et al. 2021). Signers rate signs as more iconic
+#' overall, and non-signers rate verbs as more iconic than nouns. More iconic signs are acquired earlier. For mixed models of
 #' ratings with crossed raters and items.
 #'
 #' @format A tibble with 18000 rows and 7 columns:
@@ -1624,14 +1631,18 @@
 #'     signers.}
 #'   \item{rating}{Iconicity rating, 1 to 7.}
 #' }
-#' @details True model: `rating` is `3.6 + iconicity + r0 + 0.4 * signer +
+#' @details True model: `rating` is `3.3 + iconicity + g0 + r0 + signer +
 #'   0.5 * verb * non-signer + e`, rounded and limited to 1-7. Each sign's
-#'   iconicity has SD 1.2, raters differ by SD 0.5 and `e` has SD 0.9. Age
+#'   iconicity has SD 1.2, `g0` is a deviation of each sign within each group
+#'   (SD 0.6), raters differ by SD 0.5 and `e` has SD 0.9. Age
 #'   of acquisition is `5.5 - 0.6 * iconicity` years plus noise (SD 1.3).
 #'   The group differences follow findings for DGS (signers higher) and for
-#'   ASL and Israeli Sign Language (verbs higher for non-signers).
+#'   ASL (Sehyr and Emmorey 2019) and Israeli Sign Language (Fuks 2023)
+#'   (verbs higher for non-signers).
 #' @references
 #' Trettenbrein, P. C., Pendzich, N.-K., Cramer, J.-M., Steinbach, M. & Zaccarella, E. (2021). Psycholinguistic norms for more than 300 lexical signs in German Sign Language (DGS). *Behavior Research Methods*, 53(5), 1817-1832. \doi{10.3758/s13428-020-01524-y}
+#'
+#' Fuks, O. (2023). Iconicity perception under the lens of iconicity rating and transparency tasks in Israeli Sign Language (ISL). *Sign Language Studies*, 24(1), 46-92.
 #'
 #' Sehyr, Z. S. & Emmorey, K. (2019). The perceived mapping between form and meaning in American Sign Language depends on linguistic knowledge and task: Evidence from iconicity and transparency judgments. *Language and Cognition*, 11(2), 208-234. \doi{10.1017/langcog.2019.18}
 #'

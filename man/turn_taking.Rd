@@ -33,13 +33,13 @@ non-answers come later; answers to a questioner who is looking at the
 responder come sooner.
 }
 \details{
-True model: `offset = language_mean + c0 + 120 * disconfirmation
-\itemize{
-\item 250 * non-answer - 70 * gaze + e\verb{, where }c0\verb{is a by-conversation   offset (SD 60 ms) and}e` is ex-Gaussian (a normal with SD 200 ms plus
-an exponential with mean 150 ms, centred). Language means range from 10
-ms (Japanese) to 460 ms (Danish). The design and the general pattern
-follow Stivers et al. (2009); the language means are invented.
-}
+True model: \code{offset = language_baseline + c0 + 207 * disconfirmation + 132 * non-answer - 69 * gaze + e}, where \code{c0} is a
+by-conversation offset (SD 60 ms) and \code{e} is ex-Gaussian (a normal with
+SD 200 ms plus an exponential with mean 150 ms, centred). The three
+effects are the estimates in Stivers et al. (2009, Table 1). Baselines
+are set so that each language's expected mean equals the mean reported
+for it, from 7 ms (Japanese) to 469 ms (Danish). The conversations and
+answers are simulated.
 }
 \examples{
 sort(tapply(turn_taking$offset, turn_taking$language, median))
@@ -52,5 +52,7 @@ if (requireNamespace("lme4", quietly = TRUE)) {
 }
 \references{
 Stivers, T., Enfield, N. J., Brown, P., Englert, C., Hayashi, M., Heinemann, T., Hoymann, G., Rossano, F., de Ruiter, J. P., Yoon, K.-E. & Levinson, S. C. (2009). Universals and cultural variation in turn-taking in conversation. \emph{Proceedings of the National Academy of Sciences}, 106(26), 10587-10592. \doi{10.1073/pnas.0903616106}
+
+Levinson, S. C. & Torreira, F. (2015). Timing in turn-taking and its implications for processing models of language. \emph{Frontiers in Psychology}, 6, 731. \doi{10.3389/fpsyg.2015.00731}
 }
 \keyword{datasets}

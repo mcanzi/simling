@@ -15,7 +15,7 @@ conducted <- tibble(study_no = 1:90,
                     language = sample(langs, 90, replace = TRUE),
                     n = round(exp(runif(90, log(20), log(400))))) |>
   mutate(script = if_else(language %in% roman, "Roman", "other"),
-         theta = 0.85 + 0.1 * (script == "Roman") + rnorm(n(), 0, 0.35),
+         theta = 0.85 + 0.2 * (script == "Roman") + rnorm(n(), 0, 0.35),
          congruent = rbinom(n(), n, plogis(theta)),
          log_odds = log((congruent + 0.5) / (n - congruent + 0.5)),
          var = 1 / (congruent + 0.5) + 1 / (n - congruent + 0.5),

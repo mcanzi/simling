@@ -26,17 +26,19 @@ dgs_iconicity
 \description{
 30 deaf signers of German Sign Language (DGS) and 30 hearing non-signers
 rate 300 DGS signs for iconicity (1 = not iconic, 7 = very iconic).
-Ratings by the two groups are highly correlated. Signers rate signs as
-more iconic overall, and non-signers rate verbs as more iconic than
-nouns. More iconic signs are acquired earlier. For mixed models of
+Ratings by the two groups are correlated (r about 0.78 for sign means,
+as in Trettenbrein et al. 2021). Signers rate signs as more iconic
+overall, and non-signers rate verbs as more iconic than nouns. More iconic signs are acquired earlier. For mixed models of
 ratings with crossed raters and items.
 }
 \details{
-True model: \code{rating} is \code{3.6 + iconicity + r0 + 0.4 * signer + 0.5 * verb * non-signer + e}, rounded and limited to 1-7. Each sign's
-iconicity has SD 1.2, raters differ by SD 0.5 and \code{e} has SD 0.9. Age
+True model: \code{rating} is \code{3.3 + iconicity + g0 + r0 + signer + 0.5 * verb * non-signer + e}, rounded and limited to 1-7. Each sign's
+iconicity has SD 1.2, \code{g0} is a deviation of each sign within each group
+(SD 0.6), raters differ by SD 0.5 and \code{e} has SD 0.9. Age
 of acquisition is \code{5.5 - 0.6 * iconicity} years plus noise (SD 1.3).
 The group differences follow findings for DGS (signers higher) and for
-ASL and Israeli Sign Language (verbs higher for non-signers).
+ASL (Sehyr and Emmorey 2019) and Israeli Sign Language (Fuks 2023)
+(verbs higher for non-signers).
 }
 \examples{
 round(tapply(dgs_iconicity$rating, dgs_iconicity[c("group", "category")], mean), 2)
@@ -50,6 +52,8 @@ if (requireNamespace("lme4", quietly = TRUE)) {
 }
 \references{
 Trettenbrein, P. C., Pendzich, N.-K., Cramer, J.-M., Steinbach, M. & Zaccarella, E. (2021). Psycholinguistic norms for more than 300 lexical signs in German Sign Language (DGS). \emph{Behavior Research Methods}, 53(5), 1817-1832. \doi{10.3758/s13428-020-01524-y}
+
+Fuks, O. (2023). Iconicity perception under the lens of iconicity rating and transparency tasks in Israeli Sign Language (ISL). \emph{Sign Language Studies}, 24(1), 46-92.
 
 Sehyr, Z. S. & Emmorey, K. (2019). The perceived mapping between form and meaning in American Sign Language depends on linguistic knowledge and task: Evidence from iconicity and transparency judgments. \emph{Language and Cognition}, 11(2), 208-234. \doi{10.1017/langcog.2019.18}
 
