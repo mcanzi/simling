@@ -186,4 +186,5 @@
 
 - [`simling`](https://mcanzi.de/simling/reference/simling-package.md)
   [`simling-package`](https://mcanzi.de/simling/reference/simling-package.md)
-  : simling: Simulated Linguistic Data for Teaching Statistics
+  : simling: Simulated Linguistic Data for Teaching and Learning
+  Statistics

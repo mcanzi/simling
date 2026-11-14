@@ -1,4 +1,4 @@
-# simling: Simulated Linguistic Data for Teaching Statistics
+# simling: Simulated Linguistic Data for Teaching and Learning Statistics
 
 Simulated data sets from many branches of linguistics. Each help page
 lists the variables and the true model the data were simulated from; the
