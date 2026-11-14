@@ -53,7 +53,7 @@ importance.</p>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A tibble with 6000 rows and 8 columns:</p><dl><dt>word</dt>
+    <p>A tibble with 6000 rows and 9 columns:</p><dl><dt>word</dt>
 <dd><p>Word ID, <code>w0001</code> to <code>w6000</code>.</p></dd>
 
 <dt>log_freq</dt>
@@ -61,6 +61,9 @@ importance.</p>
 
 <dt>length</dt>
 <dd><p>Length in letters, 2 to 15.</p></dd>
+
+<dt>syllables</dt>
+<dd><p>Number of syllables, 1 to 6.</p></dd>
 
 <dt>neighbours</dt>
 <dd><p>Number of orthographic neighbours.</p></dd>
@@ -87,46 +90,59 @@ importance.</p>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>True model:</p>
 <p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>rt <span class="ot">=</span> <span class="dv">825</span> <span class="sc">-</span> <span class="dv">120</span> <span class="sc">*</span> <span class="fu">plogis</span>(log_freq <span class="sc">-</span> <span class="fl">2.5</span>) <span class="sc">+</span> <span class="dv">9</span> <span class="sc">*</span> (length <span class="sc">-</span> <span class="dv">7</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> neighbours <span class="sc">+</span> <span class="dv">10</span> <span class="sc">*</span> (aoa <span class="sc">-</span> <span class="dv">7</span>) <span class="sc">-</span> <span class="dv">6</span> <span class="sc">*</span> (concreteness <span class="sc">-</span> <span class="dv">3</span>) <span class="sc">+</span> e</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>accuracy <span class="ot">=</span> <span class="fu">plogis</span>(<span class="fl">2.5</span> <span class="sc">+</span> <span class="fl">0.7</span> <span class="sc">*</span> (log_freq <span class="sc">-</span> <span class="fl">2.5</span>) <span class="sc">-</span> <span class="fl">0.2</span> <span class="sc">*</span> (aoa <span class="sc">-</span> <span class="dv">7</span>) <span class="sc">+</span> e)</span></code></pre><p></p></div>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="sc">+</span> <span class="dv">8</span> <span class="sc">*</span> (syllables <span class="sc">-</span> <span class="fl">2.5</span>) <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> neighbours <span class="sc">+</span> <span class="dv">10</span> <span class="sc">*</span> (aoa <span class="sc">-</span> <span class="dv">7</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="sc">-</span> <span class="dv">6</span> <span class="sc">*</span> (concreteness <span class="sc">-</span> <span class="dv">3</span>) <span class="sc">+</span> e</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>accuracy <span class="ot">=</span> <span class="fu">plogis</span>(<span class="fl">2.5</span> <span class="sc">+</span> <span class="fl">0.7</span> <span class="sc">*</span> (log_freq <span class="sc">-</span> <span class="fl">2.5</span>) <span class="sc">-</span> <span class="fl">0.2</span> <span class="sc">*</span> (aoa <span class="sc">-</span> <span class="dv">7</span>) <span class="sc">+</span> e)</span></code></pre><p></p></div>
 <p>The error <code>e</code> is normal with SD 35 ms for RT and SD 0.5 for accuracy.
 The frequency effect is S-shaped: it levels off for very rare and very
 frequent words.
 Frequent words are shorter, have more neighbours and are acquired
-earlier. Mean length (8 letters), mean RT (about 785 ms) and mean
-accuracy (0.86) are close to the English Lexicon Project words (Balota
-et al. 2007: 8 letters, 784 ms, 0.84), but RTs vary less across words
-(SD 64 ms against 135 ms). The effects and data are simulated.</p>
+earlier. Syllables correlate with length (r = 0.75): on its own, each
+syllable adds about 39 ms, but only 8 ms once length is in the model.
+Mean length (8 letters), mean number of syllables (2.6), mean RT (about
+790 ms) and mean accuracy (0.86) are close to the English Lexicon
+Project words (Balota et al. 2007: 8 letters, 2.54 syllables, 784 ms,
+0.84), but RTs vary less across words (SD 68 ms against 135 ms). In the
+English Lexicon Project, the number of syllables has an inhibitory
+effect of its own and the length effect is U-shaped (New et al. 2006);
+here the length effect is linear. The effects and data are simulated.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Balota, D. A., Yap, M. J., Cortese, M. J., Hutchison, K. A., Kessler, B., Loftis, B., Neely, J. H., Nelson, D. L., Simpson, G. B. &amp; Treiman, R. (2007). The English Lexicon Project. <em>Behavior Research Methods</em>, 39(3), 445-459. <a href="https://doi.org/10.3758/BF03193014" class="external-link">doi:10.3758/BF03193014</a></p>
+<p>New, B., Ferrand, L., Pallier, C. &amp; Brysbaert, M. (2006). Reexamining the word length effect in visual word recognition: New evidence from the English Lexicon Project. <em>Psychonomic Bulletin &amp; Review</em>, 13(1), 45-52. <a href="https://doi.org/10.3758/BF03193811" class="external-link">doi:10.3758/BF03193811</a></p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">rt</span> <span class="op">~</span> <span class="va">log_freq</span> <span class="op">+</span> <span class="va">length</span> <span class="op">+</span> <span class="va">neighbours</span> <span class="op">+</span> <span class="va">aoa</span> <span class="op">+</span> <span class="va">concreteness</span>, data <span class="op">=</span> <span class="va">megastudy</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">rt</span> <span class="op">~</span> <span class="fu">splines</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/splines/ns.html" class="external-link">ns</a></span><span class="op">(</span><span class="va">log_freq</span>, <span class="fl">4</span><span class="op">)</span> <span class="op">+</span> <span class="va">length</span> <span class="op">+</span> <span class="va">neighbours</span> <span class="op">+</span> <span class="va">aoa</span> <span class="op">+</span> <span class="va">concreteness</span>,</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">megastudy</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"log_freq"</span>, <span class="st">"length"</span>, <span class="st">"syllables"</span>, <span class="st">"neighbours"</span>, <span class="st">"aoa"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            log_freq length syllables neighbours   aoa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> log_freq       1.00  -0.41     -0.30       0.25 -0.57</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> length        -0.41   1.00      0.75      -0.63  0.24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> syllables     -0.30   0.75      1.00      -0.46  0.18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> neighbours     0.25  -0.63     -0.46       1.00 -0.15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> aoa           -0.57   0.24      0.18      -0.15  1.00</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">rt</span> <span class="op">~</span> <span class="va">syllables</span>, data <span class="op">=</span> <span class="va">megastudy</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   syllables </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   686.68015    38.95821 </span>
+<span class="r-in"><span><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">rt</span> <span class="op">~</span> <span class="va">log_freq</span> <span class="op">+</span> <span class="va">length</span> <span class="op">+</span> <span class="va">syllables</span> <span class="op">+</span> <span class="va">neighbours</span> <span class="op">+</span> <span class="va">aoa</span> <span class="op">+</span> <span class="va">concreteness</span>,</span></span>
 <span class="r-in"><span>         data <span class="op">=</span> <span class="va">megastudy</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">rt</span> <span class="op">~</span> <span class="fu">splines</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/splines/ns.html" class="external-link">ns</a></span><span class="op">(</span><span class="va">log_freq</span>, <span class="fl">4</span><span class="op">)</span> <span class="op">+</span> <span class="va">length</span> <span class="op">+</span> <span class="va">syllables</span> <span class="op">+</span> <span class="va">neighbours</span> <span class="op">+</span> <span class="va">aoa</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>           <span class="va">concreteness</span>, data <span class="op">=</span> <span class="va">megastudy</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">m1</span>, <span class="va">m2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Analysis of Variance Table</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model 1: rt ~ log_freq + length + neighbours + aoa + concreteness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model 2: rt ~ splines::ns(log_freq, 4) + length + neighbours + aoa + concreteness</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model 1: rt ~ log_freq + length + syllables + neighbours + aoa + concreteness</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model 2: rt ~ splines::ns(log_freq, 4) + length + syllables + neighbours + </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     aoa + concreteness</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Res.Df     RSS Df Sum of Sq      F    Pr(&gt;F)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   5994 7148153                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   5991 7120410  3     27743 7.7809 3.498e-05 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   5993 7286785                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   5990 7241395  3     45390 12.515 3.728e-08 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">m2</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"length"</span>, <span class="st">"neighbours"</span>, <span class="st">"aoa"</span>, <span class="st">"concreteness"</span><span class="op">)</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       length   neighbours          aoa concreteness </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     8.930200    -1.909641    10.033375    -5.063249 </span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">megastudy</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"log_freq"</span>, <span class="st">"length"</span>, <span class="st">"neighbours"</span>, <span class="st">"aoa"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            log_freq length neighbours   aoa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> log_freq       1.00  -0.41       0.25 -0.58</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> length        -0.41   1.00      -0.63  0.23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> neighbours     0.25  -0.63       1.00 -0.16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> aoa           -0.58   0.23      -0.16  1.00</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">m2</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"length"</span>, <span class="st">"syllables"</span>, <span class="st">"neighbours"</span>, <span class="st">"aoa"</span>, <span class="st">"concreteness"</span><span class="op">)</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       length    syllables   neighbours          aoa concreteness </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     8.861030     8.142864    -1.992065     9.643519    -6.460866 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

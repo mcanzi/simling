@@ -4,7 +4,7 @@
 
 Simulated linguistic data for teaching and learning statistics in R.
 
-simling has 55 data sets from 20 branches of linguistics, from acoustic
+simling has 54 data sets from 20 branches of linguistics, from acoustic
 phonetics to language evolution, plus a meta-analysis and a messy export
 for data cleaning. Responses include reaction times, acoustic
 measurements, ratings, counts, binary and multi-category outcomes, time
@@ -96,7 +96,6 @@ text columns of a raw export so that students can clean it.
 |  | `rhythm_metrics` | 6 languages | 1,200 | continuous | Variance partitioning, speech rate |
 |  | `speech_to_song` | English | 516 | binary, ordinal | Mixed logistic and ordinal models |
 | Psycholinguistics | `rt_frequency` | – | 200 | RT, binary | Data wrangling |
-|  | `word_rt` | – | 400 | RT | Multiple regression, collinearity |
 |  | `freq_length` | – | 400 | RT | Continuous × continuous interaction |
 |  | `l2_frequency` | – | 400 | RT | Continuous × categorical interaction |
 |  | `lexical_decision` | – | 800 | RT | Mixed models, crossed random effects |
@@ -204,8 +203,6 @@ MIT © Massimiliano Canzi
 
 - [`rt_frequency`](https://mcanzi.de/simling/reference/rt_frequency.md)
   : Reaction times to high- and low-frequency words
-- [`word_rt`](https://mcanzi.de/simling/reference/word_rt.md) : Reaction
-  times, word frequency and word length
 - [`freq_length`](https://mcanzi.de/simling/reference/freq_length.md) :
   Reaction times with a frequency-by-length interaction
 - [`l2_frequency`](https://mcanzi.de/simling/reference/l2_frequency.md)

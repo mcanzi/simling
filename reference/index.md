@@ -44,8 +44,6 @@
 
 - [`rt_frequency`](https://mcanzi.de/simling/reference/rt_frequency.md)
   : Reaction times to high- and low-frequency words
-- [`word_rt`](https://mcanzi.de/simling/reference/word_rt.md) : Reaction
-  times, word frequency and word length
 - [`freq_length`](https://mcanzi.de/simling/reference/freq_length.md) :
   Reaction times with a frequency-by-length interaction
 - [`l2_frequency`](https://mcanzi.de/simling/reference/l2_frequency.md)
