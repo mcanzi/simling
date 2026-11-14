@@ -57,8 +57,8 @@ Turn lengths are log-normal with a median of 9 syllables.
 ## References
 
 Di Napoli, J. (2020). Filled pauses and prolongations in Roman Italian
-task-oriented dialogue. *Laughter and Other Non-Verbal Vocalisations
-Workshop 2020*.
+task-oriented dialogue. In *Laughter and Other Non-Verbal Vocalisations
+Workshop: Proceedings (2020)* (pp. 24-27). Bielefeld.
 [doi:10.4119/lw2020-915](https://doi.org/10.4119/lw2020-915)
 
 ## Examples

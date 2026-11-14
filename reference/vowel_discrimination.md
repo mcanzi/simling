@@ -72,8 +72,8 @@ values and responses here are simulated.
 
 Georgiou, G. P. & Giannakou, A. (2024). Discrimination of second
 language vowel contrasts and the role of phonological short-term memory
-and nonverbal intelligence. *Journal of Psycholinguistic Research*, 53,
-9.
+and nonverbal intelligence. *Journal of Psycholinguistic Research*,
+53(1), 9.
 [doi:10.1007/s10936-024-10038-z](https://doi.org/10.1007/s10936-024-10038-z)
 
 Macmillan, N. A. & Creelman, C. D. (2005). *Detection Theory: A User's

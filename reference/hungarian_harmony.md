@@ -66,7 +66,7 @@ Hayes, B. & Londe, Z. C. (2006). Stochastic phonological knowledge: The
 case of Hungarian vowel harmony. *Phonology*, 23(1), 59-104.
 [doi:10.1017/S0952675706000765](https://doi.org/10.1017/S0952675706000765)
 
-Hayes, B., Siptár, P., Zuraw, K. & Londe, Z. (2009). Natural and
+Hayes, B., Zuraw, K., Siptár, P. & Londe, Z. (2009). Natural and
 unnatural constraints in Hungarian vowel harmony. *Language*, 85(4),
 822-863. [doi:10.1353/lan.0.0169](https://doi.org/10.1353/lan.0.0169)
 
@@ -90,5 +90,5 @@ if (requireNamespace("lme4", quietly = TRUE)) {
   lme4::fixef(m)
 }
 #>  (Intercept)  stem_typeBé  stem_typeBe stem_typeBNN 
-#>    -3.159737     3.575282     5.519569     6.692253 
+#>    -3.159741     3.575281     5.519575     6.692249 
 ```

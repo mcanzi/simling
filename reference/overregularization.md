@@ -62,6 +62,7 @@ the Society for Research in Child Development*, 57(4).
 Maratsos, M. (2000). More overregularizations after all: New data and
 discussion on Marcus, Pinker, Ullman, Hollander, Rosen & Xu. *Journal of
 Child Language*, 27(1), 183-212.
+[doi:10.1017/S0305000999004067](https://doi.org/10.1017/S0305000999004067)
 
 ## Examples
 
