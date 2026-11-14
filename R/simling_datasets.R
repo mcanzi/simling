@@ -117,6 +117,8 @@ simling_meta <- function() {
     "counts", "Negative binomial regression, offsets",
     "perception_training", "Second language", NA, 18L, 3L,
     "correct out of 40", "Paired designs, wide data",
+    "vowel_discrimination", "Second language", "English (L1 and L2)", 4800L, 7L,
+    "same or different", "Signal detection theory, d'",
     "accent", "Second language", "English (L1 and L2)", 1200L, 9L,
     "categorical", "Random forests, cross-validation",
     "overregularization", "Language acquisition", "English", 144L, 4L,
