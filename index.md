@@ -4,11 +4,11 @@
 
 Simulated linguistic data for teaching and learning statistics in R.
 
-simling has 55 data sets from 20 branches of linguistics, from acoustic
-phonetics to language evolution, plus a meta-analysis and a messy export
-for data cleaning. Responses include reaction times, acoustic
-measurements, ratings, counts, binary and multi-category outcomes, time
-series and EEG.
+simling has 55 data sets. 53 come from 20 branches of linguistics, from
+acoustic phonetics to language evolution; the other two are a
+meta-analysis and a messy export for data cleaning. Responses include
+reaction times, acoustic measurements, ratings, counts, binary and
+multi-category outcomes, time series and EEG.
 
 Use them in class or to learn on your own. If you are planning a study,
 you can see what its data will look like and try out the analysis first.

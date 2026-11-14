@@ -42,7 +42,10 @@ A tibble with 573 rows and 4 columns:
 ## Details
 
 True model: `vocabulary` is binomial out of 680 with probability
-`plogis((age - mid) / 3.2)`, where `mid = 25.2 - 2 * log2(input / 1200)`
+`plogis((age - mid) / 3.2)`, where
+
+    mid = 25.2 - 2 * log2(input / 1200)
+
 plus a by-child deviation (SD 2.6 months), and session-level noise on
 the logit scale (SD 0.15). Doubling the input moves the midpoint of the
 curve 2 months earlier; this effect is simulated. The median curve

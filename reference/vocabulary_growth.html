@@ -86,7 +86,9 @@ sessions are missing.</p>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>True model: <code>vocabulary</code> is binomial out of 680 with probability
-<code>plogis((age - mid) / 3.2)</code>, where <code>mid = 25.2 - 2 * log2(input / 1200)</code> plus a by-child deviation (SD 2.6 months), and session-level noise
+<code>plogis((age - mid) / 3.2)</code>, where</p>
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>mid <span class="ot">=</span> <span class="fl">25.2</span> <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">log2</span>(input <span class="sc">/</span> <span class="dv">1200</span>)</span></code></pre><p></p></div>
+<p>plus a by-child deviation (SD 2.6 months), and session-level noise
 on the logit scale (SD 0.15). Doubling the input moves the midpoint of
 the curve 2 months earlier; this effect is simulated. The median curve
 follows the CDI norms in Fenson et al. (1994): median vocabulary of 44
