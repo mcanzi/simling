@@ -51,12 +51,14 @@ p01 <- subset(aphasia_naming, participant == "P01" & set == "treated" &
                 session != "baseline 1")
 mcnemar.test(table(before = p01$correct[p01$session == "baseline 2"],
                    after = p01$correct[p01$session == "post-therapy"]))
+\donttest{
 if (requireNamespace("lme4", quietly = TRUE)) {
   d <- subset(aphasia_naming, session != "baseline 1")
   m <- lme4::glmer(correct ~ session * set * profile + (1 | participant) + (1 | item),
                    data = d, family = binomial,
                    control = lme4::glmerControl(optimizer = "bobyqa"))
   round(lme4::fixef(m), 2)
+}
 }
 }
 \references{
