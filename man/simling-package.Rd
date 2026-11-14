@@ -4,7 +4,7 @@
 \name{simling-package}
 \alias{simling}
 \alias{simling-package}
-\title{simling: Simulated Linguistic Data for Teaching Statistics}
+\title{simling: Simulated Linguistic Data for Teaching and Learning Statistics}
 \description{
 Simulated data sets from many branches of linguistics. Each help page
 lists the variables and the true model the data were simulated from; the

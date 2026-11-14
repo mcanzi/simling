@@ -1,25 +1,28 @@
 Package: simling
-Title: Simulated Linguistic Data for Teaching Statistics
+Title: Simulated Linguistic Data for Teaching and Learning Statistics
 Version: 0.1.0
 Authors@R:
     person("Massimiliano", "Canzi", role = c("aut", "cre", "cph"),
            email = "massimiliano.canzi@uni-konstanz.de",
            comment = c(ORCID = "0000-0001-6124-0321"))
-Description: Simulated data sets for teaching statistics to linguists, from
-    phonetics, phonology, prosody, psycholinguistics, syntax, morphology,
-    semantics and pragmatics, conversation analysis, corpus linguistics,
-    sociolinguistics, dialectology, bilingualism, second language research,
-    language acquisition, clinical linguistics, sign language, forensic speech
-    science, historical linguistics, language evolution and typology, and from
-    languages including German, Italian, Portuguese, Spanish, Hungarian,
-    Mandarin, Cantonese, Korean and German Sign Language. Responses include
-    continuous measures, reaction times, binary and multi-category outcomes,
-    ratings, counts, censored ages, effect sizes, eye-tracking and EEG
-    measures and time series, in data sets from 18 to over 20,000 rows, plus
-    one messy export for data cleaning. Each help page states the true model
-    the data were simulated from, so students can check whether their analysis
-    recovers it; the simulation code is in the source repository. A function
-    lists the data sets by branch, language, size and response.
+Description: Simulated data sets for teaching and learning statistics in
+    linguistics, from phonetics, phonology, prosody, psycholinguistics,
+    syntax, morphology, semantics and pragmatics, conversation analysis,
+    corpus linguistics, sociolinguistics, dialectology, bilingualism, second
+    language research, language acquisition, clinical linguistics, sign
+    language, forensic speech science, historical linguistics, language
+    evolution and typology, and from languages including German, Italian,
+    Portuguese, Spanish, Hungarian, Mandarin, Cantonese, Korean and German
+    Sign Language. Responses include continuous measures, reaction times,
+    binary and multi-category outcomes, ratings, counts, censored ages, effect
+    sizes, eye-tracking and EEG measures and time series, in data sets from 18
+    to over 20,000 rows, plus one messy export for data cleaning. Each help
+    page states the true model the data were simulated from, so students can
+    check whether their analysis recovers it; the simulation code is in the
+    source repository. Researchers planning a study can use the data sets to
+    see what a type of data looks like and to try out its analysis before
+    collecting their own. A function lists the data sets by branch, language,
+    size and response.
 License: MIT + file LICENSE
 URL: https://github.com/mcanzi/simling, https://mcanzi.de/simling/
 BugReports: https://github.com/mcanzi/simling/issues
