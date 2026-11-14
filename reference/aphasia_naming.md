@@ -110,6 +110,7 @@ mcnemar.test(table(before = p01$correct[p01$session == "baseline 2"],
 #> data:  table(before = p01$correct[p01$session == "baseline 2"], after = p01$correct[p01$session == "post-therapy"])
 #> McNemar's chi-squared = 14.815, df = 1, p-value = 0.0001186
 #> 
+# \donttest{
 if (requireNamespace("lme4", quietly = TRUE)) {
   d <- subset(aphasia_naming, session != "baseline 1")
   m <- lme4::glmer(correct ~ session * set * profile + (1 | participant) + (1 | item),
@@ -133,4 +134,5 @@ if (requireNamespace("lme4", quietly = TRUE)) {
 #>                                              -0.18 
 #> sessionpost-therapy:settreated:profilephonological 
 #>                                              -0.75 
+# }
 ```
