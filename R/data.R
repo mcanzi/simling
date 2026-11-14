@@ -1136,10 +1136,17 @@
 #'     + cost * object + e
 #'   ```
 #'   The object-relative cost is 0.01
-#'   to 0.03 in the relative clause, 0.06 on the participle, 0.08 on the
-#'   auxiliary, 0.05 on the main verb and 0.02 on the next word, with
+#'   to 0.03 in the relative clause, 0.04 on the participle, 0.05 on the
+#'   auxiliary and the main verb and 0.02 on the next word, with
 #'   by-participant variation (SD 0.03). By-participant intercepts `p0` have
-#'   SD 0.2 and by-item intercepts `i0` SD 0.04; residual SD 0.2.
+#'   SD 0.2 and by-item intercepts `i0` SD 0.04; residual SD 0.2. The cost
+#'   on the auxiliary matches the neutral condition of Schriefers,
+#'   Friederici and Kühn (1995, Experiment 1: 1350 against 1424 ms). Their
+#'   relative clauses were ambiguous until the auxiliary and had no main
+#'   clause verb after them, so the cost on the other words and all data
+#'   are simulated.
+#' @references
+#' Schriefers, H., Friederici, A. D. & Kühn, K. (1995). The processing of locally ambiguous relative clauses in German. *Journal of Memory and Language*, 34(4), 499-520. \doi{10.1006/jmla.1995.1023}
 #' @source `data-raw/german_relatives.R`
 #' @examples
 #' round(tapply(german_relatives$rt, german_relatives[c("region", "condition")], mean))

@@ -7,7 +7,7 @@ regions <- tibble(position = 1:12,
                   region = c("det", "noun", "rel_pronoun", "rc_det", "rc_noun",
                              "rc_participle", "rc_auxiliary", "main_verb",
                              "spillover_1", "spillover_2", "spillover_3", "final"),
-                  orc_cost = c(0, 0, 0.01, 0.02, 0.03, 0.06, 0.08, 0.05, 0.02, 0, 0, 0))
+                  orc_cost = c(0, 0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.05, 0.02, 0, 0, 0))
 
 participants <- tibble(participant = sprintf("P%02d", 1:48),
                        list = rep(1:2, 24),
