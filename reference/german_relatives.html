@@ -98,10 +98,19 @@ gives the codes.</p></dd>
 <p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">log</span>(rt) <span class="ot">=</span> <span class="fl">5.85</span> <span class="sc">+</span> p0 <span class="sc">+</span> i0 <span class="sc">+</span> <span class="fl">0.012</span> <span class="sc">*</span> (length <span class="sc">-</span> <span class="dv">5</span>) <span class="sc">-</span> <span class="fl">0.008</span> <span class="sc">*</span> position</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="sc">+</span> cost <span class="sc">*</span> object <span class="sc">+</span> e</span></code></pre><p></p></div>
 <p>The object-relative cost is 0.01
-to 0.03 in the relative clause, 0.06 on the participle, 0.08 on the
-auxiliary, 0.05 on the main verb and 0.02 on the next word, with
+to 0.03 in the relative clause, 0.04 on the participle, 0.05 on the
+auxiliary and the main verb and 0.02 on the next word, with
 by-participant variation (SD 0.03). By-participant intercepts <code>p0</code> have
-SD 0.2 and by-item intercepts <code>i0</code> SD 0.04; residual SD 0.2.</p>
+SD 0.2 and by-item intercepts <code>i0</code> SD 0.04; residual SD 0.2. The cost
+on the auxiliary matches the neutral condition of Schriefers,
+Friederici and Kühn (1995, Experiment 1: 1350 against 1424 ms). Their
+relative clauses were ambiguous until the auxiliary and had no main
+clause verb after them, so the cost on the other words and all data
+are simulated.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
+    <p>Schriefers, H., Friederici, A. D. &amp; Kühn, K. (1995). The processing of locally ambiguous relative clauses in German. <em>Journal of Memory and Language</em>, 34(4), 499-520. <a href="https://doi.org/10.1006/jmla.1995.1023" class="external-link">doi:10.1006/jmla.1995.1023</a></p>
     </div>
 
     <div class="section level2">
@@ -114,8 +123,8 @@ SD 0.2 and by-item intercepts <code>i0</code> SD 0.04; residual SD 0.2.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rel_pronoun       344    354</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rc_det            344    351</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rc_noun           356    363</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rc_participle     354    375</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rc_auxiliary      332    366</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rc_participle     354    368</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rc_auxiliary      332    355</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   main_verb         345    368</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   spillover_1       340    354</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   spillover_2       341    336</span>

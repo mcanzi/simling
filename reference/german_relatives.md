@@ -64,11 +64,22 @@ True model:
     log(rt) = 5.85 + p0 + i0 + 0.012 * (length - 5) - 0.008 * position
       + cost * object + e
 
-The object-relative cost is 0.01 to 0.03 in the relative clause, 0.06 on
-the participle, 0.08 on the auxiliary, 0.05 on the main verb and 0.02 on
-the next word, with by-participant variation (SD 0.03). By-participant
+The object-relative cost is 0.01 to 0.03 in the relative clause, 0.04 on
+the participle, 0.05 on the auxiliary and the main verb and 0.02 on the
+next word, with by-participant variation (SD 0.03). By-participant
 intercepts `p0` have SD 0.2 and by-item intercepts `i0` SD 0.04;
-residual SD 0.2.
+residual SD 0.2. The cost on the auxiliary matches the neutral condition
+of Schriefers, Friederici and Kühn (1995, Experiment 1: 1350 against
+1424 ms). Their relative clauses were ambiguous until the auxiliary and
+had no main clause verb after them, so the cost on the other words and
+all data are simulated.
+
+## References
+
+Schriefers, H., Friederici, A. D. & Kühn, K. (1995). The processing of
+locally ambiguous relative clauses in German. *Journal of Memory and
+Language*, 34(4), 499-520.
+[doi:10.1006/jmla.1995.1023](https://doi.org/10.1006/jmla.1995.1023)
 
 ## Examples
 
@@ -81,8 +92,8 @@ round(tapply(german_relatives$rt, german_relatives[c("region", "condition")], me
 #>   rel_pronoun       344    354
 #>   rc_det            344    351
 #>   rc_noun           356    363
-#>   rc_participle     354    375
-#>   rc_auxiliary      332    366
+#>   rc_participle     354    368
+#>   rc_auxiliary      332    355
 #>   main_verb         345    368
 #>   spillover_1       340    354
 #>   spillover_2       341    336
