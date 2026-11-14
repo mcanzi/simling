@@ -38,7 +38,24 @@ A tibble with 180 rows and 4 columns:
 
 True model: the probability of *du* is 0.85 (university), 0.35 (shop)
 and 0.45 (office) for speakers under 30, and 0.40, 0.08 and 0.15 for
-speakers over 50.
+speakers over 50. These probabilities are simulated. Strangers are by
+default addressed with *Sie*, and variation in address depends more on
+age than on region (Kretzenbacher 2011). In a 2021 survey reported by
+Kretzenbacher and Hensel-Börner (2024), 44% of customers aged 18 to 29
+liked being addressed with *du* in shops, against 23% of those aged 60
+and over.
+
+## References
+
+Kretzenbacher, H. L. (2011). Perceptions of national and regional
+standards of addressing in Germany and Austria. *Pragmatics*, 21(1),
+69-83.
+[doi:10.1075/prag.21.1.04kre](https://doi.org/10.1075/prag.21.1.04kre)
+
+Kretzenbacher, H. L. & Hensel-Börner, S. (2024). Pronominal address in
+German sales talk: Effects on the perception of the salesperson.
+*Languages*, 9(10), 316.
+[doi:10.3390/languages9100316](https://doi.org/10.3390/languages9100316)
 
 ## Examples
 

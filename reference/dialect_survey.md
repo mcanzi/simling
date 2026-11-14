@@ -53,7 +53,25 @@ True model:
 
 with by-town intercepts `t0` (SD 0.6). Town names and coordinates are
 the Italian towns of over 50,000 inhabitants in `maps::world.cities`
-(without Sardinia); the dialect data are simulated.
+(without Sardinia). Northern dialects have no consonant length contrast,
+and geminates are less prominent in the Italian of northern speakers
+than in central and southern varieties (Bertinetto and Loporcaro 2005).
+In read Italian the regional difference is small (Mairano and De Iacovo
+2020), so the dataset describes dialect speech. The sharp line, the age
+effect and all data are simulated.
+
+## References
+
+Bertinetto, P. M. & Loporcaro, M. (2005). The sound pattern of Standard
+Italian, as compared with the varieties spoken in Florence, Milan and
+Rome. *Journal of the International Phonetic Association*, 35(2),
+131-151.
+[doi:10.1017/S0025100305002148](https://doi.org/10.1017/S0025100305002148)
+
+Mairano, P. & De Iacovo, V. (2020). Gemination in Northern versus
+Central and Southern varieties of Italian: A corpus-based investigation.
+*Language and Speech*, 63(3), 608-634.
+[doi:10.1177/0023830919875481](https://doi.org/10.1177/0023830919875481)
 
 ## Examples
 
