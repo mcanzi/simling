@@ -6,7 +6,7 @@ Simulated linguistic data for teaching and learning statistics in R.
 
 simling has 55 data sets from 20 branches of linguistics, from acoustic phonetics and eye-tracking to sociolinguistics, sign language and language evolution, plus a meta-analysis and a messy export for practising data cleaning. They cover the kinds of data linguists collect: reaction times, formant and pitch measurements, ratings, binary and multi-category responses, counts, time series and EEG.
 
-The data sets are made for teaching, but they work just as well for learning on your own. If you are planning to collect a type of data, you can see what it will look like and try out the analysis before you collect any data yourself. The examples on each help page show analyses that suit the data.
+The data sets were made for teaching, and they are just as useful for learning on your own. If you are planning to collect a type of data, you can see what it will look like and try out the analysis before running your own study. The examples on each help page show analyses that suit the data.
 
 Every data set in simling is simulated, and the code that generated it is in [`data-raw/`](https://github.com/mcanzi/simling/tree/main/data-raw). Because the true effects are known, you can fit a model and check whether it recovers them. Each help page (`?vowel_duration`) lists the variables and the true model.
 
