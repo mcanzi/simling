@@ -35,7 +35,8 @@ True model: multinomial logit with "that" as reference.
 zero: 0.6 - 1.2 * written - 0.4 * (antecedent_length - 2)
 }\if{html}{\out{</div>}}
 
-Zero relatives occur only with object relatives. By-text intercepts with SD 0.5 for each.
+The zero relativizer occurs only in object relatives. By-text intercepts
+with SD 0.5 for each.
 }
 \examples{
 table(relativizers$role, relativizers$relativizer)
