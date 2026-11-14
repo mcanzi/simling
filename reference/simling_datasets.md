@@ -94,7 +94,7 @@ sets[grepl("counts", sets$response), c("name", "rows", "topic")]
 #> 3 passives             400 Poisson and negative binomial regression, offsets
 #> 4 dialect_survey       580 Maps, spatial patterns                           
 #> 5 code_switching       360 Negative binomial regression, offsets            
-#> 6 vocabulary_growth    572 Growth curves, longitudinal data                 
+#> 6 vocabulary_growth    573 Growth curves, longitudinal data                 
 #> 7 do_support          1200 Logistic change, Constant Rate Effect            
 #> 8 iterated_learning     80 Growth over generations, few clusters            
 #> 9 word_order           400 Non-independence of languages                    

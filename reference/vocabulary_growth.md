@@ -17,7 +17,7 @@ vocabulary_growth
 
 ## Format
 
-A tibble with 572 rows and 4 columns:
+A tibble with 573 rows and 4 columns:
 
 - child:
 
@@ -42,12 +42,20 @@ A tibble with 572 rows and 4 columns:
 ## Details
 
 True model: `vocabulary` is binomial out of 680 with probability
-`plogis((age - mid) / 2.8)`, where `mid = 25.2 - 2 * log2(input / 1200)`
+`plogis((age - mid) / 3.2)`, where `mid = 25.2 - 2 * log2(input / 1200)`
 plus a by-child deviation (SD 2.6 months), and session-level noise on
 the logit scale (SD 0.15). Doubling the input moves the midpoint of the
-curve 2 months earlier. Children average about 300 words at 24 months.
+curve 2 months earlier; this effect is simulated. The median curve
+follows the CDI norms in Fenson et al. (1994): median vocabulary of 44
+words at 16 months, 225 at 23 months and 573 at 30 months. They also
+note that a logistic function fits the shape of vocabulary growth.
 
 ## References
+
+Fenson, L., Dale, P. S., Reznick, J. S., Bates, E., Thal, D. J. &
+Pethick, S. J. (1994). Variability in early communicative development.
+*Monographs of the Society for Research in Child Development*, 59(5),
+1-185. [doi:10.2307/1166093](https://doi.org/10.2307/1166093)
 
 Fenson, L., Marchman, V. A., Thal, D. J., Dale, P. S., Reznick, J. S. &
 Bates, E. (2007). *MacArthur-Bates Communicative Development
@@ -77,5 +85,5 @@ if (requireNamespace("lme4", quietly = TRUE)) {
   c(midpoint_at_1200_words = 24 - b[[1]] / b[[2]], months_per_doubling = b[[3]] / b[[2]])
 }
 #> midpoint_at_1200_words    months_per_doubling 
-#>              24.603348               1.663168 
+#>              24.624519               1.697952 
 ```

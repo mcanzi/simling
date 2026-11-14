@@ -65,7 +65,7 @@ sessions are missing.</p>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A tibble with 572 rows and 4 columns:</p><dl><dt>child</dt>
+    <p>A tibble with 573 rows and 4 columns:</p><dl><dt>child</dt>
 <dd><p>Child ID, <code>C01</code> to <code>C80</code>.</p></dd>
 
 <dt>input</dt>
@@ -86,14 +86,17 @@ sessions are missing.</p>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>True model: <code>vocabulary</code> is binomial out of 680 with probability
-<code>plogis((age - mid) / 2.8)</code>, where <code>mid = 25.2 - 2 * log2(input / 1200)</code> plus a by-child deviation (SD 2.6 months), and session-level noise
+<code>plogis((age - mid) / 3.2)</code>, where <code>mid = 25.2 - 2 * log2(input / 1200)</code> plus a by-child deviation (SD 2.6 months), and session-level noise
 on the logit scale (SD 0.15). Doubling the input moves the midpoint of
-the curve 2 months earlier. Children average about 300 words at 24
-months.</p>
+the curve 2 months earlier; this effect is simulated. The median curve
+follows the CDI norms in Fenson et al. (1994): median vocabulary of 44
+words at 16 months, 225 at 23 months and 573 at 30 months. They also
+note that a logistic function fits the shape of vocabulary growth.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Fenson, L., Marchman, V. A., Thal, D. J., Dale, P. S., Reznick, J. S. &amp; Bates, E. (2007). <em>MacArthur-Bates Communicative Development Inventories: User's guide and technical manual</em> (2nd ed.). Baltimore: Brookes.</p>
+    <p>Fenson, L., Dale, P. S., Reznick, J. S., Bates, E., Thal, D. J. &amp; Pethick, S. J. (1994). Variability in early communicative development. <em>Monographs of the Society for Research in Child Development</em>, 59(5), 1-185. <a href="https://doi.org/10.2307/1166093" class="external-link">doi:10.2307/1166093</a></p>
+<p>Fenson, L., Marchman, V. A., Thal, D. J., Dale, P. S., Reznick, J. S. &amp; Bates, E. (2007). <em>MacArthur-Bates Communicative Development Inventories: User's guide and technical manual</em> (2nd ed.). Baltimore: Brookes.</p>
 <p>Frank, M. C., Braginsky, M., Yurovsky, D. &amp; Marchman, V. A. (2017). Wordbank: An open repository for developmental vocabulary data. <em>Journal of Child Language</em>, 44(3), 677-694. <a href="https://doi.org/10.1017/S0305000916000209" class="external-link">doi:10.1017/S0305000916000209</a></p>
 <p>Ganger, J. &amp; Brent, M. R. (2004). Reexamining the vocabulary spurt. <em>Developmental Psychology</em>, 40(4), 621-632. <a href="https://doi.org/10.1037/0012-1649.40.4.621" class="external-link">doi:10.1037/0012-1649.40.4.621</a></p>
     </div>
@@ -111,7 +114,7 @@ months.</p>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>midpoint_at_1200_words <span class="op">=</span> <span class="fl">24</span> <span class="op">-</span> <span class="va">b</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">/</span> <span class="va">b</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, months_per_doubling <span class="op">=</span> <span class="va">b</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span> <span class="op">/</span> <span class="va">b</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> midpoint_at_1200_words    months_per_doubling </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              24.603348               1.663168 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              24.624519               1.697952 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
