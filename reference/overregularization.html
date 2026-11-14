@@ -5,14 +5,16 @@ The simulation follows the account of Marcus et al. (1992): errors are
 rare, their rate does not change with age, and children differ in how
 often they make them. Maratsos (2000) disputed the low rates, arguing that
 averages over all verbs hide much higher rates for verbs a child uses
-rarely. These data have no verb-level information. For binomial models of
+rarely and periods in which a child overregularizes often. These data have
+no verb-level information. For binomial models of
 errors out of attempts and for testing an effect that is absent."><meta property="og:description" content="Overregularization errors (goed, holded) out of all irregular past-tense
 contexts, for 24 children recorded every six months from 30 to 60 months.
 The simulation follows the account of Marcus et al. (1992): errors are
 rare, their rate does not change with age, and children differ in how
 often they make them. Maratsos (2000) disputed the low rates, arguing that
 averages over all verbs hide much higher rates for verbs a child uses
-rarely. These data have no verb-level information. For binomial models of
+rarely and periods in which a child overregularizes often. These data have
+no verb-level information. For binomial models of
 errors out of attempts and for testing an effect that is absent."><meta property="og:image" content="https://mcanzi.de/simling/logo.png"><link rel="stylesheet" href="https://mcanzi.de/fonts/fonts.css"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
@@ -54,7 +56,8 @@ The simulation follows the account of Marcus et al. (1992): errors are
 rare, their rate does not change with age, and children differ in how
 often they make them. Maratsos (2000) disputed the low rates, arguing that
 averages over all verbs hide much higher rates for verbs a child uses
-rarely. These data have no verb-level information. For binomial models of
+rarely and periods in which a child overregularizes often. These data have
+no verb-level information. For binomial models of
 errors out of attempts and for testing an effect that is absent.</p>
     </div>
 
@@ -85,9 +88,14 @@ errors out of attempts and for testing an effect that is absent.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>True model, in log-odds: <code>-3.2</code>, with by-child intercepts of SD
-0.5, so about 4% of attempts are errors. Age has no effect. Children
-attempt more irregular past tenses as they get older.</p>
+    <p>True model, in log-odds: <code>-3.66</code>, with by-child intercepts of SD
+0.9, so the median child makes errors in 2.5% of attempts and a few
+children in many more. Age has no effect. Children attempt more
+irregular past tenses as they get older. Marcus et al. (1992) report a
+median rate of 2.5% and a mean of 4.2% across 25 children, with a
+roughly constant rate from age 2 into the school years. Maratsos (2000)
+showed that pooling all tokens gives most weight to frequent verbs,
+whose rates are lowest. The children and counts are simulated.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -98,23 +106,23 @@ attempt more irregular past tenses as they get older.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">overregularization</span><span class="op">$</span><span class="va">errors</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">overregularization</span><span class="op">$</span><span class="va">attempts</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.04491781</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.03727715</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">errors</span>, <span class="va">attempts</span><span class="op">)</span> <span class="op">~</span> <span class="va">age</span>, data <span class="op">=</span> <span class="va">overregularization</span>, FUN <span class="op">=</span> <span class="va">sum</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   age errors attempts</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  30     19      370</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  36     22      503</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  42     25      648</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  48     36      796</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  54     41      933</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  60     51     1069</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  30     16      370</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  36     18      503</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  42     18      648</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  48     31      796</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  54     35      933</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  60     43     1069</span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"lme4"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/glmer.html" class="external-link">glmer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">errors</span>, <span class="va">attempts</span> <span class="op">-</span> <span class="va">errors</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="op">(</span><span class="va">age</span> <span class="op">-</span> <span class="fl">45</span><span class="op">)</span> <span class="op">/</span> <span class="fl">12</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">child</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                   data <span class="op">=</span> <span class="va">overregularization</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     Estimate Std. Error     z value      Pr(&gt;|z|)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)      -3.11136919 0.10698042 -29.0835399 5.798139e-186</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> I((age - 45)/12)  0.01244421 0.09174487   0.1356393  8.921064e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     Estimate Std. Error     z value     Pr(&gt;|z|)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)      -3.48754528  0.1772913 -19.6712757 3.800969e-86</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> I((age - 45)/12)  0.03074469  0.1011252   0.3040259 7.611082e-01</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

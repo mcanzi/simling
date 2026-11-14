@@ -1,10 +1,11 @@
 # The rise of periphrastic do
 
 Use of *do* (*Did he go?*, *He did not go*) in 300 texts dated 1400 to
-1700, in four sentence types: the number of clauses with *do* out of all
-eligible clauses. In three contexts the change follows S-curves with the
-same slope and different starting points (the Constant Rate Effect).
-Affirmative declaratives barely take part.
+1575, in four sentence types: the number of clauses with *do* out of all
+eligible clauses. In negative declaratives, negative questions and
+affirmative questions the change follows S-curves with the same slope
+and different starting points (the Constant Rate Effect). *Do* stays
+rare in affirmative declaratives, which rise more slowly.
 
 ## Usage
 
@@ -43,12 +44,16 @@ A tibble with 1200 rows and 5 columns:
 
 ## Details
 
-True model, in log-odds: `baseline + 0.035 * (year - 1550)` (3.5 per
-century in every context), with baselines 1.0 (affirmative questions),
-1.6 (negative questions), -0.6 (negative declaratives) and -7.5
-(affirmative declaratives), and by-text intercepts (SD 0.4). In the
-historical data, *do* in affirmative declaratives later declined again;
-the simulation leaves this out.
+True model, in log-odds: `intercept + slope * (year - 1350) / 100`, plus
+by-text intercepts (SD 0.4). The slope is 3.7 per century in the three
+rising contexts and 2.82 in affirmative declaratives. The intercepts at
+1350 are -8.33 (negative declaratives), -5.57 (negative questions),
+-6.58 (affirmative questions) and -8.32 (affirmative declaratives).
+These are Kroch's (1989, Tables 4 and 9) estimates from Ellegård's
+counts for 1400 to 1575; the affirmative questions are his transitive
+adverbial and yes/no questions. After 1575 the contexts diverge and *do*
+in affirmative declaratives declines, so the simulation stops at 1575.
+Texts and counts are simulated.
 
 ## References
 
@@ -62,18 +67,18 @@ Kroch, A. S. (1989). Reflexes of grammar in patterns of language change.
 ## Examples
 
 ``` r
-do_support$century <- (do_support$year - 1550) / 100
+do_support$century <- (do_support$year - 1350) / 100
 m <- glm(cbind(do, eligible - do) ~ 0 + context + context:century, data = do_support,
          family = binomial)
 round(coef(m), 2)
 #>         contextaffirmative declarative            contextnegative declarative 
-#>                                  -7.35                                  -0.63 
+#>                                  -7.85                                  -8.45 
 #>            contextaffirmative question               contextnegative question 
-#>                                   1.02                                   1.61 
+#>                                  -6.56                                  -5.72 
 #> contextaffirmative declarative:century    contextnegative declarative:century 
-#>                                   3.46                                   3.50 
+#>                                   2.65                                   3.81 
 #>    contextaffirmative question:century       contextnegative question:century 
-#>                                   3.52                                   3.45 
+#>                                   3.70                                   3.81 
 rising <- subset(do_support, context != "affirmative declarative")
 anova(glm(cbind(do, eligible - do) ~ context + century, data = rising, family = binomial),
       glm(cbind(do, eligible - do) ~ context * century, data = rising, family = binomial),
@@ -83,6 +88,6 @@ anova(glm(cbind(do, eligible - do) ~ context + century, data = rising, family = 
 #> Model 1: cbind(do, eligible - do) ~ context + century
 #> Model 2: cbind(do, eligible - do) ~ context * century
 #>   Resid. Df Resid. Dev Df Deviance Pr(>Chi)
-#> 1       896     969.09                     
-#> 2       894     968.92  2  0.17152   0.9178
+#> 1       896     993.88                     
+#> 2       894     993.45  2   0.4232   0.8093
 ```

@@ -5,14 +5,14 @@ competitor (a cage) and two unrelated distractors. After a restrictive
 verb (eat) they look at the target before the noun is heard; while the
 noun unfolds, the competitor briefly attracts looks too. Eye-tracker
 samples on each object in 50 ms bins from verb onset; the noun starts at
-600 ms. 32 participants, 24 items, 12 per condition (two counterbalanced
+700 ms. 32 participants, 24 items, 12 per condition (two counterbalanced
 lists)."><meta property="og:description" content="Listeners hear The boy will eat / move the cake while looking at four
 objects: the target (a cake, the only edible object), a phonological
 competitor (a cage) and two unrelated distractors. After a restrictive
 verb (eat) they look at the target before the noun is heard; while the
 noun unfolds, the competitor briefly attracts looks too. Eye-tracker
 samples on each object in 50 ms bins from verb onset; the noun starts at
-600 ms. 32 participants, 24 items, 12 per condition (two counterbalanced
+700 ms. 32 participants, 24 items, 12 per condition (two counterbalanced
 lists)."><meta property="og:image" content="https://mcanzi.de/simling/logo.png"><link rel="stylesheet" href="https://mcanzi.de/fonts/fonts.css"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
@@ -54,7 +54,7 @@ competitor (a cage) and two unrelated distractors. After a restrictive
 verb (<em>eat</em>) they look at the target before the noun is heard; while the
 noun unfolds, the competitor briefly attracts looks too. Eye-tracker
 samples on each object in 50 ms bins from verb onset; the noun starts at
-600 ms. 32 participants, 24 items, 12 per condition (two counterbalanced
+700 ms. 32 participants, 24 items, 12 per condition (two counterbalanced
 lists).</p>
     </div>
 
@@ -97,13 +97,17 @@ samples on each object in this bin; they add up to <code>samples</code>.</p></dd
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>True model: on the logit scale, looks to the target rise from
 chance (0.25) to about 0.88 along a logistic curve with width 90 ms,
-centred at 650 ms after restrictive and 900 ms after non-restrictive
+centred at 700 ms after restrictive and 930 ms after non-restrictive
 verbs. By-participant variation in the centre (SD 80 ms) and in the final
 level (SD 0.3 logits); by-item variation in the centre (SD 40 ms). Within
 a trial, deviations are AR(1) with rho 0.9. Of the remaining samples,
 the competitor gets a third plus a bump of up to 25 percentage points
-centred at 850 ms (SD about 100 ms); the two distractors split the rest
-evenly.</p>
+centred at 950 ms (SD about 100 ms); the two distractors split the rest
+evenly. The timing follows Altmann and Kamide (1999, Experiment 1): the
+noun began about 700 ms after the verb, and the first saccade to the
+target came 611 ms after the onset of <em>eat</em> and 838 ms after <em>move</em>.
+Their scenes had no phonological competitor; it is added here, and its
+timing, the participants and the looks are simulated.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -115,12 +119,12 @@ evenly.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">visual_world</span><span class="op">$</span><span class="va">p_target</span> <span class="op">&lt;-</span> <span class="va">visual_world</span><span class="op">$</span><span class="va">target</span> <span class="op">/</span> <span class="va">visual_world</span><span class="op">$</span><span class="va">samples</span></span></span>
 <span class="r-in"><span><span class="va">looks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">p_target</span> <span class="op">~</span> <span class="va">condition</span> <span class="op">+</span> <span class="va">time</span>, data <span class="op">=</span> <span class="va">visual_world</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p_target</span> <span class="op">~</span> <span class="va">time</span>, data <span class="op">=</span> <span class="va">looks</span>, col <span class="op">=</span> <span class="va">condition</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fl">600</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fl">700</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="visual_world-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="va">looks</span><span class="op">[</span><span class="va">looks</span><span class="op">$</span><span class="va">time</span> <span class="op">==</span> <span class="fl">600</span>, <span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">looks</span><span class="op">[</span><span class="va">looks</span><span class="op">$</span><span class="va">time</span> <span class="op">==</span> <span class="fl">700</span>, <span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          condition time  p_target</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25 non-restrictive  600 0.2989583</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26     restrictive  600 0.5344792</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29 non-restrictive  700 0.3320833</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30     restrictive  700 0.6062500</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

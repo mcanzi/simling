@@ -38,7 +38,14 @@ A tibble with 400 rows and 4 columns:
 
 True model: negative binomial with mean `rate * words / 1000` and size
 4, where `rate` per 1000 words is 2 (conversation), 5 (fiction), 10
-(news) and 18 (academic).
+(news) and 20 (academic). Biber, Conrad and Leech (2002) note that
+passive verbs are about ten times more frequent in academic prose than
+in conversation. The other rates and all data are simulated.
+
+## References
+
+Biber, D., Conrad, S. & Leech, G. (2002). *Longman Student Grammar of
+Spoken and Written English*. Harlow: Longman.
 
 ## Examples
 
@@ -48,5 +55,5 @@ if (requireNamespace("MASS", quietly = TRUE)) {
   exp(coef(m))
   m$theta
 }
-#> [1] 3.936993
+#> [1] 3.983186
 ```

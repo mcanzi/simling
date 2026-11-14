@@ -73,7 +73,13 @@ an exposure term. The counts are overdispersed.</p>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>True model: negative binomial with mean <code>rate * words / 1000</code>
 and size 4, where <code>rate</code> per 1000 words is 2 (conversation), 5 (fiction),
-10 (news) and 18 (academic).</p>
+10 (news) and 20 (academic). Biber, Conrad and Leech (2002) note that
+passive verbs are about ten times more frequent in academic prose than
+in conversation. The other rates and all data are simulated.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
+    <p>Biber, D., Conrad, S. &amp; Leech, G. (2002). <em>Longman Student Grammar of Spoken and Written English</em>. Harlow: Longman.</p>
     </div>
 
     <div class="section level2">
@@ -83,7 +89,7 @@ and size 4, where <code>rate</code> per 1000 words is 2 (conversation), 5 (ficti
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">m</span><span class="op">$</span><span class="va">theta</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.936993</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.983186</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

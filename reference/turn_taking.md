@@ -53,13 +53,18 @@ A tibble with 3000 rows and 6 columns:
 ## Details
 
 True model:
-`offset = language_baseline + c0 + 207 * disconfirmation + 132 * non-answer - 69 * gaze + e`,
-where `c0` is a by-conversation offset (SD 60 ms) and `e` is ex-Gaussian
-(a normal with SD 200 ms plus an exponential with mean 150 ms, centred).
-The three effects are the estimates in Stivers et al. (2009, Table 1).
-Baselines are set so that each language's expected mean equals the mean
-reported for it, from 7 ms (Japanese) to 469 ms (Danish). The
-conversations and answers are simulated.
+
+    offset = baseline + c0 + 207 * disconfirmation + 132 * non_answer
+      - 69 * gaze + e
+
+`c0` is a by-conversation offset (SD 120 ms) and `e` is ex-Gaussian (a
+normal with SD 200 ms plus an exponential with mean 150 ms, centred).
+The three effects and the size of the conversation variation follow the
+model in Stivers et al. (2009, Table 1). Baselines are set so that each
+language's expected mean equals its reported mean: 7 ms for Japanese and
+469 ms for Danish (Stivers et al. 2009), and the others from Levinson
+and Torreira (2015, Table 1). The conversations and answers are
+simulated.
 
 ## References
 
@@ -79,10 +84,10 @@ Psychology*, 6, 731.
 
 ``` r
 sort(tapply(turn_taking$offset, turn_taking$language, median))
-#>      Japanese       Tzeltal     Yélî Dnye         Dutch       English 
-#>           8.0          62.0         109.0         145.5         173.0 
-#>        Korean       Italian           Lao        Danish ǂĀkhoe Haiǁom 
-#>         205.0         303.5         413.5         435.5         449.0 
+#>      Japanese       Tzeltal     Yélî Dnye       English        Korean 
+#>          11.0          47.0         103.0         178.0         207.0 
+#>         Dutch       Italian           Lao        Danish ǂĀkhoe Haiǁom 
+#>         229.0         302.0         417.5         462.0         475.0 
 hist(turn_taking$offset, breaks = 60)
 
 if (requireNamespace("lme4", quietly = TRUE)) {
@@ -91,5 +96,5 @@ if (requireNamespace("lme4", quietly = TRUE)) {
   lme4::fixef(m)[c("responsedisconfirmation", "answernon-answer", "gazeyes")]
 }
 #> responsedisconfirmation        answernon-answer                 gazeyes 
-#>               216.18719               111.99350               -83.38316 
+#>               215.57395               111.65792               -82.41778 
 ```

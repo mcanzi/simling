@@ -4,9 +4,10 @@ Two trained coders label the same 456 words from 40 German utterances
 with GToBI pitch accents and phrase boundaries: 20 utterances of read
 and 20 of spontaneous speech. Coders agree on whether a word is accented
 for about 86% of words and on the exact accent label for about 71%,
-close to the agreement Grice et al. (1996) report for GToBI. In this
-simulation, accent agreement is lower in spontaneous speech. For
-percentage agreement and Cohen's kappa.
+close to the agreement Grice et al. (1996) report for GToBI. For English
+ToBI, Pitrelli et al. (1994) report 88% and 81%. In this simulation,
+accent agreement is lower in spontaneous speech. For percentage
+agreement and Cohen's kappa.
 
 ## Usage
 

@@ -76,13 +76,22 @@ pass have a by-participant SD of 0.5. Skipping rate about 14%, unrelated
 to condition. The first fixation equals the gaze duration in 65% of
 trials and is 50 to 85% of it otherwise. Total time adds a rereading
 time (log-normal, median about 220 ms) with probability
-`plogis(-1 + 0.6 * ungrammatical + 1.5 * regression)`.
+`plogis(-1 + 0.6 * ungrammatical + 1.5 * regression)`. The sentences
+follow Bock and Miller (1991), who found attraction errors in
+production. In reading, a plural attractor reduces the disruption caused
+by an ungrammatical verb (Wagers, Lau and Phillips 2009). The effect
+sizes and data are simulated.
 
 ## References
 
 Bock, K. & Miller, C. A. (1991). Broken agreement. *Cognitive
 Psychology*, 23(1), 45-93.
 [doi:10.1016/0010-0285(91)90003-7](https://doi.org/10.1016/0010-0285%2891%2990003-7)
+
+Wagers, M. W., Lau, E. F. & Phillips, C. (2009). Agreement attraction in
+comprehension: Representations and processes. *Journal of Memory and
+Language*, 61(2), 206-237.
+[doi:10.1016/j.jml.2009.04.002](https://doi.org/10.1016/j.jml.2009.04.002)
 
 ## Examples
 

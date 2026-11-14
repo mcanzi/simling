@@ -28,9 +28,10 @@ A tibble with 4200 rows and 6 columns:
 
 - stem_type:
 
-  Vowels of the stem: `"B"` (back), `"F"` (front rounded), `"N"`
-  (neutral only), `"Bi"`, `"Bé"`, `"Be"` (back vowel plus one neutral
-  vowel) or `"BNN"` (back vowel plus two neutral vowels).
+  Vowels of the stem: `"B"` (back), `"F"` (front rounded), `"N"` (one
+  neutral vowel), `"Bi"`, `"Bé"`, `"Be"` (back vowel plus one neutral
+  vowel) or `"BNN"` (back vowel plus two neutral vowels, the last one
+  *e*).
 
 - n_neutral:
 
@@ -51,19 +52,22 @@ A tibble with 4200 rows and 6 columns:
 
 ## Details
 
-True model: the probability of a back suffix is 0.97 (B), 0.03 (F), 0.08
-(N), 0.90 (Bi), 0.60 (Bé), 0.35 (Be) and 0.20 (BNN), shifted on the
-logit scale by participant (SD 0.5) and item (SD 0.4) effects. Items are
+True model: the probability of a back suffix is 0.99 (B), 0.01 (F), 0.06
+(N), 0.95 (Bi), 0.38 (Bé), 0.07 (Be) and 0.02 (BNN), shifted on the
+logit scale by participant (SD 0.5) and item (SD 0.4) effects. These are
+the rounded proportions of back responses in the wug test of Hayes and
+Londe (2006, Table III); BNN uses their stems ending in *e*. Items are
 identified by their stem type; the nonce word forms are left out.
+Participants, items and responses are simulated.
 
 ## References
 
 Hayes, B. & Londe, Z. C. (2006). Stochastic phonological knowledge: The
-case of Hungarian vowel harmony. *Phonology*, 23, 59-104.
+case of Hungarian vowel harmony. *Phonology*, 23(1), 59-104.
 [doi:10.1017/S0952675706000765](https://doi.org/10.1017/S0952675706000765)
 
-Hayes, B., Zuraw, K., Siptár, P. & Londe, Z. (2009). Natural and
-unnatural constraints in Hungarian vowel harmony. *Language*, 85,
+Hayes, B., Siptár, P., Zuraw, K. & Londe, Z. (2009). Natural and
+unnatural constraints in Hungarian vowel harmony. *Language*, 85(4),
 822-863. [doi:10.1353/lan.0.0169](https://doi.org/10.1353/lan.0.0169)
 
 ## Examples
@@ -72,13 +76,13 @@ unnatural constraints in Hungarian vowel harmony. *Language*, 85,
 round(prop.table(table(hungarian_harmony$stem_type, hungarian_harmony$suffix), 1), 2)
 #>      
 #>       back front
-#>   B   0.97  0.03
-#>   F   0.03  0.97
-#>   N   0.10  0.90
-#>   Bi  0.90  0.10
-#>   Bé  0.57  0.43
-#>   Be  0.40  0.60
-#>   BNN 0.27  0.73
+#>   B   0.98  0.02
+#>   F   0.01  0.99
+#>   N   0.07  0.93
+#>   Bi  0.95  0.05
+#>   Bé  0.41  0.60
+#>   Be  0.10  0.90
+#>   BNN 0.03  0.97
 if (requireNamespace("lme4", quietly = TRUE)) {
   mixed <- subset(hungarian_harmony, is.element(stem_type, c("Bi", "Bé", "Be", "BNN")))
   m <- lme4::glmer(suffix ~ stem_type + (1 | participant) + (1 | item),
@@ -86,5 +90,5 @@ if (requireNamespace("lme4", quietly = TRUE)) {
   lme4::fixef(m)
 }
 #>  (Intercept)  stem_typeBé  stem_typeBe stem_typeBNN 
-#>    -2.412535     2.089041     2.851846     3.535132 
+#>    -3.159737     3.575282     5.519569     6.692253 
 ```

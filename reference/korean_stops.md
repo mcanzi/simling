@@ -2,9 +2,10 @@
 
 Word-initial lenis, tense and aspirated stops from 20 older and 20
 younger speakers of Seoul Korean: VOT and the f0 of the following vowel.
-Older speakers keep the three stops apart by VOT; younger speakers have
-merged lenis and aspirated VOT and keep them apart by f0. For cluster
-analysis and classification, and for a sound change in progress.
+Older speakers keep lenis and aspirated stops apart by VOT as well as by
+f0. Younger speakers produce aspirated stops with a shorter VOT, so
+lenis and aspirated VOT overlap and f0 alone keeps them apart. For
+cluster analysis and classification, and for a sound change in progress.
 
 ## Usage
 
@@ -54,14 +55,17 @@ A tibble with 1440 rows and 8 columns:
 
 ## Details
 
-True model: mean VOT for tense, lenis and aspirated stops is 12, 55 and
-95 ms for older and 12, 78 and 82 ms for younger speakers, 5 ms shorter
+True model: mean VOT for tense, lenis and aspirated stops is 12, 60 and
+94 ms for older and 12, 62 and 70 ms for younger speakers, 5 ms shorter
 for labials and 10 ms longer for velars; token variation is log-normal
 (SD 0.3 for tense, 0.18 otherwise) and by-speaker SD 0.1. f0 relative to
-the speaker's mean (about 200 Hz female, 115 Hz male) is +1.2, -1.5 and
-+1.5 semitones for older and +1.2, -3.5 and +2.0 semitones for younger
-speakers, token SD 0.8 semitones. The design follows reports of the VOT
-merger in younger Seoul speakers (Silva 2006); the data are simulated.
+the speaker's mean (about 200 Hz female, 115 Hz male) is +1, -3 and +2
+semitones for tense, lenis and aspirated stops in both generations,
+token SD 1.5 semitones. The pattern follows Silva (2006): mean aspirated
+VOT fell from 94 ms in speakers born before 1965 to 70 ms in those born
+later, lenis and tense VOT stayed about the same, and the low f0 after
+lenis stops did not change with age. The other values and the data are
+simulated.
 
 ## References
 
@@ -74,28 +78,23 @@ contrast in contemporary Korean. *Phonology*, 23(2), 287-308.
 ``` r
 aggregate(cbind(vot, f0) ~ generation + stop, data = korean_stops, FUN = mean)
 #>   generation      stop      vot       f0
-#> 1      older     lenis 57.85000 143.1750
-#> 2    younger     lenis 81.12917 130.9750
-#> 3      older     tense 14.35417 167.6083
-#> 4    younger     tense 14.39167 170.9750
-#> 5      older aspirated 99.00000 170.2958
-#> 6    younger aspirated 85.27500 179.8167
+#> 1      older     lenis 62.94583 131.5625
+#> 2    younger     lenis 64.85417 135.2708
+#> 3      older     tense 14.35417 166.2708
+#> 4    younger     tense 14.39167 168.8458
+#> 5      older aspirated 97.95833 175.7292
+#> 6    younger aspirated 73.02500 180.2792
 korean_stops$f0_st <- 12 * log2(korean_stops$f0 /
                                    ave(korean_stops$f0, korean_stops$speaker))
-for (g in c("older", "younger")) {
-  d <- subset(korean_stops, generation == g)
-  set.seed(1)
-  cl <- kmeans(scale(d[c("vot", "f0_st")]), centers = 3, nstart = 10)
-  print(table(d$stop, cl$cluster))
+la <- subset(korean_stops, stop != "tense")
+la$aspirated <- as.integer(la$stop == "aspirated")
+accuracy <- function(cue, d) {
+  m <- glm(reformulate(cue, "aspirated"), data = d, family = binomial)
+  mean((fitted(m) > 0.5) == d$aspirated)
 }
-#>            
-#>               1   2   3
-#>   lenis       0 238   2
-#>   tense     240   0   0
-#>   aspirated   2   7 231
-#>            
-#>               1   2   3
-#>   lenis       0 240   0
-#>   tense     240   0   0
-#>   aspirated   1   0 239
+sapply(split(la, la$generation), function(d) c(vot = accuracy("vot", d),
+                                                f0 = accuracy("f0_st", d)))
+#>         older   younger
+#> vot 0.8395833 0.6104167
+#> f0  0.9583333 0.9583333
 ```

@@ -50,7 +50,12 @@ True model: a cumulative logit model with thresholds at -2.5, -1.5,
 -0.5, 0.5, 1.5 and 2.5 on a latent scale
 `1.5 - 0.6 * long - 0.4 * island - 0.9 * long * island`. By-participant
 intercepts (SD 0.8) and interaction slopes (SD 0.3); by-item intercepts
-(SD 0.4).
+(SD 0.4). The design follows Experiment 1 of Sprouse, Wagers and
+Phillips (2012), who crossed gap position (matrix or embedded clause,
+i.e. a short or long dependency) with structure and used a 7-point
+scale; for whether islands they found both main effects and a
+superadditive interaction. The number of participants and items, the
+effect sizes and the ratings are simulated.
 
 ## References
 
