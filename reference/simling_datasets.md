@@ -50,7 +50,7 @@ A tibble with one row per data set and the columns:
 
 ``` r
 simling_datasets()
-#> # A tibble: 54 × 7
+#> # A tibble: 55 × 7
 #>    name               branch    language             rows columns response topic
 #>    <chr>              <fct>     <chr>               <int>   <int> <chr>    <chr>
 #>  1 formants           Phonetics NA                    120       5 continu… Norm…
@@ -63,7 +63,7 @@ simling_datasets()
 #>  8 mandarin_tones     Phonetics Mandarin             4224       8 traject… Cont…
 #>  9 vot_identification Phonetics English, Spanish     1224       6 binomia… Psyc…
 #> 10 hungarian_harmony  Phonology Hungarian            4200       6 binary   Mixe…
-#> # ℹ 44 more rows
+#> # ℹ 45 more rows
 
 sets <- simling_datasets()
 sets[sets$branch == "Psycholinguistics", ]
@@ -108,7 +108,7 @@ table(sets$branch)
 #>         Sociolinguistics             Dialectology             Bilingualism 
 #>                        4                        1                        1 
 #>          Second language     Language acquisition     Clinical linguistics 
-#>                        2                        3                        1 
+#>                        3                        3                        1 
 #>            Sign language  Forensic speech science   Historical linguistics 
 #>                        1                        1                        1 
 #>       Language evolution                 Typology            Meta-analysis 

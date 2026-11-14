@@ -4,7 +4,7 @@
 
 Simulated linguistic data for teaching and learning statistics in R.
 
-simling has 54 data sets from 20 branches of linguistics, from acoustic
+simling has 55 data sets from 20 branches of linguistics, from acoustic
 phonetics to language evolution, plus a meta-analysis and a messy export
 for data cleaning. Responses include reaction times, acoustic
 measurements, ratings, counts, binary and multi-category outcomes, time
@@ -124,6 +124,7 @@ text columns of a raw export so that students can clean it.
 | Dialectology | `dialect_survey` | Italian | 580 | counts out of 10 | Maps, spatial patterns |
 | Bilingualism | `code_switching` | Portuguese–German | 360 | counts | Negative binomial regression, offsets |
 | Second language | `perception_training` | – | 18 | correct out of 40 | Paired designs, wide data |
+|  | `vowel_discrimination` | English (L1 and L2) | 4,800 | same or different | Signal detection theory, d’ |
 |  | `accent` | English (L1 and L2) | 1,200 | categorical | Random forests, cross-validation |
 | Language acquisition | `overregularization` | English | 144 | errors out of attempts | Binomial regression, null effects |
 |  | `vocabulary_growth` | English | 573 | counts out of 680 | Growth curves, longitudinal data |

@@ -127,6 +127,8 @@
 
 - [`perception_training`](https://mcanzi.de/simling/reference/perception_training.md)
   : Perceptual training of a non-native contrast
+- [`vowel_discrimination`](https://mcanzi.de/simling/reference/vowel_discrimination.md)
+  : Same-different discrimination of English vowels
 - [`accent`](https://mcanzi.de/simling/reference/accent.md) : Acoustic
   cues to a foreign accent
 
