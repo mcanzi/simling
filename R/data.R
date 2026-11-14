@@ -1203,8 +1203,8 @@
 #'   \item{language}{`"Danish"`, `"Dutch"`, `"English"`, `"Italian"`,
 #'     `"Japanese"`, `"Korean"`, `"Lao"`, `"Tzeltal"`, `"Yélî Dnye"` or
 #'     \ifelse{latex}{\code{"\\u01c2\\u0100khoe Hai\\u01c1om"}}{\code{"ǂĀkhoe Haiǁom"}}.}
-#'   \item{conversation}{Conversation ID: the first three letters of the
-#'     language and a number, e.g. `Dan_01`; 12 per language.}
+#'   \item{conversation}{Conversation ID: a three-letter code for the
+#'     language and a number, from `akh_01` to `yel_12`; 12 per language.}
 #'   \item{response}{`"confirmation"` or `"disconfirmation"`.}
 #'   \item{answer}{`"answer"` or `"non-answer"` (e.g. *I don't know*).}
 #'   \item{gaze}{Whether the questioner was looking at the responder,
@@ -1604,8 +1604,14 @@
 #'   (leisure) or 1.1 (migration), by 0.25 with a monolingual interlocutor,
 #'   and by a speaker effect (SD 0.35 on the log scale). Intrasentential
 #'   switches are binomial with probability 0.25, 0.6 and 0.4 for the three
-#'   generations.
+#'   generations. These generation differences are a design choice. They
+#'   resemble the pattern Backus (1996) describes for Turkish immigrants in
+#'   the Netherlands, where the intermediate generation switched most often,
+#'   but how much and in what way each generation switches differs between
+#'   communities.
 #' @references
+#' Backus, A. (1996). Het intergenerationele codewisseling-continuum binnen de Turkse gemeenschap in Nederland. *Toegepaste Taalwetenschap in Artikelen*, 54, 25-37. \doi{10.1075/ttwia.54.03bac}
+#'
 #' Poplack, S. (1980). Sometimes I'll start a sentence in Spanish y termino en español: Toward a typology of code-switching. *Linguistics*, 18(7-8), 581-618. \doi{10.1515/ling.1980.18.7-8.581}
 #' @source `data-raw/code_switching.R`
 #' @examples

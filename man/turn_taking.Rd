@@ -10,8 +10,8 @@ A tibble with 3000 rows and 6 columns:
 \item{language}{\code{"Danish"}, \code{"Dutch"}, \code{"English"}, \code{"Italian"},
 \code{"Japanese"}, \code{"Korean"}, \code{"Lao"}, \code{"Tzeltal"}, \code{"Yélî Dnye"} or
 \ifelse{latex}{\code{"\\u01c2\\u0100khoe Hai\\u01c1om"}}{\code{"ǂĀkhoe Haiǁom"}}.}
-  \item{conversation}{Conversation ID: the first three letters of the
-language and a number, e.g. \code{Dan_01}; 12 per language.}
+  \item{conversation}{Conversation ID: a three-letter code for the
+language and a number, from \code{akh_01} to \code{yel_12}; 12 per language.}
 \item{response}{\code{"confirmation"} or \code{"disconfirmation"}.}
 \item{answer}{\code{"answer"} or \code{"non-answer"} (e.g. \emph{I don't know}).}
 \item{gaze}{Whether the questioner was looking at the responder,

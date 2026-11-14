@@ -7,12 +7,13 @@ library(tibble)
 set.seed(4007)
 languages <- tibble(language = c("Japanese", "Tzeltal", "Y\u00e9l\u00ee Dnye", "Dutch", "Korean",
                                  "English", "Italian", "Lao", "\u01c2\u0100khoe Hai\u01c1om", "Danish"),
+                    code = c("jap", "tze", "yel", "dut", "kor", "eng", "ita", "lao", "akh", "dan"),
                     reported = c(7, 67, 71, 108, 182, 236, 310, 419, 423, 469)) |>
   mutate(lang_mean = reported - (0.3 * 207 + 0.1 * 132 - 0.5 * 69))
 
 conversations <- languages |>
   crossing(conv = 1:12) |>
-  mutate(conversation = paste(substr(language, 1, 3), sprintf("%02d", conv), sep = "_"),
+  mutate(conversation = paste(code, sprintf("%02d", conv), sep = "_"),
          c0 = rnorm(n(), 0, 60))
 
 turn_taking <- conversations |>
