@@ -75,7 +75,7 @@ if (requireNamespace("lme4", quietly = TRUE)) {
 #> 
 #> Fixed effects:
 #>             Estimate Std. Error z value Pr(>|z|)    
-#> (Intercept)  1.47165    0.16659   8.834   <2e-16 ***
+#> (Intercept)  1.47165    0.16658   8.834   <2e-16 ***
 #> freq_c       0.85216    0.08532   9.988   <2e-16 ***
 #> ---
 #> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
