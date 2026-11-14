@@ -67,7 +67,7 @@ rates$dprime <- mapply(dprime_sd, rates$said_different.different,
 round(tapply(rates$dprime, rates[c("contrast", "group")], mean), 2)
 }
 \references{
-Georgiou, G. P. & Giannakou, A. (2024). Discrimination of second language vowel contrasts and the role of phonological short-term memory and nonverbal intelligence. \emph{Journal of Psycholinguistic Research}, 53, 9. \doi{10.1007/s10936-024-10038-z}
+Georgiou, G. P. & Giannakou, A. (2024). Discrimination of second language vowel contrasts and the role of phonological short-term memory and nonverbal intelligence. \emph{Journal of Psycholinguistic Research}, 53(1), 9. \doi{10.1007/s10936-024-10038-z}
 
 Macmillan, N. A. & Creelman, C. D. (2005). \emph{Detection Theory: A User's Guide} (2nd ed.). Mahwah, NJ: Erlbaum.
 }

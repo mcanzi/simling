@@ -49,6 +49,6 @@ if (requireNamespace("pscl", quietly = TRUE)) {
 }
 }
 \references{
-Di Napoli, J. (2020). Filled pauses and prolongations in Roman Italian task-oriented dialogue. \emph{Laughter and Other Non-Verbal Vocalisations Workshop 2020}. \doi{10.4119/lw2020-915}
+Di Napoli, J. (2020). Filled pauses and prolongations in Roman Italian task-oriented dialogue. In \emph{Laughter and Other Non-Verbal Vocalisations Workshop: Proceedings (2020)} (pp. 24-27). Bielefeld. \doi{10.4119/lw2020-915}
 }
 \keyword{datasets}

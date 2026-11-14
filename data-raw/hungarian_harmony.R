@@ -1,5 +1,5 @@
 # Hayes & Londe (2006), Phonology 23(1), 59-104, Table III;
-# Hayes, Siptár, Zuraw & Londe (2009), Language 85(4), 822-863.
+# Hayes, Zuraw, Siptár & Londe (2009), Language 85(4), 822-863.
 library(dplyr)
 library(tidyr)
 library(tibble)

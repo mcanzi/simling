@@ -60,6 +60,6 @@ round(tapply(n400$amplitude, n400[c("anteriority", "condition")], mean), 2)
 \references{
 Kutas, M. & Hillyard, S. A. (1980). Reading senseless sentences: Brain potentials reflect semantic incongruity. \emph{Science}, 207(4427), 203-205. \doi{10.1126/science.7350657}
 
-Kutas, M. & Hillyard, S. A. (1984). Brain potentials during reading reflect word expectancy and semantic association. \emph{Nature}, 307, 161-163. \doi{10.1038/307161a0}
+Kutas, M. & Hillyard, S. A. (1984). Brain potentials during reading reflect word expectancy and semantic association. \emph{Nature}, 307(5947), 161-163. \doi{10.1038/307161a0}
 }
 \keyword{datasets}

@@ -1,4 +1,4 @@
-# Georgiou & Giannakou (2024), Journal of Psycholinguistic Research 53, 9;
+# Georgiou & Giannakou (2024), Journal of Psycholinguistic Research 53(1), 9;
 # Macmillan & Creelman (2005), Detection Theory: A User's Guide.
 library(dplyr)
 library(tidyr)

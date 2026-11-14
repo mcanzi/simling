@@ -808,7 +808,7 @@
 #' @references
 #' Marcus, G. F., Pinker, S., Ullman, M., Hollander, M., Rosen, T. J. & Xu, F. (1992). Overregularization in language acquisition. *Monographs of the Society for Research in Child Development*, 57(4). \doi{10.2307/1166115}
 #'
-#' Maratsos, M. (2000). More overregularizations after all: New data and discussion on Marcus, Pinker, Ullman, Hollander, Rosen & Xu. *Journal of Child Language*, 27(1), 183-212.
+#' Maratsos, M. (2000). More overregularizations after all: New data and discussion on Marcus, Pinker, Ullman, Hollander, Rosen & Xu. *Journal of Child Language*, 27(1), 183-212. \doi{10.1017/S0305000999004067}
 #' @source `data-raw/overregularization.R`
 #' @examples
 #' sum(overregularization$errors) / sum(overregularization$attempts)
@@ -1007,7 +1007,7 @@
 #'   FLEECE-DRESS and THOUGHT-LOT above chance and the other contrasts not;
 #'   the listeners, d' values and responses here are simulated.
 #' @references
-#' Georgiou, G. P. & Giannakou, A. (2024). Discrimination of second language vowel contrasts and the role of phonological short-term memory and nonverbal intelligence. *Journal of Psycholinguistic Research*, 53, 9. \doi{10.1007/s10936-024-10038-z}
+#' Georgiou, G. P. & Giannakou, A. (2024). Discrimination of second language vowel contrasts and the role of phonological short-term memory and nonverbal intelligence. *Journal of Psycholinguistic Research*, 53(1), 9. \doi{10.1007/s10936-024-10038-z}
 #'
 #' Macmillan, N. A. & Creelman, C. D. (2005). *Detection Theory: A User's Guide* (2nd ed.). Mahwah, NJ: Erlbaum.
 #' @source `data-raw/vowel_discrimination.R`
@@ -1258,7 +1258,7 @@
 #' @references
 #' Kutas, M. & Hillyard, S. A. (1980). Reading senseless sentences: Brain potentials reflect semantic incongruity. *Science*, 207(4427), 203-205. \doi{10.1126/science.7350657}
 #'
-#' Kutas, M. & Hillyard, S. A. (1984). Brain potentials during reading reflect word expectancy and semantic association. *Nature*, 307, 161-163. \doi{10.1038/307161a0}
+#' Kutas, M. & Hillyard, S. A. (1984). Brain potentials during reading reflect word expectancy and semantic association. *Nature*, 307(5947), 161-163. \doi{10.1038/307161a0}
 #' @source `data-raw/n400.R`
 #' @examples
 #' pz <- subset(n400, electrode == "Pz")
@@ -1683,7 +1683,7 @@
 #' @references
 #' Hayes, B. & Londe, Z. C. (2006). Stochastic phonological knowledge: The case of Hungarian vowel harmony. *Phonology*, 23(1), 59-104. \doi{10.1017/S0952675706000765}
 #'
-#' Hayes, B., Siptár, P., Zuraw, K. & Londe, Z. (2009). Natural and unnatural constraints in Hungarian vowel harmony. *Language*, 85(4), 822-863. \doi{10.1353/lan.0.0169}
+#' Hayes, B., Zuraw, K., Siptár, P. & Londe, Z. (2009). Natural and unnatural constraints in Hungarian vowel harmony. *Language*, 85(4), 822-863. \doi{10.1353/lan.0.0169}
 #' @source `data-raw/hungarian_harmony.R`
 #' @examples
 #' round(prop.table(table(hungarian_harmony$stem_type, hungarian_harmony$suffix), 1), 2)
@@ -1896,7 +1896,7 @@
 #'   multiplied by a speaker effect (SD 0.5 on the log scale). Turn lengths
 #'   are log-normal with a median of 9 syllables.
 #' @references
-#' Di Napoli, J. (2020). Filled pauses and prolongations in Roman Italian task-oriented dialogue. *Laughter and Other Non-Verbal Vocalisations Workshop 2020*. \doi{10.4119/lw2020-915}
+#' Di Napoli, J. (2020). Filled pauses and prolongations in Roman Italian task-oriented dialogue. In *Laughter and Other Non-Verbal Vocalisations Workshop: Proceedings (2020)* (pp. 24-27). Bielefeld. \doi{10.4119/lw2020-915}
 #' @source `data-raw/disfluencies.R`
 #' @examples
 #' m0 <- glm(filled_pauses ~ role + offset(log(syllables / 100)), data = disfluencies,

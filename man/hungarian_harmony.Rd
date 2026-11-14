@@ -54,6 +54,6 @@ if (requireNamespace("lme4", quietly = TRUE)) {
 \references{
 Hayes, B. & Londe, Z. C. (2006). Stochastic phonological knowledge: The case of Hungarian vowel harmony. \emph{Phonology}, 23(1), 59-104. \doi{10.1017/S0952675706000765}
 
-Hayes, B., Siptár, P., Zuraw, K. & Londe, Z. (2009). Natural and unnatural constraints in Hungarian vowel harmony. \emph{Language}, 85(4), 822-863. \doi{10.1353/lan.0.0169}
+Hayes, B., Zuraw, K., Siptár, P. & Londe, Z. (2009). Natural and unnatural constraints in Hungarian vowel harmony. \emph{Language}, 85(4), 822-863. \doi{10.1353/lan.0.0169}
 }
 \keyword{datasets}
