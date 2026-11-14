@@ -747,8 +747,11 @@
 #'   \item{vocabulary}{Number of words produced, out of 680.}
 #' }
 #' @details True model: `vocabulary` is binomial out of 680 with probability
-#'   `plogis((age - mid) / 3.2)`, where `mid = 25.2 - 2 * log2(input /
-#'   1200)` plus a by-child deviation (SD 2.6 months), and session-level noise
+#'   `plogis((age - mid) / 3.2)`, where
+#'   ```
+#'   mid = 25.2 - 2 * log2(input / 1200)
+#'   ```
+#'   plus a by-child deviation (SD 2.6 months), and session-level noise
 #'   on the logit scale (SD 0.15). Doubling the input moves the midpoint of
 #'   the curve 2 months earlier; this effect is simulated. The median curve
 #'   follows the CDI norms in Fenson et al. (1994): median vocabulary of 44
@@ -1359,7 +1362,7 @@
 #'
 #' @format A tibble with 3000 rows and 6 columns:
 #' \describe{
-#'   \item{language}{Language of the conversation: `"Danish"`, `"Dutch"`, `"English"`, `"Italian"`,
+#'   \item{language}{Language, one of `"Danish"`, `"Dutch"`, `"English"`, `"Italian"`,
 #'     `"Japanese"`, `"Korean"`, `"Lao"`, `"Tzeltal"`, `"Yélî Dnye"` or
 #'     \ifelse{latex}{\code{"\\u01c2\\u0100khoe Hai\\u01c1om"}}{\code{"ǂĀkhoe Haiǁom"}}.}
 #'   \item{conversation}{Conversation ID: a three-letter code for the

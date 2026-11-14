@@ -1,3 +1,4 @@
+# Schriefers, Friederici & Kühn (1995), Journal of Memory and Language 34(4), 499-520.
 library(dplyr)
 library(tidyr)
 library(tibble)

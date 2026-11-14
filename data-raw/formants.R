@@ -1,3 +1,4 @@
+# Fant (1966), STL-QPSR 7(4), 22-30.
 library(dplyr)
 library(tidyr)
 library(tibble)

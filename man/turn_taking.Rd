@@ -7,7 +7,7 @@
 \format{
 A tibble with 3000 rows and 6 columns:
 \describe{
-\item{language}{Language of the conversation: \code{"Danish"}, \code{"Dutch"}, \code{"English"}, \code{"Italian"},
+\item{language}{Language, one of \code{"Danish"}, \code{"Dutch"}, \code{"English"}, \code{"Italian"},
 \code{"Japanese"}, \code{"Korean"}, \code{"Lao"}, \code{"Tzeltal"}, \code{"Yélî Dnye"} or
 \ifelse{latex}{\code{"\\u01c2\\u0100khoe Hai\\u01c1om"}}{\code{"ǂĀkhoe Haiǁom"}}.}
   \item{conversation}{Conversation ID: a three-letter code for the

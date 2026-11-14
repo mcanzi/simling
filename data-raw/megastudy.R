@@ -1,3 +1,5 @@
+# Balota et al. (2007), Behavior Research Methods 39(3), 445-459;
+# New, Ferrand, Pallier & Brysbaert (2006), Psychonomic Bulletin & Review 13(1), 45-52.
 library(dplyr)
 library(tibble)
 

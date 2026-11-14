@@ -1,7 +1,7 @@
 # simling 0.1.0
 
-* First version, with 55 simulated data sets from 20 branches of linguistics,
-  plus a meta-analysis and a messy export for data cleaning.
+* First version, with 55 simulated data sets: 53 from 20 branches of
+  linguistics, a meta-analysis and a messy export for data cleaning.
 * `simling_datasets()` lists the data sets with their branch, language, size,
   response and topic.
 * Every data set comes with the code that generated it (`data-raw/`) and a

@@ -31,7 +31,12 @@ sessions are missing.
 }
 \details{
 True model: \code{vocabulary} is binomial out of 680 with probability
-\code{plogis((age - mid) / 3.2)}, where \code{mid = 25.2 - 2 * log2(input / 1200)} plus a by-child deviation (SD 2.6 months), and session-level noise
+\code{plogis((age - mid) / 3.2)}, where
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{mid = 25.2 - 2 * log2(input / 1200)
+}\if{html}{\out{</div>}}
+
+plus a by-child deviation (SD 2.6 months), and session-level noise
 on the logit scale (SD 0.15). Doubling the input moves the midpoint of
 the curve 2 months earlier; this effect is simulated. The median curve
 follows the CDI norms in Fenson et al. (1994): median vocabulary of 44

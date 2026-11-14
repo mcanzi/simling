@@ -1,6 +1,6 @@
 datasets <- utils::data(package = "simling")$results[, "Item"]
 
-test_that("there are 54 data sets and each has a help page", {
+test_that("there are 55 data sets and each has a help page", {
   expect_length(datasets, 55)
   aliases <- system.file("help", "aliases.rds", package = "simling")
   skip_if(aliases == "", "help index only exists in an installed package")

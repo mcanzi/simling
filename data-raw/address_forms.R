@@ -1,3 +1,5 @@
+# Kretzenbacher (2011), Pragmatics 21(1), 69-83;
+# Kretzenbacher & Hensel-Börner (2024), Languages 9(10), 316.
 library(dplyr)
 library(tidyr)
 library(tibble)

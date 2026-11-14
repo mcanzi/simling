@@ -1,3 +1,4 @@
+# Bott & Noveck (2004), Journal of Memory and Language 51(3), 437-457, Experiment 3.
 library(dplyr)
 library(tidyr)
 library(tibble)
