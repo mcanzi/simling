@@ -50,16 +50,16 @@ A tibble with 5760 rows and 6 columns:
 
 ## Details
 
-True model: the logit of a correct response is \`p0 + i0 + post
-
-- gain`. Participant intercepts `p0`have mean -0.45 (SD 0.9) and item effects`i0`SD 1.2. For treated items,`gain\`
-  is the participant's own gain (mean 1, SD 0.35). For untreated items
-  it is 0.7 in the phonological profile and 0.05 otherwise, plus noise
-  (SD 0.1). The design follows Best et al. (2013). In their 16
-  participants, naming of treated items rose from 43.5 to 62% correct,
-  and only participants with relatively good semantic and impaired
-  phonological processing generalised to untreated items. The number of
-  items, the size of the subgroup and all data are simulated.
+True model: the logit of a correct response is `p0 + i0 + post * gain`.
+Participant intercepts `p0` have mean -0.45 (SD 0.9) and item effects
+`i0` SD 1.2. For treated items, `gain` is the participant's own gain
+(mean 1, SD 0.35). For untreated items it is 0.7 in the phonological
+profile and 0.05 otherwise, plus noise (SD 0.1). The design follows Best
+et al. (2013). In their 16 participants, naming of treated items rose
+from 43.5 to 62% correct, and only participants with relatively good
+semantic and impaired phonological processing generalised to untreated
+items. The number of items, the size of the subgroup and all data are
+simulated.
 
 ## References
 

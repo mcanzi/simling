@@ -73,9 +73,12 @@ relative clause.</p></dd>
 <dd><p>Word position in the sentence, 1 to 12.</p></dd>
 
 <dt>region</dt>
-<dd><p>Role of the word: <code>"det"</code>, <code>"noun"</code>, <code>"rel_pronoun"</code>,
-<code>"rc_det"</code>, <code>"rc_noun"</code>, <code>"rc_participle"</code>, <code>"rc_auxiliary"</code>,
-<code>"main_verb"</code>, <code>"spillover_1"</code> to <code>"spillover_3"</code>, <code>"final"</code>.</p></dd>
+<dd><p>Role of the word in the sentence, with levels in
+sentence order: determiner (<code>"det"</code>) and noun of the main clause,
+relative pronoun, then determiner, noun, participle and auxiliary of
+the relative clause (<code>"rc_det"</code> to <code>"rc_auxiliary"</code>), main verb, three
+spillover words and the final word. <code>levels(german_relatives$region)</code>
+gives the codes.</p></dd>
 
 <dt>length</dt>
 <dd><p>Word length in letters.</p></dd>
@@ -91,7 +94,10 @@ relative clause.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>True model: <code>log(rt) = 5.85 + p0 + i0 + 0.012 * (length - 5) - 0.008 * position + cost * object + e</code>. The object-relative cost is 0.01
+    <p>True model:</p>
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">log</span>(rt) <span class="ot">=</span> <span class="fl">5.85</span> <span class="sc">+</span> p0 <span class="sc">+</span> i0 <span class="sc">+</span> <span class="fl">0.012</span> <span class="sc">*</span> (length <span class="sc">-</span> <span class="dv">5</span>) <span class="sc">-</span> <span class="fl">0.008</span> <span class="sc">*</span> position</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="sc">+</span> cost <span class="sc">*</span> object <span class="sc">+</span> e</span></code></pre><p></p></div>
+<p>The object-relative cost is 0.01
 to 0.03 in the relative clause, 0.06 on the participle, 0.08 on the
 auxiliary, 0.05 on the main verb and 0.02 on the next word, with
 by-participant variation (SD 0.03). By-participant intercepts <code>p0</code> have

@@ -85,11 +85,16 @@ importance.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>True model: <code>rt = 720 - 120 * plogis(log_freq - 2.5) + 9 * (length - 7) - 2 * neighbours + 10 * (aoa - 7) - 6 * (concreteness - 3) + e</code>, with <code>e</code> normal, SD 35 ms. The frequency effect is S-shaped: it
-levels off for very rare and very frequent words. Accuracy is `plogis(2.5</p><ul><li><p>0.7 * (log_freq - 2.5) - 0.2 * (aoa - 7) + e)<code>, with </code>e` SD 0.5.
+    <p>True model:</p>
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>rt <span class="ot">=</span> <span class="dv">720</span> <span class="sc">-</span> <span class="dv">120</span> <span class="sc">*</span> <span class="fu">plogis</span>(log_freq <span class="sc">-</span> <span class="fl">2.5</span>) <span class="sc">+</span> <span class="dv">9</span> <span class="sc">*</span> (length <span class="sc">-</span> <span class="dv">7</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> neighbours <span class="sc">+</span> <span class="dv">10</span> <span class="sc">*</span> (aoa <span class="sc">-</span> <span class="dv">7</span>) <span class="sc">-</span> <span class="dv">6</span> <span class="sc">*</span> (concreteness <span class="sc">-</span> <span class="dv">3</span>) <span class="sc">+</span> e</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>accuracy <span class="ot">=</span> <span class="fu">plogis</span>(<span class="fl">2.5</span> <span class="sc">+</span> <span class="fl">0.7</span> <span class="sc">*</span> (log_freq <span class="sc">-</span> <span class="fl">2.5</span>) <span class="sc">-</span> <span class="fl">0.2</span> <span class="sc">*</span> (aoa <span class="sc">-</span> <span class="dv">7</span>) <span class="sc">+</span> e)</span></code></pre><p></p></div>
+<p>The error <code>e</code> is normal with SD 35 ms for RT and SD 0.5 for accuracy.
+The frequency effect is S-shaped: it levels off for very rare and very
+frequent words.
 Frequent words are shorter, have more neighbours and are acquired
-earlier.</p></li>
-</ul></div>
+earlier.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>

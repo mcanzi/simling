@@ -77,7 +77,10 @@ to 2.5.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>True model: <code>log(latency) = 6.75 + 0.15 * group + p0 + w0 + (-0.04 - 0.02 * group + p1) * freq_c + e</code>. By-participant intercepts <code>p0</code>
+    <p>True model:</p>
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">log</span>(latency) <span class="ot">=</span> <span class="fl">6.75</span> <span class="sc">+</span> <span class="fl">0.15</span> <span class="sc">*</span> group <span class="sc">+</span> p0 <span class="sc">+</span> w0</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="sc">+</span> (<span class="sc">-</span><span class="fl">0.04</span> <span class="sc">-</span> <span class="fl">0.02</span> <span class="sc">*</span> group <span class="sc">+</span> p1) <span class="sc">*</span> freq_c <span class="sc">+</span> e</span></code></pre><p></p></div>
+<p>By-participant intercepts <code>p0</code>
 have SD 0.08 and slopes <code>p1</code> SD 0.015; by-picture intercepts <code>w0</code> have
 SD 0.04; residual SD 0.1.</p>
     </div>

@@ -50,10 +50,14 @@ A tibble with 1440 rows and 6 columns:
 
 True model: in the all-context, each participant answers "false" with
 their own probability, drawn from Beta(0.5, 0.5) (mostly near 0 or 1).
-Controls are answered correctly 96% of the time.
-`log(rt) = 7.25 + 0.22 * pragmatic "false" + 0.08 * logical "true"`
-(both in the all-context only), with by-participant (SD 0.15) and
-by-item (SD 0.05) intercepts and residual SD 0.25.
+Controls are answered correctly 96% of the time. Reaction times follow
+
+    log(rt) = 7.25 + 0.22 * pragmatic_false + 0.08 * logical_true
+
+where `pragmatic_false` marks a "false" response by a pragmatic
+responder and `logical_true` a "true" response by a logical responder,
+both in the all-context only, with by-participant (SD 0.15) and by-item
+(SD 0.05) intercepts and residual SD 0.25.
 
 ## Examples
 

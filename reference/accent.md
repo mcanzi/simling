@@ -76,7 +76,8 @@ aggregate(cbind(vot, vowel_ratio, rate, f0) ~ l1 + gender, data = accent, FUN = 
 speakers <- levels(accent$speaker)
 test <- is.element(accent$speaker, speakers[seq(1, length(speakers), by = 5)])
 m <- glm(l1 ~ vot + vowel_ratio + rate, data = accent[!test, ], family = binomial)
-mean((predict(m, accent[test, ], type = "response") > 0.5) == (accent$l1[test] == "Italian"))
+predicted <- predict(m, accent[test, ], type = "response") > 0.5
+mean(predicted == (accent$l1[test] == "Italian"))
 #> [1] 0.9166667
 if (requireNamespace("randomForest", quietly = TRUE)) {
   set.seed(1)

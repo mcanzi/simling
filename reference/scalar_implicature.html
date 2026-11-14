@@ -85,8 +85,12 @@ participant. 60 participants, 24 items, three counterbalanced lists.</p>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>True model: in the all-context, each participant answers "false"
 with their own probability, drawn from Beta(0.5, 0.5) (mostly near 0 or
-1). Controls are answered correctly 96% of the time. <code>log(rt) = 7.25 + 0.22 * pragmatic "false" + 0.08 * logical "true"</code> (both in the
-all-context only), with by-participant (SD 0.15) and by-item (SD 0.05)
+1). Controls are answered correctly 96% of the time. Reaction times
+follow</p>
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">log</span>(rt) <span class="ot">=</span> <span class="fl">7.25</span> <span class="sc">+</span> <span class="fl">0.22</span> <span class="sc">*</span> pragmatic_false <span class="sc">+</span> <span class="fl">0.08</span> <span class="sc">*</span> logical_true</span></code></pre><p></p></div>
+<p>where <code>pragmatic_false</code> marks a "false" response by a pragmatic
+responder and <code>logical_true</code> a "true" response by a logical responder,
+both in the all-context only, with by-participant (SD 0.15) and by-item (SD 0.05)
 intercepts and residual SD 0.25.</p>
     </div>
 

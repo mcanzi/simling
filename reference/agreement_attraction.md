@@ -64,16 +64,19 @@ A tibble with 1280 rows and 10 columns:
 ## Details
 
 True model:
-`log(gaze_duration) = 5.55 + 0.14 * ungrammatical - 0.09 * ungrammatical * plural`,
-with by-participant (SD 0.15) and by-item (SD 0.08) intercepts and
-residual SD 0.3. First-pass regressions, in log-odds:
-`-1.9 + 0.9 * ungrammatical - 0.5 * ungrammatical * plural`,
-by-participant SD 0.5. Skipping rate about 14%, unrelated to condition.
-The first fixation equals the gaze duration in 65% of trials and is 50
-to 85% of it otherwise. Total time adds a rereading time (log-normal,
-median about 220 ms) with probability \`plogis(-1 + 0.6 \* ungrammatical
 
-- 1.5 \* regression)\`.
+    log(gaze_duration) = 5.55 + 0.14 * ungrammatical
+      - 0.09 * ungrammatical * plural
+    logit(regression) = -1.9 + 0.9 * ungrammatical
+      - 0.5 * ungrammatical * plural
+
+Gaze durations have by-participant (SD 0.15) and by-item (SD 0.08)
+intercepts and residual SD 0.3. Regressions out of the verb in first
+pass have a by-participant SD of 0.5. Skipping rate about 14%, unrelated
+to condition. The first fixation equals the gaze duration in 65% of
+trials and is 50 to 85% of it otherwise. Total time adds a rereading
+time (log-normal, median about 220 ms) with probability
+`plogis(-1 + 0.6 * ungrammatical + 1.5 * regression)`.
 
 ## References
 

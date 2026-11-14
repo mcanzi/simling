@@ -96,14 +96,18 @@ fixated.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>True model: <code>log(gaze_duration) = 5.55 + 0.14 * ungrammatical - 0.09 * ungrammatical * plural</code>, with by-participant (SD 0.15) and by-item
-(SD 0.08) intercepts and residual SD 0.3. First-pass regressions, in
-log-odds: <code>-1.9 + 0.9 * ungrammatical - 0.5 * ungrammatical * plural</code>,
-by-participant SD 0.5. Skipping rate about 14%, unrelated to condition.
+    <p>True model:</p>
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">log</span>(gaze_duration) <span class="ot">=</span> <span class="fl">5.55</span> <span class="sc">+</span> <span class="fl">0.14</span> <span class="sc">*</span> ungrammatical</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="sc">-</span> <span class="fl">0.09</span> <span class="sc">*</span> ungrammatical <span class="sc">*</span> plural</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">logit</span>(regression) <span class="ot">=</span> <span class="sc">-</span><span class="fl">1.9</span> <span class="sc">+</span> <span class="fl">0.9</span> <span class="sc">*</span> ungrammatical</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  <span class="sc">-</span> <span class="fl">0.5</span> <span class="sc">*</span> ungrammatical <span class="sc">*</span> plural</span></code></pre><p></p></div>
+<p>Gaze durations have by-participant (SD 0.15) and by-item (SD 0.08)
+intercepts and residual SD 0.3. Regressions out of the verb in first pass
+have a by-participant SD of 0.5. Skipping rate about 14%, unrelated to condition.
 The first fixation equals the gaze duration in 65% of trials and is 50
 to 85% of it otherwise. Total time adds a rereading time (log-normal,
-median about 220 ms) with probability `plogis(-1 + 0.6 * ungrammatical</p><ul><li><p>1.5 * regression)`.</p></li>
-</ul></div>
+median about 220 ms) with probability <code>plogis(-1 + 0.6 * ungrammatical + 1.5 * regression)</code>.</p>
+    </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Bock, K. &amp; Miller, C. A. (1991). Broken agreement. <em>Cognitive Psychology</em>, 23(1), 45-93. <a href="https://doi.org/10.1016/0010-0285%2891%2990003-7" class="external-link">doi:10.1016/0010-0285(91)90003-7</a></p>

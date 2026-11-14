@@ -77,7 +77,9 @@ as speech rate rises. For partitioning variance with mixed models.</p>
 <code>eng_01</code>.</p></dd>
 
 <dt>material</dt>
-<dd><p><code>"uncontrolled sentences"</code>, <code>"complex-syllable sentences"</code>, <code>"simple-syllable sentences"</code>, <code>"story"</code> or
+<dd><p>Kind of speech material. The three read sentence sets
+are <code>"uncontrolled sentences"</code>, <code>"complex-syllable sentences"</code> and
+<code>"simple-syllable sentences"</code>; the other two levels are <code>"story"</code> and
 <code>"spontaneous"</code>.</p></dd>
 
 <dt>item</dt>
@@ -126,7 +128,8 @@ not her measurements.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tapply.html" class="external-link">tapply</a></span><span class="op">(</span><span class="va">rhythm_metrics</span><span class="op">$</span><span class="va">percent_v</span>, <span class="va">rhythm_metrics</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"material"</span>, <span class="st">"language"</span><span class="op">)</span><span class="op">]</span>, <span class="va">mean</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tapply.html" class="external-link">tapply</a></span><span class="op">(</span><span class="va">rhythm_metrics</span><span class="op">$</span><span class="va">percent_v</span>, <span class="va">rhythm_metrics</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"material"</span>, <span class="st">"language"</span><span class="op">)</span><span class="op">]</span>, <span class="va">mean</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                             language</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> material                     English German Greek Italian Korean Spanish</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   uncontrolled sentences        43.3   43.8  46.8    42.7   44.9    44.3</span>

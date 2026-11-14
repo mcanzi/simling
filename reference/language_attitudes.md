@@ -85,7 +85,8 @@ print(fa$loadings, cutoff = 0.3)
 #> SS loadings      2.107   1.797   1.582
 #> Proportion Var   0.176   0.150   0.132
 #> Cumulative Var   0.176   0.325   0.457
-aggregate(cbind(intelligent, friendly, will_survive) ~ dialect_speaker, data = la, FUN = mean)
+aggregate(cbind(intelligent, friendly, will_survive) ~ dialect_speaker, data = la,
+          FUN = mean)
 #>   dialect_speaker intelligent friendly will_survive
 #> 1              no    3.005618 3.179775         3.00
 #> 2             yes    2.933333 3.416667         3.35

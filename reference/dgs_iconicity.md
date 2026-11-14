@@ -52,8 +52,10 @@ A tibble with 18000 rows and 7 columns:
 
 ## Details
 
-True model: `rating` is
-`3.3 + iconicity + g0 + r0 + signer + 0.5 * verb * non-signer + e`,
+True model:
+
+    rating = 3.3 + iconicity + g0 + r0 + signer + 0.5 * verb * non_signer + e
+
 rounded and limited to 1-7. Each sign's iconicity has SD 1.2, `g0` is a
 deviation of each sign within each group (SD 0.6), raters differ by SD
 0.5 and `e` has SD 0.9. Age of acquisition is `5.5 - 0.6 * iconicity`

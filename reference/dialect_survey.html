@@ -85,7 +85,9 @@ words with a geminate.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>True model, in log-odds: <code>-1.5 + 6 * (lat - 44.1) + t0 + 0.03 * (age - 50)</code>, with by-town intercepts <code>t0</code> (SD 0.6). Town names and
+    <p>True model:</p>
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">logit</span>(degemination) <span class="ot">=</span> <span class="sc">-</span><span class="fl">1.5</span> <span class="sc">+</span> <span class="dv">6</span> <span class="sc">*</span> (lat <span class="sc">-</span> <span class="fl">44.1</span>) <span class="sc">+</span> t0 <span class="sc">+</span> <span class="fl">0.03</span> <span class="sc">*</span> (age <span class="sc">-</span> <span class="dv">50</span>)</span></code></pre><p></p></div>
+<p>with by-town intercepts <code>t0</code> (SD 0.6). Town names and
 coordinates are the Italian towns of over 50,000 inhabitants in
 <code>maps::world.cities</code> (without Sardinia); the dialect data are
 simulated.</p>

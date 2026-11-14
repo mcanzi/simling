@@ -44,10 +44,13 @@ A tibble with 2400 rows and 6 columns:
 
 ## Details
 
-True model: multinomial logit with "that" as reference. Which:
-`-1.6 + 1.4 * written + 0.25 * (antecedent_length - 2)`. Zero (object
-relatives only): `0.6 - 1.2 * written - 0.4 * (antecedent_length - 2)`.
-By-text intercepts with SD 0.5 for each.
+True model: multinomial logit with "that" as reference.
+
+    which: -1.6 + 1.4 * written + 0.25 * (antecedent_length - 2)
+    zero: 0.6 - 1.2 * written - 0.4 * (antecedent_length - 2)
+
+The zero relativizer occurs only in object relatives. By-text intercepts
+with SD 0.5 for each.
 
 ## Examples
 

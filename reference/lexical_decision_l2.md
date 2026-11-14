@@ -45,10 +45,13 @@ A tibble with 1200 rows and 6 columns:
 ## Details
 
 True model:
-`log(rt) = 6.55 + 0.16 * L2 + p0 + w0 + slope * (log_freq - 3.5) + 0.017 * (length - 7) + e`,
-where `slope = -0.035 - 0.03 * L2 + p1`. By-participant intercepts `p0`
-have SD 0.085 and slopes `p1` SD 0.015; by-word intercepts `w0` have SD
-0.04; residual SD 0.09.
+
+    log(rt) = 6.55 + 0.16 * L2 + p0 + w0 + slope * (log_freq - 3.5)
+      + 0.017 * (length - 7) + e
+    slope = -0.035 - 0.03 * L2 + p1
+
+By-participant intercepts `p0` have SD 0.085 and slopes `p1` SD 0.015;
+by-word intercepts `w0` have SD 0.04; residual SD 0.09.
 
 ## Examples
 

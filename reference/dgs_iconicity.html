@@ -92,7 +92,9 @@ signers.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>True model: <code>rating</code> is <code>3.3 + iconicity + g0 + r0 + signer + 0.5 * verb * non-signer + e</code>, rounded and limited to 1-7. Each sign's
+    <p>True model:</p>
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>rating <span class="ot">=</span> <span class="fl">3.3</span> <span class="sc">+</span> iconicity <span class="sc">+</span> g0 <span class="sc">+</span> r0 <span class="sc">+</span> signer <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> verb <span class="sc">*</span> non_signer <span class="sc">+</span> e</span></code></pre><p></p></div>
+<p>rounded and limited to 1-7. Each sign's
 iconicity has SD 1.2, <code>g0</code> is a deviation of each sign within each group
 (SD 0.6), raters differ by SD 0.5 and <code>e</code> has SD 0.9. Age of
 acquisition is <code>5.5 - 0.6 * iconicity</code> years plus noise (SD 1.3).

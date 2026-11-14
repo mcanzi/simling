@@ -42,9 +42,9 @@ A tibble with 516 rows and 9 columns:
 
 - manipulation:
 
-  `"baseline"`; `"pitch"`, with pitch movements within syllables
-  flattened; or `"duration"`, with sonorous parts lengthened by 20% and
-  obstruents shortened by the same amount.
+  Version of the sentence: `"baseline"`, `"pitch"` (pitch movements
+  within syllables flattened) or `"duration"` (sonorous parts lengthened
+  by 20% and obstruents shortened by the same amount).
 
 - rating_before:
 

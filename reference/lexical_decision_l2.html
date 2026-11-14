@@ -76,7 +76,11 @@ frequency.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>True model: <code>log(rt) = 6.55 + 0.16 * L2 + p0 + w0 + slope * (log_freq - 3.5) + 0.017 * (length - 7) + e</code>, where <code>slope = -0.035 - 0.03 * L2 + p1</code>. By-participant intercepts <code>p0</code> have SD 0.085 and slopes
+    <p>True model:</p>
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">log</span>(rt) <span class="ot">=</span> <span class="fl">6.55</span> <span class="sc">+</span> <span class="fl">0.16</span> <span class="sc">*</span> L2 <span class="sc">+</span> p0 <span class="sc">+</span> w0 <span class="sc">+</span> slope <span class="sc">*</span> (log_freq <span class="sc">-</span> <span class="fl">3.5</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="sc">+</span> <span class="fl">0.017</span> <span class="sc">*</span> (length <span class="sc">-</span> <span class="dv">7</span>) <span class="sc">+</span> e</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>slope <span class="ot">=</span> <span class="sc">-</span><span class="fl">0.035</span> <span class="sc">-</span> <span class="fl">0.03</span> <span class="sc">*</span> L2 <span class="sc">+</span> p1</span></code></pre><p></p></div>
+<p>By-participant intercepts <code>p0</code> have SD 0.085 and slopes
 <code>p1</code> SD 0.015; by-word intercepts <code>w0</code> have SD 0.04; residual SD 0.09.</p>
     </div>
 

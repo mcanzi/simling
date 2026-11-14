@@ -20,8 +20,9 @@ A tibble with 3000 rows and 6 columns:
 
 - language:
 
-  `"Danish"`, `"Dutch"`, `"English"`, `"Italian"`, `"Japanese"`,
-  `"Korean"`, `"Lao"`, `"Tzeltal"`, `"Yélî Dnye"` or `"ǂĀkhoe Haiǁom"`.
+  Language of the conversation: `"Danish"`, `"Dutch"`, `"English"`,
+  `"Italian"`, `"Japanese"`, `"Korean"`, `"Lao"`, `"Tzeltal"`,
+  `"Yélî Dnye"` or `"ǂĀkhoe Haiǁom"`.
 
 - conversation:
 

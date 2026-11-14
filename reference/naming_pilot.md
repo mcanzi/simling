@@ -46,7 +46,10 @@ A tibble with 1200 rows and 6 columns:
 ## Details
 
 True model:
-`log(latency) = 6.75 + 0.15 * group + p0 + w0 + (-0.04 - 0.02 * group + p1) * freq_c + e`.
+
+    log(latency) = 6.75 + 0.15 * group + p0 + w0
+      + (-0.04 - 0.02 * group + p1) * freq_c + e
+
 By-participant intercepts `p0` have SD 0.08 and slopes `p1` SD 0.015;
 by-picture intercepts `w0` have SD 0.04; residual SD 0.1.
 

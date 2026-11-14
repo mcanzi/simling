@@ -54,9 +54,9 @@ A tibble with 2880 rows and 7 columns:
 ## Details
 
 True model: each gender-by-ending cell has its own probabilities for the
-five endings (see `data-raw/german_plurals.R`), perturbed on the log
-scale by a by-participant preference for *-s* (SD 0.6) and by
-response-level noise (SD 0.3).
+five endings (see the data script), perturbed on the log scale by a
+by-participant preference for *-s* (SD 0.6) and by response-level noise
+(SD 0.3).
 
 ## References
 

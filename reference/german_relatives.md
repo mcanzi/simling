@@ -39,9 +39,11 @@ A tibble with 13824 rows and 8 columns:
 
 - region:
 
-  Role of the word: `"det"`, `"noun"`, `"rel_pronoun"`, `"rc_det"`,
-  `"rc_noun"`, `"rc_participle"`, `"rc_auxiliary"`, `"main_verb"`,
-  `"spillover_1"` to `"spillover_3"`, `"final"`.
+  Role of the word in the sentence, with levels in sentence order:
+  determiner (`"det"`) and noun of the main clause, relative pronoun,
+  then determiner, noun, participle and auxiliary of the relative clause
+  (`"rc_det"` to `"rc_auxiliary"`), main verb, three spillover words and
+  the final word. `levels(german_relatives$region)` gives the codes.
 
 - length:
 
@@ -58,7 +60,10 @@ A tibble with 13824 rows and 8 columns:
 ## Details
 
 True model:
-`log(rt) = 5.85 + p0 + i0 + 0.012 * (length - 5) - 0.008 * position + cost * object + e`.
+
+    log(rt) = 5.85 + p0 + i0 + 0.012 * (length - 5) - 0.008 * position
+      + cost * object + e
+
 The object-relative cost is 0.01 to 0.03 in the relative clause, 0.06 on
 the participle, 0.08 on the auxiliary, 0.05 on the main verb and 0.02 on
 the next word, with by-participant variation (SD 0.03). By-participant

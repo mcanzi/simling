@@ -78,10 +78,11 @@ words.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>True model: multinomial logit with "that" as reference. Which:
-<code>-1.6 + 1.4 * written + 0.25 * (antecedent_length - 2)</code>. Zero (object
-relatives only): <code>0.6 - 1.2 * written - 0.4 * (antecedent_length - 2)</code>.
-By-text intercepts with SD 0.5 for each.</p>
+    <p>True model: multinomial logit with "that" as reference.</p>
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>which<span class="sc">:</span> <span class="sc">-</span><span class="fl">1.6</span> <span class="sc">+</span> <span class="fl">1.4</span> <span class="sc">*</span> written <span class="sc">+</span> <span class="fl">0.25</span> <span class="sc">*</span> (antecedent_length <span class="sc">-</span> <span class="dv">2</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>zero<span class="sc">:</span> <span class="fl">0.6</span> <span class="sc">-</span> <span class="fl">1.2</span> <span class="sc">*</span> written <span class="sc">-</span> <span class="fl">0.4</span> <span class="sc">*</span> (antecedent_length <span class="sc">-</span> <span class="dv">2</span>)</span></code></pre><p></p></div>
+<p>The zero relativizer occurs only in object relatives. By-text intercepts
+with SD 0.5 for each.</p>
     </div>
 
     <div class="section level2">

@@ -80,7 +80,8 @@ aggregate(cbind(vot, f0) ~ generation + stop, data = korean_stops, FUN = mean)
 #> 4    younger     tense 14.39167 170.9750
 #> 5      older aspirated 99.00000 170.2958
 #> 6    younger aspirated 85.27500 179.8167
-korean_stops$f0_st <- 12 * log2(korean_stops$f0 / ave(korean_stops$f0, korean_stops$speaker))
+korean_stops$f0_st <- 12 * log2(korean_stops$f0 /
+                                   ave(korean_stops$f0, korean_stops$speaker))
 for (g in c("older", "younger")) {
   d <- subset(korean_stops, generation == g)
   set.seed(1)

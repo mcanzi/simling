@@ -32,8 +32,10 @@ A tibble with 1200 rows and 8 columns:
 
 - material:
 
-  `"uncontrolled sentences"`, `"complex-syllable sentences"`,
-  `"simple-syllable sentences"`, `"story"` or `"spontaneous"`.
+  Kind of speech material. The three read sentence sets are
+  `"uncontrolled sentences"`, `"complex-syllable sentences"` and
+  `"simple-syllable sentences"`; the other two levels are `"story"` and
+  `"spontaneous"`.
 
 - item:
 
@@ -96,7 +98,8 @@ second language studies. *Journal of Phonetics*, 35(4), 501-522.
 ## Examples
 
 ``` r
-round(tapply(rhythm_metrics$percent_v, rhythm_metrics[c("material", "language")], mean), 1)
+round(tapply(rhythm_metrics$percent_v, rhythm_metrics[c("material", "language")], mean),
+      1)
 #>                             language
 #> material                     English German Greek Italian Korean Spanish
 #>   uncontrolled sentences        43.3   43.8  46.8    42.7   44.9    44.3

@@ -91,15 +91,17 @@ measures, three-way interactions and generalisation in therapy studies.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>True model: the logit of a correct response is `p0 + i0 + post</p><ul><li><p>gain<code>. Participant intercepts </code>p0<code>have mean -0.45 (SD 0.9) and item   effects</code>i0<code>SD 1.2. For treated items,</code>gain` is the participant's
+    <p>True model: the logit of a correct response is
+<code>p0 + i0 + post * gain</code>. Participant intercepts <code>p0</code> have mean -0.45 (SD 0.9) and item
+effects <code>i0</code> SD 1.2. For treated items, <code>gain</code> is the participant's
 own gain (mean 1, SD 0.35). For untreated items it is 0.7 in the
 phonological profile and 0.05 otherwise, plus noise (SD 0.1). The design
 follows Best et al. (2013). In their 16 participants, naming of treated
 items rose from 43.5 to 62% correct, and only participants with
 relatively good semantic and impaired phonological processing
 generalised to untreated items. The number of items, the size of the
-subgroup and all data are simulated.</p></li>
-</ul></div>
+subgroup and all data are simulated.</p>
+    </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Best, W., Greenwood, A., Grassly, J., Herbert, R., Hickin, J. &amp; Howard, D. (2013). Aphasia rehabilitation: Does generalisation from anomia therapy occur and is it predictable? A case series study. <em>Cortex</em>, 49(9), 2345-2357. <a href="https://doi.org/10.1016/j.cortex.2013.01.005" class="external-link">doi:10.1016/j.cortex.2013.01.005</a></p>
