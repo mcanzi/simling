@@ -1,5 +1,12 @@
 # Changelog
 
+## simling (development version)
+
+- [`?pupil_noise`](https://mcanzi.de/simling/reference/pupil_noise.md)
+  gives the SD of the AR(1) residuals (20) as well as the SD of the
+  innovations (12) used to simulate them.
+- `citation("simling")` takes the version number from DESCRIPTION.
+
 ## simling 0.1.0
 
 - First version, with 55 simulated data sets: 53 from 20 branches of

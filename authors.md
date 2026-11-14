@@ -11,13 +11,13 @@ Source:
 [`inst/CITATION`](https://github.com/mcanzi/simling/blob/main/inst/CITATION)
 
 Canzi M (2026). *simling: Simulated Linguistic Data for Teaching and
-Learning Statistics*. R package version 0.1.0,
+Learning Statistics*. R package version 0.1.0.9000,
 <https://github.com/mcanzi/simling>.
 
     @Manual{,
       title = {simling: Simulated Linguistic Data for Teaching and Learning Statistics},
       author = {Massimiliano Canzi},
       year = {2026},
-      note = {R package version 0.1.0},
+      note = {R package version 0.1.0.9000},
       url = {https://github.com/mcanzi/simling},
     }
