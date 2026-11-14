@@ -4,3 +4,4 @@
 *.tar.gz
 simling.Rcheck/
 docs/
+.DS_Store
