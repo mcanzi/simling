@@ -27,12 +27,22 @@ observation each. For contingency tables and chi-squared tests.
 \details{
 True model: the probability of \emph{du} is 0.85 (university), 0.35
 (shop) and 0.45 (office) for speakers under 30, and 0.40, 0.08 and 0.15
-for speakers over 50.
+for speakers over 50. These probabilities are simulated. Strangers are
+by default addressed with \emph{Sie}, and variation in address depends more
+on age than on region (Kretzenbacher 2011). In a 2021 survey reported
+by Kretzenbacher and Hensel-Börner (2024), 44\% of customers aged 18 to
+29 liked being addressed with \emph{du} in shops, against 23\% of those aged
+60 and over.
 }
 \examples{
 tab <- xtabs(~ setting + form + age_group, data = address_forms)
 round(prop.table(tab, c(1, 3))[, "du", ], 2)
 chisq.test(tab[, , "under 30"])
 chisq.test(tab[, , "over 50"])
+}
+\references{
+Kretzenbacher, H. L. (2011). Perceptions of national and regional standards of addressing in Germany and Austria. \emph{Pragmatics}, 21(1), 69-83. \doi{10.1075/prag.21.1.04kre}
+
+Kretzenbacher, H. L. & Hensel-Börner, S. (2024). Pronominal address in German sales talk: Effects on the perception of the salesperson. \emph{Languages}, 9(10), 316. \doi{10.3390/languages9100316}
 }
 \keyword{datasets}

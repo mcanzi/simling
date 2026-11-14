@@ -7,7 +7,7 @@ set.seed(4004)
 electrodes <- tibble(electrode = c("F3", "Fz", "F4", "C3", "Cz", "C4", "P3", "Pz", "P4"),
                      anteriority = rep(c("frontal", "central", "parietal"), each = 3),
                      laterality = rep(c("left", "midline", "right"), 3),
-                     weight = c(0.5, 0.6, 0.5, 0.8, 0.9, 0.8, 0.85, 1, 0.85),
+                     weight = c(0.75, 0.85, 0.75, 0.9, 1, 0.9, 0.9, 1, 0.9),
                      e0 = c(0.5, 0.8, 0.5, 0, 0.3, 0, -0.3, 0, -0.3))
 
 participants <- tibble(participant = sprintf("P%02d", 1:30),

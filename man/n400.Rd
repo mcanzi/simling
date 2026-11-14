@@ -33,13 +33,17 @@ more negative the less predictable the word (lower cloze probability), and
 largest over centro-parietal sites. 80 items, two counterbalanced lists.
 }
 \details{
-True model: \code{amplitude = 2 + p0 + i0 + e0 + weight * (-4 + p1) * (1 - cloze) + trial + e}. The electrode weight is 1 at Pz, 0.8 to 0.9
-at other parietal and central sites and 0.5 to 0.6 at frontal sites;
+True model: \code{amplitude = 2 + p0 + i0 + e0 + weight * (-4 + p1) * (1 - cloze) + trial + e}. The electrode weight is 1 at Cz and Pz,
+0.9 at the other central and parietal sites, 0.85 at Fz and 0.75 at F3
+and F4;
 \code{e0} is a small electrode offset. By-participant intercepts \code{p0} (SD 1.5)
 and N400 slopes \code{p1} (SD 1); by-item intercepts \code{i0} (SD 0.5); trial
 noise shared across electrodes (SD 4) and electrode noise (SD 3). Cloze
-is 0.5 to 0.95 for expected and 0 to 0.05 for unexpected words. In
-Kutas and Hillyard (1984), N400 amplitude tracked cloze probability
+is 0.5 to 0.95 for expected and 0 to 0.05 for unexpected words. The
+midline weights follow the N400 difference waves in Kutas and Hillyard
+(1980, Experiment 2: -8.05, -9.62 and -9.24 microvolts at Fz, Cz and
+Pz); they recorded no lateral sites, so the lateral weights are
+simulated. In Kutas and Hillyard (1984), N400 amplitude tracked cloze probability
 closely at central and parietal sites (correlations of 0.90 to 0.92 for
 grand averages) and less at the frontal site (0.80). The sentences,
 participants and amplitudes here are simulated.

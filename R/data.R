@@ -948,7 +948,16 @@
 #' }
 #' @details True model: the probability of *du* is 0.85 (university), 0.35
 #'   (shop) and 0.45 (office) for speakers under 30, and 0.40, 0.08 and 0.15
-#'   for speakers over 50.
+#'   for speakers over 50. These probabilities are simulated. Strangers are
+#'   by default addressed with *Sie*, and variation in address depends more
+#'   on age than on region (Kretzenbacher 2011). In a 2021 survey reported
+#'   by Kretzenbacher and Hensel-Börner (2024), 44% of customers aged 18 to
+#'   29 liked being addressed with *du* in shops, against 23% of those aged
+#'   60 and over.
+#' @references
+#' Kretzenbacher, H. L. (2011). Perceptions of national and regional standards of addressing in Germany and Austria. *Pragmatics*, 21(1), 69-83. \doi{10.1075/prag.21.1.04kre}
+#'
+#' Kretzenbacher, H. L. & Hensel-Börner, S. (2024). Pronominal address in German sales talk: Effects on the perception of the salesperson. *Languages*, 9(10), 316. \doi{10.3390/languages9100316}
 #' @source `data-raw/address_forms.R`
 #' @examples
 #' tab <- xtabs(~ setting + form + age_group, data = address_forms)
@@ -1179,13 +1188,17 @@
 #'   \item{amplitude}{Mean amplitude in microvolts.}
 #' }
 #' @details True model: `amplitude = 2 + p0 + i0 + e0 + weight * (-4 + p1) *
-#'   (1 - cloze) + trial + e`. The electrode weight is 1 at Pz, 0.8 to 0.9
-#'   at other parietal and central sites and 0.5 to 0.6 at frontal sites;
+#'   (1 - cloze) + trial + e`. The electrode weight is 1 at Cz and Pz,
+#'   0.9 at the other central and parietal sites, 0.85 at Fz and 0.75 at F3
+#'   and F4;
 #'   `e0` is a small electrode offset. By-participant intercepts `p0` (SD 1.5)
 #'   and N400 slopes `p1` (SD 1); by-item intercepts `i0` (SD 0.5); trial
 #'   noise shared across electrodes (SD 4) and electrode noise (SD 3). Cloze
-#'   is 0.5 to 0.95 for expected and 0 to 0.05 for unexpected words. In
-#'   Kutas and Hillyard (1984), N400 amplitude tracked cloze probability
+#'   is 0.5 to 0.95 for expected and 0 to 0.05 for unexpected words. The
+#'   midline weights follow the N400 difference waves in Kutas and Hillyard
+#'   (1980, Experiment 2: -8.05, -9.62 and -9.24 microvolts at Fz, Cz and
+#'   Pz); they recorded no lateral sites, so the lateral weights are
+#'   simulated. In Kutas and Hillyard (1984), N400 amplitude tracked cloze probability
 #'   closely at central and parietal sites (correlations of 0.90 to 0.92 for
 #'   grand averages) and less at the frontal site (0.80). The sentences,
 #'   participants and amplitudes here are simulated.
@@ -1317,8 +1330,9 @@
 #'   normal with SD 200 ms plus an exponential with mean 150 ms, centred).
 #'   The three effects and the size of the conversation variation follow the
 #'   model in Stivers et al. (2009, Table 1). Baselines are set so that each
-#'   language's expected mean equals its reported mean: 7 ms for Japanese
-#'   and 469 ms for Danish (Stivers et al. 2009), and the others from
+#'   language's expected mean equals its reported mean: 7 ms for Japanese,
+#'   310 ms for Italian and 469 ms for Danish (Stivers et al. 2009), and the
+#'   others from
 #'   Levinson and Torreira (2015, Table 1). The conversations and answers are
 #'   simulated.
 #' @references
@@ -1402,8 +1416,17 @@
 #'   ```
 #'   with by-town intercepts `t0` (SD 0.6). Town names and
 #'   coordinates are the Italian towns of over 50,000 inhabitants in
-#'   `maps::world.cities` (without Sardinia); the dialect data are
-#'   simulated.
+#'   `maps::world.cities` (without Sardinia). Northern dialects have no
+#'   consonant length contrast, and geminates are less prominent in the
+#'   Italian of northern speakers than in central and southern varieties
+#'   (Bertinetto and Loporcaro 2005). In read Italian the regional
+#'   difference is small (Mairano and De Iacovo 2020), so the dataset
+#'   describes dialect speech. The sharp line, the age effect and all data
+#'   are simulated.
+#' @references
+#' Bertinetto, P. M. & Loporcaro, M. (2005). The sound pattern of Standard Italian, as compared with the varieties spoken in Florence, Milan and Rome. *Journal of the International Phonetic Association*, 35(2), 131-151. \doi{10.1017/S0025100305002148}
+#'
+#' Mairano, P. & De Iacovo, V. (2020). Gemination in Northern versus Central and Southern varieties of Italian: A corpus-based investigation. *Language and Speech*, 63(3), 608-634. \doi{10.1177/0023830919875481}
 #' @source `data-raw/dialect_survey.R`
 #' @examples
 #' dialect_survey$p <- dialect_survey$degeminated / dialect_survey$words
