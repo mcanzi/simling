@@ -5,11 +5,12 @@
 \alias{megastudy}
 \title{Megastudy of 6000 words}
 \format{
-A tibble with 6000 rows and 8 columns:
+A tibble with 6000 rows and 9 columns:
 \describe{
 \item{word}{Word ID, \code{w0001} to \code{w6000}.}
 \item{log_freq}{log10 frequency per million words.}
 \item{length}{Length in letters, 2 to 15.}
+\item{syllables}{Number of syllables, 1 to 6.}
 \item{neighbours}{Number of orthographic neighbours.}
 \item{aoa}{Age of acquisition in years.}
 \item{concreteness}{Concreteness rating, 1 to 5.}
@@ -33,7 +34,8 @@ importance.
 True model:
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{rt = 825 - 120 * plogis(log_freq - 2.5) + 9 * (length - 7)
-  - 2 * neighbours + 10 * (aoa - 7) - 6 * (concreteness - 3) + e
+  + 8 * (syllables - 2.5) - 2 * neighbours + 10 * (aoa - 7)
+  - 6 * (concreteness - 3) + e
 accuracy = plogis(2.5 + 0.7 * (log_freq - 2.5) - 0.2 * (aoa - 7) + e)
 }\if{html}{\out{</div>}}
 
@@ -41,20 +43,29 @@ The error \code{e} is normal with SD 35 ms for RT and SD 0.5 for accuracy.
 The frequency effect is S-shaped: it levels off for very rare and very
 frequent words.
 Frequent words are shorter, have more neighbours and are acquired
-earlier. Mean length (8 letters), mean RT (about 785 ms) and mean
-accuracy (0.86) are close to the English Lexicon Project words (Balota
-et al. 2007: 8 letters, 784 ms, 0.84), but RTs vary less across words
-(SD 64 ms against 135 ms). The effects and data are simulated.
+earlier. Syllables correlate with length (r = 0.75): on its own, each
+syllable adds about 39 ms, but only 8 ms once length is in the model.
+Mean length (8 letters), mean number of syllables (2.6), mean RT (about
+790 ms) and mean accuracy (0.86) are close to the English Lexicon
+Project words (Balota et al. 2007: 8 letters, 2.54 syllables, 784 ms,
+0.84), but RTs vary less across words (SD 68 ms against 135 ms). In the
+English Lexicon Project, the number of syllables has an inhibitory
+effect of its own and the length effect is U-shaped (New et al. 2006);
+here the length effect is linear. The effects and data are simulated.
 }
 \examples{
-m1 <- lm(rt ~ log_freq + length + neighbours + aoa + concreteness, data = megastudy)
-m2 <- lm(rt ~ splines::ns(log_freq, 4) + length + neighbours + aoa + concreteness,
+round(cor(megastudy[c("log_freq", "length", "syllables", "neighbours", "aoa")]), 2)
+coef(lm(rt ~ syllables, data = megastudy))
+m1 <- lm(rt ~ log_freq + length + syllables + neighbours + aoa + concreteness,
          data = megastudy)
+m2 <- lm(rt ~ splines::ns(log_freq, 4) + length + syllables + neighbours + aoa +
+           concreteness, data = megastudy)
 anova(m1, m2)
-coef(m2)[c("length", "neighbours", "aoa", "concreteness")]
-round(cor(megastudy[c("log_freq", "length", "neighbours", "aoa")]), 2)
+coef(m2)[c("length", "syllables", "neighbours", "aoa", "concreteness")]
 }
 \references{
 Balota, D. A., Yap, M. J., Cortese, M. J., Hutchison, K. A., Kessler, B., Loftis, B., Neely, J. H., Nelson, D. L., Simpson, G. B. & Treiman, R. (2007). The English Lexicon Project. \emph{Behavior Research Methods}, 39(3), 445-459. \doi{10.3758/BF03193014}
+
+New, B., Ferrand, L., Pallier, C. & Brysbaert, M. (2006). Reexamining the word length effect in visual word recognition: New evidence from the English Lexicon Project. \emph{Psychonomic Bulletin & Review}, 13(1), 45-52. \doi{10.3758/BF03193811}
 }
 \keyword{datasets}

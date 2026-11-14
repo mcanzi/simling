@@ -4,7 +4,7 @@
 
 Simulated linguistic data for teaching and learning statistics in R.
 
-simling has 55 data sets from 20 branches of linguistics, from acoustic phonetics to language evolution, plus a meta-analysis and a messy export for data cleaning. Responses include reaction times, acoustic measurements, ratings, counts, binary and multi-category outcomes, time series and EEG.
+simling has 54 data sets from 20 branches of linguistics, from acoustic phonetics to language evolution, plus a meta-analysis and a messy export for data cleaning. Responses include reaction times, acoustic measurements, ratings, counts, binary and multi-category outcomes, time series and EEG.
 
 Use them in class or to learn on your own. If you are planning a study, you can see what its data will look like and try out the analysis first.
 
@@ -72,7 +72,6 @@ Every categorical column is a factor. Its first level is the reference level: th
 |  | `rhythm_metrics` | 6 languages | 1,200 | continuous | Variance partitioning, speech rate |
 |  | `speech_to_song` | English | 516 | binary, ordinal | Mixed logistic and ordinal models |
 | Psycholinguistics | `rt_frequency` | – | 200 | RT, binary | Data wrangling |
-|  | `word_rt` | – | 400 | RT | Multiple regression, collinearity |
 |  | `freq_length` | – | 400 | RT | Continuous × continuous interaction |
 |  | `l2_frequency` | – | 400 | RT | Continuous × categorical interaction |
 |  | `lexical_decision` | – | 800 | RT | Mixed models, crossed random effects |

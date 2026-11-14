@@ -55,7 +55,6 @@ reference:
 - title: Psycholinguistics
   contents:
   - rt_frequency
-  - word_rt
   - freq_length
   - l2_frequency
   - lexical_decision
