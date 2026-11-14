@@ -32,6 +32,8 @@ remotes::install_github("mcanzi/simling")
 
 ## Usage
 
+### Loading and plotting a data set
+
 Each data set loads with the package. Here is the pupil data, with
 single trials and the mean in each condition:
 
@@ -60,6 +62,37 @@ In the true model on the help page, the pupil peaks 90 units higher and
 is about 77 units and 300 ms. The help page suggests a GAMM with
 autocorrelated residuals for estimating these differences.
 
+### Checking an analysis against the true model
+
+The help page of `vowel_duration` gives the model the data come from:
+vowels are 150 ms long before voiceless consonants and 20 ms longer
+before voiced ones, with by-speaker and by-word variation. A mixed model
+fitted to the data recovers these values:
+
+``` r
+
+library(lme4)
+m <- lmer(duration ~ voicing + (1 + voicing | speaker) + (1 | word),
+          data = vowel_duration)
+summary(m)
+```
+
+|                                     | True value | Estimate |
+|-------------------------------------|------------|----------|
+| Intercept (voiceless)               | 150 ms     | 155.5 ms |
+| Effect of voicing                   | 20 ms      | 20.5 ms  |
+| By-speaker SD of the intercept      | 25 ms      | 24.5 ms  |
+| By-speaker SD of the voicing effect | 12 ms      | 7.6 ms   |
+| By-word SD of the intercept         | 15 ms      | 12.6 ms  |
+| Residual SD                         | 20 ms      | 20.0 ms  |
+
+The estimates differ from the true values because each data set is one
+random sample from its model; with only 16 speakers, the SD of the
+voicing effect is the hardest to estimate. Students can also fit a wrong
+model, for example one without by-speaker slopes, and see what changes.
+
+### Finding a data set
+
 To find a data set for a lesson,
 [`simling_datasets()`](https://mcanzi.de/simling/reference/simling_datasets.md)
 lists all of them with their branch, language, size, response and topic:
@@ -70,6 +103,8 @@ library(dplyr)
 simling_datasets() |> filter(branch == "Psycholinguistics")
 simling_datasets() |> filter(grepl("counts", response))
 ```
+
+### Factors and reference levels
 
 Every categorical column is a factor. Its first level is the reference
 level: the baseline condition, such as `"voiceless"` in `vowel_duration`
