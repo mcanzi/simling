@@ -36,13 +36,20 @@ non-answers come later; answers to a questioner who is looking at the
 responder come sooner.
 }
 \details{
-True model: \code{offset = language_baseline + c0 + 207 * disconfirmation + 132 * non-answer - 69 * gaze + e}, where \code{c0} is a
-by-conversation offset (SD 60 ms) and \code{e} is ex-Gaussian (a normal with
-SD 200 ms plus an exponential with mean 150 ms, centred). The three
-effects are the estimates in Stivers et al. (2009, Table 1). Baselines
-are set so that each language's expected mean equals the mean reported
-for it, from 7 ms (Japanese) to 469 ms (Danish). The conversations and
-answers are simulated.
+True model:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{offset = baseline + c0 + 207 * disconfirmation + 132 * non_answer
+  - 69 * gaze + e
+}\if{html}{\out{</div>}}
+
+\code{c0} is a by-conversation offset (SD 120 ms) and \code{e} is ex-Gaussian (a
+normal with SD 200 ms plus an exponential with mean 150 ms, centred).
+The three effects and the size of the conversation variation follow the
+model in Stivers et al. (2009, Table 1). Baselines are set so that each
+language's expected mean equals its reported mean: 7 ms for Japanese
+and 469 ms for Danish (Stivers et al. 2009), and the others from
+Levinson and Torreira (2015, Table 1). The conversations and answers are
+simulated.
 }
 \examples{
 sort(tapply(turn_taking$offset, turn_taking$language, median))

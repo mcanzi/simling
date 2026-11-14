@@ -10,9 +10,9 @@ A tibble with 4200 rows and 6 columns:
 \item{participant}{Participant ID, \code{P01} to \code{P50}.}
 \item{item}{Item ID, \code{i01} to \code{i84}.}
 \item{stem_type}{Vowels of the stem: \code{"B"} (back), \code{"F"} (front
-rounded), \code{"N"} (neutral only), \code{"Bi"}, \code{"Bé"}, \code{"Be"} (back vowel
+rounded), \code{"N"} (one neutral vowel), \code{"Bi"}, \code{"Bé"}, \code{"Be"} (back vowel
 plus one neutral vowel) or \code{"BNN"} (back vowel plus two neutral
-vowels).}
+vowels, the last one \emph{e}).}
 \item{n_neutral}{Number of neutral vowels after the last back vowel.}
 \item{last_vowel}{Last vowel of the stem: \code{"back"}, \code{"front rounded"},
 \code{"high"}, \code{"mid"} or \code{"low"}.}
@@ -34,11 +34,13 @@ vowel followed by neutral vowels vary: the lower the last neutral vowel
 neutral vowels give more front suffixes than one (the Count Effect).
 }
 \details{
-True model: the probability of a back suffix is 0.97 (B), 0.03
-(F), 0.08 (N), 0.90 (Bi), 0.60 (Bé), 0.35 (Be) and 0.20 (BNN), shifted
+True model: the probability of a back suffix is 0.99 (B), 0.01
+(F), 0.06 (N), 0.95 (Bi), 0.38 (Bé), 0.07 (Be) and 0.02 (BNN), shifted
 on the logit scale by participant (SD 0.5) and item (SD 0.4) effects.
+These are the rounded proportions of back responses in the wug test of
+Hayes and Londe (2006, Table III); BNN uses their stems ending in \emph{e}.
 Items are identified by their stem type; the nonce word forms are left
-out.
+out. Participants, items and responses are simulated.
 }
 \examples{
 round(prop.table(table(hungarian_harmony$stem_type, hungarian_harmony$suffix), 1), 2)
@@ -50,8 +52,8 @@ if (requireNamespace("lme4", quietly = TRUE)) {
 }
 }
 \references{
-Hayes, B. & Londe, Z. C. (2006). Stochastic phonological knowledge: The case of Hungarian vowel harmony. \emph{Phonology}, 23, 59-104. \doi{10.1017/S0952675706000765}
+Hayes, B. & Londe, Z. C. (2006). Stochastic phonological knowledge: The case of Hungarian vowel harmony. \emph{Phonology}, 23(1), 59-104. \doi{10.1017/S0952675706000765}
 
-Hayes, B., Zuraw, K., Siptár, P. & Londe, Z. (2009). Natural and unnatural constraints in Hungarian vowel harmony. \emph{Language}, 85, 822-863. \doi{10.1353/lan.0.0169}
+Hayes, B., Siptár, P., Zuraw, K. & Londe, Z. (2009). Natural and unnatural constraints in Hungarian vowel harmony. \emph{Language}, 85(4), 822-863. \doi{10.1353/lan.0.0169}
 }
 \keyword{datasets}

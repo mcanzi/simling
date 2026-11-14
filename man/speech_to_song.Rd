@@ -47,14 +47,15 @@ that is missing by design.
 \details{
 True model: each listener hears two sentences in each
 condition, assigned in a Latin square. \code{transformed} is Bernoulli with
-logit \code{-0.2 + 1.04 * pitch + 0.78 * duration} plus listener (SD 1) and
+logit \code{-0.9 + 1.04 * pitch + 0.78 * duration} plus listener (SD 1) and
 sentence (SD 0.5) effects. \code{cycle} and both ratings come from ordered
 probit models. For \code{cycle} the latent value is \code{0.61 * bat} plus a
 listener effect (SD 0.6). For \code{rating_after} it is \code{0.2 + 1.2 * pitch + 0.91 * duration + 0.44 * mpt + 0.8 * transformed} plus listener (SD 0.7)
 and sentence effects. The two aptitude scores correlate at about 0.5.
 The design and the effects of the manipulations and of aptitude follow
-Rathcke and Smit (2025). The intercepts, the effect of \code{transformed} on
-the final rating and all data are simulated.
+Rathcke and Smit (2025); in their data the manipulated stimuli
+transformed about half of the time. The other intercepts, the effect of
+\code{transformed} on the final rating and all data are simulated.
 }
 \examples{
 round(tapply(speech_to_song$transformed, speech_to_song$manipulation, mean), 2)

@@ -28,7 +28,9 @@ an exposure term. The counts are overdispersed.
 \details{
 True model: negative binomial with mean \code{rate * words / 1000}
 and size 4, where \code{rate} per 1000 words is 2 (conversation), 5 (fiction),
-10 (news) and 18 (academic).
+10 (news) and 20 (academic). Biber, Conrad and Leech (2002) note that
+passive verbs are about ten times more frequent in academic prose than
+in conversation. The other rates and all data are simulated.
 }
 \examples{
 if (requireNamespace("MASS", quietly = TRUE)) {
@@ -36,5 +38,8 @@ if (requireNamespace("MASS", quietly = TRUE)) {
   exp(coef(m))
   m$theta
 }
+}
+\references{
+Biber, D., Conrad, S. & Leech, G. (2002). \emph{Longman Student Grammar of Spoken and Written English}. Harlow: Longman.
 }
 \keyword{datasets}

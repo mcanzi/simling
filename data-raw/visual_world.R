@@ -17,7 +17,7 @@ items <- tibble(item = sprintf("i%02d", 1:n_item),
 trials <- crossing(participants, items) |>
   mutate(condition = if_else((as.integer(substr(item, 2, 3)) + list) %% 2 == 0,
                              "restrictive", "non-restrictive"),
-         mid = if_else(condition == "restrictive", 650, 900) + p_mid + i_mid)
+         mid = if_else(condition == "restrictive", 700, 930) + p_mid + i_mid)
 
 visual_world <- crossing(trials, time = seq(0, 1450, by = 50)) |>
   arrange(participant, item, time) |>
@@ -27,7 +27,7 @@ visual_world <- crossing(trials, time = seq(0, 1450, by = 50)) |>
   ungroup() |>
   mutate(samples = 25L,
          target = rbinom(n(), samples, plogis(logit_p)),
-         comp_share = 1 / 3 + 0.25 * exp(-((time - 850) / 150)^2),
+         comp_share = 1 / 3 + 0.25 * exp(-((time - 950) / 150)^2),
          competitor = rbinom(n(), samples - target, comp_share),
          distractor_1 = rbinom(n(), samples - target - competitor, 0.5),
          distractor_2 = samples - target - competitor - distractor_1) |>

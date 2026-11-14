@@ -2,7 +2,7 @@ library(dplyr)
 library(tibble)
 
 set.seed(3005)
-rate <- c(conversation = 2, fiction = 5, news = 10, academic = 18)
+rate <- c(conversation = 2, fiction = 5, news = 10, academic = 20)
 
 passives <- tibble(text = sprintf("T%03d", 1:400),
                    register = rep(names(rate), each = 100)) |>

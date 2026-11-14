@@ -517,7 +517,13 @@
 #' @details True model: a cumulative logit model with thresholds at -2.5,
 #'   -1.5, -0.5, 0.5, 1.5 and 2.5 on a latent scale `1.5 - 0.6 * long - 0.4 *
 #'   island - 0.9 * long * island`. By-participant intercepts (SD 0.8) and
-#'   interaction slopes (SD 0.3); by-item intercepts (SD 0.4).
+#'   interaction slopes (SD 0.3); by-item intercepts (SD 0.4). The design
+#'   follows Experiment 1 of Sprouse, Wagers and Phillips (2012), who crossed
+#'   gap position (matrix or embedded clause, i.e. a short or long
+#'   dependency) with structure and used a 7-point scale; for whether islands
+#'   they found both main effects and a superadditive interaction. The number
+#'   of participants and items, the effect sizes and the ratings are
+#'   simulated.
 #' @references
 #' Sprouse, J., Wagers, M. & Phillips, C. (2012). A test of the relation between working-memory capacity and syntactic island effects. *Language*, 88(1), 82-123. \doi{10.1353/lan.2012.0004}
 #' @source `data-raw/acceptability.R`
@@ -571,9 +577,15 @@
 #'   The first fixation equals the gaze duration in 65% of trials and is 50
 #'   to 85% of it otherwise. Total time adds a rereading time (log-normal,
 #'   median about 220 ms) with probability `plogis(-1 + 0.6 *
-#'   ungrammatical + 1.5 * regression)`.
+#'   ungrammatical + 1.5 * regression)`. The sentences follow Bock and
+#'   Miller (1991), who found attraction errors in production. In reading, a
+#'   plural attractor reduces the disruption caused by an ungrammatical verb
+#'   (Wagers, Lau and Phillips 2009). The effect sizes and data are
+#'   simulated.
 #' @references
 #' Bock, K. & Miller, C. A. (1991). Broken agreement. *Cognitive Psychology*, 23(1), 45-93. \doi{10.1016/0010-0285(91)90003-7}
+#'
+#' Wagers, M. W., Lau, E. F. & Phillips, C. (2009). Agreement attraction in comprehension: Representations and processes. *Journal of Memory and Language*, 61(2), 206-237. \doi{10.1016/j.jml.2009.04.002}
 #' @source `data-raw/agreement_attraction.R`
 #' @examples
 #' aggregate(gaze_duration ~ grammaticality + attractor, data = agreement_attraction,
@@ -590,9 +602,9 @@
 #'
 #' Participants judge *Some of the cards have stars* when all, some or none of
 #' the cards have stars. In the all-context the sentence is literally true but
-#' under-informative: pragmatic responders say "false", logical responders
-#' "true". Participants differ strongly, so responses there are bimodal by
-#' participant. 60 participants, 24 items, three counterbalanced lists.
+#' under-informative: a "false" response is pragmatic, a "true" response
+#' logical. Participants differ: some always answer one way, most mix the
+#' two. 60 participants, 24 items, three counterbalanced lists.
 #'
 #' @format A tibble with 1440 rows and 6 columns:
 #' \describe{
@@ -605,16 +617,20 @@
 #'   \item{rt}{Response time in ms.}
 #' }
 #' @details True model: in the all-context, each participant answers "false"
-#'   with their own probability, drawn from Beta(0.5, 0.5) (mostly near 0 or
-#'   1). Controls are answered correctly 96% of the time. Reaction times
-#'   follow
+#'   with their own probability, drawn from Beta(1.1, 0.7) (mean 0.61).
+#'   Controls are answered correctly 96% of the time. Reaction times follow
 #'   ```
-#'   log(rt) = 7.25 + 0.22 * pragmatic_false + 0.08 * logical_true
+#'   log(rt) = 7.25 + 0.22 * pragmatic
 #'   ```
-#'   where `pragmatic_false` marks a "false" response by a pragmatic
-#'   responder and `logical_true` a "true" response by a logical responder,
-#'   both in the all-context only, with by-participant (SD 0.15) and by-item (SD 0.05)
-#'   intercepts and residual SD 0.25.
+#'   where `pragmatic` marks a "false" response in the all-context, with
+#'   by-participant (SD 0.15) and by-item (SD 0.05) intercepts and residual
+#'   SD 0.25. The proportions follow Experiment 3 of Bott and Noveck (2004):
+#'   61% pragmatic responses, 9 of 32 participants who always gave the same
+#'   response, 87% to 98% correct on controls, slower pragmatic responses
+#'   and logical responses about as fast as controls. The effect sizes and
+#'   data are simulated.
+#' @references
+#' Bott, L. & Noveck, I. A. (2004). Some utterances are underinformative: The onset and time course of scalar inferences. *Journal of Memory and Language*, 51(3), 437-457. \doi{10.1016/j.jml.2004.05.006}
 #' @source `data-raw/scalar_implicature.R`
 #' @examples
 #' all_ctx <- subset(scalar_implicature, context == "all")
@@ -633,7 +649,7 @@
 #' verb (*eat*) they look at the target before the noun is heard; while the
 #' noun unfolds, the competitor briefly attracts looks too. Eye-tracker
 #' samples on each object in 50 ms bins from verb onset; the noun starts at
-#' 600 ms. 32 participants, 24 items, 12 per condition (two counterbalanced
+#' 700 ms. 32 participants, 24 items, 12 per condition (two counterbalanced
 #' lists).
 #'
 #' @format A tibble with 23040 rows and 10 columns:
@@ -649,13 +665,17 @@
 #' }
 #' @details True model: on the logit scale, looks to the target rise from
 #'   chance (0.25) to about 0.88 along a logistic curve with width 90 ms,
-#'   centred at 650 ms after restrictive and 900 ms after non-restrictive
+#'   centred at 700 ms after restrictive and 930 ms after non-restrictive
 #'   verbs. By-participant variation in the centre (SD 80 ms) and in the final
 #'   level (SD 0.3 logits); by-item variation in the centre (SD 40 ms). Within
 #'   a trial, deviations are AR(1) with rho 0.9. Of the remaining samples,
 #'   the competitor gets a third plus a bump of up to 25 percentage points
-#'   centred at 850 ms (SD about 100 ms); the two distractors split the rest
-#'   evenly.
+#'   centred at 950 ms (SD about 100 ms); the two distractors split the rest
+#'   evenly. The timing follows Altmann and Kamide (1999, Experiment 1): the
+#'   noun began about 700 ms after the verb, and the first saccade to the
+#'   target came 611 ms after the onset of *eat* and 838 ms after *move*.
+#'   Their scenes had no phonological competitor; it is added here, and its
+#'   timing, the participants and the looks are simulated.
 #' @references
 #' Altmann, G. T. M. & Kamide, Y. (1999). Incremental interpretation at verbs: Restricting the domain of subsequent reference. *Cognition*, 73(3), 247-264. \doi{10.1016/S0010-0277(99)00059-1}
 #' @source `data-raw/visual_world.R`
@@ -663,8 +683,8 @@
 #' visual_world$p_target <- visual_world$target / visual_world$samples
 #' looks <- aggregate(p_target ~ condition + time, data = visual_world, FUN = mean)
 #' plot(p_target ~ time, data = looks, col = condition)
-#' abline(v = 600, lty = 2)
-#' looks[looks$time == 600, ]
+#' abline(v = 700, lty = 2)
+#' looks[looks$time == 700, ]
 "visual_world"
 
 #' Passives in four registers
@@ -683,7 +703,11 @@
 #' }
 #' @details True model: negative binomial with mean `rate * words / 1000`
 #'   and size 4, where `rate` per 1000 words is 2 (conversation), 5 (fiction),
-#'   10 (news) and 18 (academic).
+#'   10 (news) and 20 (academic). Biber, Conrad and Leech (2002) note that
+#'   passive verbs are about ten times more frequent in academic prose than
+#'   in conversation. The other rates and all data are simulated.
+#' @references
+#' Biber, D., Conrad, S. & Leech, G. (2002). *Longman Student Grammar of Spoken and Written English*. Harlow: Longman.
 #' @source `data-raw/passives.R`
 #' @examples
 #' if (requireNamespace("MASS", quietly = TRUE)) {
@@ -734,7 +758,8 @@
 #' from 16 to 30 months, for 80 children. Each child's vocabulary follows an
 #' S-shaped (logistic) curve, and children who hear more speech reach its
 #' steep middle part earlier. Whether real vocabulary growth has a distinct
-#' spurt is debated. Ganger and Brent (2004) found that a logistic curve fitted
+#' spurt is debated. Ganger and Brent (2004) modelled the rate of word
+#' learning and found that a logistic curve, which implies a spurt, fitted
 #' better than a quadratic one for only 5 of 38 children. About 10% of
 #' sessions are missing.
 #'
@@ -778,7 +803,8 @@
 #' rare, their rate does not change with age, and children differ in how
 #' often they make them. Maratsos (2000) disputed the low rates, arguing that
 #' averages over all verbs hide much higher rates for verbs a child uses
-#' rarely. These data have no verb-level information. For binomial models of
+#' rarely and periods in which a child overregularizes often. These data have
+#' no verb-level information. For binomial models of
 #' errors out of attempts and for testing an effect that is absent.
 #'
 #' @format A tibble with 144 rows and 4 columns:
@@ -788,9 +814,14 @@
 #'   \item{attempts}{Irregular past-tense contexts in the recording.}
 #'   \item{errors}{Overregularizations among them.}
 #' }
-#' @details True model, in log-odds: `-3.2`, with by-child intercepts of SD
-#'   0.5, so about 4% of attempts are errors. Age has no effect. Children
-#'   attempt more irregular past tenses as they get older.
+#' @details True model, in log-odds: `-3.66`, with by-child intercepts of SD
+#'   0.9, so the median child makes errors in 2.5% of attempts and a few
+#'   children in many more. Age has no effect. Children attempt more
+#'   irregular past tenses as they get older. Marcus et al. (1992) report a
+#'   median rate of 2.5% and a mean of 4.2% across 25 children, with a
+#'   roughly constant rate from age 2 into the school years. Maratsos (2000)
+#'   showed that pooling all tokens gives most weight to frequent verbs,
+#'   whose rates are lowest. The children and counts are simulated.
 #' @references
 #' Marcus, G. F., Pinker, S., Ullman, M., Hollander, M., Rosen, T. J. & Xu, F. (1992). Overregularization in language acquisition. *Monographs of the Society for Research in Child Development*, 57(4). \doi{10.2307/1166115}
 #'
@@ -809,10 +840,11 @@
 #' The rise of periphrastic do
 #'
 #' Use of *do* (*Did he go?*, *He did not go*) in 300 texts dated 1400 to
-#' 1700, in four sentence types: the number of clauses with *do* out of all
-#' eligible clauses. In three contexts the change follows S-curves with the
-#' same slope and different starting points (the Constant Rate Effect).
-#' Affirmative declaratives barely take part.
+#' 1575, in four sentence types: the number of clauses with *do* out of all
+#' eligible clauses. In negative declaratives, negative questions and
+#' affirmative questions the change follows S-curves with the same slope and
+#' different starting points (the Constant Rate Effect). *Do* stays rare in
+#' affirmative declaratives, which rise more slowly.
 #'
 #' @format A tibble with 1200 rows and 5 columns:
 #' \describe{
@@ -823,19 +855,23 @@
 #'   \item{do}{Clauses with *do*.}
 #'   \item{eligible}{All clauses in this context in this text.}
 #' }
-#' @details True model, in log-odds: `baseline + 0.035 * (year - 1550)`
-#'   (3.5 per century in every context), with baselines 1.0 (affirmative
-#'   questions), 1.6 (negative questions), -0.6 (negative declaratives) and
-#'   -7.5 (affirmative declaratives), and by-text intercepts (SD 0.4). In the
-#'   historical data, *do* in affirmative declaratives later declined again;
-#'   the simulation leaves this out.
+#' @details True model, in log-odds: `intercept + slope * (year - 1350) /
+#'   100`, plus by-text intercepts (SD 0.4). The slope is 3.7 per century in
+#'   the three rising contexts and 2.82 in affirmative declaratives. The
+#'   intercepts at 1350 are -8.33 (negative declaratives), -5.57 (negative
+#'   questions), -6.58 (affirmative questions) and -8.32 (affirmative
+#'   declaratives). These are Kroch's (1989, Tables 4 and 9) estimates from
+#'   Ellegård's counts for 1400 to 1575; the affirmative questions are his
+#'   transitive adverbial and yes/no questions. After 1575 the contexts
+#'   diverge and *do* in affirmative declaratives declines, so the
+#'   simulation stops at 1575. Texts and counts are simulated.
 #' @references
 #' Ellegård, A. (1953). *The auxiliary do: The establishment and regulation of its use in English*. Stockholm: Almqvist & Wiksell.
 #'
 #' Kroch, A. S. (1989). Reflexes of grammar in patterns of language change. *Language Variation and Change*, 1(3), 199-244. \doi{10.1017/S0954394500000168}
 #' @source `data-raw/do_support.R`
 #' @examples
-#' do_support$century <- (do_support$year - 1550) / 100
+#' do_support$century <- (do_support$year - 1350) / 100
 #' m <- glm(cbind(do, eligible - do) ~ 0 + context + context:century, data = do_support,
 #'          family = binomial)
 #' round(coef(m), 2)
@@ -953,7 +989,7 @@
 #' \describe{
 #'   \item{word}{Word ID, `w0001` to `w6000`.}
 #'   \item{log_freq}{log10 frequency per million words.}
-#'   \item{length}{Length in letters, 2 to 16.}
+#'   \item{length}{Length in letters, 2 to 15.}
 #'   \item{neighbours}{Number of orthographic neighbours.}
 #'   \item{aoa}{Age of acquisition in years.}
 #'   \item{concreteness}{Concreteness rating, 1 to 5.}
@@ -962,7 +998,7 @@
 #' }
 #' @details True model:
 #'   ```
-#'   rt = 720 - 120 * plogis(log_freq - 2.5) + 9 * (length - 7)
+#'   rt = 825 - 120 * plogis(log_freq - 2.5) + 9 * (length - 7)
 #'     - 2 * neighbours + 10 * (aoa - 7) - 6 * (concreteness - 3) + e
 #'   accuracy = plogis(2.5 + 0.7 * (log_freq - 2.5) - 0.2 * (aoa - 7) + e)
 #'   ```
@@ -970,7 +1006,12 @@
 #'   The frequency effect is S-shaped: it levels off for very rare and very
 #'   frequent words.
 #'   Frequent words are shorter, have more neighbours and are acquired
-#'   earlier.
+#'   earlier. Mean length (8 letters), mean RT (about 785 ms) and mean
+#'   accuracy (0.86) are close to the English Lexicon Project words (Balota
+#'   et al. 2007: 8 letters, 784 ms, 0.84), but RTs vary less across words
+#'   (SD 64 ms against 135 ms). The effects and data are simulated.
+#' @references
+#' Balota, D. A., Yap, M. J., Cortese, M. J., Hutchison, K. A., Kessler, B., Loftis, B., Neely, J. H., Nelson, D. L., Simpson, G. B. & Treiman, R. (2007). The English Lexicon Project. *Behavior Research Methods*, 39(3), 445-459. \doi{10.3758/BF03193014}
 #' @source `data-raw/megastudy.R`
 #' @examples
 #' m1 <- lm(rt ~ log_freq + length + neighbours + aoa + concreteness, data = megastudy)
@@ -1020,9 +1061,10 @@
 #'
 #' Word-initial lenis, tense and aspirated stops from 20 older and 20 younger
 #' speakers of Seoul Korean: VOT and the f0 of the following vowel. Older
-#' speakers keep the three stops apart by VOT; younger speakers have merged
-#' lenis and aspirated VOT and keep them apart by f0. For cluster
-#' analysis and classification, and for a sound change in progress.
+#' speakers keep lenis and aspirated stops apart by VOT as well as by f0.
+#' Younger speakers produce aspirated stops with a shorter VOT, so lenis and
+#' aspirated VOT overlap and f0 alone keeps them apart. For cluster analysis
+#' and classification, and for a sound change in progress.
 #'
 #' @format A tibble with 1440 rows and 8 columns:
 #' \describe{
@@ -1036,14 +1078,16 @@
 #'   \item{f0}{f0 at the start of the following vowel in Hz.}
 #' }
 #' @details True model: mean VOT for tense, lenis and aspirated stops is 12,
-#'   55 and 95 ms for older and 12, 78 and 82 ms for younger speakers, 5 ms
+#'   60 and 94 ms for older and 12, 62 and 70 ms for younger speakers, 5 ms
 #'   shorter for labials and 10 ms longer for velars; token variation is
 #'   log-normal (SD 0.3 for tense, 0.18 otherwise) and by-speaker SD 0.1. f0
-#'   relative to the speaker's mean (about 200 Hz female, 115 Hz male) is
-#'   +1.2, -1.5 and +1.5 semitones for older and +1.2, -3.5 and +2.0
-#'   semitones for younger speakers, token SD 0.8 semitones. The design
-#'   follows reports of the VOT merger in younger Seoul speakers (Silva
-#'   2006); the data are simulated.
+#'   relative to the speaker's mean (about 200 Hz female, 115 Hz male) is +1,
+#'   -3 and +2 semitones for tense, lenis and aspirated stops in both
+#'   generations, token SD 1.5 semitones. The pattern follows Silva (2006):
+#'   mean aspirated VOT fell from 94 ms in speakers born before 1965 to 70 ms
+#'   in those born later, lenis and tense VOT stayed about the same, and the
+#'   low f0 after lenis stops did not change with age. The other values and
+#'   the data are simulated.
 #' @references
 #' Silva, D. J. (2006). Acoustic evidence for the emergence of tonal contrast in contemporary Korean. *Phonology*, 23(2), 287-308. \doi{10.1017/S0952675706000911}
 #' @source `data-raw/korean_stops.R`
@@ -1051,12 +1095,14 @@
 #' aggregate(cbind(vot, f0) ~ generation + stop, data = korean_stops, FUN = mean)
 #' korean_stops$f0_st <- 12 * log2(korean_stops$f0 /
 #'                                    ave(korean_stops$f0, korean_stops$speaker))
-#' for (g in c("older", "younger")) {
-#'   d <- subset(korean_stops, generation == g)
-#'   set.seed(1)
-#'   cl <- kmeans(scale(d[c("vot", "f0_st")]), centers = 3, nstart = 10)
-#'   print(table(d$stop, cl$cluster))
+#' la <- subset(korean_stops, stop != "tense")
+#' la$aspirated <- as.integer(la$stop == "aspirated")
+#' accuracy <- function(cue, d) {
+#'   m <- glm(reformulate(cue, "aspirated"), data = d, family = binomial)
+#'   mean((fitted(m) > 0.5) == d$aspirated)
 #' }
+#' sapply(split(la, la$generation), function(d) c(vot = accuracy("vot", d),
+#'                                                 f0 = accuracy("f0_st", d)))
 "korean_stops"
 
 #' Self-paced reading of German relative clauses
@@ -1131,7 +1177,11 @@
 #'   `e0` is a small electrode offset. By-participant intercepts `p0` (SD 1.5)
 #'   and N400 slopes `p1` (SD 1); by-item intercepts `i0` (SD 0.5); trial
 #'   noise shared across electrodes (SD 4) and electrode noise (SD 3). Cloze
-#'   is 0.5 to 0.95 for expected and 0 to 0.05 for unexpected words.
+#'   is 0.5 to 0.95 for expected and 0 to 0.05 for unexpected words. In
+#'   Kutas and Hillyard (1984), N400 amplitude tracked cloze probability
+#'   closely at central and parietal sites (correlations of 0.90 to 0.92 for
+#'   grand averages) and less at the frontal site (0.80). The sentences,
+#'   participants and amplitudes here are simulated.
 #' @references
 #' Kutas, M. & Hillyard, S. A. (1980). Reading senseless sentences: Brain potentials reflect semantic incongruity. *Science*, 207(4427), 203-205. \doi{10.1126/science.7350657}
 #'
@@ -1150,11 +1200,11 @@
 #' Merging of the Cantonese rising tones
 #'
 #' Hong Kong Cantonese has two rising tones, T2 (high rising, 25) and T5 (low
-#' rising, 23), which some younger speakers merge. 90 speakers aged 18 to 74
-#' each produce 10 T2 and 10 T5 words; the size of the f0 rise is measured in
-#' semitones. For a sound change in apparent time and for individual
-#' differences: mergers form a separate group of speakers, most of them
-#' young.
+#' rising, 23), which some younger speakers merge. 90 speakers, half aged 18
+#' to 25 and half 26 to 74, each produce 10 T2 and 10 T5 words; the size of
+#' the f0 rise is measured in semitones. For a sound change in apparent time
+#' and for individual differences: mergers form a small, separate group of
+#' speakers, most of them young.
 #'
 #' @format A tibble with 1800 rows and 7 columns:
 #' \describe{
@@ -1166,11 +1216,16 @@
 #'   \item{log_freq}{log10 word frequency, 1 to 5; no effect.}
 #'   \item{rise}{f0 rise from onset to offset in semitones.}
 #' }
-#' @details True model: each speaker is a merger with probability `0.65 *
-#'   plogis((40 - age) / 6)`. Non-mergers rise by 7 semitones in T2 and 3.5
-#'   in T5; mergers by 5.6 and 4.8. By-speaker intercepts have SD 0.6 and
-#'   token SD is 0.9. The design follows reports of T2/T5 merging (Mok, Zuo &
-#'   Wong 2013); the data are simulated.
+#' @details True model: each speaker is a merger with probability
+#'   `0.22 * plogis((30 - age) / 4)`, about 0.2 for speakers under 25.
+#'   Non-mergers rise by 7 semitones in T2 and 3.5 in T5; mergers by 5.4 and
+#'   5.0, so they keep a small difference. By-speaker intercepts have SD 0.6
+#'   and token SD is 0.9; word frequency and gender have no effect. Mok, Zuo
+#'   and Wong (2013) judged 28 of 169 students aged 18 to 22 to merge tones.
+#'   Their mergers still kept T2 and T5 slightly apart, and neither word
+#'   frequency nor gender made a difference. Because all their speakers were
+#'   young, the decline of merging with age is a design choice, and the
+#'   values and data are simulated.
 #' @references
 #' Mok, P. P. K., Zuo, D. & Wong, P. W. Y. (2013). Production and perception of a sound change in progress: Tone merging in Hong Kong Cantonese. *Language Variation and Change*, 25(3), 341-370. \doi{10.1017/S0954394513000161}
 #' @source `data-raw/cantonese_tone_merger.R`
@@ -1246,14 +1301,19 @@
 #'   \item{offset}{Time from the end of the question to the start of the
 #'     answer in ms.}
 #' }
-#' @details True model: `offset = language_baseline + c0 + 207 *
-#'   disconfirmation + 132 * non-answer - 69 * gaze + e`, where `c0` is a
-#'   by-conversation offset (SD 60 ms) and `e` is ex-Gaussian (a normal with
-#'   SD 200 ms plus an exponential with mean 150 ms, centred). The three
-#'   effects are the estimates in Stivers et al. (2009, Table 1). Baselines
-#'   are set so that each language's expected mean equals the mean reported
-#'   for it, from 7 ms (Japanese) to 469 ms (Danish). The conversations and
-#'   answers are simulated.
+#' @details True model:
+#'   ```
+#'   offset = baseline + c0 + 207 * disconfirmation + 132 * non_answer
+#'     - 69 * gaze + e
+#'   ```
+#'   `c0` is a by-conversation offset (SD 120 ms) and `e` is ex-Gaussian (a
+#'   normal with SD 200 ms plus an exponential with mean 150 ms, centred).
+#'   The three effects and the size of the conversation variation follow the
+#'   model in Stivers et al. (2009, Table 1). Baselines are set so that each
+#'   language's expected mean equals its reported mean: 7 ms for Japanese
+#'   and 469 ms for Danish (Stivers et al. 2009), and the others from
+#'   Levinson and Torreira (2015, Table 1). The conversations and answers are
+#'   simulated.
 #' @references
 #' Stivers, T., Enfield, N. J., Brown, P., Englert, C., Hayashi, M., Heinemann, T., Hoymann, G., Rossano, F., de Ruiter, J. P., Yoon, K.-E. & Levinson, S. C. (2009). Universals and cultural variation in turn-taking in conversation. *Proceedings of the National Academy of Sciences*, 106(26), 10587-10592. \doi{10.1073/pnas.0903616106}
 #'
@@ -1395,7 +1455,8 @@
 #' with GToBI pitch accents and phrase boundaries: 20 utterances of read and
 #' 20 of spontaneous speech. Coders agree on whether a word is accented for
 #' about 86% of words and on the exact accent label for about 71%, close to
-#' the agreement Grice et al. (1996) report for GToBI. In this simulation,
+#' the agreement Grice et al. (1996) report for GToBI. For English ToBI,
+#' Pitrelli et al. (1994) report 88% and 81%. In this simulation,
 #' accent agreement is lower in spontaneous speech. For percentage agreement
 #' and Cohen's kappa.
 #'
@@ -1446,10 +1507,11 @@
 #' %V and \ifelse{latex}{\out{$\Delta$C}}{ΔC} to sort languages into rhythm classes. Each speaker produced
 #' five samples of five kinds of material: uncontrolled sentences, sentences
 #' built from complex syllables, sentences built from simple syllables, a read
-#' story and spontaneous speech. The design follows Arvaniti (2012). Language
-#' means differ little, and speakers, elicitation method and syllable
-#' complexity move the metrics about as much as language does. \ifelse{latex}{\out{$\Delta$C}}{ΔC} also falls
-#' as speech rate rises. For partitioning variance with mixed models.
+#' story and spontaneous speech. The design follows Arvaniti (2012). The
+#' languages differ, but not in the way rhythm classes predict, and speakers,
+#' elicitation method and syllable complexity move the metrics about as much
+#' as language does. \ifelse{latex}{\out{$\Delta$C}}{ΔC} also falls as speech rate rises. For
+#' partitioning variance with mixed models.
 #'
 #' @format A tibble with 1200 rows and 8 columns:
 #' \describe{
@@ -1469,18 +1531,24 @@
 #' }
 #' @details True model: each metric is the sum of a language mean, a
 #'   material effect, a language-by-material deviation, a speaker effect and
-#'   noise. Language means for %V, \ifelse{latex}{\out{$\Delta$C}}{ΔC} and VarcoV are 43.5, 49, 56 (English),
-#'   42.5, 51, 57 (German), 46, 46, 52 (Greek), 45, 47, 54 (Italian), 45, 50,
-#'   55 (Korean) and 44, 48, 55 (Spanish). Material effects, relative to the
+#'   noise. Language means for %V, \ifelse{latex}{\out{$\Delta$C}}{ΔC} and VarcoV are 43, 51, 55
+#'   (English), 41.5, 51, 52 (German), 44.5, 46, 56 (Greek), 46, 46.5, 55
+#'   (Italian), 46, 49, 57.5 (Korean) and 46, 48.5, 54 (Spanish). They follow
+#'   the order of the language differences Arvaniti (2012) found: for %V,
+#'   German < English < Greek < Italian, Korean and Spanish; for \ifelse{latex}{\out{$\Delta$C}}{ΔC},
+#'   English and German > Korean and Spanish > Greek and Italian; for VarcoV,
+#'   German lowest and Korean highest. Material effects, relative to the
 #'   uncontrolled sentences, are -3, +7, +3 (complex-syllable sentences), +3,
 #'   -6, -4 (simple-syllable sentences), -1, +2, +2 (story) and -1.5, +6, +7
 #'   (spontaneous). Language-by-material deviations have SD 1, 3 and 3,
 #'   speaker effects SD 2, 4 and 4, and residuals SD 2, 5 and 6. \ifelse{latex}{\out{$\Delta$C}}{ΔC} falls by
-#'   6 ms per syllable per second. All values were chosen for the
-#'   simulation to reproduce the pattern Arvaniti (2012) reports; they are
-#'   not her measurements.
+#'   6 ms per syllable per second, a rate effect described by Dellwo (2006).
+#'   All values were chosen for the simulation to reproduce these patterns;
+#'   they are not measurements from either study.
 #' @references
 #' Arvaniti, A. (2012). The usefulness of metrics in the quantification of speech rhythm. *Journal of Phonetics*, 40(3), 351-373. \doi{10.1016/j.wocn.2012.02.003}
+#'
+#' Dellwo, V. (2006). Rhythm and speech rate: A variation coefficient for deltaC. In P. Karnowski & I. Szigeti (eds.), *Language and Language-Processing: Proceedings of the 38th Linguistics Colloquium, Piliscsaba 2003* (pp. 231-241). Frankfurt am Main: Peter Lang.
 #'
 #' Rathcke, T. & Smith, R. (2015). Speech timing and linguistic rhythm: On the acoustic bases of rhythm typologies. *Journal of the Acoustical Society of America*, 137(5), 2834-2845. \doi{10.1121/1.4919322}
 #'
@@ -1514,23 +1582,25 @@
 #'   \item{participant}{Participant ID, `P01` to `P50`.}
 #'   \item{item}{Item ID, `i01` to `i84`.}
 #'   \item{stem_type}{Vowels of the stem: `"B"` (back), `"F"` (front
-#'     rounded), `"N"` (neutral only), `"Bi"`, `"Bé"`, `"Be"` (back vowel
+#'     rounded), `"N"` (one neutral vowel), `"Bi"`, `"Bé"`, `"Be"` (back vowel
 #'     plus one neutral vowel) or `"BNN"` (back vowel plus two neutral
-#'     vowels).}
+#'     vowels, the last one *e*).}
 #'   \item{n_neutral}{Number of neutral vowels after the last back vowel.}
 #'   \item{last_vowel}{Last vowel of the stem: `"back"`, `"front rounded"`,
 #'     `"high"`, `"mid"` or `"low"`.}
 #'   \item{suffix}{`"back"` or `"front"`.}
 #' }
-#' @details True model: the probability of a back suffix is 0.97 (B), 0.03
-#'   (F), 0.08 (N), 0.90 (Bi), 0.60 (Bé), 0.35 (Be) and 0.20 (BNN), shifted
+#' @details True model: the probability of a back suffix is 0.99 (B), 0.01
+#'   (F), 0.06 (N), 0.95 (Bi), 0.38 (Bé), 0.07 (Be) and 0.02 (BNN), shifted
 #'   on the logit scale by participant (SD 0.5) and item (SD 0.4) effects.
+#'   These are the rounded proportions of back responses in the wug test of
+#'   Hayes and Londe (2006, Table III); BNN uses their stems ending in *e*.
 #'   Items are identified by their stem type; the nonce word forms are left
-#'   out.
+#'   out. Participants, items and responses are simulated.
 #' @references
-#' Hayes, B. & Londe, Z. C. (2006). Stochastic phonological knowledge: The case of Hungarian vowel harmony. *Phonology*, 23, 59-104. \doi{10.1017/S0952675706000765}
+#' Hayes, B. & Londe, Z. C. (2006). Stochastic phonological knowledge: The case of Hungarian vowel harmony. *Phonology*, 23(1), 59-104. \doi{10.1017/S0952675706000765}
 #'
-#' Hayes, B., Zuraw, K., Siptár, P. & Londe, Z. (2009). Natural and unnatural constraints in Hungarian vowel harmony. *Language*, 85, 822-863. \doi{10.1353/lan.0.0169}
+#' Hayes, B., Siptár, P., Zuraw, K. & Londe, Z. (2009). Natural and unnatural constraints in Hungarian vowel harmony. *Language*, 85(4), 822-863. \doi{10.1353/lan.0.0169}
 #' @source `data-raw/hungarian_harmony.R`
 #' @examples
 #' round(prop.table(table(hungarian_harmony$stem_type, hungarian_harmony$suffix), 1), 2)
@@ -1889,15 +1959,16 @@
 #' }
 #' @details True model: each listener hears two sentences in each
 #'   condition, assigned in a Latin square. `transformed` is Bernoulli with
-#'   logit `-0.2 + 1.04 * pitch + 0.78 * duration` plus listener (SD 1) and
+#'   logit `-0.9 + 1.04 * pitch + 0.78 * duration` plus listener (SD 1) and
 #'   sentence (SD 0.5) effects. `cycle` and both ratings come from ordered
 #'   probit models. For `cycle` the latent value is `0.61 * bat` plus a
 #'   listener effect (SD 0.6). For `rating_after` it is `0.2 + 1.2 * pitch +
 #'   0.91 * duration + 0.44 * mpt + 0.8 * transformed` plus listener (SD 0.7)
 #'   and sentence effects. The two aptitude scores correlate at about 0.5.
 #'   The design and the effects of the manipulations and of aptitude follow
-#'   Rathcke and Smit (2025). The intercepts, the effect of `transformed` on
-#'   the final rating and all data are simulated.
+#'   Rathcke and Smit (2025); in their data the manipulated stimuli
+#'   transformed about half of the time. The other intercepts, the effect of
+#'   `transformed` on the final rating and all data are simulated.
 #' @references
 #' Rathcke, T. & Smit, E. A. (2025). Musical aptitude moderates ease and vividness but not frequency of the speech-to-song illusion. *Scientific Reports*, 15, 33315. \doi{10.1038/s41598-025-18612-8}
 #'

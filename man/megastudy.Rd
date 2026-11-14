@@ -9,7 +9,7 @@ A tibble with 6000 rows and 8 columns:
 \describe{
 \item{word}{Word ID, \code{w0001} to \code{w6000}.}
 \item{log_freq}{log10 frequency per million words.}
-\item{length}{Length in letters, 2 to 16.}
+\item{length}{Length in letters, 2 to 15.}
 \item{neighbours}{Number of orthographic neighbours.}
 \item{aoa}{Age of acquisition in years.}
 \item{concreteness}{Concreteness rating, 1 to 5.}
@@ -32,7 +32,7 @@ importance.
 \details{
 True model:
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{rt = 720 - 120 * plogis(log_freq - 2.5) + 9 * (length - 7)
+\if{html}{\out{<div class="sourceCode">}}\preformatted{rt = 825 - 120 * plogis(log_freq - 2.5) + 9 * (length - 7)
   - 2 * neighbours + 10 * (aoa - 7) - 6 * (concreteness - 3) + e
 accuracy = plogis(2.5 + 0.7 * (log_freq - 2.5) - 0.2 * (aoa - 7) + e)
 }\if{html}{\out{</div>}}
@@ -41,7 +41,10 @@ The error \code{e} is normal with SD 35 ms for RT and SD 0.5 for accuracy.
 The frequency effect is S-shaped: it levels off for very rare and very
 frequent words.
 Frequent words are shorter, have more neighbours and are acquired
-earlier.
+earlier. Mean length (8 letters), mean RT (about 785 ms) and mean
+accuracy (0.86) are close to the English Lexicon Project words (Balota
+et al. 2007: 8 letters, 784 ms, 0.84), but RTs vary less across words
+(SD 64 ms against 135 ms). The effects and data are simulated.
 }
 \examples{
 m1 <- lm(rt ~ log_freq + length + neighbours + aoa + concreteness, data = megastudy)
@@ -50,5 +53,8 @@ m2 <- lm(rt ~ splines::ns(log_freq, 4) + length + neighbours + aoa + concretenes
 anova(m1, m2)
 coef(m2)[c("length", "neighbours", "aoa", "concreteness")]
 round(cor(megastudy[c("log_freq", "length", "neighbours", "aoa")]), 2)
+}
+\references{
+Balota, D. A., Yap, M. J., Cortese, M. J., Hutchison, K. A., Kessler, B., Loftis, B., Neely, J. H., Nelson, D. L., Simpson, G. B. & Treiman, R. (2007). The English Lexicon Project. \emph{Behavior Research Methods}, 39(3), 445-459. \doi{10.3758/BF03193014}
 }
 \keyword{datasets}

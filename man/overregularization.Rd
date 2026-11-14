@@ -26,13 +26,19 @@ The simulation follows the account of Marcus et al. (1992): errors are
 rare, their rate does not change with age, and children differ in how
 often they make them. Maratsos (2000) disputed the low rates, arguing that
 averages over all verbs hide much higher rates for verbs a child uses
-rarely. These data have no verb-level information. For binomial models of
+rarely and periods in which a child overregularizes often. These data have
+no verb-level information. For binomial models of
 errors out of attempts and for testing an effect that is absent.
 }
 \details{
-True model, in log-odds: \code{-3.2}, with by-child intercepts of SD
-0.5, so about 4\% of attempts are errors. Age has no effect. Children
-attempt more irregular past tenses as they get older.
+True model, in log-odds: \code{-3.66}, with by-child intercepts of SD
+0.9, so the median child makes errors in 2.5\% of attempts and a few
+children in many more. Age has no effect. Children attempt more
+irregular past tenses as they get older. Marcus et al. (1992) report a
+median rate of 2.5\% and a mean of 4.2\% across 25 children, with a
+roughly constant rate from age 2 into the school years. Maratsos (2000)
+showed that pooling all tokens gives most weight to frequent verbs,
+whose rates are lowest. The children and counts are simulated.
 }
 \examples{
 sum(overregularization$errors) / sum(overregularization$attempts)

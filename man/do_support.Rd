@@ -23,21 +23,25 @@ do_support
 }
 \description{
 Use of \emph{do} (\emph{Did he go?}, \emph{He did not go}) in 300 texts dated 1400 to
-1700, in four sentence types: the number of clauses with \emph{do} out of all
-eligible clauses. In three contexts the change follows S-curves with the
-same slope and different starting points (the Constant Rate Effect).
-Affirmative declaratives barely take part.
+1575, in four sentence types: the number of clauses with \emph{do} out of all
+eligible clauses. In negative declaratives, negative questions and
+affirmative questions the change follows S-curves with the same slope and
+different starting points (the Constant Rate Effect). \emph{Do} stays rare in
+affirmative declaratives, which rise more slowly.
 }
 \details{
-True model, in log-odds: \code{baseline + 0.035 * (year - 1550)}
-(3.5 per century in every context), with baselines 1.0 (affirmative
-questions), 1.6 (negative questions), -0.6 (negative declaratives) and
--7.5 (affirmative declaratives), and by-text intercepts (SD 0.4). In the
-historical data, \emph{do} in affirmative declaratives later declined again;
-the simulation leaves this out.
+True model, in log-odds: \code{intercept + slope * (year - 1350) / 100}, plus by-text intercepts (SD 0.4). The slope is 3.7 per century in
+the three rising contexts and 2.82 in affirmative declaratives. The
+intercepts at 1350 are -8.33 (negative declaratives), -5.57 (negative
+questions), -6.58 (affirmative questions) and -8.32 (affirmative
+declaratives). These are Kroch's (1989, Tables 4 and 9) estimates from
+Ellegård's counts for 1400 to 1575; the affirmative questions are his
+transitive adverbial and yes/no questions. After 1575 the contexts
+diverge and \emph{do} in affirmative declaratives declines, so the
+simulation stops at 1575. Texts and counts are simulated.
 }
 \examples{
-do_support$century <- (do_support$year - 1550) / 100
+do_support$century <- (do_support$year - 1350) / 100
 m <- glm(cbind(do, eligible - do) ~ 0 + context + context:century, data = do_support,
          family = binomial)
 round(coef(m), 2)

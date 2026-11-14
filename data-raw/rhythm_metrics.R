@@ -1,4 +1,5 @@
 # Arvaniti (2012), Journal of Phonetics 40(3), 351-373;
+# Dellwo (2006), Language and Language-Processing, 231-241;
 # Rathcke & Smith (2015), Journal of the Acoustical Society of America 137(5), 2834-2845;
 # Ramus, Nespor & Mehler (1999), Cognition 73(3), 265-292;
 # White & Mattys (2007), Journal of Phonetics 35(4), 501-522.
@@ -9,12 +10,12 @@ library(tibble)
 set.seed(5004)
 languages <- tribble(
   ~language, ~code, ~l_v, ~l_c, ~l_varco,
-  "English", "eng", 43.5, 49, 56,
-  "German", "deu", 42.5, 51, 57,
-  "Greek", "ell", 46, 46, 52,
-  "Italian", "ita", 45, 47, 54,
-  "Korean", "kor", 45, 50, 55,
-  "Spanish", "spa", 44, 48, 55
+  "English", "eng", 43, 51, 55,
+  "German", "deu", 41.5, 51, 52,
+  "Greek", "ell", 44.5, 46, 56,
+  "Italian", "ita", 46, 46.5, 55,
+  "Korean", "kor", 46, 49, 57.5,
+  "Spanish", "spa", 46, 48.5, 54
 )
 
 materials <- tribble(

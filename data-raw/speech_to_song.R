@@ -30,7 +30,7 @@ speech_to_song <- design |>
          dur = manipulation == "duration",
          rating_before = probit_cut(-0.8 + 0.3 * l_rat + s0 + rnorm(n()),
                                     c(-1.2, -0.5, 0, 0.5, 1, 1.5, 2.1)),
-         transformed = rbinom(n(), 1, plogis(-0.2 + 1.04 * pitch + 0.78 * dur + l_tr + s0)),
+         transformed = rbinom(n(), 1, plogis(-0.9 + 1.04 * pitch + 0.78 * dur + l_tr + s0)),
          cycle = if_else(transformed == 1L,
                          probit_cut(0.61 * bat + l_cyc + rnorm(n()),
                                     c(-1.4, -0.4, 0.4, 1, 1.5, 1.9, 2.3)),

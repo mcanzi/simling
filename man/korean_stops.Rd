@@ -26,31 +26,36 @@ korean_stops
 \description{
 Word-initial lenis, tense and aspirated stops from 20 older and 20 younger
 speakers of Seoul Korean: VOT and the f0 of the following vowel. Older
-speakers keep the three stops apart by VOT; younger speakers have merged
-lenis and aspirated VOT and keep them apart by f0. For cluster
-analysis and classification, and for a sound change in progress.
+speakers keep lenis and aspirated stops apart by VOT as well as by f0.
+Younger speakers produce aspirated stops with a shorter VOT, so lenis and
+aspirated VOT overlap and f0 alone keeps them apart. For cluster analysis
+and classification, and for a sound change in progress.
 }
 \details{
 True model: mean VOT for tense, lenis and aspirated stops is 12,
-55 and 95 ms for older and 12, 78 and 82 ms for younger speakers, 5 ms
+60 and 94 ms for older and 12, 62 and 70 ms for younger speakers, 5 ms
 shorter for labials and 10 ms longer for velars; token variation is
 log-normal (SD 0.3 for tense, 0.18 otherwise) and by-speaker SD 0.1. f0
-relative to the speaker's mean (about 200 Hz female, 115 Hz male) is
-+1.2, -1.5 and +1.5 semitones for older and +1.2, -3.5 and +2.0
-semitones for younger speakers, token SD 0.8 semitones. The design
-follows reports of the VOT merger in younger Seoul speakers (Silva
-2006); the data are simulated.
+relative to the speaker's mean (about 200 Hz female, 115 Hz male) is +1,
+-3 and +2 semitones for tense, lenis and aspirated stops in both
+generations, token SD 1.5 semitones. The pattern follows Silva (2006):
+mean aspirated VOT fell from 94 ms in speakers born before 1965 to 70 ms
+in those born later, lenis and tense VOT stayed about the same, and the
+low f0 after lenis stops did not change with age. The other values and
+the data are simulated.
 }
 \examples{
 aggregate(cbind(vot, f0) ~ generation + stop, data = korean_stops, FUN = mean)
 korean_stops$f0_st <- 12 * log2(korean_stops$f0 /
                                    ave(korean_stops$f0, korean_stops$speaker))
-for (g in c("older", "younger")) {
-  d <- subset(korean_stops, generation == g)
-  set.seed(1)
-  cl <- kmeans(scale(d[c("vot", "f0_st")]), centers = 3, nstart = 10)
-  print(table(d$stop, cl$cluster))
+la <- subset(korean_stops, stop != "tense")
+la$aspirated <- as.integer(la$stop == "aspirated")
+accuracy <- function(cue, d) {
+  m <- glm(reformulate(cue, "aspirated"), data = d, family = binomial)
+  mean((fitted(m) > 0.5) == d$aspirated)
 }
+sapply(split(la, la$generation), function(d) c(vot = accuracy("vot", d),
+                                                f0 = accuracy("f0_st", d)))
 }
 \references{
 Silva, D. J. (2006). Acoustic evidence for the emergence of tonal contrast in contemporary Korean. \emph{Phonology}, 23(2), 287-308. \doi{10.1017/S0952675706000911}

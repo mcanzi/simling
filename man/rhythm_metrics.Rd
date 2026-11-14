@@ -34,24 +34,29 @@ German, Greek, Italian, Korean and Spanish. Ramus et al. (1999) proposed
 \%V and \ifelse{latex}{\out{$\Delta$C}}{ΔC} to sort languages into rhythm classes. Each speaker produced
 five samples of five kinds of material: uncontrolled sentences, sentences
 built from complex syllables, sentences built from simple syllables, a read
-story and spontaneous speech. The design follows Arvaniti (2012). Language
-means differ little, and speakers, elicitation method and syllable
-complexity move the metrics about as much as language does. \ifelse{latex}{\out{$\Delta$C}}{ΔC} also falls
-as speech rate rises. For partitioning variance with mixed models.
+story and spontaneous speech. The design follows Arvaniti (2012). The
+languages differ, but not in the way rhythm classes predict, and speakers,
+elicitation method and syllable complexity move the metrics about as much
+as language does. \ifelse{latex}{\out{$\Delta$C}}{ΔC} also falls as speech rate rises. For
+partitioning variance with mixed models.
 }
 \details{
 True model: each metric is the sum of a language mean, a
 material effect, a language-by-material deviation, a speaker effect and
-noise. Language means for \%V, \ifelse{latex}{\out{$\Delta$C}}{ΔC} and VarcoV are 43.5, 49, 56 (English),
-42.5, 51, 57 (German), 46, 46, 52 (Greek), 45, 47, 54 (Italian), 45, 50,
-55 (Korean) and 44, 48, 55 (Spanish). Material effects, relative to the
+noise. Language means for \%V, \ifelse{latex}{\out{$\Delta$C}}{ΔC} and VarcoV are 43, 51, 55
+(English), 41.5, 51, 52 (German), 44.5, 46, 56 (Greek), 46, 46.5, 55
+(Italian), 46, 49, 57.5 (Korean) and 46, 48.5, 54 (Spanish). They follow
+the order of the language differences Arvaniti (2012) found: for \%V,
+German < English < Greek < Italian, Korean and Spanish; for \ifelse{latex}{\out{$\Delta$C}}{ΔC},
+English and German > Korean and Spanish > Greek and Italian; for VarcoV,
+German lowest and Korean highest. Material effects, relative to the
 uncontrolled sentences, are -3, +7, +3 (complex-syllable sentences), +3,
 -6, -4 (simple-syllable sentences), -1, +2, +2 (story) and -1.5, +6, +7
 (spontaneous). Language-by-material deviations have SD 1, 3 and 3,
 speaker effects SD 2, 4 and 4, and residuals SD 2, 5 and 6. \ifelse{latex}{\out{$\Delta$C}}{ΔC} falls by
-6 ms per syllable per second. All values were chosen for the
-simulation to reproduce the pattern Arvaniti (2012) reports; they are
-not her measurements.
+6 ms per syllable per second, a rate effect described by Dellwo (2006).
+All values were chosen for the simulation to reproduce these patterns;
+they are not measurements from either study.
 }
 \examples{
 round(tapply(rhythm_metrics$percent_v, rhythm_metrics[c("material", "language")], mean),
@@ -66,6 +71,8 @@ if (requireNamespace("lme4", quietly = TRUE)) {
 }
 \references{
 Arvaniti, A. (2012). The usefulness of metrics in the quantification of speech rhythm. \emph{Journal of Phonetics}, 40(3), 351-373. \doi{10.1016/j.wocn.2012.02.003}
+
+Dellwo, V. (2006). Rhythm and speech rate: A variation coefficient for deltaC. In P. Karnowski & I. Szigeti (eds.), \emph{Language and Language-Processing: Proceedings of the 38th Linguistics Colloquium, Piliscsaba 2003} (pp. 231-241). Frankfurt am Main: Peter Lang.
 
 Rathcke, T. & Smith, R. (2015). Speech timing and linguistic rhythm: On the acoustic bases of rhythm typologies. \emph{Journal of the Acoustical Society of America}, 137(5), 2834-2845. \doi{10.1121/1.4919322}
 

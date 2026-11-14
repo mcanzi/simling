@@ -38,7 +38,11 @@ at other parietal and central sites and 0.5 to 0.6 at frontal sites;
 \code{e0} is a small electrode offset. By-participant intercepts \code{p0} (SD 1.5)
 and N400 slopes \code{p1} (SD 1); by-item intercepts \code{i0} (SD 0.5); trial
 noise shared across electrodes (SD 4) and electrode noise (SD 3). Cloze
-is 0.5 to 0.95 for expected and 0 to 0.05 for unexpected words.
+is 0.5 to 0.95 for expected and 0 to 0.05 for unexpected words. In
+Kutas and Hillyard (1984), N400 amplitude tracked cloze probability
+closely at central and parietal sites (correlations of 0.90 to 0.92 for
+grand averages) and less at the frontal site (0.80). The sentences,
+participants and amplitudes here are simulated.
 }
 \examples{
 pz <- subset(n400, electrode == "Pz")

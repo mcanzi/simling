@@ -9,7 +9,7 @@ contexts <- c("all", "some", "none")
 
 participants <- tibble(participant = sprintf("P%02d", 1:n_part),
                        list = rep(1:3, length.out = n_part),
-                       pragmatic = rbeta(n_part, 0.5, 0.5),
+                       pragmatic = rbeta(n_part, 1.1, 0.7),
                        p_rt = rnorm(n_part, 0, 0.15))
 items <- tibble(item = sprintf("i%02d", 1:n_item),
                 i_rt = rnorm(n_item, 0, 0.05))
@@ -22,7 +22,6 @@ scalar_implicature <- crossing(participants, items) |>
          response = if_else(rbinom(n(), 1, p_false) == 1, "false", "true"),
          rt = round(exp(7.25 + p_rt + i_rt +
                           0.22 * (context == "all" & response == "false") +
-                          0.08 * (context == "all" & response == "true") +
                           rnorm(n(), 0, 0.25)))) |>
   select(participant, list, item, context, response, rt)
 

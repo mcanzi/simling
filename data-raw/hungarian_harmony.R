@@ -1,5 +1,5 @@
-# Hayes & Londe (2006), Phonology 23, 59-104;
-# Hayes, Zuraw, Siptár & Londe (2009), Language 85, 822-863.
+# Hayes & Londe (2006), Phonology 23(1), 59-104, Table III;
+# Hayes, Siptár, Zuraw & Londe (2009), Language 85(4), 822-863.
 library(dplyr)
 library(tidyr)
 library(tibble)
@@ -7,13 +7,13 @@ library(tibble)
 set.seed(5004)
 stem_types <- tribble(
   ~stem_type, ~n_neutral, ~last_vowel, ~p_back,
-  "B", 0, "back", 0.97,
-  "F", 0, "front rounded", 0.03,
-  "N", 2, "high", 0.08,
-  "Bi", 1, "high", 0.90,
-  "Bé", 1, "mid", 0.60,
-  "Be", 1, "low", 0.35,
-  "BNN", 2, "low", 0.20
+  "B", 0, "back", 0.99,
+  "F", 0, "front rounded", 0.01,
+  "N", 1, "high", 0.06,
+  "Bi", 1, "high", 0.95,
+  "Bé", 1, "mid", 0.38,
+  "Be", 1, "low", 0.07,
+  "BNN", 2, "low", 0.02
 )
 
 items <- stem_types |>

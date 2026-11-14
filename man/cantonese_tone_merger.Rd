@@ -24,17 +24,23 @@ cantonese_tone_merger
 }
 \description{
 Hong Kong Cantonese has two rising tones, T2 (high rising, 25) and T5 (low
-rising, 23), which some younger speakers merge. 90 speakers aged 18 to 74
-each produce 10 T2 and 10 T5 words; the size of the f0 rise is measured in
-semitones. For a sound change in apparent time and for individual
-differences: mergers form a separate group of speakers, most of them
-young.
+rising, 23), which some younger speakers merge. 90 speakers, half aged 18
+to 25 and half 26 to 74, each produce 10 T2 and 10 T5 words; the size of
+the f0 rise is measured in semitones. For a sound change in apparent time
+and for individual differences: mergers form a small, separate group of
+speakers, most of them young.
 }
 \details{
-True model: each speaker is a merger with probability \code{0.65 * plogis((40 - age) / 6)}. Non-mergers rise by 7 semitones in T2 and 3.5
-in T5; mergers by 5.6 and 4.8. By-speaker intercepts have SD 0.6 and
-token SD is 0.9. The design follows reports of T2/T5 merging (Mok, Zuo &
-Wong 2013); the data are simulated.
+True model: each speaker is a merger with probability
+\code{0.22 * plogis((30 - age) / 4)}, about 0.2 for speakers under 25.
+Non-mergers rise by 7 semitones in T2 and 3.5 in T5; mergers by 5.4 and
+5.0, so they keep a small difference. By-speaker intercepts have SD 0.6
+and token SD is 0.9; word frequency and gender have no effect. Mok, Zuo
+and Wong (2013) judged 28 of 169 students aged 18 to 22 to merge tones.
+Their mergers still kept T2 and T5 slightly apart, and neither word
+frequency nor gender made a difference. Because all their speakers were
+young, the decline of merging with age is a design choice, and the
+values and data are simulated.
 }
 \examples{
 rise <- tapply(cantonese_tone_merger$rise,

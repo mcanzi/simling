@@ -14,7 +14,7 @@ languages <- tibble(language = c("Japanese", "Tzeltal", "Y\u00e9l\u00ee Dnye", "
 conversations <- languages |>
   crossing(conv = 1:12) |>
   mutate(conversation = paste(code, sprintf("%02d", conv), sep = "_"),
-         c0 = rnorm(n(), 0, 60))
+         c0 = rnorm(n(), 0, 120))
 
 turn_taking <- conversations |>
   uncount(25) |>

@@ -24,7 +24,8 @@ Productive vocabulary on a 680-word parental checklist, every two months
 from 16 to 30 months, for 80 children. Each child's vocabulary follows an
 S-shaped (logistic) curve, and children who hear more speech reach its
 steep middle part earlier. Whether real vocabulary growth has a distinct
-spurt is debated. Ganger and Brent (2004) found that a logistic curve fitted
+spurt is debated. Ganger and Brent (2004) modelled the rate of word
+learning and found that a logistic curve, which implies a spurt, fitted
 better than a quadratic one for only 5 of 38 children. About 10\% of
 sessions are missing.
 }
