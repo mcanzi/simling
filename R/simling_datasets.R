@@ -123,7 +123,7 @@ simling_meta <- function() {
     "categorical", "Random forests, cross-validation",
     "overregularization", "Language acquisition", "English", 144L, 4L,
     "errors out of attempts", "Binomial regression, null effects",
-    "vocabulary_growth", "Language acquisition", "English", 572L, 4L,
+    "vocabulary_growth", "Language acquisition", "English", 573L, 4L,
     "counts out of 680", "Growth curves, longitudinal data",
     "first_words", "Language acquisition", "European Portuguese", 2400L, 6L,
     "age at first word, censored", "Survival analysis",

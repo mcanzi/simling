@@ -11,7 +11,7 @@ children <- tibble(child = sprintf("C%02d", 1:80),
 
 vocabulary_growth <- crossing(children, age = seq(16, 30, by = 2)) |>
   mutate(mid = 25.2 - 2 * log2(input / 1200) + c_mid,
-         p = plogis((age - mid) / 2.8 + rnorm(n(), 0, 0.15)),
+         p = plogis((age - mid) / 3.2 + rnorm(n(), 0, 0.15)),
          vocabulary = rbinom(n(), 680, p)) |>
   filter(runif(n()) > 0.1) |>
   select(child, input, age, vocabulary)

@@ -103,7 +103,7 @@ Every categorical column is a factor. Its first level is the reference level: th
 | Second language | `perception_training` | – | 18 | correct out of 40 | Paired designs, wide data |
 |  | `accent` | English (L1 and L2) | 1,200 | categorical | Random forests, cross-validation |
 | Language acquisition | `overregularization` | English | 144 | errors out of attempts | Binomial regression, null effects |
-|  | `vocabulary_growth` | English | 572 | counts out of 680 | Growth curves, longitudinal data |
+|  | `vocabulary_growth` | English | 573 | counts out of 680 | Growth curves, longitudinal data |
 |  | `first_words` | European Portuguese | 2,400 | age at first word, censored | Survival analysis |
 | Clinical linguistics | `aphasia_naming` | English | 5,760 | binary | Pre-post designs, generalisation |
 | Sign language | `dgs_iconicity` | German Sign Language | 18,000 | 7-point ratings | Crossed random effects, group differences |
