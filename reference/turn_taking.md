@@ -25,8 +25,8 @@ A tibble with 3000 rows and 6 columns:
 
 - conversation:
 
-  Conversation ID: the first three letters of the language and a number,
-  e.g. `Dan_01`; 12 per language.
+  Conversation ID: a three-letter code for the language and a number,
+  from `akh_01` to `yel_12`; 12 per language.
 
 - response:
 

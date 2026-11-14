@@ -62,8 +62,18 @@ True model: switches are negative binomial (size 6) with mean
 or 1.1 (migration), by 0.25 with a monolingual interlocutor, and by a
 speaker effect (SD 0.35 on the log scale). Intrasentential switches are
 binomial with probability 0.25, 0.6 and 0.4 for the three generations.
+These generation differences are a design choice. They resemble the
+pattern Backus (1996) describes for Turkish immigrants in the
+Netherlands, where the intermediate generation switched most often, but
+how much and in what way each generation switches differs between
+communities.
 
 ## References
+
+Backus, A. (1996). Het intergenerationele codewisseling-continuum binnen
+de Turkse gemeenschap in Nederland. *Toegepaste Taalwetenschap in
+Artikelen*, 54, 25-37.
+[doi:10.1075/ttwia.54.03bac](https://doi.org/10.1075/ttwia.54.03bac)
 
 Poplack, S. (1980). Sometimes I'll start a sentence in Spanish y termino
 en español: Toward a typology of code-switching. *Linguistics*, 18(7-8),
