@@ -33,7 +33,7 @@ True model: a gamma-shaped response peaking at 180 units after
 shrinks by 4 units per trial (habituation). By-participant variation in
 peak (SD 40), latency (SD 150 ms) and noise effect (SD 30); by-trial
 variation in peak (SD 40) and baseline (SD 15); residuals are AR(1) with
-rho 0.8 and SD 12.
+rho 0.8 and innovation SD 12, so their SD is 20 (12 / sqrt(1 - 0.8^2)).
 }
 \examples{
 curve <- aggregate(pupil ~ condition + time, data = pupil_noise, FUN = mean)

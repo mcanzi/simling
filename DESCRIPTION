@@ -1,6 +1,6 @@
 Package: simling
 Title: Simulated Linguistic Data for Teaching and Learning Statistics
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R:
     person("Massimiliano", "Canzi", role = c("aut", "cre", "cph"),
            email = "massimiliano.canzi@uni-konstanz.de",
