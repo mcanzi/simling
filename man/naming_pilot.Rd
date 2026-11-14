@@ -28,7 +28,13 @@ Naming is slower for pictures with less frequent names, more so for older
 adults. Meant as the pilot data from which to simulate a larger study.
 }
 \details{
-True model: \code{log(latency) = 6.75 + 0.15 * group + p0 + w0 + (-0.04 - 0.02 * group + p1) * freq_c + e}. By-participant intercepts \code{p0}
+True model:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{log(latency) = 6.75 + 0.15 * group + p0 + w0
+  + (-0.04 - 0.02 * group + p1) * freq_c + e
+}\if{html}{\out{</div>}}
+
+By-participant intercepts \code{p0}
 have SD 0.08 and slopes \code{p1} SD 0.015; by-picture intercepts \code{w0} have
 SD 0.04; residual SD 0.1.
 }

@@ -32,8 +32,15 @@ participant. 60 participants, 24 items, three counterbalanced lists.
 \details{
 True model: in the all-context, each participant answers "false"
 with their own probability, drawn from Beta(0.5, 0.5) (mostly near 0 or
-1). Controls are answered correctly 96\% of the time. \verb{log(rt) = 7.25 + 0.22 * pragmatic "false" + 0.08 * logical "true"} (both in the
-all-context only), with by-participant (SD 0.15) and by-item (SD 0.05)
+1). Controls are answered correctly 96\% of the time. Reaction times
+follow
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{log(rt) = 7.25 + 0.22 * pragmatic_false + 0.08 * logical_true
+}\if{html}{\out{</div>}}
+
+where \code{pragmatic_false} marks a "false" response by a pragmatic
+responder and \code{logical_true} a "true" response by a logical responder,
+both in the all-context only, with by-participant (SD 0.15) and by-item (SD 0.05)
 intercepts and residual SD 0.25.
 }
 \examples{

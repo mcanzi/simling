@@ -35,7 +35,7 @@ outcome.
 }
 \details{
 True model: each gender-by-ending cell has its own probabilities
-for the five endings (see \code{data-raw/german_plurals.R}), perturbed on the
+for the five endings (see the data script), perturbed on the
 log scale by a by-participant preference for \emph{-s} (SD 0.6) and by
 response-level noise (SD 0.3).
 }

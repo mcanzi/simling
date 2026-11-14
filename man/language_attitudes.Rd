@@ -50,6 +50,7 @@ la$cold <- 6 - la$cold
 items <- na.omit(la[, 4:15])
 fa <- factanal(items, factors = 3, rotation = "promax")
 print(fa$loadings, cutoff = 0.3)
-aggregate(cbind(intelligent, friendly, will_survive) ~ dialect_speaker, data = la, FUN = mean)
+aggregate(cbind(intelligent, friendly, will_survive) ~ dialect_speaker, data = la,
+          FUN = mean)
 }
 \keyword{datasets}

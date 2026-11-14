@@ -30,7 +30,12 @@ at about 44.1° N. Older speakers degeminate more. Each speaker reads 10
 words with a geminate.
 }
 \details{
-True model, in log-odds: \code{-1.5 + 6 * (lat - 44.1) + t0 + 0.03 * (age - 50)}, with by-town intercepts \code{t0} (SD 0.6). Town names and
+True model:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{logit(degemination) = -1.5 + 6 * (lat - 44.1) + t0 + 0.03 * (age - 50)
+}\if{html}{\out{</div>}}
+
+with by-town intercepts \code{t0} (SD 0.6). Town names and
 coordinates are the Italian towns of over 50,000 inhabitants in
 \code{maps::world.cities} (without Sardinia); the dialect data are
 simulated.

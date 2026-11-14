@@ -13,9 +13,12 @@ A tibble with 13824 rows and 8 columns:
 \item{condition}{\code{"subject"} or \code{"object"}
 relative clause.}
 \item{position}{Word position in the sentence, 1 to 12.}
-\item{region}{Role of the word: \code{"det"}, \code{"noun"}, \code{"rel_pronoun"},
-\code{"rc_det"}, \code{"rc_noun"}, \code{"rc_participle"}, \code{"rc_auxiliary"},
-\code{"main_verb"}, \code{"spillover_1"} to \code{"spillover_3"}, \code{"final"}.}
+\item{region}{Role of the word in the sentence, with levels in
+sentence order: determiner (\code{"det"}) and noun of the main clause,
+relative pronoun, then determiner, noun, participle and auxiliary of
+the relative clause (\code{"rc_det"} to \code{"rc_auxiliary"}), main verb, three
+spillover words and the final word. \code{levels(german_relatives$region)}
+gives the codes.}
 \item{length}{Word length in letters.}
 \item{rt}{Reading time in ms.}
 }
@@ -34,7 +37,13 @@ relatives slow readers down at the end of the relative clause and on the
 main verb. 24 items, two counterbalanced lists, 12 words per sentence.
 }
 \details{
-True model: \code{log(rt) = 5.85 + p0 + i0 + 0.012 * (length - 5) - 0.008 * position + cost * object + e}. The object-relative cost is 0.01
+True model:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{log(rt) = 5.85 + p0 + i0 + 0.012 * (length - 5) - 0.008 * position
+  + cost * object + e
+}\if{html}{\out{</div>}}
+
+The object-relative cost is 0.01
 to 0.03 in the relative clause, 0.06 on the participle, 0.08 on the
 auxiliary, 0.05 on the main verb and 0.02 on the next word, with
 by-participant variation (SD 0.03). By-participant intercepts \code{p0} have

@@ -295,9 +295,13 @@
 #'   \item{length}{Length in letters, 3 to 13; frequent words are shorter.}
 #'   \item{rt}{Reaction time in ms.}
 #' }
-#' @details True model: `log(rt) = 6.55 + 0.16 * L2 + p0 + w0 + slope *
-#'   (log_freq - 3.5) + 0.017 * (length - 7) + e`, where `slope = -0.035 -
-#'   0.03 * L2 + p1`. By-participant intercepts `p0` have SD 0.085 and slopes
+#' @details True model:
+#'   ```
+#'   log(rt) = 6.55 + 0.16 * L2 + p0 + w0 + slope * (log_freq - 3.5)
+#'     + 0.017 * (length - 7) + e
+#'   slope = -0.035 - 0.03 * L2 + p1
+#'   ```
+#'   By-participant intercepts `p0` have SD 0.085 and slopes
 #'   `p1` SD 0.015; by-word intercepts `w0` have SD 0.04; residual SD 0.09.
 #' @source `data-raw/lexical_decision_l2.R`
 #' @examples
@@ -449,7 +453,8 @@
 #' speakers <- levels(accent$speaker)
 #' test <- is.element(accent$speaker, speakers[seq(1, length(speakers), by = 5)])
 #' m <- glm(l1 ~ vot + vowel_ratio + rate, data = accent[!test, ], family = binomial)
-#' mean((predict(m, accent[test, ], type = "response") > 0.5) == (accent$l1[test] == "Italian"))
+#' predicted <- predict(m, accent[test, ], type = "response") > 0.5
+#' mean(predicted == (accent$l1[test] == "Italian"))
 #' if (requireNamespace("randomForest", quietly = TRUE)) {
 #'   set.seed(1)
 #'   rf <- randomForest::randomForest(l1 ~ vot + vowel_ratio + rate + f0 + h1h2 + intensity,
@@ -475,8 +480,12 @@
 #'     to 2.5.}
 #'   \item{latency}{Naming latency in ms.}
 #' }
-#' @details True model: `log(latency) = 6.75 + 0.15 * group + p0 + w0 +
-#'   (-0.04 - 0.02 * group + p1) * freq_c + e`. By-participant intercepts `p0`
+#' @details True model:
+#'   ```
+#'   log(latency) = 6.75 + 0.15 * group + p0 + w0
+#'     + (-0.04 - 0.02 * group + p1) * freq_c + e
+#'   ```
+#'   By-participant intercepts `p0`
 #'   have SD 0.08 and slopes `p1` SD 0.015; by-picture intercepts `w0` have
 #'   SD 0.04; residual SD 0.1.
 #' @source `data-raw/naming_pilot.R`
@@ -549,15 +558,20 @@
 #'   \item{total_time}{Sum of all fixations on the verb in ms; `NA` if never
 #'     fixated.}
 #' }
-#' @details True model: `log(gaze_duration) = 5.55 + 0.14 * ungrammatical -
-#'   0.09 * ungrammatical * plural`, with by-participant (SD 0.15) and by-item
-#'   (SD 0.08) intercepts and residual SD 0.3. First-pass regressions, in
-#'   log-odds: `-1.9 + 0.9 * ungrammatical - 0.5 * ungrammatical * plural`,
-#'   by-participant SD 0.5. Skipping rate about 14%, unrelated to condition.
+#' @details True model:
+#'   ```
+#'   log(gaze_duration) = 5.55 + 0.14 * ungrammatical
+#'     - 0.09 * ungrammatical * plural
+#'   logit(regression) = -1.9 + 0.9 * ungrammatical
+#'     - 0.5 * ungrammatical * plural
+#'   ```
+#'   Gaze durations have by-participant (SD 0.15) and by-item (SD 0.08)
+#'   intercepts and residual SD 0.3. Regressions out of the verb in first pass
+#'   have a by-participant SD of 0.5. Skipping rate about 14%, unrelated to condition.
 #'   The first fixation equals the gaze duration in 65% of trials and is 50
 #'   to 85% of it otherwise. Total time adds a rereading time (log-normal,
-#'   median about 220 ms) with probability `plogis(-1 + 0.6 * ungrammatical
-#'   + 1.5 * regression)`.
+#'   median about 220 ms) with probability `plogis(-1 + 0.6 *
+#'   ungrammatical + 1.5 * regression)`.
 #' @references
 #' Bock, K. & Miller, C. A. (1991). Broken agreement. *Cognitive Psychology*, 23(1), 45-93. \doi{10.1016/0010-0285(91)90003-7}
 #' @source `data-raw/agreement_attraction.R`
@@ -592,9 +606,14 @@
 #' }
 #' @details True model: in the all-context, each participant answers "false"
 #'   with their own probability, drawn from Beta(0.5, 0.5) (mostly near 0 or
-#'   1). Controls are answered correctly 96% of the time. `log(rt) = 7.25 +
-#'   0.22 * pragmatic "false" + 0.08 * logical "true"` (both in the
-#'   all-context only), with by-participant (SD 0.15) and by-item (SD 0.05)
+#'   1). Controls are answered correctly 96% of the time. Reaction times
+#'   follow
+#'   ```
+#'   log(rt) = 7.25 + 0.22 * pragmatic_false + 0.08 * logical_true
+#'   ```
+#'   where `pragmatic_false` marks a "false" response by a pragmatic
+#'   responder and `logical_true` a "true" response by a logical responder,
+#'   both in the all-context only, with by-participant (SD 0.15) and by-item (SD 0.05)
 #'   intercepts and residual SD 0.25.
 #' @source `data-raw/scalar_implicature.R`
 #' @examples
@@ -691,10 +710,12 @@
 #'     words.}
 #'   \item{relativizer}{`"that"`, `"which"` or `"zero"`.}
 #' }
-#' @details True model: multinomial logit with "that" as reference. Which:
-#'   `-1.6 + 1.4 * written + 0.25 * (antecedent_length - 2)`. Zero (object
-#'   relatives only): `0.6 - 1.2 * written - 0.4 * (antecedent_length - 2)`.
-#'   By-text intercepts with SD 0.5 for each.
+#' @details True model: multinomial logit with "that" as reference.
+#'   ```
+#'   which: -1.6 + 1.4 * written + 0.25 * (antecedent_length - 2)
+#'   zero: 0.6 - 1.2 * written - 0.4 * (antecedent_length - 2)
+#'   ```
+#'   Zero relatives occur only with object relatives. By-text intercepts with SD 0.5 for each.
 #' @source `data-raw/relativizers.R`
 #' @examples
 #' table(relativizers$role, relativizers$relativizer)
@@ -938,11 +959,15 @@
 #'   \item{rt}{Mean lexical decision RT in ms.}
 #'   \item{accuracy}{Proportion of correct responses.}
 #' }
-#' @details True model: `rt = 720 - 120 * plogis(log_freq - 2.5) + 9 *
-#'   (length - 7) - 2 * neighbours + 10 * (aoa - 7) - 6 * (concreteness - 3) +
-#'   e`, with `e` normal, SD 35 ms. The frequency effect is S-shaped: it
-#'   levels off for very rare and very frequent words. Accuracy is `plogis(2.5
-#'   + 0.7 * (log_freq - 2.5) - 0.2 * (aoa - 7) + e)`, with `e` SD 0.5.
+#' @details True model:
+#'   ```
+#'   rt = 720 - 120 * plogis(log_freq - 2.5) + 9 * (length - 7)
+#'     - 2 * neighbours + 10 * (aoa - 7) - 6 * (concreteness - 3) + e
+#'   accuracy = plogis(2.5 + 0.7 * (log_freq - 2.5) - 0.2 * (aoa - 7) + e)
+#'   ```
+#'   The error `e` is normal with SD 35 ms for RT and SD 0.5 for accuracy.
+#'   The frequency effect is S-shaped: it levels off for very rare and very
+#'   frequent words.
 #'   Frequent words are shorter, have more neighbours and are acquired
 #'   earlier.
 #' @source `data-raw/megastudy.R`
@@ -1023,7 +1048,8 @@
 #' @source `data-raw/korean_stops.R`
 #' @examples
 #' aggregate(cbind(vot, f0) ~ generation + stop, data = korean_stops, FUN = mean)
-#' korean_stops$f0_st <- 12 * log2(korean_stops$f0 / ave(korean_stops$f0, korean_stops$speaker))
+#' korean_stops$f0_st <- 12 * log2(korean_stops$f0 /
+#'                                    ave(korean_stops$f0, korean_stops$speaker))
 #' for (g in c("older", "younger")) {
 #'   d <- subset(korean_stops, generation == g)
 #'   set.seed(1)
@@ -1048,14 +1074,21 @@
 #'   \item{condition}{`"subject"` or `"object"`
 #'     relative clause.}
 #'   \item{position}{Word position in the sentence, 1 to 12.}
-#'   \item{region}{Role of the word: `"det"`, `"noun"`, `"rel_pronoun"`,
-#'     `"rc_det"`, `"rc_noun"`, `"rc_participle"`, `"rc_auxiliary"`,
-#'     `"main_verb"`, `"spillover_1"` to `"spillover_3"`, `"final"`.}
+#'   \item{region}{Role of the word in the sentence, with levels in
+#'     sentence order: determiner (`"det"`) and noun of the main clause,
+#'     relative pronoun, then determiner, noun, participle and auxiliary of
+#'     the relative clause (`"rc_det"` to `"rc_auxiliary"`), main verb, three
+#'     spillover words and the final word. `levels(german_relatives$region)`
+#'     gives the codes.}
 #'   \item{length}{Word length in letters.}
 #'   \item{rt}{Reading time in ms.}
 #' }
-#' @details True model: `log(rt) = 5.85 + p0 + i0 + 0.012 * (length - 5) -
-#'   0.008 * position + cost * object + e`. The object-relative cost is 0.01
+#' @details True model:
+#'   ```
+#'   log(rt) = 5.85 + p0 + i0 + 0.012 * (length - 5) - 0.008 * position
+#'     + cost * object + e
+#'   ```
+#'   The object-relative cost is 0.01
 #'   to 0.03 in the relative clause, 0.06 on the participle, 0.08 on the
 #'   auxiliary, 0.05 on the main verb and 0.02 on the next word, with
 #'   by-participant variation (SD 0.03). By-participant intercepts `p0` have
@@ -1173,7 +1206,7 @@
 #'     `"zero"`.}
 #' }
 #' @details True model: each gender-by-ending cell has its own probabilities
-#'   for the five endings (see `data-raw/german_plurals.R`), perturbed on the
+#'   for the five endings (see the data script), perturbed on the
 #'   log scale by a by-participant preference for *-s* (SD 0.6) and by
 #'   response-level noise (SD 0.3).
 #' @references
@@ -1200,7 +1233,7 @@
 #'
 #' @format A tibble with 3000 rows and 6 columns:
 #' \describe{
-#'   \item{language}{`"Danish"`, `"Dutch"`, `"English"`, `"Italian"`,
+#'   \item{language}{Language of the conversation: `"Danish"`, `"Dutch"`, `"English"`, `"Italian"`,
 #'     `"Japanese"`, `"Korean"`, `"Lao"`, `"Tzeltal"`, `"Yélî Dnye"` or
 #'     \ifelse{latex}{\code{"\\u01c2\\u0100khoe Hai\\u01c1om"}}{\code{"ǂĀkhoe Haiǁom"}}.}
 #'   \item{conversation}{Conversation ID: a three-letter code for the
@@ -1273,7 +1306,8 @@
 #' items <- na.omit(la[, 4:15])
 #' fa <- factanal(items, factors = 3, rotation = "promax")
 #' print(fa$loadings, cutoff = 0.3)
-#' aggregate(cbind(intelligent, friendly, will_survive) ~ dialect_speaker, data = la, FUN = mean)
+#' aggregate(cbind(intelligent, friendly, will_survive) ~ dialect_speaker, data = la,
+#'           FUN = mean)
 "language_attitudes"
 
 #' A dialect survey of degemination in Italy
@@ -1294,8 +1328,11 @@
 #'   \item{words}{Words read with a geminate: always 10.}
 #'   \item{degeminated}{Of these, words produced with a single consonant.}
 #' }
-#' @details True model, in log-odds: `-1.5 + 6 * (lat - 44.1) + t0 + 0.03 *
-#'   (age - 50)`, with by-town intercepts `t0` (SD 0.6). Town names and
+#' @details True model:
+#'   ```
+#'   logit(degemination) = -1.5 + 6 * (lat - 44.1) + t0 + 0.03 * (age - 50)
+#'   ```
+#'   with by-town intercepts `t0` (SD 0.6). Town names and
 #'   coordinates are the Italian towns of over 50,000 inhabitants in
 #'   `maps::world.cities` (without Sardinia); the dialect data are
 #'   simulated.
@@ -1395,7 +1432,8 @@
 #'   c(agreement = po, kappa = (po - pe) / (1 - pe))
 #' }
 #' with(tobi_agreement, kappa(accent_1 != "none", accent_2 != "none"))
-#' with(subset(tobi_agreement, accent_1 != "none" & accent_2 != "none"), kappa(accent_1, accent_2))
+#' both <- subset(tobi_agreement, accent_1 != "none" & accent_2 != "none")
+#' kappa(both$accent_1, both$accent_2)
 #' sapply(split(tobi_agreement, tobi_agreement$style),
 #'        function(d) kappa(d$accent_1 != "none", d$accent_2 != "none"))
 "tobi_agreement"
@@ -1418,8 +1456,9 @@
 #'     `"Korean"` or `"Spanish"`.}
 #'   \item{speaker}{Speaker ID: ISO 639-3 language code and number, e.g.
 #'     `eng_01`.}
-#'   \item{material}{`"uncontrolled sentences"`, `"complex-syllable
-#'     sentences"`, `"simple-syllable sentences"`, `"story"` or
+#'   \item{material}{Kind of speech material. The three read sentence sets
+#'     are `"uncontrolled sentences"`, `"complex-syllable sentences"` and
+#'     `"simple-syllable sentences"`; the other two levels are `"story"` and
 #'     `"spontaneous"`.}
 #'   \item{item}{Sample number within speaker and material, 1 to 5.}
 #'   \item{rate}{Speech rate in syllables per second.}
@@ -1449,7 +1488,8 @@
 #' White, L. & Mattys, S. L. (2007). Calibrating rhythm: First language and second language studies. *Journal of Phonetics*, 35(4), 501-522. \doi{10.1016/j.wocn.2007.02.003}
 #' @source `data-raw/rhythm_metrics.R`
 #' @examples
-#' round(tapply(rhythm_metrics$percent_v, rhythm_metrics[c("material", "language")], mean), 1)
+#' round(tapply(rhythm_metrics$percent_v, rhythm_metrics[c("material", "language")], mean),
+#'       1)
 #' boxplot(percent_v ~ material, data = rhythm_metrics)
 #' coef(lm(delta_c ~ rate + language + material, data = rhythm_metrics))["rate"]
 #' if (requireNamespace("lme4", quietly = TRUE)) {
@@ -1646,8 +1686,11 @@
 #'     signers.}
 #'   \item{rating}{Iconicity rating, 1 to 7.}
 #' }
-#' @details True model: `rating` is `3.3 + iconicity + g0 + r0 + signer +
-#'   0.5 * verb * non-signer + e`, rounded and limited to 1-7. Each sign's
+#' @details True model:
+#'   ```
+#'   rating = 3.3 + iconicity + g0 + r0 + signer + 0.5 * verb * non_signer + e
+#'   ```
+#'   rounded and limited to 1-7. Each sign's
 #'   iconicity has SD 1.2, `g0` is a deviation of each sign within each group
 #'   (SD 0.6), raters differ by SD 0.5 and `e` has SD 0.9. Age of
 #'   acquisition is `5.5 - 0.6 * iconicity` years plus noise (SD 1.3).
@@ -1832,9 +1875,10 @@
 #'   \item{mpt}{Melody perception score (z-score), as from the Mistuning
 #'     Perception Test.}
 #'   \item{sentence}{Sentence, `S1` to `S9`.}
-#'   \item{manipulation}{`"baseline"`; `"pitch"`, with pitch movements within
-#'     syllables flattened; or `"duration"`, with sonorous parts lengthened
-#'     by 20% and obstruents shortened by the same amount.}
+#'   \item{manipulation}{Version of the sentence: `"baseline"`, `"pitch"`
+#'     (pitch movements within syllables flattened) or `"duration"`
+#'     (sonorous parts lengthened by 20% and obstruents shortened by the
+#'     same amount).}
 #'   \item{rating_before}{Rating before the repetitions, 1 (clearly speech) to
 #'     8 (clearly song).}
 #'   \item{transformed}{1 if the listener reported the illusion, 0 if not.}
@@ -1955,8 +1999,8 @@
 #'   \item{session}{`"baseline 1"`, `"baseline 2"` or `"post-therapy"`.}
 #'   \item{correct}{1 if the picture was named correctly, 0 if not.}
 #' }
-#' @details True model: the logit of a correct response is `p0 + i0 + post
-#'   * gain`. Participant intercepts `p0` have mean -0.45 (SD 0.9) and item
+#' @details True model: the logit of a correct response is
+#'   `p0 + i0 + post * gain`. Participant intercepts `p0` have mean -0.45 (SD 0.9) and item
 #'   effects `i0` SD 1.2. For treated items, `gain` is the participant's
 #'   own gain (mean 1, SD 0.35). For untreated items it is 0.7 in the
 #'   phonological profile and 0.05 otherwise, plus noise (SD 0.1). The design

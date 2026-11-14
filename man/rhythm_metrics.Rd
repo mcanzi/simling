@@ -11,7 +11,9 @@ A tibble with 1200 rows and 8 columns:
 \code{"Korean"} or \code{"Spanish"}.}
 \item{speaker}{Speaker ID: ISO 639-3 language code and number, e.g.
 \code{eng_01}.}
-\item{material}{\code{"uncontrolled sentences"}, \code{"complex-syllable sentences"}, \code{"simple-syllable sentences"}, \code{"story"} or
+\item{material}{Kind of speech material. The three read sentence sets
+are \code{"uncontrolled sentences"}, \code{"complex-syllable sentences"} and
+\code{"simple-syllable sentences"}; the other two levels are \code{"story"} and
 \code{"spontaneous"}.}
 \item{item}{Sample number within speaker and material, 1 to 5.}
 \item{rate}{Speech rate in syllables per second.}
@@ -52,7 +54,8 @@ simulation to reproduce the pattern Arvaniti (2012) reports; they are
 not her measurements.
 }
 \examples{
-round(tapply(rhythm_metrics$percent_v, rhythm_metrics[c("material", "language")], mean), 1)
+round(tapply(rhythm_metrics$percent_v, rhythm_metrics[c("material", "language")], mean),
+      1)
 boxplot(percent_v ~ material, data = rhythm_metrics)
 coef(lm(delta_c ~ rate + language + material, data = rhythm_metrics))["rate"]
 if (requireNamespace("lme4", quietly = TRUE)) {

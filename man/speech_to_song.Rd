@@ -13,9 +13,10 @@ Adaptive Beat Alignment Test.}
 \item{mpt}{Melody perception score (z-score), as from the Mistuning
 Perception Test.}
 \item{sentence}{Sentence, \code{S1} to \code{S9}.}
-\item{manipulation}{\code{"baseline"}; \code{"pitch"}, with pitch movements within
-syllables flattened; or \code{"duration"}, with sonorous parts lengthened
-by 20\% and obstruents shortened by the same amount.}
+\item{manipulation}{Version of the sentence: \code{"baseline"}, \code{"pitch"}
+(pitch movements within syllables flattened) or \code{"duration"}
+(sonorous parts lengthened by 20\% and obstruents shortened by the
+same amount).}
 \item{rating_before}{Rating before the repetitions, 1 (clearly speech) to
 8 (clearly song).}
 \item{transformed}{1 if the listener reported the illusion, 0 if not.}

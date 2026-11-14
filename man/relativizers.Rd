@@ -29,10 +29,13 @@ The relativizer in restrictive relative clauses (\emph{the book that / which /
 A three-way outcome; zero is impossible in subject relatives.
 }
 \details{
-True model: multinomial logit with "that" as reference. Which:
-\code{-1.6 + 1.4 * written + 0.25 * (antecedent_length - 2)}. Zero (object
-relatives only): \code{0.6 - 1.2 * written - 0.4 * (antecedent_length - 2)}.
-By-text intercepts with SD 0.5 for each.
+True model: multinomial logit with "that" as reference.
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{which: -1.6 + 1.4 * written + 0.25 * (antecedent_length - 2)
+zero: 0.6 - 1.2 * written - 0.4 * (antecedent_length - 2)
+}\if{html}{\out{</div>}}
+
+Zero relatives occur only with object relatives. By-text intercepts with SD 0.5 for each.
 }
 \examples{
 table(relativizers$role, relativizers$relativizer)

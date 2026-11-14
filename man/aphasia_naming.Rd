@@ -32,9 +32,9 @@ impaired phonological output. For mixed logistic regression of repeated
 measures, three-way interactions and generalisation in therapy studies.
 }
 \details{
-True model: the logit of a correct response is `p0 + i0 + post
-\itemize{
-\item gain\verb{. Participant intercepts }p0\verb{have mean -0.45 (SD 0.9) and item   effects}i0\verb{SD 1.2. For treated items,}gain` is the participant's
+True model: the logit of a correct response is
+\code{p0 + i0 + post * gain}. Participant intercepts \code{p0} have mean -0.45 (SD 0.9) and item
+effects \code{i0} SD 1.2. For treated items, \code{gain} is the participant's
 own gain (mean 1, SD 0.35). For untreated items it is 0.7 in the
 phonological profile and 0.05 otherwise, plus noise (SD 0.1). The design
 follows Best et al. (2013). In their 16 participants, naming of treated
@@ -42,7 +42,6 @@ items rose from 43.5 to 62\% correct, and only participants with
 relatively good semantic and impaired phonological processing
 generalised to untreated items. The number of items, the size of the
 subgroup and all data are simulated.
-}
 }
 \examples{
 round(tapply(aphasia_naming$correct, aphasia_naming[c("set", "session")], mean), 2)

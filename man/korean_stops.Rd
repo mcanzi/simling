@@ -43,7 +43,8 @@ follows reports of the VOT merger in younger Seoul speakers (Silva
 }
 \examples{
 aggregate(cbind(vot, f0) ~ generation + stop, data = korean_stops, FUN = mean)
-korean_stops$f0_st <- 12 * log2(korean_stops$f0 / ave(korean_stops$f0, korean_stops$speaker))
+korean_stops$f0_st <- 12 * log2(korean_stops$f0 /
+                                   ave(korean_stops$f0, korean_stops$speaker))
 for (g in c("older", "younger")) {
   d <- subset(korean_stops, generation == g)
   set.seed(1)

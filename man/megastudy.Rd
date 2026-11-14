@@ -30,13 +30,18 @@ multiple regression, collinearity, non-linear effects and variable
 importance.
 }
 \details{
-True model: \code{rt = 720 - 120 * plogis(log_freq - 2.5) + 9 * (length - 7) - 2 * neighbours + 10 * (aoa - 7) - 6 * (concreteness - 3) + e}, with \code{e} normal, SD 35 ms. The frequency effect is S-shaped: it
-levels off for very rare and very frequent words. Accuracy is `plogis(2.5
-\itemize{
-\item 0.7 * (log_freq - 2.5) - 0.2 * (aoa - 7) + e)\verb{, with }e` SD 0.5.
+True model:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{rt = 720 - 120 * plogis(log_freq - 2.5) + 9 * (length - 7)
+  - 2 * neighbours + 10 * (aoa - 7) - 6 * (concreteness - 3) + e
+accuracy = plogis(2.5 + 0.7 * (log_freq - 2.5) - 0.2 * (aoa - 7) + e)
+}\if{html}{\out{</div>}}
+
+The error \code{e} is normal with SD 35 ms for RT and SD 0.5 for accuracy.
+The frequency effect is S-shaped: it levels off for very rare and very
+frequent words.
 Frequent words are shorter, have more neighbours and are acquired
 earlier.
-}
 }
 \examples{
 m1 <- lm(rt ~ log_freq + length + neighbours + aoa + concreteness, data = megastudy)

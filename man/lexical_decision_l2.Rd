@@ -27,7 +27,14 @@ same 40 German words. L2 speakers are slower and more sensitive to
 frequency.
 }
 \details{
-True model: \code{log(rt) = 6.55 + 0.16 * L2 + p0 + w0 + slope * (log_freq - 3.5) + 0.017 * (length - 7) + e}, where \code{slope = -0.035 - 0.03 * L2 + p1}. By-participant intercepts \code{p0} have SD 0.085 and slopes
+True model:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{log(rt) = 6.55 + 0.16 * L2 + p0 + w0 + slope * (log_freq - 3.5)
+  + 0.017 * (length - 7) + e
+slope = -0.035 - 0.03 * L2 + p1
+}\if{html}{\out{</div>}}
+
+By-participant intercepts \code{p0} have SD 0.085 and slopes
 \code{p1} SD 0.015; by-word intercepts \code{w0} have SD 0.04; residual SD 0.09.
 }
 \examples{

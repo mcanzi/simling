@@ -50,7 +50,8 @@ kappa <- function(a, b) {
   c(agreement = po, kappa = (po - pe) / (1 - pe))
 }
 with(tobi_agreement, kappa(accent_1 != "none", accent_2 != "none"))
-with(subset(tobi_agreement, accent_1 != "none" & accent_2 != "none"), kappa(accent_1, accent_2))
+both <- subset(tobi_agreement, accent_1 != "none" & accent_2 != "none")
+kappa(both$accent_1, both$accent_2)
 sapply(split(tobi_agreement, tobi_agreement$style),
        function(d) kappa(d$accent_1 != "none", d$accent_2 != "none"))
 }

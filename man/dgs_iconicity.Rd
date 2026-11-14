@@ -33,7 +33,12 @@ iconic signs are acquired earlier. For mixed models of ratings with
 crossed raters and items.
 }
 \details{
-True model: \code{rating} is \code{3.3 + iconicity + g0 + r0 + signer + 0.5 * verb * non-signer + e}, rounded and limited to 1-7. Each sign's
+True model:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{rating = 3.3 + iconicity + g0 + r0 + signer + 0.5 * verb * non_signer + e
+}\if{html}{\out{</div>}}
+
+rounded and limited to 1-7. Each sign's
 iconicity has SD 1.2, \code{g0} is a deviation of each sign within each group
 (SD 0.6), raters differ by SD 0.5 and \code{e} has SD 0.9. Age of
 acquisition is \code{5.5 - 0.6 * iconicity} years plus noise (SD 1.3).
