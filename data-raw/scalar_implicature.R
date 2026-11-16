@@ -1,0 +1,34 @@
+# Bott & Noveck (2004), Journal of Memory and Language 51(3), 437-457, Experiment 3.
+library(dplyr)
+library(tidyr)
+library(tibble)
+
+set.seed(3003)
+n_part <- 60
+n_item <- 24
+contexts <- c("all", "some", "none")
+
+participants <- tibble(participant = sprintf("P%02d", 1:n_part),
+                       list = rep(1:3, length.out = n_part),
+                       pragmatic = rbeta(n_part, 1.1, 0.7),
+                       p_rt = rnorm(n_part, 0, 0.15))
+items <- tibble(item = sprintf("i%02d", 1:n_item),
+                i_rt = rnorm(n_item, 0, 0.05))
+
+scalar_implicature <- crossing(participants, items) |>
+  mutate(context = contexts[(as.integer(substr(item, 2, 3)) + list) %% 3 + 1],
+         p_false = case_when(context == "all" ~ pragmatic,
+                             context == "some" ~ 0.04,
+                             context == "none" ~ 0.96),
+         response = if_else(rbinom(n(), 1, p_false) == 1, "false", "true"),
+         rt = round(exp(7.25 + p_rt + i_rt +
+                          0.22 * (context == "all" & response == "false") +
+                          rnorm(n(), 0, 0.25)))) |>
+  select(participant, list, item, context, response, rt)
+
+scalar_implicature <- scalar_implicature |>
+  mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),
+         context = factor(context, levels = c("some", "all", "none")),
+         response = factor(response, levels = c("true", "false")))
+
+usethis::use_data(scalar_implicature, overwrite = TRUE)
