@@ -1,22 +1,20 @@
-/* The doglord theme of mcanzi.de: the colours of the Resonance cover, with its fly agarics in the background. */
+/* The glacier theme of mcanzi.de (themes/arang/static/css/site.css in mcanzi/personal_website). */
 
 :root {
-  --floor: #121310;
-  --understory: #191b17;
-  --raised: #21241e;
-  --vine: #343a2e;
-  --mist: #ebe2cd;
-  --muted: #a69d89;
-  --pandan: #a06ae6;
-  --primary-hi: #b688ee;
-  --hornbill: #d5813f;
-  --kingfisher: #aac6cf;
-  --orchid: #cf6a80;
-  --title-top: #dc7286;
-  --title-bottom: #9358e0;
-  --nav-bg: rgba(18, 19, 16, 0.9);
-  --glow-1: rgba(104, 128, 146, 0.12);
-  --glow-2: rgba(147, 88, 224, 0.07);
+  --floor: #1e2830;
+  --understory: #22303a;
+  --raised: #283844;
+  --vine: #34444f;
+  --mist: #dfe6ea;
+  --muted: #98a8b3;
+  --pandan: #a9cbe0;
+  --hornbill: #f2917a;
+  --kingfisher: #f6b8a4;
+  --title-top: #eef6fa;
+  --title-bottom: #8dbbd8;
+  --nav-bg: rgba(30, 40, 48, 0.9);
+  --glow-1: rgba(169, 203, 224, 0.10);
+  --glow-2: rgba(242, 145, 122, 0.05);
   color-scheme: dark;
 }
 
@@ -24,10 +22,8 @@ body {
   background-color: var(--floor);
   background-image:
     radial-gradient(1100px 600px at 85% -120px, var(--glow-1), transparent 70%),
-    radial-gradient(900px 500px at 0% 420px, var(--glow-2), transparent 70%),
-    radial-gradient(140% 120% at 50% 40%, transparent 55%, rgba(0, 0, 0, 0.5) 100%);
+    radial-gradient(900px 500px at 0% 420px, var(--glow-2), transparent 70%);
   background-repeat: no-repeat;
-  background-attachment: fixed;
   color: var(--mist);
   font-size: 1.08rem;
   line-height: 1.65;
@@ -39,23 +35,14 @@ body::before {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: url("toadstools.svg") repeat 0 0 / 560px 560px;
-  opacity: 0.1;
-}
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.045;
+  background: url("https://mcanzi.de/img/motifs/buttercup.svg") repeat 0 0 / 600px 600px;
+  opacity: 0.2;
 }
 body > * { position: relative; z-index: 1; }
-@media (max-width: 700px) { body::before { background-size: 380px 380px; opacity: 0.09; } }
-@media print { body::before, body::after { display: none; } }
+@media (max-width: 700px) { body::before { background-size: 400px 400px; opacity: 0.18; } }
+@media print { body::before { display: none; } }
 
-::selection { background: var(--pandan); color: var(--floor); }
+::selection { background: var(--hornbill); color: var(--floor); }
 :focus-visible { outline: 2px solid var(--pandan); outline-offset: 2px; }
 
 h1, h2, h3, h4, h5, h6 {
@@ -74,9 +61,7 @@ h1::selection, h1 ::selection { -webkit-text-fill-color: var(--floor); }
 @media print { h1 { background: none; -webkit-text-fill-color: currentColor; } }
 
 a { color: var(--kingfisher); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-a:hover { color: var(--primary-hi); }
-
-.hl { color: var(--orchid); font-weight: 700; }
+a:hover { color: var(--pandan); }
 
 .navbar {
   position: sticky;
@@ -114,7 +99,7 @@ a:hover { color: var(--primary-hi); }
 }
 .navbar .nav-link:hover { color: var(--mist) !important; background: var(--raised); }
 .navbar .nav-item.active .nav-link,
-.navbar .nav-link.active { color: var(--primary-hi) !important; background: var(--raised); }
+.navbar .nav-link.active { color: var(--pandan) !important; background: var(--raised); }
 .dropdown-menu { background: var(--raised); border-color: var(--vine); }
 .dropdown-item { color: var(--mist); }
 .dropdown-item:hover, .dropdown-item:focus { background: var(--understory); color: var(--pandan); }
@@ -123,7 +108,7 @@ code, pre, kbd, samp, .navbar-brand, .navbar .nav-link { font-variant-ligatures:
 code { color: var(--hornbill); }
 pre, div.sourceCode {
   background: var(--understory) !important;
-  border: 1px solid color-mix(in srgb, var(--hornbill) 22%, var(--vine));
+  border: 1px solid var(--vine);
   border-radius: 10px;
 }
 pre code { color: var(--mist); }
