@@ -1,5 +1,6 @@
-# simling (development version)
+# simling 0.1.1
 
+* simling can be installed from R-universe (<https://mcanzi.r-universe.dev>).
 * New data set `web_registers`: 16 lexico-grammatical features in 480 texts
   from six web registers, for factor analysis in the style of a
   multi-dimensional analysis. Its parameters are based on the web register

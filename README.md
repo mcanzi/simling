@@ -12,11 +12,10 @@ Every data set is simulated, so the true effects are known and you can check whe
 
 ## Installation
 
-simling is on GitHub only for now. Install it with:
+Install simling from R-universe:
 
 ```r
-# install.packages("remotes")
-remotes::install_github("mcanzi/simling")
+install.packages("simling", repos = c("https://mcanzi.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 ## Usage
