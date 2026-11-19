@@ -39,7 +39,14 @@ A tibble with 384 rows and 4 columns:
 True model: `duration = 150 + s0 + w0 + (20 + s1) * voiced + e`.
 By-speaker intercepts `s0` have SD 25 ms and slopes `s1` SD 12 ms
 (uncorrelated); by-word intercepts `w0` have SD 15 ms; residual SD 20
-ms.
+ms. The design follows the simulation in Winter (2019, section 15.2).
+The data are simulated.
+
+## References
+
+Winter, B. (2019). *Statistics for linguists: An introduction using R*.
+Routledge.
+[doi:10.4324/9781315165547](https://doi.org/10.4324/9781315165547)
 
 ## Examples
 
