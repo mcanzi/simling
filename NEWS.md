@@ -1,5 +1,13 @@
 # simling 0.1.2
 
+* New data set `fuzzy_contrasts`: articulatory trajectories (linear
+  discriminant values from ultrasound images) of GOOSE and FOOT before /l/
+  in four morphological contexts in Southern British English, after
+  Strycharczuk and Scobbie (2017). Durations and the numbers of speakers
+  with each contrast follow the paper.
+* `?disfluencies`, `?rhythm_metrics` and `?word_order` now cite Di Napoli
+  (2020), Rathcke and Smith (2015) and Dryer (2013) in the text.
+* README: simling has 57 data sets from 20+ branches of linguistics.
 * The scripts in `data-raw/` use the tidyverse throughout: purrr instead of
   loops and apply functions, joins and `case_when()` instead of index
   lookups, and stringr instead of base string functions. They reproduce the
@@ -15,7 +23,7 @@
 * `?lexical_decision_l2` gives the range of `length` in the data (3 to 12).
 * `?reading_skipping` says that first fixations are log-normal around the
   values from Rayner et al. (2011).
-* Help pages cite in the text most of the works they list, and reference
+* Help pages cite in the text all of the works they list, and reference
   lists are in alphabetical order. The two Ehret and Taboada (2021) works
   are now 2021a and 2021b. The scripts in `data-raw/` cite the same works
   as their help pages.

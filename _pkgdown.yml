@@ -47,6 +47,7 @@ reference:
 - title: Phonology
   contents:
   - hungarian_harmony
+  - fuzzy_contrasts
 - title: Prosody
   contents:
   - tobi_agreement

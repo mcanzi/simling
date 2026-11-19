@@ -53,6 +53,8 @@ simling_meta <- function() {
     "binomial counts", "Psychometric curves, category boundaries",
     "hungarian_harmony", "Phonology", "Hungarian", 4200L, 6L,
     "binary", "Mixed logistic regression, wug tests",
+    "fuzzy_contrasts", "Phonology", "English", 21120L, 11L,
+    "trajectories", "GAMMs, morphology-phonetics interface",
     "tobi_agreement", "Prosody", "German", 456L, 8L,
     "labels from two coders", "Inter-rater agreement, kappa",
     "rhythm_metrics", "Prosody", "6 languages", 1200L, 8L,

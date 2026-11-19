@@ -995,7 +995,7 @@
 #'   negative binomial count (mean 16, by-family variation); vowel
 #'   inventories are 3 plus a Poisson count (mean 2.5). Overall, about 44% of
 #'   the languages are SOV, 36% SVO, 6% VSO and 14% have no dominant order,
-#'   close to the world-wide proportions in WALS (feature 81A). All language,
+#'   close to the world-wide proportions in WALS feature 81A (Dryer 2013). All language,
 #'   family and area names and all figures are invented.
 #' @references
 #' Dryer, M. S. (2013). Order of subject, object and verb. In M. S. Dryer & M. Haspelmath (eds.), *WALS Online*. Leipzig: Max Planck Institute for Evolutionary Anthropology. <https://wals.info/chapter/81>
@@ -1698,7 +1698,7 @@
 #' story and spontaneous speech. The design follows Arvaniti (2012). The
 #' languages differ, but not in the way rhythm classes predict, and speakers,
 #' elicitation method and syllable complexity move the metrics about as much
-#' as language does. \ifelse{latex}{\out{$\Delta$C}}{ΔC} also falls as speech rate rises. For
+#' as language does (see also Rathcke and Smith 2015). \ifelse{latex}{\out{$\Delta$C}}{ΔC} also falls as speech rate rises. For
 #' partitioning variance with mixed models.
 #'
 #' @format A tibble with 1200 rows and 8 columns:
@@ -1985,8 +1985,9 @@
 #'
 #' Filled pauses (*ehm*, *eeh*) in 60 turns from each of 40 speakers in 20
 #' Italian Map Task dialogues, in which an instruction giver guides a
-#' follower along a route. Filled pauses are rare: about 4% of turns contain
-#' one, about 0.4 per 100 syllables. Many turns are fluent and cannot
+#' follower along a route. Filled pauses are rare in Italian task-oriented
+#' dialogue (Di Napoli 2020): about 4% of turns contain one, about 0.4 per
+#' 100 syllables. Many turns are fluent and cannot
 #' contain a filled pause at all, so the data have more zeros than a Poisson
 #' model predicts. Givers produce more filled pauses than followers. For
 #' zero-inflated count models with an exposure.
@@ -2352,3 +2353,80 @@
 #'   round(lme4::fixef(m), 2)
 #' }
 "iterated_learning"
+
+#' Vowel and /l/ articulation by morphological context
+#'
+#' Ultrasound tongue imaging of GOOSE + /l/ and FOOT + /l/ in Southern
+#' British English, from 20 speakers in two age groups. Each speaker reads 24
+#' words four times. The /l/ is inside a morpheme (*hula*, *bully*), at the
+#' end of a morpheme before a suffix (*fool-ing*, *pull-ing*), at the end of a
+#' word before a vowel (*fool it*) or at the end of a word before a consonant
+#' (*fool five*). `ld` places each frame on a scale from the clear /l/ and
+#' front vowel of *hula* to the dark /l/ and back vowel of *fool five*.
+#' *fool-ing* is much further along that scale than *hula*; *pull-ing* is
+#' only slightly further than *bully*, and more so for younger speakers. For
+#' GAMMs and morphology-phonetics interactions.
+#'
+#' @format A tibble with 21120 rows and 11 columns:
+#' \describe{
+#'   \item{speaker}{`OF1` to `OF7`, `OM1` to `OM3`, `YF1` to `YF7` and `YM1`
+#'     to `YM3` (older or younger, female or male).}
+#'   \item{age_group}{`"older"` (45 to 66) or `"younger"` (20 to 28).}
+#'   \item{sex}{`"female"` or `"male"`.}
+#'   \item{vowel}{`"GOOSE"` or `"FOOT"`.}
+#'   \item{context}{`"morpheme_internal"`, `"morpheme_final"`,
+#'     `"word_prevocalic"` or `"word_preconsonantal"`.}
+#'   \item{word}{Test item, three per vowel and context. A hyphen marks a
+#'     suffix and a hash a word boundary.}
+#'   \item{repetition}{1 to 4.}
+#'   \item{token}{One level per token (`speaker.word.repetition`).}
+#'   \item{duration}{Duration of the vowel + /l/ sequence in ms.}
+#'   \item{time}{Normalised time over the first half of the vowel + /l/
+#'     sequence, 0 to 100 in steps of 10.}
+#'   \item{ld}{Linear discriminant value. Higher values mean a backer vowel
+#'     and a darker /l/.}
+#' }
+#' @details True model:
+#'   ```
+#'   ld = -2 + s0 + w0 + t0 + 0.6 * time / 100 + effect * (1 - 0.25 * time / 100) + e
+#'   ```
+#'   where `effect` is 0 for `morpheme_internal`, 2.6 (GOOSE) or 2 (FOOT)
+#'   for `word_prevocalic` and 4 for `word_preconsonantal`. For
+#'   `morpheme_final` it varies by speaker. For GOOSE it is uniform between
+#'   1 and 2.2. For FOOT it is 0.7 for four older speakers (`OF3`, `OF5`,
+#'   `OF7`, `OM3`) and 0 for the other six; 0.8 for younger speakers, except
+#'   0.2 for `YF6`, 0 for `YM1` and -0.6 for `YF7`. With a Welch t-test of
+#'   `morpheme_internal` against `morpheme_final` on each speaker's token
+#'   means (p < 0.05), this gives the speaker counts reported in the paper:
+#'   a GOOSE contrast
+#'   for all 20 speakers; a FOOT contrast in the expected direction for 11
+#'   (4 older, 7 younger), none for 8 and a reversed one for `YF7`.
+#'   The contrasts shrink by a quarter over the time window. By-speaker
+#'   intercepts for each vowel `s0` have SD 0.3, by-word intercepts `w0` SD
+#'   0.1 and by-token intercepts `t0` SD 0.3. Residuals `e` are AR(1) with
+#'   rho 0.8 and innovation SD 0.2, so their SD is 0.33 (0.2 / sqrt(1 -
+#'   0.8^2)). Durations are normal with the means and SDs of each vowel and
+#'   context in Table 2 of Strycharczuk and Scobbie (2017), at least 80 ms.
+#'
+#'   The speakers, words, repetitions, durations and the order of the
+#'   contexts follow Strycharczuk and Scobbie (2017). In the paper, `ld` came
+#'   from a separate linear discriminant analysis for each speaker and vowel,
+#'   trained on principal components of the ultrasound images to separate
+#'   `morpheme_internal` from `word_preconsonantal`. Values are therefore not
+#'   comparable between the two vowels. The `ld` values and effect sizes are
+#'   simulated.
+#' @references
+#' Strycharczuk, P. & Scobbie, J. M. (2017). Whence the fuzziness? Morphological effects in interacting sound changes in Southern British English. *Laboratory Phonology*, 8(1), 7. \doi{10.5334/labphon.24}
+#' @source `data-raw/fuzzy_contrasts.R`
+#' @examples
+#' aggregate(ld ~ vowel + context, data = fuzzy_contrasts, FUN = mean)
+#' if (requireNamespace("mgcv", quietly = TRUE)) {
+#'   foot <- droplevels(subset(fuzzy_contrasts, vowel == "FOOT" &
+#'                               context %in% c("morpheme_internal", "morpheme_final")))
+#'   foot$group <- interaction(foot$age_group, foot$context)
+#'   m <- mgcv::bam(ld ~ group + s(time, by = group, k = 5) +
+#'                    s(time, speaker, bs = "fs", m = 1, k = 5),
+#'                  data = foot, discrete = TRUE)
+#'   summary(m)$p.table
+#' }
+"fuzzy_contrasts"
