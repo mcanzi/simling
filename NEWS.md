@@ -1,4 +1,4 @@
-# simling 0.1.2
+# simling (development version)
 
 * `?vowel_duration` cites the vowel duration simulation in Winter (2019,
   section 15.2) that the data set is based on.
@@ -10,6 +10,9 @@
 * `?disfluencies`, `?rhythm_metrics` and `?word_order` now cite Di Napoli
   (2020), Rathcke and Smith (2015) and Dryer (2013) in the text.
 * README: simling has 57 data sets from 20 branches of linguistics.
+
+# simling 0.1.2
+
 * The scripts in `data-raw/` use the tidyverse throughout: purrr instead of
   loops and apply functions, joins and `case_when()` instead of index
   lookups, and stringr instead of base string functions. They reproduce the
