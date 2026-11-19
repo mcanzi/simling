@@ -230,7 +230,7 @@
 #' }
 "vowel_duration"
 
-#' Accuracy in an Italian lexical decision task
+#' Italian lexical decision accuracy
 #'
 #' 30 native speakers of Italian decide whether each of 60 Italian words is a
 #' word; the outcome is whether the response was correct. For mixed-effects
@@ -268,7 +268,7 @@
 #'   \item{group}{`"L1"` or `"L2"`.}
 #'   \item{word}{Word ID, `w01` to `w40`.}
 #'   \item{log_freq}{log10 word frequency, 1 to 6.}
-#'   \item{length}{Length in letters, 3 to 13; frequent words are shorter.}
+#'   \item{length}{Length in letters, 3 to 12; frequent words are shorter.}
 #'   \item{rt}{Reaction time in ms.}
 #' }
 #' @details True model:
@@ -310,8 +310,8 @@
 #'   Hz Italian) to an offset (2050 / 1900 Hz, lowered by 2 Hz per ms that
 #'   the vowel is shorter than 250 ms), with its midpoint at 62 / 50 and
 #'   width 8 / 14. By-speaker offsets (SD 60 Hz) and midpoints (SD 5) and
-#'   by-token offsets (SD 40 Hz); residuals are AR(1) with rho 0.6 and SD 30
-#'   Hz.
+#'   by-token offsets (SD 40 Hz); residuals are AR(1) with rho 0.6 and
+#'   innovation SD 30 Hz, so their SD is 37.5 Hz (30 / sqrt(1 - 0.6^2)).
 #' @source `data-raw/price_f2.R`
 #' @examples
 #' if (requireNamespace("mgcv", quietly = TRUE)) {
@@ -644,7 +644,8 @@
 #'   centred at 700 ms after restrictive and 930 ms after non-restrictive
 #'   verbs. By-participant variation in the centre (SD 80 ms) and in the final
 #'   level (SD 0.3 logits); by-item variation in the centre (SD 40 ms). Within
-#'   a trial, deviations are AR(1) with rho 0.9. Of the remaining samples,
+#'   a trial, deviations are AR(1) with rho 0.9 and innovation SD 0.25 logits,
+#'   so their SD is about 0.57 logits (0.25 / sqrt(1 - 0.9^2)). Of the remaining samples,
 #'   the competitor gets a third plus a bump of up to 25 percentage points
 #'   centred at 950 ms (SD about 100 ms); the two distractors split the rest
 #'   evenly. The timing follows Altmann and Kamide (1999, Experiment 1): the
@@ -733,8 +734,8 @@
 #' Frequencies of 16 lexico-grammatical features in 480 texts from six
 #' registers of the web, as used in multi-dimensional analysis (Biber, 1988).
 #' Its parameters are based on the web register data of Ehret and Taboada
-#' (2021). Three dimensions underlie the features, and one column is the sum
-#' of three others. For exploratory factor analysis and, on the dimension
+#' (2021a, 2021b). Three dimensions underlie the features, and one column is
+#' the sum of three others. For exploratory factor analysis and, on the dimension
 #' scores, cluster analysis.
 #'
 #' @format A tibble with 480 rows and 20 columns. Except for `word_length`,
@@ -800,7 +801,7 @@
 #'
 #'   The base rates and spreads were chosen so that the register means
 #'   approach those of the same six registers in the data of Ehret and
-#'   Taboada (2021), whose texts come from the Corpus of Online Registers of
+#'   Taboada (2021b), whose texts come from the Corpus of Online Registers of
 #'   English (Egbert et al., 2015). Most simulated register means are within
 #'   25% of theirs. The largest differences are in pronouns and contractions,
 #'   most of all in recipes, which in their data use more first and second
@@ -812,9 +813,9 @@
 #'
 #' Egbert, J., Biber, D. & Davies, M. (2015). Developing a bottom-up, user-based method of web register classification. *Journal of the Association for Information Science and Technology*, 66(9), 1817-1831. \doi{10.1002/asi.23308}
 #'
-#' Ehret, K. & Taboada, M. (2021). Characterising online news comments: A multi-dimensional cruise through online registers. *Frontiers in Artificial Intelligence*, 4, 643770. \doi{10.3389/frai.2021.643770}
+#' Ehret, K. & Taboada, M. (2021a). Characterising online news comments: A multi-dimensional cruise through online registers. *Frontiers in Artificial Intelligence*, 4, 643770. \doi{10.3389/frai.2021.643770}
 #'
-#' Ehret, K. & Taboada, M. (2021). *MDA-OnlineRegisters* (version 1.0) \[Data set and code\]. Zenodo. \doi{10.5281/zenodo.4885180}
+#' Ehret, K. & Taboada, M. (2021b). *MDA-OnlineRegisters* (version 1.0) \[Data set and code\]. Zenodo. \doi{10.5281/zenodo.4885180}
 #' @source `data-raw/web_registers.R`
 #' @examples
 #' features <- setdiff(names(web_registers), c("text", "register", "words", "pronouns"))
@@ -827,7 +828,8 @@
 
 #' Vocabulary growth in toddlers
 #'
-#' Productive vocabulary on a 680-word parental checklist, every two months
+#' Productive vocabulary on a 680-word parental checklist (the
+#' MacArthur-Bates CDI Words and Sentences; Fenson et al. 2007), every two months
 #' from 16 to 30 months, for 80 children. Each child's vocabulary follows an
 #' S-shaped (logistic) curve, and children who hear more speech reach its
 #' steep middle part earlier. Whether real vocabulary growth has a distinct
@@ -853,7 +855,9 @@
 #'   the curve 2 months earlier; this effect is simulated. The median curve
 #'   follows the CDI norms in Fenson et al. (1994): median vocabulary of 44
 #'   words at 16 months, 225 at 23 months and 573 at 30 months. They also
-#'   note that a logistic function fits the shape of vocabulary growth.
+#'   note that a logistic function fits the shape of vocabulary growth. At
+#'   24 months the median child here says about 300 words, as in the
+#'   Wordbank data (Frank et al. 2017).
 #' @references
 #' Fenson, L., Dale, P. S., Reznick, J. S., Bates, E., Thal, D. J. & Pethick, S. J. (1994). Variability in early communicative development. *Monographs of the Society for Research in Child Development*, 59(5), 1-185. \doi{10.2307/1166093}
 #'
@@ -903,9 +907,9 @@
 #'   showed that pooling all tokens gives most weight to frequent verbs,
 #'   whose rates are lowest. The children and counts are simulated.
 #' @references
-#' Marcus, G. F., Pinker, S., Ullman, M., Hollander, M., Rosen, T. J. & Xu, F. (1992). Overregularization in language acquisition. *Monographs of the Society for Research in Child Development*, 57(4). \doi{10.2307/1166115}
-#'
 #' Maratsos, M. (2000). More overregularizations after all: New data and discussion on Marcus, Pinker, Ullman, Hollander, Rosen & Xu. *Journal of Child Language*, 27(1), 183-212. \doi{10.1017/S0305000999004067}
+#'
+#' Marcus, G. F., Pinker, S., Ullman, M., Hollander, M., Rosen, T. J. & Xu, F. (1992). Overregularization in language acquisition. *Monographs of the Society for Research in Child Development*, 57(4). \doi{10.2307/1166115}
 #' @source `data-raw/overregularization.R`
 #' @examples
 #' sum(overregularization$errors) / sum(overregularization$attempts)
@@ -961,7 +965,7 @@
 #'       test = "Chisq")
 "do_support"
 
-#' Word order in a typological sample
+#' Word order across 400 invented languages
 #'
 #' 400 invented languages from 100 invented families in six invented areas.
 #' Languages mostly inherit their family's word order, so languages from the
@@ -996,9 +1000,9 @@
 #' @references
 #' Dryer, M. S. (2013). Order of subject, object and verb. In M. S. Dryer & M. Haspelmath (eds.), *WALS Online*. Leipzig: Max Planck Institute for Evolutionary Anthropology. <https://wals.info/chapter/81>
 #'
-#' Greenberg, J. H. (1963). Some universals of grammar with particular reference to the order of meaningful elements. In J. H. Greenberg (ed.), *Universals of Language* (pp. 58-90). Cambridge, MA: MIT Press.
-#'
 #' Dunn, M., Greenhill, S. J., Levinson, S. C. & Gray, R. D. (2011). Evolved structure of language shows lineage-specific trends in word-order universals. *Nature*, 473(7345), 79-82. \doi{10.1038/nature09923}
+#'
+#' Greenberg, J. H. (1963). Some universals of grammar with particular reference to the order of meaningful elements. In J. H. Greenberg (ed.), *Universals of Language* (pp. 58-90). Cambridge, MA: MIT Press.
 #' @source `data-raw/word_order.R`
 #' @examples
 #' round(prop.table(table(word_order$order)), 2)
@@ -1201,12 +1205,13 @@
 #'   \item{f0}{f0 in Hz.}
 #' }
 #' @details True model: each tone follows a smooth curve through targets on
-#'   Chao's 1-5 scale at 0, 25, 50, 75 and 100% of the vowel (T1: 5, 5, 5,
+#'   Chao's (1930) 1-5 scale at 0, 25, 50, 75 and 100% of the vowel (T1: 5, 5, 5,
 #'   4.9, 4.8; T2: 3, 2.8, 3.3, 4.2, 5; T3: 2.2, 1.6, 1, 1.3, 2.5; T4: 5, 4.6,
 #'   3.7, 2.5, 1.2). One Chao level is about 2.5 semitones (by-speaker SD
 #'   0.3); level 1 is about 160 Hz for female and 90 Hz for male speakers.
-#'   Token offsets have SD 0.5 semitones and residuals are AR(1) with rho
-#'   0.7. Mean durations are 250, 270, 300 and 220 ms for T1 to T4.
+#'   Token offsets have SD 0.5 semitones and residuals are AR(1) with rho 0.7
+#'   and innovation SD 0.25 semitones, so their SD is about 0.35 semitones
+#'   (0.25 / sqrt(1 - 0.7^2)). Mean durations are 250, 270, 300 and 220 ms for T1 to T4.
 #' @references
 #' Chao, Y. R. (1930). A system of tone letters. *Le Maître Phonétique*, 45, 24-27.
 #' @source `data-raw/mandarin_tones.R`
@@ -1411,7 +1416,8 @@
 
 #' A wug test of German noun plurals
 #'
-#' 60 adult native speakers of German give the plural of 48 nonce nouns,
+#' In this wug test (Berko 1958), 60 adult native speakers of German give
+#' the plural of 48 nonce nouns,
 #' each presented with its article (*der*, *die*, *das*). The plural ending
 #' depends on gender and on how the noun ends: schwa-final and feminine nouns
 #' mostly take *-(e)n*, nouns in *-el*/*-er* mostly no ending, masculine and
@@ -1486,9 +1492,9 @@
 #'   Levinson and Torreira (2015, Table 1). The conversations and answers are
 #'   simulated.
 #' @references
-#' Stivers, T., Enfield, N. J., Brown, P., Englert, C., Hayashi, M., Heinemann, T., Hoymann, G., Rossano, F., de Ruiter, J. P., Yoon, K.-E. & Levinson, S. C. (2009). Universals and cultural variation in turn-taking in conversation. *Proceedings of the National Academy of Sciences*, 106(26), 10587-10592. \doi{10.1073/pnas.0903616106}
-#'
 #' Levinson, S. C. & Torreira, F. (2015). Timing in turn-taking and its implications for processing models of language. *Frontiers in Psychology*, 6, 731. \doi{10.3389/fpsyg.2015.00731}
+#'
+#' Stivers, T., Enfield, N. J., Brown, P., Englert, C., Hayashi, M., Heinemann, T., Hoymann, G., Rossano, F., de Ruiter, J. P., Yoon, K.-E. & Levinson, S. C. (2009). Universals and cultural variation in turn-taking in conversation. *Proceedings of the National Academy of Sciences*, 106(26), 10587-10592. \doi{10.1073/pnas.0903616106}
 #' @source `data-raw/turn_taking.R`
 #' @examples
 #' sort(tapply(turn_taking$offset, turn_taking$language, median))
@@ -1596,7 +1602,8 @@
 #' system. Every speaker is compared with himself (same-speaker comparisons,
 #' recordings from two sessions) and with every other speaker
 #' (different-speaker comparisons). Higher scores mean more similar voices.
-#' For calibrating scores into likelihood ratios, computing Cllr and
+#' For calibrating scores into likelihood ratios, computing Cllr (Brümmer
+#' and du Preez 2006) and
 #' comparing or fusing systems.
 #'
 #' @format A tibble with 3240 rows and 6 columns:
@@ -1632,7 +1639,8 @@
 #' Two coders' GToBI labels
 #'
 #' Two trained coders label the same 456 words from 40 German utterances
-#' with GToBI pitch accents and phrase boundaries: 20 utterances of read and
+#' with GToBI (Grice, Baumann and Benzmüller 2005) pitch accents and phrase
+#' boundaries: 20 utterances of read and
 #' 20 of spontaneous speech. Coders agree on whether a word is accented for
 #' about 86% of words and on the exact accent label for about 71%, close to
 #' the agreement Grice et al. (1996) report for GToBI. For English ToBI,
@@ -1660,9 +1668,9 @@
 #'   0.5). Otherwise the coder picks a similar label (e.g. `"L+H*"` for
 #'   `"H*"`).
 #' @references
-#' Grice, M., Reyelt, M., Benzmüller, R., Mayer, J. & Batliner, A. (1996). Consistency in transcription and labelling of German intonation with GToBI. In *Proceedings of the 4th International Conference on Spoken Language Processing (ICSLP 96)* (pp. 1716-1719). Philadelphia. \doi{10.1109/ICSLP.1996.607958}
-#'
 #' Grice, M., Baumann, S. & Benzmüller, R. (2005). German intonation in autosegmental-metrical phonology. In S.-A. Jun (ed.), *Prosodic Typology: The Phonology of Intonation and Phrasing* (pp. 55-83). Oxford: Oxford University Press. \doi{10.1093/acprof:oso/9780199249633.003.0003}
+#'
+#' Grice, M., Reyelt, M., Benzmüller, R., Mayer, J. & Batliner, A. (1996). Consistency in transcription and labelling of German intonation with GToBI. In *Proceedings of the 4th International Conference on Spoken Language Processing (ICSLP 96)* (pp. 1716-1719). Philadelphia. \doi{10.1109/ICSLP.1996.607958}
 #'
 #' Pitrelli, J. F., Beckman, M. E. & Hirschberg, J. (1994). Evaluation of prosodic transcription labeling reliability in the ToBI framework. *Proceedings of ICSLP 1994*. <https://www.isca-archive.org/icslp_1994/pitrelli94_icslp.html>
 #' @source `data-raw/tobi_agreement.R`
@@ -1717,7 +1725,8 @@
 #'   the order of the language differences Arvaniti (2012) found: for %V,
 #'   German < English < Greek < Italian, Korean and Spanish; for \ifelse{latex}{\out{$\Delta$C}}{ΔC},
 #'   English and German > Korean and Spanish > Greek and Italian; for VarcoV,
-#'   German lowest and Korean highest. Material effects, relative to the
+#'   German lowest and Korean highest. VarcoV is the rate-normalised measure
+#'   of White and Mattys (2007). Material effects, relative to the
 #'   uncontrolled sentences, are -3, +7, +3 (complex-syllable sentences), +3,
 #'   -6, -4 (simple-syllable sentences), -1, +2, +2 (story) and -1.5, +6, +7
 #'   (spontaneous). Language-by-material deviations have SD 1, 3 and 3,
@@ -1730,9 +1739,9 @@
 #'
 #' Dellwo, V. (2006). Rhythm and speech rate: A variation coefficient for deltaC. In P. Karnowski & I. Szigeti (eds.), *Language and Language-Processing: Proceedings of the 38th Linguistics Colloquium, Piliscsaba 2003* (pp. 231-241). Frankfurt am Main: Peter Lang.
 #'
-#' Rathcke, T. & Smith, R. (2015). Speech timing and linguistic rhythm: On the acoustic bases of rhythm typologies. *Journal of the Acoustical Society of America*, 137(5), 2834-2845. \doi{10.1121/1.4919322}
-#'
 #' Ramus, F., Nespor, M. & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. *Cognition*, 73(3), 265-292. \doi{10.1016/S0010-0277(99)00058-X}
+#'
+#' Rathcke, T. & Smith, R. (2015). Speech timing and linguistic rhythm: On the acoustic bases of rhythm typologies. *Journal of the Acoustical Society of America*, 137(5), 2834-2845. \doi{10.1121/1.4919322}
 #'
 #' White, L. & Mattys, S. L. (2007). Calibrating rhythm: First language and second language studies. *Journal of Phonetics*, 35(4), 501-522. \doi{10.1016/j.wocn.2007.02.003}
 #' @source `data-raw/rhythm_metrics.R`
@@ -1748,7 +1757,7 @@
 #' }
 "rhythm_metrics"
 
-#' Hungarian vowel harmony in a wug test
+#' A wug test of Hungarian vowel harmony
 #'
 #' 50 Hungarian speakers choose between a back (*-nak*) and a front (*-nek*)
 #' dative suffix for 84 nonce stems. Stems with only back vowels take back
@@ -1776,7 +1785,9 @@
 #'   These are the rounded proportions of back responses in the wug test of
 #'   Hayes and Londe (2006, Table III); BNN uses their stems ending in *e*.
 #'   Items are identified by their stem type; the nonce word forms are left
-#'   out. Participants, items and responses are simulated.
+#'   out. Hayes et al. (2009) show that Hungarian speakers also learn less
+#'   natural patterns of the lexicon, though less well. Participants, items
+#'   and responses are simulated.
 #' @references
 #' Hayes, B. & Londe, Z. C. (2006). Stochastic phonological knowledge: The case of Hungarian vowel harmony. *Phonology*, 23(1), 59-104. \doi{10.1017/S0952675706000765}
 #'
@@ -1832,7 +1843,8 @@
 #'
 #' 40 published studies of the bouba/kiki effect: how many participants
 #' matched *bouba* with a round and *kiki* with a spiky shape. The studies
-#' tested speakers of 21 languages. Studies with a non-significant result
+#' tested speakers of 21 languages. Ćwiek et al. (2022) found the effect
+#' across many languages and writing systems. Studies with a non-significant result
 #' were less likely to be published, so the published effects are inflated.
 #' For random-effects meta-analysis, moderators, funnel plots and
 #' publication bias.
@@ -1894,7 +1906,7 @@
 #'   0.07 (third generation), multiplied by 1.3 (family), 0.8 (work), 1
 #'   (leisure) or 1.1 (migration), by 0.25 with a monolingual interlocutor,
 #'   and by a speaker effect (SD 0.35 on the log scale). Intrasentential
-#'   switches are binomial with probability 0.25, 0.6 and 0.4 for the three
+#'   switches (Poplack 1980) are binomial with probability 0.25, 0.6 and 0.4 for the three
 #'   generations. These generation differences are a design choice. They
 #'   resemble the pattern Backus (1996) describes for Turkish immigrants in
 #'   the Netherlands, where the intermediate generation switched most often,
@@ -1923,7 +1935,8 @@
 #' Ratings by the two groups are correlated (r about 0.78 for sign means,
 #' as in Trettenbrein et al. 2021). Signers rate signs as more iconic
 #' overall, and non-signers rate verbs as more iconic than nouns. More
-#' iconic signs are acquired earlier. For mixed models of ratings with
+#' iconic signs are acquired earlier, as Thompson et al. (2012) found for
+#' British Sign Language. For mixed models of ratings with
 #' crossed raters and items.
 #'
 #' @format A tibble with 18000 rows and 7 columns:
@@ -1949,13 +1962,13 @@
 #'   ASL (Sehyr and Emmorey 2019) and Israeli Sign Language (Fuks 2023)
 #'   (verbs higher for non-signers).
 #' @references
-#' Trettenbrein, P. C., Pendzich, N.-K., Cramer, J.-M., Steinbach, M. & Zaccarella, E. (2021). Psycholinguistic norms for more than 300 lexical signs in German Sign Language (DGS). *Behavior Research Methods*, 53(5), 1817-1832. \doi{10.3758/s13428-020-01524-y}
-#'
 #' Fuks, O. (2023). Iconicity perception under the lens of iconicity rating and transparency tasks in Israeli Sign Language (ISL). *Sign Language Studies*, 24(1), 46-92.
 #'
 #' Sehyr, Z. S. & Emmorey, K. (2019). The perceived mapping between form and meaning in American Sign Language depends on linguistic knowledge and task: Evidence from iconicity and transparency judgments. *Language and Cognition*, 11(2), 208-234. \doi{10.1017/langcog.2019.18}
 #'
 #' Thompson, R. L., Vinson, D. P., Woll, B. & Vigliocco, G. (2012). The road to language learning is iconic: Evidence from British Sign Language. *Psychological Science*, 23(12), 1443-1448. \doi{10.1177/0956797612459763}
+#'
+#' Trettenbrein, P. C., Pendzich, N.-K., Cramer, J.-M., Steinbach, M. & Zaccarella, E. (2021). Psycholinguistic norms for more than 300 lexical signs in German Sign Language (DGS). *Behavior Research Methods*, 53(5), 1817-1832. \doi{10.3758/s13428-020-01524-y}
 #' @source `data-raw/dgs_iconicity.R`
 #' @examples
 #' round(tapply(dgs_iconicity$rating, dgs_iconicity[c("group", "category")], mean), 2)
@@ -2147,14 +2160,15 @@
 #'   and sentence effects. The two aptitude scores correlate at about 0.5.
 #'   The design and the effects of the manipulations and of aptitude follow
 #'   Rathcke and Smit (2025); in their data the manipulated stimuli
-#'   transformed about half of the time. The other intercepts, the effect of
+#'   transformed about half of the time. Flattening pitch within syllables
+#'   follows Falk, Rathcke and Dalla Bella (2014). The other intercepts, the effect of
 #'   `transformed` on the final rating and all data are simulated.
 #' @references
-#' Rathcke, T. & Smit, E. A. (2025). Musical aptitude moderates ease and vividness but not frequency of the speech-to-song illusion. *Scientific Reports*, 15, 33315. \doi{10.1038/s41598-025-18612-8}
-#'
 #' Falk, S., Rathcke, T. & Dalla Bella, S. (2014). When speech sounds like music. *Journal of Experimental Psychology: Human Perception and Performance*, 40(4), 1491-1506. \doi{10.1037/a0036858}
 #'
 #' Rathcke, T., Falk, S. & Dalla Bella, S. (2024). Why does speech sometimes sound like song? Exploring the role of music-related priors in the "speech-to-song illusion". *Music & Science*, 7. \doi{10.1177/20592043241266060}
+#'
+#' Rathcke, T. & Smit, E. A. (2025). Musical aptitude moderates ease and vividness but not frequency of the speech-to-song illusion. *Scientific Reports*, 15, 33315. \doi{10.1038/s41598-025-18612-8}
 #' @source `data-raw/speech_to_song.R`
 #' @examples
 #' round(tapply(speech_to_song$transformed, speech_to_song$manipulation, mean), 2)
@@ -2202,12 +2216,12 @@
 #'   \item{gaze_duration}{Sum of all first-pass fixations on the target in
 #'     ms. `NA` if skipped.}
 #' }
-#' @details True model: cell means are those in Rayner et al. (2011, Table
+#' @details True model: the cell values come from Rayner et al. (2011, Table
 #'   3). Skipping rates are 36, 22 and 18% for predictable and 28, 18 and
 #'   10% for unpredictable short, medium and long words. First fixations
 #'   last 193 to 211 ms and gaze durations 211 to 246 ms. Skipping is
 #'   logistic, with by-reader (SD 0.6) and by-item (SD 0.4) effects. First
-#'   fixations are log-normal, with by-reader (SD 0.12), by-item (SD 0.06)
+#'   fixations are log-normal around the cell value, with by-reader (SD 0.12), by-item (SD 0.06)
 #'   and residual (SD 0.25) variation. A word is refixated with probability
 #'   `(gaze - first fixation) / 180` for its cell, and a refixation adds
 #'   about 180 ms. Cloze values are drawn around 0.74 for predictable and
@@ -2315,9 +2329,10 @@
 #'   generation, with chain (SD 0.3) and residual (SD 0.3) variation.
 #'   Structure rises by 0.6 (no filter) or 0.75 (filter) per generation,
 #'   scaled by a chain effect (SD 0.15), with noise SD 1.2. The number of
-#'   distinct words is 1 plus a Poisson count, capped at 27, whose mean
-#'   starts near 20 and falls by 18% per generation without the filter and
-#'   by 4% with it. The design follows Kirby, Cornish and Smith (2008), in
+#'   distinct words is 1 plus a Poisson count, capped at 27. Its mean starts
+#'   at 20 (no filter) or 22 (filter) and changes by -0.18 or -0.04 per
+#'   generation on the log scale, about 16% or 4% fewer words per generation,
+#'   with chain variation (SD 0.2 on the log scale). The design follows Kirby, Cornish and Smith (2008), in
 #'   whose two experiments transmission error fell by 0.75 and 0.43 and
 #'   structure rose by 5.6 and 6.8 over ten generations. The chains are
 #'   simulated.

@@ -29,7 +29,8 @@ rate 300 DGS signs for iconicity (1 = not iconic, 7 = very iconic).
 Ratings by the two groups are correlated (r about 0.78 for sign means,
 as in Trettenbrein et al. 2021). Signers rate signs as more iconic
 overall, and non-signers rate verbs as more iconic than nouns. More
-iconic signs are acquired earlier. For mixed models of ratings with
+iconic signs are acquired earlier, as Thompson et al. (2012) found for
+British Sign Language. For mixed models of ratings with
 crossed raters and items.
 }
 \details{
@@ -57,12 +58,12 @@ if (requireNamespace("lme4", quietly = TRUE)) {
 }
 }
 \references{
-Trettenbrein, P. C., Pendzich, N.-K., Cramer, J.-M., Steinbach, M. & Zaccarella, E. (2021). Psycholinguistic norms for more than 300 lexical signs in German Sign Language (DGS). \emph{Behavior Research Methods}, 53(5), 1817-1832. \doi{10.3758/s13428-020-01524-y}
-
 Fuks, O. (2023). Iconicity perception under the lens of iconicity rating and transparency tasks in Israeli Sign Language (ISL). \emph{Sign Language Studies}, 24(1), 46-92.
 
 Sehyr, Z. S. & Emmorey, K. (2019). The perceived mapping between form and meaning in American Sign Language depends on linguistic knowledge and task: Evidence from iconicity and transparency judgments. \emph{Language and Cognition}, 11(2), 208-234. \doi{10.1017/langcog.2019.18}
 
 Thompson, R. L., Vinson, D. P., Woll, B. & Vigliocco, G. (2012). The road to language learning is iconic: Evidence from British Sign Language. \emph{Psychological Science}, 23(12), 1443-1448. \doi{10.1177/0956797612459763}
+
+Trettenbrein, P. C., Pendzich, N.-K., Cramer, J.-M., Steinbach, M. & Zaccarella, E. (2021). Psycholinguistic norms for more than 300 lexical signs in German Sign Language (DGS). \emph{Behavior Research Methods}, 53(5), 1817-1832. \doi{10.3758/s13428-020-01524-y}
 }
 \keyword{datasets}

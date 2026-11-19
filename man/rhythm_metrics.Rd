@@ -49,7 +49,8 @@ noise. Language means for \%V, \ifelse{latex}{\out{$\Delta$C}}{ΔC} and VarcoV a
 the order of the language differences Arvaniti (2012) found: for \%V,
 German < English < Greek < Italian, Korean and Spanish; for \ifelse{latex}{\out{$\Delta$C}}{ΔC},
 English and German > Korean and Spanish > Greek and Italian; for VarcoV,
-German lowest and Korean highest. Material effects, relative to the
+German lowest and Korean highest. VarcoV is the rate-normalised measure
+of White and Mattys (2007). Material effects, relative to the
 uncontrolled sentences, are -3, +7, +3 (complex-syllable sentences), +3,
 -6, -4 (simple-syllable sentences), -1, +2, +2 (story) and -1.5, +6, +7
 (spontaneous). Language-by-material deviations have SD 1, 3 and 3,
@@ -74,9 +75,9 @@ Arvaniti, A. (2012). The usefulness of metrics in the quantification of speech r
 
 Dellwo, V. (2006). Rhythm and speech rate: A variation coefficient for deltaC. In P. Karnowski & I. Szigeti (eds.), \emph{Language and Language-Processing: Proceedings of the 38th Linguistics Colloquium, Piliscsaba 2003} (pp. 231-241). Frankfurt am Main: Peter Lang.
 
-Rathcke, T. & Smith, R. (2015). Speech timing and linguistic rhythm: On the acoustic bases of rhythm typologies. \emph{Journal of the Acoustical Society of America}, 137(5), 2834-2845. \doi{10.1121/1.4919322}
-
 Ramus, F., Nespor, M. & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. \emph{Cognition}, 73(3), 265-292. \doi{10.1016/S0010-0277(99)00058-X}
+
+Rathcke, T. & Smith, R. (2015). Speech timing and linguistic rhythm: On the acoustic bases of rhythm typologies. \emph{Journal of the Acoustical Society of America}, 137(5), 2834-2845. \doi{10.1121/1.4919322}
 
 White, L. & Mattys, S. L. (2007). Calibrating rhythm: First language and second language studies. \emph{Journal of Phonetics}, 35(4), 501-522. \doi{10.1016/j.wocn.2007.02.003}
 }

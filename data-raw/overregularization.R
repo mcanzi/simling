@@ -1,4 +1,5 @@
-# Marcus et al. (1992), Monographs of the Society for Research in Child Development 57(4).
+# Marcus et al. (1992), Monographs of the Society for Research in Child Development 57(4);
+# Maratsos (2000), Journal of Child Language 27(1), 183-212.
 library(dplyr)
 library(tidyr)
 library(stringr)

@@ -11,7 +11,7 @@ A tibble with 1200 rows and 6 columns:
 \item{group}{\code{"L1"} or \code{"L2"}.}
 \item{word}{Word ID, \code{w01} to \code{w40}.}
 \item{log_freq}{log10 word frequency, 1 to 6.}
-\item{length}{Length in letters, 3 to 13; frequent words are shorter.}
+\item{length}{Length in letters, 3 to 12; frequent words are shorter.}
 \item{rt}{Reaction time in ms.}
 }
 }

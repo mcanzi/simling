@@ -1,5 +1,6 @@
 # Rathcke & Smit (2025), Scientific Reports 15, 33315;
-# Falk, Rathcke & Dalla Bella (2014), Journal of Experimental Psychology: Human Perception and Performance 40(4), 1491-1506.
+# Falk, Rathcke & Dalla Bella (2014), Journal of Experimental Psychology: Human Perception and Performance 40(4), 1491-1506;
+# Rathcke, Falk & Dalla Bella (2024), Music & Science 7.
 library(dplyr)
 library(tidyr)
 library(stringr)

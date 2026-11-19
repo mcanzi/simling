@@ -3,7 +3,7 @@
 \docType{data}
 \name{lexical_accuracy}
 \alias{lexical_accuracy}
-\title{Accuracy in an Italian lexical decision task}
+\title{Italian lexical decision accuracy}
 \format{
 A tibble with 1800 rows and 5 columns:
 \describe{

@@ -215,6 +215,7 @@ degemination
 deltaC
 disconfirmation
 distractors
+dplyr
 du
 ed
 eeh
@@ -240,6 +241,7 @@ laut
 lenis
 lexico
 log10
+mcanzi
 megastudies
 nak
 nd
@@ -251,6 +253,7 @@ overregularizations
 overregularizes
 p0
 plogis
+purrr
 refixated
 refixation
 relativised
@@ -258,14 +261,18 @@ relativizer
 relativizers
 saccade
 seinen
+stringr
 superadditive
 syll
 termino
 th
 tibble
+tidyr
+tidyverse
 trinkt
 u
 underinformative
+usethis
 wes
 wug
 Á

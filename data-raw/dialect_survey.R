@@ -1,4 +1,6 @@
-# Towns and coordinates: maps::world.cities (towns over 50,000 inhabitants).
+# Bertinetto & Loporcaro (2005), Journal of the International Phonetic Association 35(2), 131-151;
+# Mairano & De Iacovo (2020), Language and Speech 63(3), 608-634;
+# towns and coordinates: maps::world.cities (towns over 50,000 inhabitants).
 library(dplyr)
 library(tidyr)
 library(stringr)

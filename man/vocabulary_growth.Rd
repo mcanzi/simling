@@ -20,7 +20,8 @@ A tibble with 573 rows and 4 columns:
 vocabulary_growth
 }
 \description{
-Productive vocabulary on a 680-word parental checklist, every two months
+Productive vocabulary on a 680-word parental checklist (the
+MacArthur-Bates CDI Words and Sentences; Fenson et al. 2007), every two months
 from 16 to 30 months, for 80 children. Each child's vocabulary follows an
 S-shaped (logistic) curve, and children who hear more speech reach its
 steep middle part earlier. Whether real vocabulary growth has a distinct
@@ -41,7 +42,9 @@ on the logit scale (SD 0.15). Doubling the input moves the midpoint of
 the curve 2 months earlier; this effect is simulated. The median curve
 follows the CDI norms in Fenson et al. (1994): median vocabulary of 44
 words at 16 months, 225 at 23 months and 573 at 30 months. They also
-note that a logistic function fits the shape of vocabulary growth.
+note that a logistic function fits the shape of vocabulary growth. At
+24 months the median child here says about 300 words, as in the
+Wordbank data (Frank et al. 2017).
 }
 \examples{
 plot(vocabulary ~ age, data = vocabulary_growth, col = grey(0.4))

@@ -10,7 +10,7 @@ A tibble with 3000 rows and 6 columns:
 \item{language}{Language, one of \code{"Danish"}, \code{"Dutch"}, \code{"English"}, \code{"Italian"},
 \code{"Japanese"}, \code{"Korean"}, \code{"Lao"}, \code{"Tzeltal"}, \code{"Yélî Dnye"} or
 \ifelse{latex}{\code{"\\u01c2\\u0100khoe Hai\\u01c1om"}}{\code{"ǂĀkhoe Haiǁom"}}.}
-  \item{conversation}{Conversation ID: a three-letter code for the
+\item{conversation}{Conversation ID: a three-letter code for the
 language and a number, from \code{akh_01} to \code{yel_12}; 12 per language.}
 \item{response}{\code{"confirmation"} or \code{"disconfirmation"}.}
 \item{answer}{\code{"answer"} or \code{"non-answer"} (e.g. \emph{I don't know}).}
@@ -62,8 +62,8 @@ if (requireNamespace("lme4", quietly = TRUE)) {
 }
 }
 \references{
-Stivers, T., Enfield, N. J., Brown, P., Englert, C., Hayashi, M., Heinemann, T., Hoymann, G., Rossano, F., de Ruiter, J. P., Yoon, K.-E. & Levinson, S. C. (2009). Universals and cultural variation in turn-taking in conversation. \emph{Proceedings of the National Academy of Sciences}, 106(26), 10587-10592. \doi{10.1073/pnas.0903616106}
-
 Levinson, S. C. & Torreira, F. (2015). Timing in turn-taking and its implications for processing models of language. \emph{Frontiers in Psychology}, 6, 731. \doi{10.3389/fpsyg.2015.00731}
+
+Stivers, T., Enfield, N. J., Brown, P., Englert, C., Hayashi, M., Heinemann, T., Hoymann, G., Rossano, F., de Ruiter, J. P., Yoon, K.-E. & Levinson, S. C. (2009). Universals and cultural variation in turn-taking in conversation. \emph{Proceedings of the National Academy of Sciences}, 106(26), 10587-10592. \doi{10.1073/pnas.0903616106}
 }
 \keyword{datasets}

@@ -1,4 +1,6 @@
+# Fenson et al. (1994), Monographs of the Society for Research in Child Development 59(5);
 # MacArthur-Bates CDI Words & Sentences (Fenson et al. 2007);
+# Ganger & Brent (2004), Developmental Psychology 40(4), 621-632;
 # about 300 words at 24 months: Frank et al. (2017), Journal of Child Language 44(3), 677-694.
 library(dplyr)
 library(tidyr)

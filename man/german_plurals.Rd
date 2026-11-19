@@ -25,7 +25,8 @@ or \code{"full vowel"}.}
 german_plurals
 }
 \description{
-60 adult native speakers of German give the plural of 48 nonce nouns,
+In this wug test (Berko 1958), 60 adult native speakers of German give
+the plural of 48 nonce nouns,
 each presented with its article (\emph{der}, \emph{die}, \emph{das}). The plural ending
 depends on gender and on how the noun ends: schwa-final and feminine nouns
 mostly take \emph{-(e)n}, nouns in \emph{-el}/\emph{-er} mostly no ending, masculine and

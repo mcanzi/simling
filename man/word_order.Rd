@@ -3,7 +3,7 @@
 \docType{data}
 \name{word_order}
 \alias{word_order}
-\title{Word order in a typological sample}
+\title{Word order across 400 invented languages}
 \format{
 A tibble with 400 rows and 8 columns:
 \describe{
@@ -59,8 +59,8 @@ if (requireNamespace("lme4", quietly = TRUE)) {
 \references{
 Dryer, M. S. (2013). Order of subject, object and verb. In M. S. Dryer & M. Haspelmath (eds.), \emph{WALS Online}. Leipzig: Max Planck Institute for Evolutionary Anthropology. \url{https://wals.info/chapter/81}
 
-Greenberg, J. H. (1963). Some universals of grammar with particular reference to the order of meaningful elements. In J. H. Greenberg (ed.), \emph{Universals of Language} (pp. 58-90). Cambridge, MA: MIT Press.
-
 Dunn, M., Greenhill, S. J., Levinson, S. C. & Gray, R. D. (2011). Evolved structure of language shows lineage-specific trends in word-order universals. \emph{Nature}, 473(7345), 79-82. \doi{10.1038/nature09923}
+
+Greenberg, J. H. (1963). Some universals of grammar with particular reference to the order of meaningful elements. In J. H. Greenberg (ed.), \emph{Universals of Language} (pp. 58-90). Cambridge, MA: MIT Press.
 }
 \keyword{datasets}

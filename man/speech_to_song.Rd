@@ -54,7 +54,8 @@ listener effect (SD 0.6). For \code{rating_after} it is \code{0.2 + 1.2 * pitch 
 and sentence effects. The two aptitude scores correlate at about 0.5.
 The design and the effects of the manipulations and of aptitude follow
 Rathcke and Smit (2025); in their data the manipulated stimuli
-transformed about half of the time. The other intercepts, the effect of
+transformed about half of the time. Flattening pitch within syllables
+follows Falk, Rathcke and Dalla Bella (2014). The other intercepts, the effect of
 \code{transformed} on the final rating and all data are simulated.
 }
 \examples{
@@ -75,10 +76,10 @@ if (requireNamespace("ordinal", quietly = TRUE)) {
 }
 }
 \references{
-Rathcke, T. & Smit, E. A. (2025). Musical aptitude moderates ease and vividness but not frequency of the speech-to-song illusion. \emph{Scientific Reports}, 15, 33315. \doi{10.1038/s41598-025-18612-8}
-
 Falk, S., Rathcke, T. & Dalla Bella, S. (2014). When speech sounds like music. \emph{Journal of Experimental Psychology: Human Perception and Performance}, 40(4), 1491-1506. \doi{10.1037/a0036858}
 
 Rathcke, T., Falk, S. & Dalla Bella, S. (2024). Why does speech sometimes sound like song? Exploring the role of music-related priors in the "speech-to-song illusion". \emph{Music & Science}, 7. \doi{10.1177/20592043241266060}
+
+Rathcke, T. & Smit, E. A. (2025). Musical aptitude moderates ease and vividness but not frequency of the speech-to-song illusion. \emph{Scientific Reports}, 15, 33315. \doi{10.1038/s41598-025-18612-8}
 }
 \keyword{datasets}

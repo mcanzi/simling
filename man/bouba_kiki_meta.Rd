@@ -26,7 +26,8 @@ bouba_kiki_meta
 \description{
 40 published studies of the bouba/kiki effect: how many participants
 matched \emph{bouba} with a round and \emph{kiki} with a spiky shape. The studies
-tested speakers of 21 languages. Studies with a non-significant result
+tested speakers of 21 languages. Ćwiek et al. (2022) found the effect
+across many languages and writing systems. Studies with a non-significant result
 were less likely to be published, so the published effects are inflated.
 For random-effects meta-analysis, moderators, funnel plots and
 publication bias.

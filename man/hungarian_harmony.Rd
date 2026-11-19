@@ -3,7 +3,7 @@
 \docType{data}
 \name{hungarian_harmony}
 \alias{hungarian_harmony}
-\title{Hungarian vowel harmony in a wug test}
+\title{A wug test of Hungarian vowel harmony}
 \format{
 A tibble with 4200 rows and 6 columns:
 \describe{
@@ -40,7 +40,9 @@ on the logit scale by participant (SD 0.5) and item (SD 0.4) effects.
 These are the rounded proportions of back responses in the wug test of
 Hayes and Londe (2006, Table III); BNN uses their stems ending in \emph{e}.
 Items are identified by their stem type; the nonce word forms are left
-out. Participants, items and responses are simulated.
+out. Hayes et al. (2009) show that Hungarian speakers also learn less
+natural patterns of the lexicon, though less well. Participants, items
+and responses are simulated.
 }
 \examples{
 round(prop.table(table(hungarian_harmony$stem_type, hungarian_harmony$suffix), 1), 2)

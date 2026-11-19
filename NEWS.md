@@ -1,3 +1,29 @@
+# simling 0.1.2
+
+* The scripts in `data-raw/` use the tidyverse throughout: purrr instead of
+  loops and apply functions, joins and `case_when()` instead of index
+  lookups, and stringr instead of base string functions. They reproduce the
+  data exactly. `data-raw/session_info.txt` lists the R and package
+  versions used.
+* `german_plurals$article`, `korean_stops$vot` and
+  `mandarin_tones$duration` no longer carry a stray `names` attribute. Their
+  values are unchanged.
+* `?price_f2`, `?visual_world` and `?mandarin_tones` give the SD of the
+  AR(1) innovations as well as the SD of the residuals.
+* `?iterated_learning` gives the starting number of distinct words in each
+  condition, the size of its decline and its variation between chains.
+* `?lexical_decision_l2` gives the range of `length` in the data (3 to 12).
+* `?reading_skipping` says that first fixations are log-normal around the
+  values from Rayner et al. (2011).
+* Help pages cite in the text most of the works they list, and reference
+  lists are in alphabetical order. The two Ehret and Taboada (2021) works
+  are now 2021a and 2021b. The scripts in `data-raw/` cite the same works
+  as their help pages.
+* New titles: `?lexical_accuracy` ("Italian lexical decision accuracy"),
+  `?word_order` ("Word order across 400 invented languages") and
+  `?hungarian_harmony` ("A wug test of Hungarian vowel harmony").
+* README lists the packages needed to rebuild the data.
+
 # simling 0.1.1
 
 * simling can be installed from R-universe (<https://mcanzi.r-universe.dev>).

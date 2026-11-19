@@ -1,4 +1,5 @@
-# Dryer (2013), WALS Online, feature 81A; Greenberg (1963), Universals of Language, 58-90.
+# Dryer (2013), WALS Online, feature 81A; Greenberg (1963), Universals of Language, 58-90;
+# Dunn, Greenhill, Levinson & Gray (2011), Nature 473(7345), 79-82.
 library(dplyr)
 library(tidyr)
 library(purrr)

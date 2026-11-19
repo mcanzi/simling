@@ -50,8 +50,8 @@ if (requireNamespace("lme4", quietly = TRUE)) {
 }
 }
 \references{
-Marcus, G. F., Pinker, S., Ullman, M., Hollander, M., Rosen, T. J. & Xu, F. (1992). Overregularization in language acquisition. \emph{Monographs of the Society for Research in Child Development}, 57(4). \doi{10.2307/1166115}
-
 Maratsos, M. (2000). More overregularizations after all: New data and discussion on Marcus, Pinker, Ullman, Hollander, Rosen & Xu. \emph{Journal of Child Language}, 27(1), 183-212. \doi{10.1017/S0305000999004067}
+
+Marcus, G. F., Pinker, S., Ullman, M., Hollander, M., Rosen, T. J. & Xu, F. (1992). Overregularization in language acquisition. \emph{Monographs of the Society for Research in Child Development}, 57(4). \doi{10.2307/1166115}
 }
 \keyword{datasets}

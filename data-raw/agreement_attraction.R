@@ -1,4 +1,5 @@
-# Design: Bock & Miller (1991), Cognitive Psychology 23(1), 45-93.
+# Design: Bock & Miller (1991), Cognitive Psychology 23(1), 45-93;
+# Wagers, Lau & Phillips (2009), Journal of Memory and Language 61(2), 206-237.
 library(dplyr)
 library(tidyr)
 library(stringr)
