@@ -28,6 +28,8 @@ their voicing effect; words differ in duration.
 True model: \code{duration = 150 + s0 + w0 + (20 + s1) * voiced + e}.
 By-speaker intercepts \code{s0} have SD 25 ms and slopes \code{s1} SD 12 ms
 (uncorrelated); by-word intercepts \code{w0} have SD 15 ms; residual SD 20 ms.
+The design follows the simulation in Winter (2019, section 15.2). The
+data are simulated.
 }
 \examples{
 if (requireNamespace("lme4", quietly = TRUE)) {
@@ -35,5 +37,8 @@ if (requireNamespace("lme4", quietly = TRUE)) {
                   data = vowel_duration)
   summary(m)
 }
+}
+\references{
+Winter, B. (2019). \emph{Statistics for linguists: An introduction using R}. Routledge. \doi{10.4324/9781315165547}
 }
 \keyword{datasets}
