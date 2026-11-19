@@ -2,8 +2,9 @@
 
 ## simling 0.1.2
 
-- The design of `vowel_duration` follows the simulation in Winter (2019,
-  section 15.2), which its help page now cites.
+- [`?vowel_duration`](https://mcanzi.de/simling/reference/vowel_duration.md)
+  cites the vowel duration simulation in Winter (2019, section 15.2)
+  that the data set is based on.
 - New data set `fuzzy_contrasts`: articulatory trajectories (linear
   discriminant values from ultrasound images) of GOOSE and FOOT before
   /l/ in four morphological contexts in Southern British English, after
