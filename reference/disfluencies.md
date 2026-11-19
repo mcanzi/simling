@@ -2,11 +2,12 @@
 
 Filled pauses (*ehm*, *eeh*) in 60 turns from each of 40 speakers in 20
 Italian Map Task dialogues, in which an instruction giver guides a
-follower along a route. Filled pauses are rare: about 4% of turns
-contain one, about 0.4 per 100 syllables. Many turns are fluent and
-cannot contain a filled pause at all, so the data have more zeros than a
-Poisson model predicts. Givers produce more filled pauses than
-followers. For zero-inflated count models with an exposure.
+follower along a route. Filled pauses are rare in Italian task-oriented
+dialogue (Di Napoli 2020): about 4% of turns contain one, about 0.4 per
+100 syllables. Many turns are fluent and cannot contain a filled pause
+at all, so the data have more zeros than a Poisson model predicts.
+Givers produce more filled pauses than followers. For zero-inflated
+count models with an exposure.
 
 ## Usage
 

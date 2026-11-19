@@ -34,7 +34,11 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.2" id="simling-012">simling 0.1.2<a class="anchor" aria-label="anchor" href="#simling-012"></a></h2>
-<ul><li>The scripts in <code>data-raw/</code> use the tidyverse throughout: purrr instead of loops and apply functions, joins and <code>case_when()</code> instead of index lookups, and stringr instead of base string functions. They reproduce the data exactly. <code>data-raw/session_info.txt</code> lists the R and package versions used.</li>
+<ul><li>New data set <code>fuzzy_contrasts</code>: articulatory trajectories (linear discriminant values from ultrasound images) of GOOSE and FOOT before /l/ in four morphological contexts in Southern British English, after Strycharczuk and Scobbie (2017). Durations and the numbers of speakers with each contrast follow the paper.</li>
+<li>
+<code><a href="../reference/disfluencies.html">?disfluencies</a></code>, <code><a href="../reference/rhythm_metrics.html">?rhythm_metrics</a></code> and <code><a href="../reference/word_order.html">?word_order</a></code> now cite Di Napoli (2020), Rathcke and Smith (2015) and Dryer (2013) in the text.</li>
+<li>README: simling has 57 data sets from 20+ branches of linguistics.</li>
+<li>The scripts in <code>data-raw/</code> use the tidyverse throughout: purrr instead of loops and apply functions, joins and <code>case_when()</code> instead of index lookups, and stringr instead of base string functions. They reproduce the data exactly. <code>data-raw/session_info.txt</code> lists the R and package versions used.</li>
 <li>
 <code>german_plurals$article</code>, <code>korean_stops$vot</code> and <code>mandarin_tones$duration</code> no longer carry a stray <code>names</code> attribute. Their values are unchanged.</li>
 <li>
@@ -45,7 +49,7 @@
 <code><a href="../reference/lexical_decision_l2.html">?lexical_decision_l2</a></code> gives the range of <code>length</code> in the data (3 to 12).</li>
 <li>
 <code><a href="../reference/reading_skipping.html">?reading_skipping</a></code> says that first fixations are log-normal around the values from Rayner et al. (2011).</li>
-<li>Help pages cite in the text most of the works they list, and reference lists are in alphabetical order. The two Ehret and Taboada (2021) works are now 2021a and 2021b. The scripts in <code>data-raw/</code> cite the same works as their help pages.</li>
+<li>Help pages cite in the text all of the works they list, and reference lists are in alphabetical order. The two Ehret and Taboada (2021) works are now 2021a and 2021b. The scripts in <code>data-raw/</code> cite the same works as their help pages.</li>
 <li>New titles: <code><a href="../reference/lexical_accuracy.html">?lexical_accuracy</a></code> (“Italian lexical decision accuracy”), <code><a href="../reference/word_order.html">?word_order</a></code> (“Word order across 400 invented languages”) and <code><a href="../reference/hungarian_harmony.html">?hungarian_harmony</a></code> (“A wug test of Hungarian vowel harmony”).</li>
 <li>README lists the packages needed to rebuild the data.</li>
 </ul></div>

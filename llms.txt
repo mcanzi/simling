@@ -4,11 +4,10 @@
 
 Simulated linguistic data for teaching and learning statistics in R.
 
-simling has 56 data sets. 54 come from 20 branches of linguistics, from
-acoustic phonetics to language evolution; the other two are a
-meta-analysis and a messy export for data cleaning. Responses include
-reaction times, acoustic measurements, ratings, counts, binary and
-multi-category outcomes, time series and EEG.
+simling has 57 data sets. 55 come from 20+ branches of linguistics; the
+other two are a meta-analysis and a messy export for data cleaning.
+Responses include reaction times, acoustic measurements, ratings,
+counts, binary and multi-category outcomes, time series and EEG.
 
 Use them in class or to learn on your own. If you are planning a study,
 you can see what its data will look like and try out the analysis first.
@@ -126,6 +125,7 @@ text columns of a raw export so that students can clean it.
 |  | `mandarin_tones` | Mandarin | 4,224 | trajectories | Contour shape, speaker normalisation |
 |  | `vot_identification` | English, Spanish | 1,224 | binomial counts | Psychometric curves, category boundaries |
 | Phonology | `hungarian_harmony` | Hungarian | 4,200 | binary | Mixed logistic regression, wug tests |
+|  | `fuzzy_contrasts` | English | 21,120 | trajectories | GAMMs, morphology-phonetics interface |
 | Prosody | `tobi_agreement` | German | 456 | labels from two coders | Inter-rater agreement, kappa |
 |  | `rhythm_metrics` | 6 languages | 1,200 | continuous | Variance partitioning, speech rate |
 |  | `speech_to_song` | English | 516 | binary, ordinal | Mixed logistic and ordinal models |
@@ -226,6 +226,8 @@ MIT © Massimiliano Canzi
 
 - [`hungarian_harmony`](https://mcanzi.de/simling/reference/hungarian_harmony.md)
   : A wug test of Hungarian vowel harmony
+- [`fuzzy_contrasts`](https://mcanzi.de/simling/reference/fuzzy_contrasts.md)
+  : Vowel and /l/ articulation by morphological context
 
 ## Prosody
 

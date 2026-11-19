@@ -8,8 +8,9 @@ sentences built from complex syllables, sentences built from simple
 syllables, a read story and spontaneous speech. The design follows
 Arvaniti (2012). The languages differ, but not in the way rhythm classes
 predict, and speakers, elicitation method and syllable complexity move
-the metrics about as much as language does. ΔC also falls as speech rate
-rises. For partitioning variance with mixed models.
+the metrics about as much as language does (see also Rathcke and Smith
+2015). ΔC also falls as speech rate rises. For partitioning variance
+with mixed models.
 
 ## Usage
 

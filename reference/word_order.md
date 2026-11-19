@@ -64,8 +64,8 @@ other languages. Consonant inventories are 6 plus a negative binomial
 count (mean 16, by-family variation); vowel inventories are 3 plus a
 Poisson count (mean 2.5). Overall, about 44% of the languages are SOV,
 36% SVO, 6% VSO and 14% have no dominant order, close to the world-wide
-proportions in WALS (feature 81A). All language, family and area names
-and all figures are invented.
+proportions in WALS feature 81A (Dryer 2013). All language, family and
+area names and all figures are invented.
 
 ## References
 

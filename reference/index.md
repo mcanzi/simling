@@ -30,6 +30,8 @@
 
 - [`hungarian_harmony`](https://mcanzi.de/simling/reference/hungarian_harmony.md)
   : A wug test of Hungarian vowel harmony
+- [`fuzzy_contrasts`](https://mcanzi.de/simling/reference/fuzzy_contrasts.md)
+  : Vowel and /l/ articulation by morphological context
 
 ## Prosody
 
