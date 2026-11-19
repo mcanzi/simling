@@ -28,8 +28,9 @@ their voicing effect; words differ in duration.
 True model: \code{duration = 150 + s0 + w0 + (20 + s1) * voiced + e}.
 By-speaker intercepts \code{s0} have SD 25 ms and slopes \code{s1} SD 12 ms
 (uncorrelated); by-word intercepts \code{w0} have SD 15 ms; residual SD 20 ms.
-The design follows the simulation in Winter (2019, section 15.2). The
-data are simulated.
+The design is based on the vowel duration simulation in Winter (2019,
+section 15.2), with voicing instead of word frequency and by-speaker
+random slopes. The values and the data are new.
 }
 \examples{
 if (requireNamespace("lme4", quietly = TRUE)) {

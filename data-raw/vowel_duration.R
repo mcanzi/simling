@@ -1,4 +1,4 @@
-# Winter (2019), Statistics for Linguists: An Introduction Using R, section 15.2.
+# Based on Winter (2019), Statistics for Linguists: An Introduction Using R, section 15.2.
 library(dplyr)
 library(tidyr)
 library(stringr)

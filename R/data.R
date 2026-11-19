@@ -221,8 +221,9 @@
 #' @details True model: `duration = 150 + s0 + w0 + (20 + s1) * voiced + e`.
 #'   By-speaker intercepts `s0` have SD 25 ms and slopes `s1` SD 12 ms
 #'   (uncorrelated); by-word intercepts `w0` have SD 15 ms; residual SD 20 ms.
-#'   The design follows the simulation in Winter (2019, section 15.2). The
-#'   data are simulated.
+#'   The design is based on the vowel duration simulation in Winter (2019,
+#'   section 15.2), with voicing instead of word frequency and by-speaker
+#'   random slopes. The values and the data are new.
 #' @references
 #' Winter, B. (2019). *Statistics for linguists: An introduction using R*. Routledge. \doi{10.4324/9781315165547}
 #' @source `data-raw/vowel_duration.R`
