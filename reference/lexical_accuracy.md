@@ -1,4 +1,4 @@
-# Accuracy in an Italian lexical decision task
+# Italian lexical decision accuracy
 
 30 native speakers of Italian decide whether each of 60 Italian words is
 a word; the outcome is whether the response was correct. For

@@ -21,7 +21,7 @@ lists)."><meta property="og:image" content="https://mcanzi.de/simling/logo.png">
 
     <a class="navbar-brand me-2" href="../index.html">simling</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,7 +100,8 @@ chance (0.25) to about 0.88 along a logistic curve with width 90 ms,
 centred at 700 ms after restrictive and 930 ms after non-restrictive
 verbs. By-participant variation in the centre (SD 80 ms) and in the final
 level (SD 0.3 logits); by-item variation in the centre (SD 40 ms). Within
-a trial, deviations are AR(1) with rho 0.9. Of the remaining samples,
+a trial, deviations are AR(1) with rho 0.9 and innovation SD 0.25 logits,
+so their SD is about 0.57 logits (0.25 / sqrt(1 - 0.9^2)). Of the remaining samples,
 the competitor gets a third plus a bump of up to 25 percentage points
 centred at 950 ms (SD about 100 ms); the two distractors split the rest
 evenly. The timing follows Altmann and Kamide (1999, Experiment 1): the

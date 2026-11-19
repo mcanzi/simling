@@ -59,11 +59,13 @@ filter) or 0.72 (filter) and falls by 0.55 or 0.20 per generation, with
 chain (SD 0.3) and residual (SD 0.3) variation. Structure rises by 0.6
 (no filter) or 0.75 (filter) per generation, scaled by a chain effect
 (SD 0.15), with noise SD 1.2. The number of distinct words is 1 plus a
-Poisson count, capped at 27, whose mean starts near 20 and falls by 18%
-per generation without the filter and by 4% with it. The design follows
-Kirby, Cornish and Smith (2008), in whose two experiments transmission
-error fell by 0.75 and 0.43 and structure rose by 5.6 and 6.8 over ten
-generations. The chains are simulated.
+Poisson count, capped at 27. Its mean starts at 20 (no filter) or 22
+(filter) and changes by -0.18 or -0.04 per generation on the log scale,
+about 16% or 4% fewer words per generation, with chain variation (SD 0.2
+on the log scale). The design follows Kirby, Cornish and Smith (2008),
+in whose two experiments transmission error fell by 0.75 and 0.43 and
+structure rose by 5.6 and 6.8 over ten generations. The chains are
+simulated.
 
 ## References
 

@@ -79,16 +79,12 @@ listener effect (SD 0.6). For `rating_after` it is
 plus listener (SD 0.7) and sentence effects. The two aptitude scores
 correlate at about 0.5. The design and the effects of the manipulations
 and of aptitude follow Rathcke and Smit (2025); in their data the
-manipulated stimuli transformed about half of the time. The other
+manipulated stimuli transformed about half of the time. Flattening pitch
+within syllables follows Falk, Rathcke and Dalla Bella (2014). The other
 intercepts, the effect of `transformed` on the final rating and all data
 are simulated.
 
 ## References
-
-Rathcke, T. & Smit, E. A. (2025). Musical aptitude moderates ease and
-vividness but not frequency of the speech-to-song illusion. *Scientific
-Reports*, 15, 33315.
-[doi:10.1038/s41598-025-18612-8](https://doi.org/10.1038/s41598-025-18612-8)
 
 Falk, S., Rathcke, T. & Dalla Bella, S. (2014). When speech sounds like
 music. *Journal of Experimental Psychology: Human Perception and
@@ -99,6 +95,11 @@ Rathcke, T., Falk, S. & Dalla Bella, S. (2024). Why does speech
 sometimes sound like song? Exploring the role of music-related priors in
 the "speech-to-song illusion". *Music & Science*, 7.
 [doi:10.1177/20592043241266060](https://doi.org/10.1177/20592043241266060)
+
+Rathcke, T. & Smit, E. A. (2025). Musical aptitude moderates ease and
+vividness but not frequency of the speech-to-song illusion. *Scientific
+Reports*, 15, 33315.
+[doi:10.1038/s41598-025-18612-8](https://doi.org/10.1038/s41598-025-18612-8)
 
 ## Examples
 

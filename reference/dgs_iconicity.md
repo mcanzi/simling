@@ -5,8 +5,9 @@ rate 300 DGS signs for iconicity (1 = not iconic, 7 = very iconic).
 Ratings by the two groups are correlated (r about 0.78 for sign means,
 as in Trettenbrein et al. 2021). Signers rate signs as more iconic
 overall, and non-signers rate verbs as more iconic than nouns. More
-iconic signs are acquired earlier. For mixed models of ratings with
-crossed raters and items.
+iconic signs are acquired earlier, as Thompson et al. (2012) found for
+British Sign Language. For mixed models of ratings with crossed raters
+and items.
 
 ## Usage
 
@@ -65,12 +66,6 @@ Language (Fuks 2023) (verbs higher for non-signers).
 
 ## References
 
-Trettenbrein, P. C., Pendzich, N.-K., Cramer, J.-M., Steinbach, M. &
-Zaccarella, E. (2021). Psycholinguistic norms for more than 300 lexical
-signs in German Sign Language (DGS). *Behavior Research Methods*, 53(5),
-1817-1832.
-[doi:10.3758/s13428-020-01524-y](https://doi.org/10.3758/s13428-020-01524-y)
-
 Fuks, O. (2023). Iconicity perception under the lens of iconicity rating
 and transparency tasks in Israeli Sign Language (ISL). *Sign Language
 Studies*, 24(1), 46-92.
@@ -85,6 +80,12 @@ Thompson, R. L., Vinson, D. P., Woll, B. & Vigliocco, G. (2012). The
 road to language learning is iconic: Evidence from British Sign
 Language. *Psychological Science*, 23(12), 1443-1448.
 [doi:10.1177/0956797612459763](https://doi.org/10.1177/0956797612459763)
+
+Trettenbrein, P. C., Pendzich, N.-K., Cramer, J.-M., Steinbach, M. &
+Zaccarella, E. (2021). Psycholinguistic norms for more than 300 lexical
+signs in German Sign Language (DGS). *Behavior Research Methods*, 53(5),
+1817-1832.
+[doi:10.3758/s13428-020-01524-y](https://doi.org/10.3758/s13428-020-01524-y)
 
 ## Examples
 

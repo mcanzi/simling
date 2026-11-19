@@ -1,12 +1,12 @@
 # A wug test of German noun plurals
 
-60 adult native speakers of German give the plural of 48 nonce nouns,
-each presented with its article (*der*, *die*, *das*). The plural ending
-depends on gender and on how the noun ends: schwa-final and feminine
-nouns mostly take *-(e)n*, nouns in *-el*/*-er* mostly no ending,
-masculine and neuter nouns ending in a consonant mostly *-e*, and nouns
-ending in a full vowel *-s*. Speakers differ in how readily they use
-*-s*. A five-way outcome.
+In this wug test (Berko 1958), 60 adult native speakers of German give
+the plural of 48 nonce nouns, each presented with its article (*der*,
+*die*, *das*). The plural ending depends on gender and on how the noun
+ends: schwa-final and feminine nouns mostly take *-(e)n*, nouns in
+*-el*/*-er* mostly no ending, masculine and neuter nouns ending in a
+consonant mostly *-e*, and nouns ending in a full vowel *-s*. Speakers
+differ in how readily they use *-s*. A five-way outcome.
 
 ## Usage
 

@@ -13,7 +13,7 @@ gradually. For GAMs and GAMMs."><meta property="og:image" content="https://mcanz
 
     <a class="navbar-brand me-2" href="../index.html">simling</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,8 +83,8 @@ gradually. For GAMs and GAMMs.</p>
 Hz Italian) to an offset (2050 / 1900 Hz, lowered by 2 Hz per ms that
 the vowel is shorter than 250 ms), with its midpoint at 62 / 50 and
 width 8 / 14. By-speaker offsets (SD 60 Hz) and midpoints (SD 5) and
-by-token offsets (SD 40 Hz); residuals are AR(1) with rho 0.6 and SD 30
-Hz.</p>
+by-token offsets (SD 40 Hz); residuals are AR(1) with rho 0.6 and
+innovation SD 30 Hz, so their SD is 37.5 Hz (30 / sqrt(1 - 0.6^2)).</p>
     </div>
 
     <div class="section level2">

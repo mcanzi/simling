@@ -62,17 +62,17 @@ A tibble with 1512 rows and 9 columns:
 
 ## Details
 
-True model: cell means are those in Rayner et al. (2011, Table 3).
+True model: the cell values come from Rayner et al. (2011, Table 3).
 Skipping rates are 36, 22 and 18% for predictable and 28, 18 and 10% for
 unpredictable short, medium and long words. First fixations last 193 to
 211 ms and gaze durations 211 to 246 ms. Skipping is logistic, with
 by-reader (SD 0.6) and by-item (SD 0.4) effects. First fixations are
-log-normal, with by-reader (SD 0.12), by-item (SD 0.06) and residual (SD
-0.25) variation. A word is refixated with probability
-`(gaze - first fixation) / 180` for its cell, and a refixation adds
-about 180 ms. Cloze values are drawn around 0.74 for predictable and
-0.15 for unpredictable words, close to the norms in the same paper.
-Readers, items and eye movements are simulated.
+log-normal around the cell value, with by-reader (SD 0.12), by-item (SD
+0.06) and residual (SD 0.25) variation. A word is refixated with
+probability `(gaze - first fixation) / 180` for its cell, and a
+refixation adds about 180 ms. Cloze values are drawn around 0.74 for
+predictable and 0.15 for unpredictable words, close to the norms in the
+same paper. Readers, items and eye movements are simulated.
 
 ## References
 

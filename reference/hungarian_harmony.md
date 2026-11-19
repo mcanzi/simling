@@ -1,4 +1,4 @@
-# Hungarian vowel harmony in a wug test
+# A wug test of Hungarian vowel harmony
 
 50 Hungarian speakers choose between a back (*-nak*) and a front
 (*-nek*) dative suffix for 84 nonce stems. Stems with only back vowels
@@ -57,8 +57,10 @@ True model: the probability of a back suffix is 0.99 (B), 0.01 (F), 0.06
 logit scale by participant (SD 0.5) and item (SD 0.4) effects. These are
 the rounded proportions of back responses in the wug test of Hayes and
 Londe (2006, Table III); BNN uses their stems ending in *e*. Items are
-identified by their stem type; the nonce word forms are left out.
-Participants, items and responses are simulated.
+identified by their stem type; the nonce word forms are left out. Hayes
+et al. (2009) show that Hungarian speakers also learn less natural
+patterns of the lexicon, though less well. Participants, items and
+responses are simulated.
 
 ## References
 

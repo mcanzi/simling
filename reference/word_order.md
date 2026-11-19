@@ -1,4 +1,4 @@
-# Word order in a typological sample
+# Word order across 400 invented languages
 
 400 invented languages from 100 invented families in six invented areas.
 Languages mostly inherit their family's word order, so languages from
@@ -73,14 +73,14 @@ Dryer, M. S. (2013). Order of subject, object and verb. In M. S. Dryer &
 M. Haspelmath (eds.), *WALS Online*. Leipzig: Max Planck Institute for
 Evolutionary Anthropology. <https://wals.info/chapter/81>
 
-Greenberg, J. H. (1963). Some universals of grammar with particular
-reference to the order of meaningful elements. In J. H. Greenberg (ed.),
-*Universals of Language* (pp. 58-90). Cambridge, MA: MIT Press.
-
 Dunn, M., Greenhill, S. J., Levinson, S. C. & Gray, R. D. (2011).
 Evolved structure of language shows lineage-specific trends in
 word-order universals. *Nature*, 473(7345), 79-82.
 [doi:10.1038/nature09923](https://doi.org/10.1038/nature09923)
+
+Greenberg, J. H. (1963). Some universals of grammar with particular
+reference to the order of meaningful elements. In J. H. Greenberg (ed.),
+*Universals of Language* (pp. 58-90). Cambridge, MA: MIT Press.
 
 ## Examples
 

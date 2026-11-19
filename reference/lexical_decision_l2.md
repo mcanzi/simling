@@ -32,7 +32,7 @@ A tibble with 1200 rows and 6 columns:
 
 - length:
 
-  Length in letters, 3 to 13; frequent words are shorter.
+  Length in letters, 3 to 12; frequent words are shorter.
 
 - rt:
 

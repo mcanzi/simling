@@ -3,9 +3,9 @@
 Frequencies of 16 lexico-grammatical features in 480 texts from six
 registers of the web, as used in multi-dimensional analysis (Biber,
 1988). Its parameters are based on the web register data of Ehret and
-Taboada (2021). Three dimensions underlie the features, and one column
-is the sum of three others. For exploratory factor analysis and, on the
-dimension scores, cluster analysis.
+Taboada (2021a, 2021b). Three dimensions underlie the features, and one
+column is the sum of three others. For exploratory factor analysis and,
+on the dimension scores, cluster analysis.
 
 ## Usage
 
@@ -141,7 +141,7 @@ columns, the correlation matrix of all features is singular.
 
 The base rates and spreads were chosen so that the register means
 approach those of the same six registers in the data of Ehret and
-Taboada (2021), whose texts come from the Corpus of Online Registers of
+Taboada (2021b), whose texts come from the Corpus of Online Registers of
 English (Egbert et al., 2015). Most simulated register means are within
 25% of theirs. The largest differences are in pronouns and contractions,
 most of all in recipes, which in their data use more first and second
@@ -160,12 +160,12 @@ user-based method of web register classification. *Journal of the
 Association for Information Science and Technology*, 66(9), 1817-1831.
 [doi:10.1002/asi.23308](https://doi.org/10.1002/asi.23308)
 
-Ehret, K. & Taboada, M. (2021). Characterising online news comments: A
+Ehret, K. & Taboada, M. (2021a). Characterising online news comments: A
 multi-dimensional cruise through online registers. *Frontiers in
 Artificial Intelligence*, 4, 643770.
 [doi:10.3389/frai.2021.643770](https://doi.org/10.3389/frai.2021.643770)
 
-Ehret, K. & Taboada, M. (2021). *MDA-OnlineRegisters* (version 1.0)
+Ehret, K. & Taboada, M. (2021b). *MDA-OnlineRegisters* (version 1.0)
 \[Data set and code\]. Zenodo.
 [doi:10.5281/zenodo.4885180](https://doi.org/10.5281/zenodo.4885180)
 

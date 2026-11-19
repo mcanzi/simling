@@ -55,12 +55,14 @@ A tibble with 4224 rows and 8 columns:
 ## Details
 
 True model: each tone follows a smooth curve through targets on Chao's
-1-5 scale at 0, 25, 50, 75 and 100% of the vowel (T1: 5, 5, 5, 4.9, 4.8;
-T2: 3, 2.8, 3.3, 4.2, 5; T3: 2.2, 1.6, 1, 1.3, 2.5; T4: 5, 4.6, 3.7,
-2.5, 1.2). One Chao level is about 2.5 semitones (by-speaker SD 0.3);
-level 1 is about 160 Hz for female and 90 Hz for male speakers. Token
-offsets have SD 0.5 semitones and residuals are AR(1) with rho 0.7. Mean
-durations are 250, 270, 300 and 220 ms for T1 to T4.
+(1930) 1-5 scale at 0, 25, 50, 75 and 100% of the vowel (T1: 5, 5, 5,
+4.9, 4.8; T2: 3, 2.8, 3.3, 4.2, 5; T3: 2.2, 1.6, 1, 1.3, 2.5; T4: 5,
+4.6, 3.7, 2.5, 1.2). One Chao level is about 2.5 semitones (by-speaker
+SD 0.3); level 1 is about 160 Hz for female and 90 Hz for male speakers.
+Token offsets have SD 0.5 semitones and residuals are AR(1) with rho 0.7
+and innovation SD 0.25 semitones, so their SD is about 0.35 semitones
+(0.25 / sqrt(1 - 0.7^2)). Mean durations are 250, 270, 300 and 220 ms
+for T1 to T4.
 
 ## References
 

@@ -178,7 +178,8 @@ text columns of a raw export so that students can clean it.
 ## Rebuilding the data
 
 Run `source("data-raw/make_all.R")` from the package root, in a UTF-8
-locale (the default on macOS and most Linux systems). Each script sets
+locale (the default on macOS and most Linux systems). The scripts need
+dplyr, tidyr, purrr, stringr, tibble, maps and usethis. Each script sets
 its own seed, so the data are identical every time with the same R
 version, random number generator and package versions. The versions used
 for the current data are in
@@ -224,7 +225,7 @@ MIT © Massimiliano Canzi
 ## Phonology
 
 - [`hungarian_harmony`](https://mcanzi.de/simling/reference/hungarian_harmony.md)
-  : Hungarian vowel harmony in a wug test
+  : A wug test of Hungarian vowel harmony
 
 ## Prosody
 
@@ -250,7 +251,7 @@ MIT © Massimiliano Canzi
 - [`naming_pilot`](https://mcanzi.de/simling/reference/naming_pilot.md)
   : A pilot German picture-naming study for power analysis
 - [`lexical_accuracy`](https://mcanzi.de/simling/reference/lexical_accuracy.md)
-  : Accuracy in an Italian lexical decision task
+  : Italian lexical decision accuracy
 - [`zipf_rt`](https://mcanzi.de/simling/reference/zipf_rt.md) : Reaction
   times and Zipfian word frequency
 - [`disfluencies`](https://mcanzi.de/simling/reference/disfluencies.md)
@@ -367,7 +368,7 @@ MIT © Massimiliano Canzi
 ## Typology
 
 - [`word_order`](https://mcanzi.de/simling/reference/word_order.md) :
-  Word order in a typological sample
+  Word order across 400 invented languages
 
 ## Meta-analysis
 

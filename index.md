@@ -178,7 +178,8 @@ text columns of a raw export so that students can clean it.
 ## Rebuilding the data
 
 Run `source("data-raw/make_all.R")` from the package root, in a UTF-8
-locale (the default on macOS and most Linux systems). Each script sets
+locale (the default on macOS and most Linux systems). The scripts need
+dplyr, tidyr, purrr, stringr, tibble, maps and usethis. Each script sets
 its own seed, so the data are identical every time with the same R
 version, random number generator and package versions. The versions used
 for the current data are in

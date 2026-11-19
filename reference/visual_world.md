@@ -59,14 +59,16 @@ True model: on the logit scale, looks to the target rise from chance
 700 ms after restrictive and 930 ms after non-restrictive verbs.
 By-participant variation in the centre (SD 80 ms) and in the final level
 (SD 0.3 logits); by-item variation in the centre (SD 40 ms). Within a
-trial, deviations are AR(1) with rho 0.9. Of the remaining samples, the
-competitor gets a third plus a bump of up to 25 percentage points
-centred at 950 ms (SD about 100 ms); the two distractors split the rest
-evenly. The timing follows Altmann and Kamide (1999, Experiment 1): the
-noun began about 700 ms after the verb, and the first saccade to the
-target came 611 ms after the onset of *eat* and 838 ms after *move*.
-Their scenes had no phonological competitor; it is added here, and its
-timing, the participants and the looks are simulated.
+trial, deviations are AR(1) with rho 0.9 and innovation SD 0.25 logits,
+so their SD is about 0.57 logits (0.25 / sqrt(1 - 0.9^2)). Of the
+remaining samples, the competitor gets a third plus a bump of up to 25
+percentage points centred at 950 ms (SD about 100 ms); the two
+distractors split the rest evenly. The timing follows Altmann and Kamide
+(1999, Experiment 1): the noun began about 700 ms after the verb, and
+the first saccade to the target came 611 ms after the onset of *eat* and
+838 ms after *move*. Their scenes had no phonological competitor; it is
+added here, and its timing, the participants and the looks are
+simulated.
 
 ## References
 

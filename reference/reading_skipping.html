@@ -23,7 +23,7 @@ models of log durations and data missing by design."><meta property="og:image" c
 
     <a class="navbar-brand me-2" href="../index.html">simling</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,12 +107,12 @@ ms. <code>NA</code> if skipped.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>True model: cell means are those in Rayner et al. (2011, Table
+    <p>True model: the cell values come from Rayner et al. (2011, Table
 3). Skipping rates are 36, 22 and 18% for predictable and 28, 18 and
 10% for unpredictable short, medium and long words. First fixations
 last 193 to 211 ms and gaze durations 211 to 246 ms. Skipping is
 logistic, with by-reader (SD 0.6) and by-item (SD 0.4) effects. First
-fixations are log-normal, with by-reader (SD 0.12), by-item (SD 0.06)
+fixations are log-normal around the cell value, with by-reader (SD 0.12), by-item (SD 0.06)
 and residual (SD 0.25) variation. A word is refixated with probability
 <code>(gaze - first fixation) / 180</code> for its cell, and a refixation adds
 about 180 ms. Cloze values are drawn around 0.74 for predictable and

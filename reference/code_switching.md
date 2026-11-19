@@ -60,13 +60,13 @@ True model: switches are negative binomial (size 6) with mean
 `rate * utterances`, where `rate` is 0.04 (first), 0.12 (second) or 0.07
 (third generation), multiplied by 1.3 (family), 0.8 (work), 1 (leisure)
 or 1.1 (migration), by 0.25 with a monolingual interlocutor, and by a
-speaker effect (SD 0.35 on the log scale). Intrasentential switches are
-binomial with probability 0.25, 0.6 and 0.4 for the three generations.
-These generation differences are a design choice. They resemble the
-pattern Backus (1996) describes for Turkish immigrants in the
-Netherlands, where the intermediate generation switched most often, but
-how much and in what way each generation switches differs between
-communities.
+speaker effect (SD 0.35 on the log scale). Intrasentential switches
+(Poplack 1980) are binomial with probability 0.25, 0.6 and 0.4 for the
+three generations. These generation differences are a design choice.
+They resemble the pattern Backus (1996) describes for Turkish immigrants
+in the Netherlands, where the intermediate generation switched most
+often, but how much and in what way each generation switches differs
+between communities.
 
 ## References
 

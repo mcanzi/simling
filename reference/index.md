@@ -29,7 +29,7 @@
 ## Phonology
 
 - [`hungarian_harmony`](https://mcanzi.de/simling/reference/hungarian_harmony.md)
-  : Hungarian vowel harmony in a wug test
+  : A wug test of Hungarian vowel harmony
 
 ## Prosody
 
@@ -55,7 +55,7 @@
 - [`naming_pilot`](https://mcanzi.de/simling/reference/naming_pilot.md)
   : A pilot German picture-naming study for power analysis
 - [`lexical_accuracy`](https://mcanzi.de/simling/reference/lexical_accuracy.md)
-  : Accuracy in an Italian lexical decision task
+  : Italian lexical decision accuracy
 - [`zipf_rt`](https://mcanzi.de/simling/reference/zipf_rt.md) : Reaction
   times and Zipfian word frequency
 - [`disfluencies`](https://mcanzi.de/simling/reference/disfluencies.md)
@@ -172,7 +172,7 @@
 ## Typology
 
 - [`word_order`](https://mcanzi.de/simling/reference/word_order.md) :
-  Word order in a typological sample
+  Word order across 400 invented languages
 
 ## Meta-analysis
 

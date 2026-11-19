@@ -49,7 +49,8 @@ True model: a logistic rise from an onset (1250 Hz English, 1320 Hz
 Italian) to an offset (2050 / 1900 Hz, lowered by 2 Hz per ms that the
 vowel is shorter than 250 ms), with its midpoint at 62 / 50 and width 8
 / 14. By-speaker offsets (SD 60 Hz) and midpoints (SD 5) and by-token
-offsets (SD 40 Hz); residuals are AR(1) with rho 0.6 and SD 30 Hz.
+offsets (SD 40 Hz); residuals are AR(1) with rho 0.6 and innovation SD
+30 Hz, so their SD is 37.5 Hz (30 / sqrt(1 - 0.6^2)).
 
 ## Examples
 

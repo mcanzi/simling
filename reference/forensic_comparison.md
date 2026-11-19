@@ -6,7 +6,7 @@ formant-based system. Every speaker is compared with himself
 (same-speaker comparisons, recordings from two sessions) and with every
 other speaker (different-speaker comparisons). Higher scores mean more
 similar voices. For calibrating scores into likelihood ratios, computing
-Cllr and comparing or fusing systems.
+Cllr (Brümmer and du Preez 2006) and comparing or fusing systems.
 
 ## Usage
 
