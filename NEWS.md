@@ -7,7 +7,7 @@
   with each contrast follow the paper.
 * `?disfluencies`, `?rhythm_metrics` and `?word_order` now cite Di Napoli
   (2020), Rathcke and Smith (2015) and Dryer (2013) in the text.
-* README: simling has 57 data sets from 20+ branches of linguistics.
+* README: simling has 57 data sets from 20 branches of linguistics.
 * The scripts in `data-raw/` use the tidyverse throughout: purrr instead of
   loops and apply functions, joins and `case_when()` instead of index
   lookups, and stringr instead of base string functions. They reproduce the
