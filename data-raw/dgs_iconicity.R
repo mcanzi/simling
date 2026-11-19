@@ -4,10 +4,11 @@
 # Thompson, Vinson, Woll & Vigliocco (2012), Psychological Science 23(12), 1443-1448.
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(5008)
-signs <- tibble(sign = sprintf("sign%03d", 1:300),
+signs <- tibble(sign = str_c("sign", str_pad(1:300, 3, pad = "0")),
                 category = sample(c("noun", "verb"), 300, TRUE, prob = c(0.6, 0.4)),
                 handedness = sample(c("one-handed", "two-handed"), 300, TRUE),
                 iconicity = rnorm(300, 0, 1.2)) |>
@@ -16,7 +17,7 @@ signs <- tibble(sign = sprintf("sign%03d", 1:300),
 group_dev <- crossing(sign = signs$sign, group = c("deaf signer", "hearing non-signer")) |>
   mutate(g0 = rnorm(n(), 0, 0.6))
 
-raters <- tibble(rater = sprintf("R%02d", 1:60),
+raters <- tibble(rater = str_c("R", str_pad(1:60, 2, pad = "0")),
                  group = rep(c("deaf signer", "hearing non-signer"), each = 30),
                  r0 = rnorm(60, 0, 0.5))
 

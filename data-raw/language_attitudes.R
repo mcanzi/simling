@@ -1,4 +1,6 @@
 library(dplyr)
+library(purrr)
+library(stringr)
 library(tibble)
 
 set.seed(4008)
@@ -22,25 +24,28 @@ items <- tribble(
 r <- matrix(c(1, 0.2, 0.3,
               0.2, 1, 0.5,
               0.3, 0.5, 1), 3, 3)
-z <- matrix(rnorm(n * 3), n, 3) %*% chol(r)
+z <- (matrix(rnorm(n * 3), n, 3) %*% chol(r)) |>
+  as_tibble(.name_repair = \(x) c("status", "solidarity", "vitality"))
 
-respondents <- tibble(respondent = sprintf("R%03d", 1:n),
+respondents <- tibble(respondent = str_c("R", str_pad(1:n, 3, pad = "0")),
                       age = round(runif(n, 18, 75)),
                       dialect_speaker = sample(c("yes", "no"), n, TRUE, prob = c(0.4, 0.6))) |>
-  mutate(status = z[, 1],
-         solidarity = z[, 2] + 0.6 * (dialect_speaker == "yes"),
-         vitality = z[, 3] + 0.5 * (dialect_speaker == "yes") - 0.01 * (age - 45))
+  bind_cols(z) |>
+  mutate(solidarity = solidarity + 0.6 * (dialect_speaker == "yes"),
+         vitality = vitality + 0.5 * (dialect_speaker == "yes") - 0.01 * (age - 45))
 
-language_attitudes <- respondents
-for (i in seq_len(nrow(items))) {
-  f <- respondents[[items$factor[i]]]
-  latent <- items$loading[i] * f + rnorm(n, 0, sqrt(1 - items$loading[i]^2))
-  answer <- as.integer(cut(latent, c(-Inf, -1.3, -0.4, 0.4, 1.3, Inf)))
-  answer[runif(n) < 0.02] <- NA
-  language_attitudes[[items$item[i]]] <- answer
-}
-language_attitudes <- language_attitudes |>
-  select(respondent, age, dialect_speaker, all_of(items$item))
+answers <- items |>
+  pmap(\(item, factor, loading) {
+    latent <- loading * pull(respondents, all_of(factor)) + rnorm(n, 0, sqrt(1 - loading^2))
+    answer <- as.integer(cut(latent, c(-Inf, -1.3, -0.4, 0.4, 1.3, Inf)))
+    if_else(runif(n) < 0.02, NA, answer)
+  }) |>
+  set_names(items$item) |>
+  as_tibble()
+
+language_attitudes <- respondents |>
+  select(respondent, age, dialect_speaker) |>
+  bind_cols(answers)
 
 language_attitudes <- language_attitudes |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),

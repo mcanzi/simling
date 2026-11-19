@@ -1,6 +1,8 @@
 # Wug test: Berko (1958), Word 14(2-3), 150-177.
 library(dplyr)
 library(tidyr)
+library(purrr)
+library(stringr)
 library(tibble)
 
 set.seed(4006)
@@ -30,27 +32,27 @@ nonce_words <- list(
                   "Gnorf", "Pilch", "Stomp", "Fräk", "Zatt", "Mürf"),
   "full vowel" = c("Pilo", "Mebu", "Kanta", "Fosi", "Dalu", "Rimo",
                    "Blenu", "Pfalo", "Nasu", "Gimpa", "Tefo", "Wanu")
-)
+) |>
+  enframe("final", "nonce") |>
+  unnest_longer(nonce, indices_to = "final_rank")
 
 items <- probs |>
   uncount(4) |>
-  mutate(gender_order = factor(gender, c("masculine", "feminine", "neuter")),
-         final_rank = rep(1:12, 4)[order(order(final, gender_order))]) |>
-  rowwise() |>
-  mutate(nonce = nonce_words[[final]][final_rank]) |>
-  ungroup() |>
-  mutate(item = sprintf("i%02d", row_number()),
-         article = c(masculine = "der", feminine = "die", neuter = "das")[gender]) |>
+  mutate(gender_order = factor(gender, c("masculine", "feminine", "neuter"))) |>
+  mutate(final_rank = row_number(gender_order), .by = final) |>
+  left_join(nonce_words, by = c("final", "final_rank")) |>
+  mutate(item = str_c("i", str_pad(row_number(), 2, pad = "0")),
+         article = case_when(gender == "masculine" ~ "der",
+                             gender == "feminine" ~ "die",
+                             gender == "neuter" ~ "das")) |>
   select(-final_rank, -gender_order)
 
-participants <- tibble(participant = sprintf("P%02d", 1:60),
+participants <- tibble(participant = str_c("P", str_pad(1:60, 2, pad = "0")),
                        p_s = rnorm(60, 0, 0.6))
 
 german_plurals <- crossing(participants, items) |>
-  rowwise() |>
-  mutate(logp = list(log(p + 0.005) + c(0, 0, 0, p_s, 0) + rnorm(5, 0, 0.3)),
-         plural = sample(endings, 1, prob = exp(logp))) |>
-  ungroup() |>
+  mutate(logp = map2(p, p_s, \(p, s) log(p + 0.005) + c(0, 0, 0, s, 0) + rnorm(5, 0, 0.3)),
+         plural = map_chr(logp, \(l) sample(endings, 1, prob = exp(l)))) |>
   select(participant, item, nonce, article, gender, final, plural)
 
 german_plurals <- german_plurals |>

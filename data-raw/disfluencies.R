@@ -2,11 +2,12 @@
 #   Non-Verbal Vocalisations Workshop.
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(5009)
-speakers <- tibble(speaker = sprintf("S%02d", 1:40),
-                   dialogue = rep(sprintf("D%02d", 1:20), each = 2),
+speakers <- tibble(speaker = str_c("S", str_pad(1:40, 2, pad = "0")),
+                   dialogue = rep(str_c("D", str_pad(1:20, 2, pad = "0")), each = 2),
                    role = rep(c("giver", "follower"), 20),
                    s0 = rnorm(40, 0, 0.5))
 

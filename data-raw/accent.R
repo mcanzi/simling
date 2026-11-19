@@ -1,9 +1,11 @@
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(2033)
-speakers <- tibble(speaker = sprintf("S%02d", 1:30), l1 = rep(c("English", "Italian"), each = 15),
+speakers <- tibble(speaker = str_c("S", str_pad(1:30, 2, pad = "0")),
+                   l1 = rep(c("English", "Italian"), each = 15),
                    gender = rep(c("female", "male"), 15)) |>
   mutate(f0_s = if_else(gender == "female", 210, 120) + rnorm(30, 0, 15),
          h1h2_s = rnorm(30, 4, 2.5),

@@ -1,24 +1,29 @@
 # Poplack (1980), Linguistics 18(7-8), 581-618.
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(5007)
-speakers <- tibble(speaker = sprintf("S%02d", 1:90),
+generations <- tibble(generation = c("first", "second", "third"),
+                      gen_rate = c(0.04, 0.12, 0.07),
+                      p_intra = c(0.25, 0.6, 0.4))
+topics <- tibble(topic = c("family", "work", "leisure", "migration"),
+                 topic_rate = c(1.3, 0.8, 1, 1.1))
+speakers <- tibble(speaker = str_c("S", str_pad(1:90, 2, pad = "0")),
                    generation = rep(c("first", "second", "third"), each = 30),
                    s0 = rnorm(90, 0, 0.35))
 
 code_switching <- speakers |>
   crossing(topic = c("family", "work", "leisure", "migration")) |>
-  mutate(conversation = paste(speaker, topic, sep = "_"),
+  left_join(generations, by = "generation") |>
+  left_join(topics, by = "topic") |>
+  mutate(conversation = str_c(speaker, topic, sep = "_"),
          interlocutor = sample(c("bilingual", "monolingual"), n(), TRUE, prob = c(0.7, 0.3)),
          utterances = round(exp(rnorm(n(), log(120), 0.35))),
-         rate = c(first = 0.04, second = 0.12, third = 0.07)[generation] *
-           c(family = 1.3, work = 0.8, leisure = 1, migration = 1.1)[topic] *
-           if_else(interlocutor == "bilingual", 1, 0.25) * exp(s0),
+         rate = gen_rate * topic_rate * if_else(interlocutor == "bilingual", 1, 0.25) * exp(s0),
          switches = rnbinom(n(), mu = rate * utterances, size = 6),
-         intrasentential = rbinom(n(), switches,
-                                  c(first = 0.25, second = 0.6, third = 0.4)[generation])) |>
+         intrasentential = rbinom(n(), switches, p_intra)) |>
   select(speaker, generation, conversation, topic, interlocutor,
          utterances, switches, intrasentential)
 

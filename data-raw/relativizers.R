@@ -1,9 +1,10 @@
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(3006)
-texts <- tibble(text = sprintf("T%03d", 1:240),
+texts <- tibble(text = str_c("T", str_pad(1:240, 3, pad = "0")),
                 mode = rep(c("spoken", "written"), each = 120),
                 t_which = rnorm(240, 0, 0.5),
                 t_zero = rnorm(240, 0, 0.5))

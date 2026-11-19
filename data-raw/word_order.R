@@ -1,35 +1,32 @@
 # Dryer (2013), WALS Online, feature 81A; Greenberg (1963), Universals of Language, 58-90.
 library(dplyr)
 library(tidyr)
+library(purrr)
+library(stringr)
 library(tibble)
 
 set.seed(3016)
 orders <- c("SOV", "SVO", "VSO", "no dominant order")
-areas <- paste("Area", LETTERS[1:6])
-area_pref <- list(c(0.60, 0.22, 0.05, 0.13), c(0.30, 0.55, 0.05, 0.10),
-                  c(0.45, 0.33, 0.07, 0.15), c(0.30, 0.48, 0.10, 0.12),
-                  c(0.50, 0.25, 0.10, 0.15), c(0.40, 0.35, 0.05, 0.20))
+areas <- tibble(area_i = 1:6,
+                area = str_c("Area ", LETTERS[1:6]),
+                pref = list(c(0.60, 0.22, 0.05, 0.13), c(0.30, 0.55, 0.05, 0.10),
+                            c(0.45, 0.33, 0.07, 0.15), c(0.30, 0.48, 0.10, 0.12),
+                            c(0.50, 0.25, 0.10, 0.15), c(0.40, 0.35, 0.05, 0.20)))
 
-family_sizes <- pmax(1, round(rexp(100, 1 / 4)))
-family_sizes <- pmax(1, round(family_sizes * 400 / sum(family_sizes)))
-family_sizes[which.max(family_sizes)] <- max(family_sizes) + 400 - sum(family_sizes)
-
-families <- tibble(family = sprintf("Family %03d", 1:100),
-                   area_i = sample(1:6, 100, replace = TRUE),
-                   size = family_sizes,
-                   f_cons = rnorm(100, 0, 0.25)) |>
-  rowwise() |>
-  mutate(family_order = sample(orders, 1, prob = area_pref[[area_i]])) |>
-  ungroup()
+families <- tibble(size = pmax(1, round(rexp(100, 1 / 4)))) |>
+  mutate(size = pmax(1, round(size * 400 / sum(size))),
+         size = if_else(row_number() == which.max(size), max(size) + 400 - sum(size), size),
+         family = str_c("Family ", str_pad(1:100, 3, pad = "0")),
+         area_i = sample(1:6, 100, replace = TRUE),
+         f_cons = rnorm(100, 0, 0.25)) |>
+  left_join(areas, by = "area_i") |>
+  mutate(family_order = map_chr(pref, \(p) sample(orders, 1, prob = p)))
 
 word_order <- families |>
   uncount(size) |>
-  rowwise() |>
-  mutate(order = if_else(runif(1) < 0.8, family_order,
-                         sample(orders, 1, prob = area_pref[[area_i]]))) |>
-  ungroup() |>
-  mutate(language = sprintf("L%03d", sample(n())),
-         area = areas[area_i],
+  mutate(order = map2_chr(family_order, pref,
+                          \(fo, p) if_else(runif(1) < 0.8, fo, sample(orders, 1, prob = p)))) |>
+  mutate(language = str_c("L", str_pad(sample(n()), 3, pad = "0")),
          p_post = case_when(order == "SOV" ~ 0.92, order == "no dominant order" ~ 0.5,
                             TRUE ~ 0.12),
          adpositions = if_else(runif(n()) < p_post, "postpositions", "prepositions"),

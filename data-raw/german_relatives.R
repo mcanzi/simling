@@ -1,6 +1,7 @@
 # Schriefers, Friederici & Kühn (1995), Journal of Memory and Language 34(4), 499-520.
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(4003)
@@ -10,15 +11,15 @@ regions <- tibble(position = 1:12,
                              "spillover_1", "spillover_2", "spillover_3", "final"),
                   orc_cost = c(0, 0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.05, 0.02, 0, 0, 0))
 
-participants <- tibble(participant = sprintf("P%02d", 1:48),
+participants <- tibble(participant = str_c("P", str_pad(1:48, 2, pad = "0")),
                        list = rep(1:2, 24),
                        p0 = rnorm(48, 0, 0.2),
                        p_orc = rnorm(48, 0, 0.03))
-items <- tibble(item = sprintf("i%02d", 1:24),
+items <- tibble(item = str_c("i", str_pad(1:24, 2, pad = "0")),
                 i0 = rnorm(24, 0, 0.04))
 
 german_relatives <- crossing(participants, items, regions) |>
-  mutate(condition = if_else((as.integer(substr(item, 2, 3)) + list) %% 2 == 0,
+  mutate(condition = if_else((as.integer(str_sub(item, 2, 3)) + list) %% 2 == 0,
                              "subject", "object"),
          length = case_when(region %in% c("det", "rel_pronoun", "rc_det") ~ 3,
                             region == "rc_auxiliary" ~ 3,

@@ -1,5 +1,6 @@
 # Ćwiek et al. (2022), Philosophical Transactions of the Royal Society B 377(1841), 20200390.
 library(dplyr)
+library(stringr)
 library(tibble)
 
 set.seed(5006)
@@ -26,7 +27,7 @@ bouba_kiki_meta <- conducted |>
   filter(published) |>
   slice_head(n = 40) |>
   arrange(year) |>
-  mutate(study = sprintf("S%02d", row_number()),
+  mutate(study = str_c("S", str_pad(row_number(), 2, pad = "0")),
          log_odds = round(log_odds, 3),
          se = round(sqrt(var), 3)) |>
   select(study, year, language, script, n, congruent, log_odds, se)

@@ -1,10 +1,11 @@
 # Best, Greenwood, Grassly, Herbert, Hickin & Howard (2013), Cortex 49(9), 2345-2357.
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(5111)
-participants <- tibble(participant = sprintf("P%02d", 1:16),
+participants <- tibble(participant = str_c("P", str_pad(1:16, 2, pad = "0")),
                        profile = rep(c("phonological", "other"), c(5, 11)),
                        p0 = rnorm(16, -0.45, 0.9),
                        gain = rnorm(16, 1, 0.35),
@@ -12,7 +13,7 @@ participants <- tibble(participant = sprintf("P%02d", 1:16),
 
 items <- participants |>
   crossing(item_no = 1:120) |>
-  mutate(item = sprintf("%s_%03d", participant, item_no),
+  mutate(item = str_c(participant, "_", str_pad(item_no, 3, pad = "0")),
          set = if_else(item_no <= 60, "treated", "untreated"),
          i0 = rnorm(n(), 0, 1.2))
 

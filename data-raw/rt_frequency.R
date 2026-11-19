@@ -1,11 +1,12 @@
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(42)
-participants <- tibble(participant = sprintf("P%02d", 1:10),
+participants <- tibble(participant = str_c("P", str_pad(1:10, 2, pad = "0")),
                        p0 = rnorm(10, 0, 0.12))
-words <- tibble(word = sprintf("w%02d", 1:20),
+words <- tibble(word = str_c("w", str_pad(1:20, 2, pad = "0")),
                 frequency = rep(c("high", "low"), each = 10),
                 w0 = rnorm(20, 0, 0.06))
 

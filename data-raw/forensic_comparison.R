@@ -1,11 +1,12 @@
 # Cllr: Brümmer & du Preez (2006), Computer Speech and Language 20(2-3), 230-275.
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(5001)
 n_speakers <- 80
-speakers <- tibble(speaker = sprintf("S%02d", 1:n_speakers),
+speakers <- tibble(speaker = str_c("S", str_pad(1:n_speakers, 2, pad = "0")),
                    s_auto = rnorm(n_speakers, 0, 0.4),
                    s_formant = rnorm(n_speakers, 0, 0.3))
 
@@ -18,7 +19,7 @@ forensic_comparison <- pairs |>
             by = "speaker_a") |>
   left_join(select(speakers, speaker_b = speaker, b_auto = s_auto, b_formant = s_formant),
             by = "speaker_b") |>
-  mutate(comparison = sprintf("C%04d", row_number()),
+  mutate(comparison = str_c("C", str_pad(row_number(), 4, pad = "0")),
          score_auto = round(if_else(same_speaker == "yes",
                                     rnorm(n(), 2.5, 1) + a_auto,
                                     rnorm(n(), -1, 1.3) + (a_auto + b_auto) / 2), 3),

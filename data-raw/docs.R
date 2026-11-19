@@ -1,29 +1,33 @@
 devtools::load_all(".", quiet = TRUE)
+library(dplyr)
+library(purrr)
+library(readr)
+library(stringr)
 
 sets <- simling_datasets()
 
-cell <- function(x) ifelse(is.na(x), "–", x)
-branch <- as.character(sets$branch)
-first <- !duplicated(branch)
 table_lines <- c(
   "| Branch | Data set | Language | Rows | Response | Topic |",
   "|---|---|---|---:|---|---|",
-  sprintf(
-    "| %s | `%s` | %s | %s | %s | %s |",
-    ifelse(first, branch, ""), sets$name, cell(sets$language),
-    format(sets$rows, big.mark = ",", trim = TRUE), sets$response, sets$topic
-  )
+  sets |>
+    mutate(branch_cell = if_else(row_number() == 1, as.character(branch), ""), .by = branch) |>
+    mutate(language = coalesce(language, "–"),
+           rows = format(rows, big.mark = ",", trim = TRUE),
+           line = str_c("| ", branch_cell, " | `", name, "` | ", language, " | ", rows, " | ",
+                        response, " | ", topic, " |")) |>
+    pull(line)
 )
 
-readme <- readLines("README.md", encoding = "UTF-8")
-start <- grep("<!-- datasets:start -->", readme, fixed = TRUE)
-end <- grep("<!-- datasets:end -->", readme, fixed = TRUE)
-readme <- c(readme[seq_len(start)], table_lines, readme[end:length(readme)])
-writeLines(enc2utf8(readme), "README.md", useBytes = TRUE)
+readme <- read_lines("README.md")
+start <- str_which(readme, fixed("<!-- datasets:start -->"))
+end <- str_which(readme, fixed("<!-- datasets:end -->"))
+readme <- c(head(readme, start), table_lines, tail(readme, -(end - 1)))
+write_lines(readme, "README.md")
 
-reference <- unlist(lapply(levels(sets$branch), function(b) {
-  c(paste0("- title: ", b), "  contents:", paste0("  - ", sets$name[sets$branch == b]))
-}))
+reference <- levels(sets$branch) |>
+  map(\(b) c(str_c("- title: ", b), "  contents:",
+             str_c("  - ", sets |> filter(branch == b) |> pull(name)))) |>
+  list_c()
 reference <- c(
   "reference:",
   "- title: Finding a data set",
@@ -34,6 +38,6 @@ reference <- c(
   "  contents:",
   "  - simling-package"
 )
-pkgdown <- readLines("_pkgdown.yml")
-pkgdown <- c(pkgdown[seq_len(grep("^reference:", pkgdown) - 1)], reference)
-writeLines(pkgdown, "_pkgdown.yml")
+pkgdown <- read_lines("_pkgdown.yml")
+pkgdown <- c(head(pkgdown, str_which(pkgdown, "^reference:") - 1), reference)
+write_lines(pkgdown, "_pkgdown.yml")

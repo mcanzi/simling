@@ -1,11 +1,12 @@
 # Kirby, Cornish & Smith (2008), Proceedings of the National Academy of Sciences 105(31), 10681-10686.
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(5105)
 chains <- tibble(condition = rep(c("no filter", "filter"), each = 4),
-                 chain = paste(rep(c("A", "B"), each = 4), 1:4, sep = "")) |>
+                 chain = str_c(rep(c("A", "B"), each = 4), rep(1:4, 2))) |>
   mutate(c_err = rnorm(n(), 0, 0.3), c_str = rnorm(n(), 0, 0.15), c_words = rnorm(n(), 0, 0.2))
 
 iterated_learning <- chains |>

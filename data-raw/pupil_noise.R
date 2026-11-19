@@ -1,13 +1,14 @@
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(2031)
-participants <- tibble(participant = sprintf("P%02d", 1:24),
+participants <- tibble(participant = str_c("P", str_pad(1:24, 2, pad = "0")),
                        p_amp = rnorm(24, 0, 40), p_lat = rnorm(24, 0, 150),
                        p_noise = rnorm(24, 0, 30))
 trials <- crossing(participants, condition = c("quiet", "noise"), trial = 1:12) |>
-  mutate(trial_id = paste(participant, condition, trial, sep = "."),
+  mutate(trial_id = str_c(participant, condition, trial, sep = "."),
          t_amp = rnorm(n(), 0, 40), t0 = rnorm(n(), 0, 15))
 pupil_noise <- crossing(trials, time = seq(0, 3000, by = 100)) |>
   arrange(trial_id, time) |>

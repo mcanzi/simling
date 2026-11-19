@@ -1,5 +1,6 @@
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(5010)
@@ -22,10 +23,10 @@ practice <- crossing(participants, item = 1:4) |>
 raw <- bind_rows(practice, clean) |>
   arrange(n, block != "practice", item) |>
   mutate(id_style = (n %% 4) + 1,
-         `Subject ID` = case_when(id_style == 1 ~ sprintf("P%02d", n),
-                                  id_style == 2 ~ sprintf("p%d", n),
-                                  id_style == 3 ~ sprintf("P %02d", n),
-                                  TRUE ~ sprintf("%02d", n)),
+         `Subject ID` = case_when(id_style == 1 ~ str_c("P", str_pad(n, 2, pad = "0")),
+                                  id_style == 2 ~ str_c("p", n),
+                                  id_style == 3 ~ str_c("P ", str_pad(n, 2, pad = "0")),
+                                  TRUE ~ str_pad(n, 2, pad = "0")),
          `Cond.` = case_when(lab == "A" & frequency == "high" ~
                                sample(c("high", "High"), n(), TRUE),
                              lab == "A" ~ sample(c("low", "Low"), n(), TRUE),
@@ -34,11 +35,11 @@ raw <- bind_rows(practice, clean) |>
          `Response Time (ms)` = case_when(runif(n()) < 0.02 ~ "-999",
                                           runif(n()) < 0.01 ~ "",
                                           lab == "B" ~
-                                            sub(".", ",", as.character(rt), fixed = TRUE),
+                                            str_replace(as.character(rt), fixed("."), ","),
                                           TRUE ~ as.character(rt)),
          ACC = if_else(lab == "A", as.character(correct),
                        if_else(correct == 1, "correct", "incorrect")),
-         Age = if_else(n %% 3 == 0, paste(age, "years"), as.character(age)),
+         Age = if_else(n %% 3 == 0, str_c(age, " years"), as.character(age)),
          time = as.POSIXct("2026-05-04 09:00:00", tz = "UTC") + n * 3600 + item * 3,
          Timestamp = if_else(lab == "A", format(time, "%Y-%m-%d %H:%M:%S"),
                              format(time, "%d.%m.%Y %H:%M")),

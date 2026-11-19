@@ -1,6 +1,7 @@
 # Towns and coordinates: maps::world.cities (towns over 50,000 inhabitants).
 library(dplyr)
 library(tidyr)
+library(stringr)
 
 set.seed(4009)
 towns <- maps::world.cities |>
@@ -12,7 +13,7 @@ towns <- maps::world.cities |>
 
 dialect_survey <- towns |>
   crossing(speaker_no = 1:4) |>
-  mutate(speaker = paste(town, speaker_no, sep = "_"),
+  mutate(speaker = str_c(town, speaker_no, sep = "_"),
          age = round(runif(n(), 20, 80)),
          p = plogis(-1.5 + 6 * (lat - 44.1) + t0 + 0.03 * (age - 50)),
          words = 10L,

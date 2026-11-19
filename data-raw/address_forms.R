@@ -2,6 +2,7 @@
 # Kretzenbacher & Hensel-Börner (2024), Languages 9(10), 316.
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(3011)
@@ -19,7 +20,7 @@ address_forms <- p_du |>
   uncount(30) |>
   mutate(form = if_else(runif(n()) < p, "du", "Sie")) |>
   slice_sample(prop = 1) |>
-  mutate(speaker = sprintf("S%03d", row_number())) |>
+  mutate(speaker = str_c("S", str_pad(row_number(), 3, pad = "0"))) |>
   select(speaker, age_group, setting, form)
 
 address_forms <- address_forms |>

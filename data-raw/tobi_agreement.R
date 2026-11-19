@@ -3,6 +3,8 @@
 # Pitrelli, Beckman & Hirschberg (1994), Proceedings of ICSLP 1994.
 library(dplyr)
 library(tidyr)
+library(purrr)
+library(stringr)
 library(tibble)
 
 set.seed(5002)
@@ -10,7 +12,7 @@ accents <- c("none", "H*", "L+H*", "L*", "L*+H", "H+!H*", "H+L*")
 accent_prob <- c(0.55, 0.16, 0.10, 0.08, 0.05, 0.04, 0.02)
 boundaries <- c("none", "intermediate", "intonation phrase")
 
-utterances <- tibble(utterance = sprintf("U%02d", 1:40),
+utterances <- tibble(utterance = str_c("U", str_pad(1:40, 2, pad = "0")),
                      style = rep(c("read", "spontaneous"), each = 20),
                      n_words = sample(8:14, 40, replace = TRUE))
 
@@ -19,7 +21,7 @@ words <- utterances |>
   group_by(utterance) |>
   mutate(last = position == max(position)) |>
   ungroup() |>
-  mutate(word = sprintf("%s_w%02d", utterance, position),
+  mutate(word = str_c(utterance, "_w", str_pad(position, 2, pad = "0")),
          true_accent = sample(accents, n(), TRUE, prob = accent_prob),
          true_boundary = case_when(last ~ "intonation phrase",
                                    runif(n()) < 0.12 ~ "intermediate",
@@ -28,9 +30,7 @@ words <- utterances |>
 
 label <- function(truth, p_correct_logit, confusable) {
   correct <- runif(length(truth)) < plogis(p_correct_logit)
-  vapply(seq_along(truth), function(i) {
-    if (correct[i]) truth[i] else sample(setdiff(confusable[[truth[i]]], truth[i]), 1)
-  }, character(1))
+  map2_chr(truth, correct, \(t, ok) if (ok) t else sample(setdiff(pluck(confusable, t), t), 1))
 }
 accent_confusions <- list("none" = c("H*", "L*"), "H*" = c("none", "L+H*", "H+!H*"),
                           "L+H*" = c("H*", "L*+H"), "L*" = c("none", "L*+H"),

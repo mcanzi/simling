@@ -2,6 +2,7 @@
 # Abramson & Lisker (1973), Journal of Phonetics 1(1), 1-8.
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(5102)
@@ -10,7 +11,7 @@ boundaries <- tribble(~language, ~place, ~boundary,
   "Spanish", "labial", 14, "Spanish", "apical", 22, "Spanish", "velar", 24)
 
 listeners <- tibble(language = rep(c("English", "Spanish"), each = 12)) |>
-  mutate(listener = paste0(substr(language, 1, 2), sprintf("%02d", rep(1:12, 2))),
+  mutate(listener = str_c(str_sub(language, 1, 2), str_pad(rep(1:12, 2), 2, pad = "0")),
          b0 = rnorm(n(), 0, 4),
          slope = exp(rnorm(n(), log(0.3), 0.25)))
 

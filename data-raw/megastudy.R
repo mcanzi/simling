@@ -1,11 +1,12 @@
 # Balota et al. (2007), Behavior Research Methods 39(3), 445-459;
 # New, Ferrand, Pallier & Brysbaert (2006), Psychonomic Bulletin & Review 13(1), 45-52.
 library(dplyr)
+library(stringr)
 library(tibble)
 
 set.seed(3013)
 n <- 6000
-megastudy <- tibble(word = sprintf("w%04d", 1:n),
+megastudy <- tibble(word = str_c("w", str_pad(1:n, 4, pad = "0")),
                     log_freq = round(rnorm(n, 2.5, 1), 2)) |>
   mutate(length = pmin(pmax(round(10 - 0.8 * log_freq + rnorm(n, 0, 1.8)), 2), 16),
          syllables = pmax(1, round(length / 3.1 + rnorm(n, 0, 0.5))),

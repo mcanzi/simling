@@ -1,6 +1,7 @@
 # Rayner, Slattery, Drieghe & Liversedge (2011), Journal of Experimental Psychology: Human Perception and Performance 37(2), 514-528.
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(5103)
@@ -9,14 +10,14 @@ cells <- tribble(~length, ~predictability, ~skip, ~ffd, ~gd,
   "medium", "predictable", 0.22, 193, 213, "medium", "unpredictable", 0.18, 204, 231,
   "long", "predictable", 0.18, 195, 222, "long", "unpredictable", 0.10, 211, 246)
 
-items <- tibble(item = sprintf("I%02d", 1:54),
+items <- tibble(item = str_c("I", str_pad(1:54, 2, pad = "0")),
                 length = rep(c("short", "medium", "long"), each = 18)) |>
   mutate(letters = case_when(length == "short" ~ sample(4:6, n(), TRUE),
                              length == "medium" ~ sample(7:9, n(), TRUE),
                              TRUE ~ sample(10:12, n(), TRUE)),
          i_skip = rnorm(n(), 0, 0.4), i_t = rnorm(n(), 0, 0.06))
 
-readers <- tibble(reader = sprintf("R%02d", 1:28),
+readers <- tibble(reader = str_c("R", str_pad(1:28, 2, pad = "0")),
                   r_skip = rnorm(28, 0, 0.6), r_t = rnorm(28, 0, 0.12))
 
 reading_skipping <- crossing(readers, items) |>

@@ -1,9 +1,11 @@
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(2032)
-speakers <- tibble(speaker = sprintf("S%02d", 1:40), age = round(runif(40, 18, 80)),
+speakers <- tibble(speaker = str_c("S", str_pad(1:40, 2, pad = "0")),
+                   age = round(runif(40, 18, 80)),
                    gender = sample(rep(c("female", "male"), 20)), s0 = rnorm(40, 0, 0.5)) |>
   mutate(education = if_else(age + rnorm(40, 0, 10) > 50, "school", "university"))
 td_deletion <- crossing(speakers, token = 1:50) |>

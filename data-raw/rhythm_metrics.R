@@ -5,6 +5,7 @@
 # White & Mattys (2007), Journal of Phonetics 35(4), 501-522.
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(5004)
@@ -35,7 +36,7 @@ cells <- crossing(languages, materials) |>
 speakers <- languages |>
   select(language, code) |>
   crossing(speaker_no = 1:8) |>
-  mutate(speaker = paste(code, sprintf("%02d", speaker_no), sep = "_"),
+  mutate(speaker = str_c(code, str_pad(speaker_no, 2, pad = "0"), sep = "_"),
          s_v = rnorm(n(), 0, 2),
          s_c = rnorm(n(), 0, 4),
          s_varco = rnorm(n(), 0, 4),

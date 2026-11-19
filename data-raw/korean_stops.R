@@ -1,6 +1,7 @@
 # Silva (2006), Phonology 23(2), 287-308.
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(4002)
@@ -23,7 +24,7 @@ f0_shift <- tribble(
   "younger", "aspirated", 2
 )
 
-speakers <- tibble(speaker = sprintf("S%02d", 1:40),
+speakers <- tibble(speaker = str_c("S", str_pad(1:40, 2, pad = "0")),
                    generation = rep(c("older", "younger"), each = 20),
                    gender = rep(rep(c("female", "male"), each = 10), 2),
                    base = if_else(gender == "female", 200, 115) * exp(rnorm(40, 0, 0.1)),
@@ -33,7 +34,9 @@ korean_stops <- crossing(speakers, stop = c("lenis", "tense", "aspirated"),
                          place = c("labial", "coronal", "velar"), rep = 1:4) |>
   left_join(vot_mean, by = c("generation", "stop")) |>
   left_join(f0_shift, by = c("generation", "stop")) |>
-  mutate(vot = round(exp(log(vot + c(labial = -5, coronal = 0, velar = 10)[place]) + s_vot +
+  mutate(place_shift = case_when(place == "labial" ~ -5, place == "coronal" ~ 0,
+                                 place == "velar" ~ 10),
+         vot = round(exp(log(vot + place_shift) + s_vot +
                            rnorm(n(), 0, if_else(stop == "tense", 0.3, 0.18)))),
          f0 = round(base * 2^((shift + rnorm(n(), 0, 1.5)) / 12))) |>
   select(speaker, generation, gender, stop, place, rep, vot, f0)

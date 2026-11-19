@@ -1,14 +1,19 @@
 # Biber, Conrad & Leech (2002), Longman Student Grammar of Spoken and Written English.
 library(dplyr)
+library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(3005)
-rate <- c(conversation = 2, fiction = 5, news = 10, academic = 20)
+registers <- tibble(register = c("conversation", "fiction", "news", "academic"),
+                    rate = c(2, 5, 10, 20))
 
-passives <- tibble(text = sprintf("T%03d", 1:400),
-                   register = rep(names(rate), each = 100)) |>
-  mutate(words = round(exp(rnorm(n(), log(2000), 0.5))),
-         passives = rnbinom(n(), mu = rate[register] * words / 1000, size = 4))
+passives <- registers |>
+  uncount(100) |>
+  mutate(text = str_c("T", str_pad(row_number(), 3, pad = "0")),
+         words = round(exp(rnorm(n(), log(2000), 0.5))),
+         passives = rnbinom(n(), mu = rate * words / 1000, size = 4)) |>
+  select(text, register, words, passives)
 
 passives <- passives |>
   mutate(across(where(is.character), \(x) factor(x, levels = sort(unique(x), method = "radix"))),

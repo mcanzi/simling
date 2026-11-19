@@ -2,6 +2,7 @@
 # Levinson & Torreira (2015), Frontiers in Psychology 6, 731.
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(4007)
@@ -13,7 +14,7 @@ languages <- tibble(language = c("Japanese", "Tzeltal", "Y\u00e9l\u00ee Dnye", "
 
 conversations <- languages |>
   crossing(conv = 1:12) |>
-  mutate(conversation = paste(code, sprintf("%02d", conv), sep = "_"),
+  mutate(conversation = str_c(code, str_pad(conv, 2, pad = "0"), sep = "_"),
          c0 = rnorm(n(), 0, 120))
 
 turn_taking <- conversations |>

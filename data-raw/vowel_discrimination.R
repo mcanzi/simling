@@ -2,6 +2,7 @@
 # Macmillan & Creelman (2005), Detection Theory: A User's Guide.
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(3020)
@@ -10,7 +11,8 @@ contrasts <- tibble(contrast = c("FLEECE-KIT", "FLEECE-DRESS", "START-STRUT", "T
                     d_L1 = c(4.2, 4.6, 4.0, 4.4, 4.3, 3.9),
                     d_L2 = c(0.9, 2.6, 0.7, 1.3, 2.3, 1.0))
 
-listeners <- tibble(listener = c(sprintf("E%02d", 1:20), sprintf("G%02d", 1:30)),
+listeners <- tibble(listener = c(str_c("E", str_pad(1:20, 2, pad = "0")),
+                                 str_c("G", str_pad(1:30, 2, pad = "0"))),
                     group = rep(c("L1", "L2"), c(20, 30)),
                     skill = rnorm(50, 0, 0.2),
                     criterion = rnorm(50, 2, 0.35))

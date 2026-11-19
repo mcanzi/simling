@@ -1,6 +1,8 @@
 # Tone letters: Chao (1930), Le Maître Phonétique 45, 24-27.
 library(dplyr)
 library(tidyr)
+library(purrr)
+library(stringr)
 library(tibble)
 
 set.seed(4001)
@@ -9,18 +11,20 @@ targets <- list(T1 = c(5, 5, 5, 4.9, 4.8),
                 T3 = c(2.2, 1.6, 1, 1.3, 2.5),
                 T4 = c(5, 4.6, 3.7, 2.5, 1.2))
 contour <- function(tone, time) {
-  spline(c(0, 25, 50, 75, 100), targets[[tone]], xout = time, method = "natural")$y
+  spline(c(0, 25, 50, 75, 100), pluck(targets, tone), xout = time, method = "natural") |>
+    pluck("y")
 }
 
-speakers <- tibble(speaker = sprintf("S%02d", 1:12),
+speakers <- tibble(speaker = str_c("S", str_pad(1:12, 2, pad = "0")),
                    gender = rep(c("female", "male"), each = 6),
                    base = if_else(gender == "female", 160, 90) * exp(rnorm(12, 0, 0.08)),
                    span = rnorm(12, 2.5, 0.3))
 
-tokens <- crossing(speakers, tone = names(targets), syllable = sprintf("syl%d", 1:8)) |>
-  mutate(token_id = paste(speaker, tone, syllable, sep = "."),
-         duration = round(exp(log(c(T1 = 250, T2 = 270, T3 = 300, T4 = 220)[tone]) +
-                                rnorm(n(), 0, 0.12))),
+tokens <- crossing(speakers, tone = names(targets), syllable = str_c("syl", 1:8)) |>
+  mutate(token_id = str_c(speaker, tone, syllable, sep = "."),
+         duration = case_when(tone == "T1" ~ 250, tone == "T2" ~ 270,
+                              tone == "T3" ~ 300, tone == "T4" ~ 220),
+         duration = round(exp(log(duration) + rnorm(n(), 0, 0.12))),
          t0 = rnorm(n(), 0, 0.5))
 
 mandarin_tones <- crossing(tokens, time = seq(0, 100, by = 10)) |>

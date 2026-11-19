@@ -2,10 +2,11 @@
 # about 300 words at 24 months: Frank et al. (2017), Journal of Child Language 44(3), 677-694.
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(3007)
-children <- tibble(child = sprintf("C%02d", 1:80),
+children <- tibble(child = str_c("C", str_pad(1:80, 2, pad = "0")),
                    input = round(exp(rnorm(80, log(1200), 0.4))),
                    c_mid = rnorm(80, 0, 2.6))
 

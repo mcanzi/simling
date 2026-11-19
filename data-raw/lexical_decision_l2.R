@@ -1,13 +1,14 @@
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(2027)
-participants <- tibble(participant = sprintf("P%02d", 1:30),
+participants <- tibble(participant = str_c("P", str_pad(1:30, 2, pad = "0")),
                        group = rep(c("L1", "L2"), each = 15),
                        p0 = rnorm(30, 0, 0.085),
                        p1 = rnorm(30, 0, 0.015))
-words <- tibble(word = sprintf("w%02d", 1:40),
+words <- tibble(word = str_c("w", str_pad(1:40, 2, pad = "0")),
                 log_freq = round(runif(40, 1, 6), 2),
                 length = pmin(pmax(round(11 - 1.1 * log_freq + rnorm(40, 0, 1.6)), 3), 13),
                 w0 = rnorm(40, 0, 0.04))

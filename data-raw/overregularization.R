@@ -1,10 +1,11 @@
 # Marcus et al. (1992), Monographs of the Society for Research in Child Development 57(4).
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(3008)
-children <- tibble(child = sprintf("C%02d", 1:24),
+children <- tibble(child = str_c("C", str_pad(1:24, 2, pad = "0")),
                    c0 = rnorm(24, 0, 0.9))
 
 overregularization <- crossing(children, age = seq(30, 60, by = 6)) |>

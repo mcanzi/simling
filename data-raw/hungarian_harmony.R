@@ -2,6 +2,7 @@
 # Hayes, Zuraw, Siptár & Londe (2009), Language 85(4), 822-863.
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(5004)
@@ -18,10 +19,10 @@ stem_types <- tribble(
 
 items <- stem_types |>
   uncount(12) |>
-  mutate(item = sprintf("i%02d", row_number()),
+  mutate(item = str_c("i", str_pad(row_number(), 2, pad = "0")),
          i0 = rnorm(n(), 0, 0.4))
 
-participants <- tibble(participant = sprintf("P%02d", 1:50),
+participants <- tibble(participant = str_c("P", str_pad(1:50, 2, pad = "0")),
                        p0 = rnorm(50, 0, 0.5))
 
 hungarian_harmony <- crossing(participants, items) |>

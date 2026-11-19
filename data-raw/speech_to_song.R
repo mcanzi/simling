@@ -2,12 +2,13 @@
 # Falk, Rathcke & Dalla Bella (2014), Journal of Experimental Psychology: Human Perception and Performance 40(4), 1491-1506.
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(5101)
 probit_cut <- function(latent, cuts) as.integer(findInterval(latent, cuts) + 1L)
 
-listeners <- tibble(listener = sprintf("L%02d", 1:86),
+listeners <- tibble(listener = str_c("L", str_pad(1:86, 2, pad = "0")),
                     z1 = rnorm(86), z2 = rnorm(86)) |>
   mutate(bat = round(z1, 2),
          mpt = round(0.5 * z1 + sqrt(1 - 0.5^2) * z2, 2),
@@ -16,12 +17,12 @@ listeners <- tibble(listener = sprintf("L%02d", 1:86),
          l_rat = rnorm(n(), 0, 0.7),
          block = rep_len(0:8, n()))
 
-sentences <- tibble(sentence = sprintf("S%d", 1:9), s0 = rnorm(9, 0, 0.5))
+sentences <- tibble(sentence = str_c("S", 1:9), s0 = rnorm(9, 0, 0.5))
 manipulations <- c("baseline", "pitch", "duration")
 
 design <- listeners |>
   crossing(slot = 0:5) |>
-  mutate(sentence = sprintf("S%d", (block + slot) %% 9 + 1),
+  mutate(sentence = str_c("S", (block + slot) %% 9 + 1),
          manipulation = manipulations[slot %% 3 + 1]) |>
   left_join(sentences, by = "sentence")
 
@@ -43,7 +44,7 @@ speech_to_song <- design |>
 
 speech_to_song <- speech_to_song |>
   mutate(listener = factor(listener, levels = sort(unique(listener), method = "radix")),
-         sentence = factor(sentence, levels = sprintf("S%d", 1:9)),
+         sentence = factor(sentence, levels = str_c("S", 1:9)),
          manipulation = factor(manipulation, levels = manipulations),
          across(c(rating_before, transformed, cycle, rating_after), as.integer)) |>
   arrange(listener, sentence)

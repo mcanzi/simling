@@ -1,27 +1,28 @@
 # Design: Bock & Miller (1991), Cognitive Psychology 23(1), 45-93.
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(3002)
 n_part <- 40
 n_item <- 32
 conds <- expand_grid(grammaticality = c("grammatical", "ungrammatical"),
-                     attractor = c("singular", "plural"))
+                     attractor = c("singular", "plural")) |>
+  mutate(cond = row_number())
 
-participants <- tibble(participant = sprintf("P%02d", 1:n_part),
+participants <- tibble(participant = str_c("P", str_pad(1:n_part, 2, pad = "0")),
                        list = rep(1:4, length.out = n_part),
                        p0 = rnorm(n_part, 0, 0.15),
                        p_reg = rnorm(n_part, 0, 0.5),
                        p_skip = rnorm(n_part, 0, 0.5))
-items <- tibble(item = sprintf("i%02d", 1:n_item),
+items <- tibble(item = str_c("i", str_pad(1:n_item, 2, pad = "0")),
                 i0 = rnorm(n_item, 0, 0.08))
 
 agreement_attraction <- crossing(participants, items) |>
-  mutate(cond = (as.integer(substr(item, 2, 3)) + list) %% 4 + 1,
-         grammaticality = conds$grammaticality[cond],
-         attractor = conds$attractor[cond],
-         ungram = grammaticality == "ungrammatical",
+  mutate(cond = (as.integer(str_sub(item, 2, 3)) + list) %% 4 + 1) |>
+  left_join(conds, by = "cond") |>
+  mutate(ungram = grammaticality == "ungrammatical",
          plural = attractor == "plural",
          skipped = rbinom(n(), 1, plogis(-1.8 + p_skip)),
          gaze = exp(5.55 + p0 + i0 + 0.14 * ungram - 0.09 * ungram * plural +

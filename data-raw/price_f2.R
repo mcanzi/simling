@@ -1,14 +1,15 @@
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(2029)
-speakers <- tibble(speaker = sprintf("S%02d", 1:20),
+speakers <- tibble(speaker = str_c("S", str_pad(1:20, 2, pad = "0")),
                    l1 = rep(c("English", "Italian"), each = 10),
                    s0 = rnorm(20, 0, 60),
                    s_mid = rnorm(20, 0, 5))
 tokens <- crossing(speakers, token = 1:10) |>
-  mutate(traj = paste(speaker, token, sep = "."),
+  mutate(traj = str_c(speaker, token, sep = "."),
          duration = round(runif(n(), 120, 300)),
          t0 = rnorm(n(), 0, 40))
 price_f2 <- crossing(tokens, time = seq(0, 100, by = 10)) |>

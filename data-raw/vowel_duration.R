@@ -1,15 +1,16 @@
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(tibble)
 
 set.seed(1)
 n_speakers <- 16
 n_words <- 24
 
-speakers <- tibble(speaker = sprintf("S%02d", 1:n_speakers),
+speakers <- tibble(speaker = str_c("S", str_pad(1:n_speakers, 2, pad = "0")),
                    s0 = rnorm(n_speakers, 0, 25),
                    s1 = rnorm(n_speakers, 0, 12))
-words <- tibble(word = sprintf("w%02d", 1:n_words),
+words <- tibble(word = str_c("w", str_pad(1:n_words, 2, pad = "0")),
                 voicing = rep(c("voiceless", "voiced"), each = n_words / 2),
                 w0 = rnorm(n_words, 0, 15))
 

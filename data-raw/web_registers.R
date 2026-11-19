@@ -3,6 +3,9 @@
 # Ehret & Taboada (2021), Frontiers in Artificial Intelligence 4, 643770;
 # base rates, spreads and register means chosen to match their data: https://doi.org/10.5281/zenodo.4885180
 library(dplyr)
+library(tidyr)
+library(purrr)
+library(stringr)
 library(tibble)
 
 set.seed(6012)
@@ -37,26 +40,28 @@ features <- tribble(
 )
 
 texts <- registers |>
-  tidyr::uncount(n) |>
-  mutate(text = sprintf("T%03d", row_number()),
+  uncount(n) |>
+  mutate(text = str_c("T", str_pad(row_number(), 3, pad = "0")),
          words = pmin(pmax(round(exp(rnorm(n(), log(900), 0.5))), 400), 4000),
          involved = involved + rnorm(n(), 0, 0.6),
          narrative = narrative + rnorm(n(), 0, 0.9),
          elaborated = elaborated + rnorm(n(), 0, 0.6))
 
-dims <- as.matrix(select(texts, involved, narrative, elaborated))
-web_registers <- select(texts, text, register, words)
-for (i in seq_len(nrow(features))) {
-  loadings <- unlist(features[i, c("involved", "narrative", "elaborated")])
-  latent <- drop(dims %*% loadings) + rnorm(nrow(texts), 0, sqrt(1 - sum(loadings^2)))
-  if (features$feature[i] == "word_length") {
-    value <- round(features$base_rate[i] + features$spread[i] * latent, 2)
+simulate_feature <- function(feature, base_rate, spread, involved, narrative, elaborated) {
+  latent <- texts$involved * involved + texts$narrative * narrative +
+    texts$elaborated * elaborated +
+    rnorm(nrow(texts), 0, sqrt(1 - (involved^2 + narrative^2 + elaborated^2)))
+  if (feature == "word_length") {
+    round(base_rate + spread * latent, 2)
   } else {
-    rate <- features$base_rate[i] * exp(features$spread[i] * latent)
-    value <- round(rpois(nrow(texts), texts$words * rate / 1000) / texts$words * 1000, 1)
+    rate <- base_rate * exp(spread * latent)
+    round(rpois(nrow(texts), texts$words * rate / 1000) / texts$words * 1000, 1)
   }
-  web_registers[[features$feature[i]]] <- value
 }
+
+web_registers <- texts |>
+  select(text, register, words) |>
+  bind_cols(features |> pmap(simulate_feature) |> set_names(features$feature) |> as_tibble())
 
 web_registers <- web_registers |>
   mutate(pronouns = first_person + second_person + third_person) |>
